@@ -1,8 +1,10 @@
 #!/usr/bin/groovy
 
 node {
-    stage 'Checkout'
+    stage 'Install'
     checkout scm
+
+    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng npm i'
 }
 
 node {
