@@ -8,19 +8,19 @@ node {
 node {
     stage 'Lint'
 
-    sh 'docker --rm -v `pwd`:/app:rw -w /app falci/ng ng lint'
+    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng lint'
 }
 
 node {
     stage 'Unit Tests'
 
-    sh 'docker --rm -v `pwd`:/app:rw -w /app falci/ng ng test'
+    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng test'
 }
 
 node {
     stage 'End-to-end Tests'
 
-    sh 'docker --rm -v `pwd`:/app:rw -w /app falci/ng ng e2e'
+    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng e2e'
 }
 
 node {
@@ -32,7 +32,7 @@ node {
         ngEnv = 'production'
     }
 
-    sh "docker --rm -v `pwd`:/app:rw -w /app falci/ng ng build --target=${ngEnv}"
+    sh "docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng build --target=${ngEnv}"
 }
 
 node {
