@@ -14,18 +14,6 @@ node {
 }
 
 node {
-    stage 'Unit Tests'
-
-    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng test'
-}
-
-node {
-    stage 'End-to-end Tests'
-
-    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng e2e'
-}
-
-node {
     stage 'Build'
 
     def ngEnv = 'development'
