@@ -31,10 +31,10 @@ node {
     def server = 'none'
 
     if(env.BRANCH_NAME == 'develop'){
-        server = 'bl-dev-web'
+        server = 'bl-dev-webapp'
     }
     if(env.BRANCH_NAME == 'master'){
-        server = 'bl-qa-web'
+        server = 'bl-qa-webapp'
     }
 
     if(server != 'none') {
