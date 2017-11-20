@@ -1,0 +1,10 @@
+<h2>Status</h2>
+<ul *ngIf="status">
+  <li><strong>Date:</strong> {{status?.generatedOn}}</li>
+  <li><strong>Build:</strong> {{status?.build}}</li>
+  <li><strong>Status:</strong> {{status?.status}}</li>
+</ul>
+
+<div class="error" *ngIf="error">
+  {{error}}
+</div>

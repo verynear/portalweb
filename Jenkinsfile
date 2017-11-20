@@ -16,10 +16,10 @@ node {
 node {
     stage 'Build'
 
-    def ngEnv = 'development'
+    def ngEnv = 'dev'
 
     if(env.BRANCH_NAME == 'master'){
-        ngEnv = 'production'
+        ngEnv = 'prod'
     }
 
     sh "docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng build --target=${ngEnv}"
