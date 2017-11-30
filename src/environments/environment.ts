@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  api: {
-    baseUrl: 'http://apidev.betterleasing.com'
-  }
+  // api: {
+  //   baseUrl: 'http://apidev.betterleasing.com'
+  // }
 };
