@@ -8,7 +8,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import {StatusService} from './services/status.service';
+import { StatusService } from './services/status.service';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AlertService } from './_services/alert.service';
+import { AuthGuard } from './services/authguard.service';
+import { AuthenticationService } from './_services/authentication.service';
+import { UserService } from './_services/user.service';
+import { LoginComponent } from './pages/login/login.component';
+import { AlertComponent } from './pages/alert/alert.component';
 
 
 
@@ -24,9 +31,18 @@ import {StatusService} from './services/status.service';
     AppComponent,
     HomeComponent,
     StatusComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DashboardComponent,
+    LoginComponent,
+    AlertComponent
   ],
-  providers: [StatusService],
+  providers: [
+      AuthGuard,
+      AlertService,
+      AuthenticationService,
+      UserService,
+      StatusService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
