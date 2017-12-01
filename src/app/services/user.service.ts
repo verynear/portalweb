@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../models/user';
+import { MessageService } from './message.service';
 
 @Injectable()
 export class UserService {
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+                private messageService: MessageService) { }
 
     getAll() {
         return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());

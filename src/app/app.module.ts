@@ -22,6 +22,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { MessageService } from './services/message.service';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     StatusComponent,
     PageNotFoundComponent,
     DashboardComponent,
+    MessagesComponent,
   ],
   providers: [
       AuthGuard,
@@ -49,7 +52,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
       StatusService,
       fakeBackendProvider,
       MockBackend,
-      BaseRequestOptions
+      BaseRequestOptions,
+      MessageService
   ],
   bootstrap: [AppComponent]
 })
