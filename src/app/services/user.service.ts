@@ -3,6 +3,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../models/user';
 import { MessageService } from './message.service';
+import { PaymentService } from './payment.service';
+import { MaintenanceService } from './maintenance.service';
 
 @Injectable()
 export class UserService {
