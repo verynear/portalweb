@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MenuModule,MenubarModule } from 'primeng/primeng';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -30,13 +32,17 @@ import { PaymentsComponent } from './pages/payments/payments.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { AnnouncementService } from './services/announcement.service';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
+import { MenubarComponent } from './pages/menubar/menubar.component';
 
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    MenuModule,
+    MenubarModule,
     AppRoutingModule
   ],
   declarations: [
@@ -52,6 +58,7 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
     PaymentsComponent,
     MaintenanceComponent,
     AnnouncementsComponent,
+    MenubarComponent,
   ],
   providers: [
       AuthGuard,
