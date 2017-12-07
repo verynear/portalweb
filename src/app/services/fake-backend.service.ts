@@ -1,4 +1,7 @@
-import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod, XHRBackend, RequestOptions } from '@angular/http';
+import {
+  Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod, XHRBackend, RequestOptions,
+  Headers
+} from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
 export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOptions, realBackend: XHRBackend) {
@@ -11,7 +14,7 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
         setTimeout(() => {
 
             // authenticate
-            if (connection.request.url.endsWith('/api/authenticate') && connection.request.method === RequestMethod.Post) {
+            if (connection.request.url.endsWith('/login-disabled') && connection.request.method === RequestMethod.Post) {
                 // get parameters from post request
                 let params = JSON.parse(connection.request.getBody());
 
@@ -30,8 +33,10 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                             username: user.username,
                             firstName: user.firstName,
                             lastName: user.lastName,
-                            token: 'fake-jwt-token'
-                        }
+                        },
+                        headers: new Headers({
+                          'Authorization': 'Bearer  fake-jwt-token'
+                        })
                     })));
                 } else {
                     // else return 400 bad request
