@@ -66,3 +66,4 @@ Before submiting a PR you need to check the _Lint_: `ng lint`. Keep in mind that
 * Production deploy
 * Code review requirements
 * Test coverage requirements
+# My project's README
