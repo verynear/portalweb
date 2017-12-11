@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MenuModule,MenubarModule } from 'primeng/primeng';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuModule, MenubarModule } from 'primeng/primeng';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { fakeBackendProvider } from './services/fake-backend.service';
-import { MockBackend, MockConnection } from '@angular/http/testing';
+import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,9 @@ import { MaintenanceComponent } from './pages/maintenance/maintenance.component'
 import { AnnouncementService } from './services/announcement.service';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { MenubarComponent } from './pages/menubar/menubar.component';
+import { AuthHeaderInterceptor } from './auth-header.interceptor';
+import { SessionService } from './services/session.service';
+import { LoginService } from './services/login.service';
 
 
 @NgModule({
@@ -41,6 +45,7 @@ import { MenubarComponent } from './pages/menubar/menubar.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     MenuModule,
     MenubarModule,
     AppRoutingModule
@@ -61,6 +66,11 @@ import { MenubarComponent } from './pages/menubar/menubar.component';
     MenubarComponent,
   ],
   providers: [
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthHeaderInterceptor,
+        multi: true,
+      },
       AuthGuard,
       AlertService,
       AuthenticationService,
@@ -72,7 +82,10 @@ import { MenubarComponent } from './pages/menubar/menubar.component';
       MessageService,
       PaymentService,
       MaintenanceService,
-      AnnouncementService
+      AnnouncementService,
+      SessionService,
+      LoginService,
+      AuthHeaderInterceptor
   ],
   bootstrap: [AppComponent]
 })

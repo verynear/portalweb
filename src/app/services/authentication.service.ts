@@ -1,26 +1,30 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment';
 import 'rxjs/add/operator/map';
+import {User} from '../models/user';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http) { }
+  private url = environment.api.baseUrl;
 
-    login(username: string, password: string) {
-        return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
-            .map((response: Response) => {
-                // login successful if there's a token in the response
-                let user = response.json();
-                if (user && user.token) {
-                    // store user details and token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
-            });
-    }
+  constructor(private http: HttpClient) { }
 
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-    }
+  login(username: string, password: string): Promise<string> {
+    return this.http.post(`${this.url}/login`, {username, password}, {observe: 'response'})
+      .map((response: HttpResponse<any>) => response.headers.get('Authorization'))
+      .toPromise();
+  }
+
+  logout(): Promise<any> {
+    return this.http.post(`${this.url}/logout`, {})
+      .toPromise()
+      // ignore errors on logout
+      .catch(() => {});
+  }
+
+  getCurrentUser(): Promise<User> {
+    return this.http.get<User>(`${this.url}/auth/me`)
+      .toPromise();
+  }
 }
