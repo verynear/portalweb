@@ -27,7 +27,7 @@ node {
 
 node {
     stage 'Deploy'
-    def www = '/var/www/html'
+    def www = '/var/www/html/admin'
     def server = 'none'
 
     if(env.BRANCH_NAME == 'develop'){
