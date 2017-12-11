@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
 import {Status} from '../models/status';
 import { environment } from './../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class StatusService {
   private url = `${environment.api.baseUrl}/`;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getStatus(): Promise<Status> {
-    return this.http.get(this.url)
-      .toPromise()
-      .then(res => res.json() as Status);
+    return this.http.get<Status>(this.url)
+      .toPromise();
   }
 }
