@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MenubarModule,MenuItem} from 'primeng/primeng';
+import { MenubarModule, MenuItem } from 'primeng/primeng';
 
 @Component({
   selector: 'app-menubar',
@@ -17,18 +17,16 @@ export class MenubarComponent implements OnInit {
             {
                 label: 'Floorplans',
                 icon: 'fa-file-o',
-                items: [{
-                        label: 'New', 
+                items: [{label: 'New',
                         icon: 'fa-plus',
                         items: [
                             {label: 'Project'},
                             {label: 'Other'},
-                        ]
+                            ]
                     },
                     {label: 'Open'},
                     {separator: true},
-                    {label: 'Quit'}
-                ]
+                    {label: 'Quit'}]
             },
             {
                 label: 'Amenities',
@@ -42,15 +40,11 @@ export class MenubarComponent implements OnInit {
                 label: 'Gallery',
                 icon: 'fa-question',
                 items: [
-                    {
-                        label: 'Contents'
-                    },
-                    {
-                        label: 'Search', 
-                        icon: 'fa-search', 
+                    {label: 'Contents'},
+                    {label: 'Search',
+                        icon: 'fa-search',
                         items: [
-                            {
-                                label: 'Text', 
+                            {label: 'Text',
                                 items: [
                                     {
                                         label: 'Workspace'
