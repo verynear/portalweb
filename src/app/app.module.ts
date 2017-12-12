@@ -34,7 +34,7 @@ import { MaintenanceComponent } from './pages/maintenance/maintenance.component'
 import { AnnouncementService } from './services/announcement.service';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { MenubarComponent } from './pages/menubar/menubar.component';
-import { AuthHeaderInterceptor } from './auth-header.interceptor';
+import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
 import { LoginService } from './services/login.service';
 
@@ -68,7 +68,7 @@ import { LoginService } from './services/login.service';
   providers: [
       {
         provide: HTTP_INTERCEPTORS,
-        useClass: AuthHeaderInterceptor,
+        useValue: AuthHeaderInterceptor.getInstance(),
         multi: true,
       },
       AuthGuard,
@@ -85,7 +85,7 @@ import { LoginService } from './services/login.service';
       AnnouncementService,
       SessionService,
       LoginService,
-      AuthHeaderInterceptor
+      AUTH_HEADER_INTERCEPTOR_PROVIDER
   ],
   bootstrap: [AppComponent]
 })
