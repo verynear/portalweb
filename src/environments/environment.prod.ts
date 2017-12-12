@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   api: {
-    baseUrl: 'http://apistage.betterleasing.com'
+    baseUrl: 'http://api.stage.betterleasing.com/web'
   }
 };
