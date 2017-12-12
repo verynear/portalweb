@@ -39,7 +39,7 @@ node {
 
     if(server != 'none') {
         echo "Deploying files to ${server}"
-        sh "scp ./dist/* ${server}:${www}"
+        sh "scp -r ./dist/* ${server}:${www}"
     } else {
         echo "Deploy ignored (custom branch)"
     }
