@@ -9,8 +9,6 @@ import { AuthGuard } from './auth.guard';
 import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
-
-
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -18,7 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'status', component: StatusComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

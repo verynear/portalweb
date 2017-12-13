@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../models/user';
-import { UserService } from '../../services/user.service';
+import {SessionService} from '../../services/session.service';
 
 @Component({
   moduleId: module.id.toString(),
@@ -9,19 +9,14 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  currentUser: User;
-  users: User[] = [];
+  public currentUser: User;
 
-  constructor(private userService: UserService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private session: SessionService) {
   }
 
   ngOnInit() {
-  	// this.getById();
+    this.session.getObservable('currentUser')
+      .subscribe((user: User) => this.currentUser = user);
   }
-
-  // getById(id: number): void {
-  // 	this.userService.getById(id);
-  // }
 
 }
