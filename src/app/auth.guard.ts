@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {AuthenticationService} from './services/authentication.service';
 import {SessionService} from './services/session.service';
 import {User} from './models/user';
+import {LoginService} from './services/login.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
   constructor(private router: Router,
-              private authService: AuthenticationService,
+              private loginService: LoginService,
               private session: SessionService) {
   }
 
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
 
     if (!currentUser) {
       // get the user's info from api
-      return this.authService.getCurrentUser()
+      return this.loginService.getCurrentUser()
         // save it in the session
         .then((user: User) => this.session.set('currentUser', user))
 

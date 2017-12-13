@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-
+import {environment} from '../../environments/environment';
 import {User} from '../models/user';
 import {MessageService} from './message.service';
 import {PaymentService} from './payment.service';
