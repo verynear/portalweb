@@ -1,4 +1,12 @@
-<app-menubar></app-menubar>
+<div class="wrap {{hasAuth ? 'auth' : 'no-auth'}}">
+  <div class="menu">
+    <div class="logo">
+      [logo]
+    </div>
 
-<router-outlet></router-outlet>
-
+    <app-menu></app-menu>
+  </div>
+  <div class="page">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,8 +1,13 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+}
+
 .page {
-  width: 500px;
-  height: 100px;
-  margin: 40px auto;
-  padding: 0 10px;
-  border-radius: 4px;
-  box-shadow: rgba(0,0,0,.3) 0 0 10px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.no-auth .menu {
+  display: none;
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MenuModule, MenubarModule } from 'primeng/primeng';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -33,11 +32,11 @@ import { PaymentsComponent } from './pages/payments/payments.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { AnnouncementService } from './services/announcement.service';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
-import { MenubarComponent } from './pages/menubar/menubar.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
 import { LoginService } from './services/login.service';
-
+import {ButtonModule} from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -46,9 +45,8 @@ import { LoginService } from './services/login.service';
     FormsModule,
     HttpModule,
     HttpClientModule,
-    MenuModule,
-    MenubarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ButtonModule
   ],
   declarations: [
     AppComponent,
@@ -63,7 +61,7 @@ import { LoginService } from './services/login.service';
     PaymentsComponent,
     MaintenanceComponent,
     AnnouncementsComponent,
-    MenubarComponent,
+    MenuComponent,
   ],
   providers: [
       {
