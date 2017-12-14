@@ -5,7 +5,6 @@ import {User} from '../models/user';
 import {MessageService} from './message.service';
 import {PaymentService} from './payment.service';
 import {MaintenanceService} from './maintenance.service';
-import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
