@@ -11,7 +11,6 @@ import { User } from '../../models/user';
 })
 
 export class RegisterComponent implements OnInit {
-    model: any = {};
     loading = false;
     registerForm: FormGroup;
     firstName: FormControl;
@@ -52,6 +51,7 @@ export class RegisterComponent implements OnInit {
     }
 
     register() {
+        this.loading = true;
         const user = new User();
 
         user.firstname = this.registerForm.value.firstName;

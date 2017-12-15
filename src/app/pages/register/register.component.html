@@ -7,7 +7,7 @@
 
             <div class="form-group"[ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
                         'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
-                <label>First Name</label>
+                <label>First Name: </label>
                 <input type="text" class="form-control" formControlName="firstName" required>     
                 <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)"> 
                     <p *ngIf="firstName.errors.required">First Name is required</p>
@@ -16,7 +16,7 @@
 
             <div class="form-group" [ngClass]="{'has-danger': lastName.invalid && (lastName.dirty || lastName.touched),
                         'has-success': lastName.valid && (lastName.dirty || lastName.touched)}">
-                <label>Last Name</label>
+                <label>Last Name: </label>
                 <input type="text" class="form-control" formControlName="lastName" required>
                 <div class="form-control-feedback" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)"> 
                     <p *ngIf="lastName.errors.required">Last Name is required</p>
@@ -25,7 +25,7 @@
 
             <div class="form-group" [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched), 
             'has-success': email.valid && (email.dirty || email.touched)}">
-                <label>Email</label>
+                <label>Email: </label>
                 <input type="email" class="form-control" formControlName="email" required>
                 <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)"> 
                     <p *ngIf="email.errors.required">Email is required</p>
@@ -35,7 +35,7 @@
 
             <div class="form-group" [ngClass]="{'has-danger': password.invalid && (password.dirty || password.touched),
                 'has-success': password.valid && (password.dirty || password.touched)}">
-                <label>Password</label>
+                <label>Password: </label>
                 <input type="password" class="form-control" formControlName="password" required>
                 <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
                     <p *ngIf="password.errors.required">Password is required</p>
@@ -53,16 +53,14 @@
                 </div>
             </div>  
 
-            <div class="pull-left">
-                    <a [routerLink]="['/login']" class="btn btn-link">Go to Login</a>
-            </div>
-            <div class="form-group pull-right">
-                
+            <div class="form-group pull-left">
                 <button [disabled]="loading || !registerForm.valid" class="btn btn-primary">Submit</button>
+                <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
             </div> 
 
             </form>
             </div>
         </div>
+        <button [routerLink]="['/login']" class="btn btn-link pull-right">Go to Login</button>
     </div>
 </div>
