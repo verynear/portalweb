@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { HttpModule } from '@angular/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -36,17 +38,19 @@ import { MenuComponent } from './components/menu/menu.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
 import { LoginService } from './services/login.service';
-import {ButtonModule} from 'primeng/primeng';
+import { ButtonModule } from 'primeng/primeng';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
     AppRoutingModule,
-    ButtonModule
+    ButtonModule,
+    NgbModule
   ],
   declarations: [
     AppComponent,
