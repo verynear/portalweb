@@ -4,7 +4,10 @@ node {
     stage 'Install'
     checkout scm
 
-    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng npm i'
+    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng npm update'
+    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng npm install'
+    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng nodejs node_modules/node-sass/scripts/install.js'
+    sh 'docker run --rm -v `pwd`:/app:rw -w /app falci/ng npm rebuild node-sass'
 }
 
 node {
