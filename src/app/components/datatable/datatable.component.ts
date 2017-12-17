@@ -1,10 +1,10 @@
 import {Component, OnInit } from '@angular/core';
-import {Car} from '../../components/domain/car';
-import {CarService} from '../../service/carservice';
+import { Applicant } from '../../models/applicant';
+import { ApplicantService } from '../../services/applicant.service';
 
 @Component({
     selector: 'app-datatable',
-    templateUrl: './datatablecruddemo.html',
+    templateUrl: './datatable.component.html',
     styles: [`
         .ui-grid-row div {
           padding: 4px 10px
@@ -18,65 +18,66 @@ export class DatatableComponent implements OnInit {
 
     displayDialog: boolean;
 
-    car: Car = new PrimeCar();
-    
-    selectedCar: Car;
-    
-    newCar: boolean;
+    applicant: Applicant = new PrimeApplicant();
 
-    cars: Car[];
+    selectedApplicant: Applicant;
 
-    constructor(private carService: CarService) { }
+    newApplicant: boolean;
+
+    applicants: Applicant[];
+
+    constructor(private applicantService: ApplicantService) { }
 
     ngOnInit() {
-        this.carService.getCarsSmall().then(cars => this.cars = cars);
+        this.applicantService.getApplicantsSmall().then(applicantes => this.applicants = applicants);
     }
-    
+
     showDialogToAdd() {
-        this.newCar = true;
-        this.car = new PrimeCar();
+        this.newApplicant = true;
+        this.applicant = new PrimeApplicant();
         this.displayDialog = true;
     }
-    
+
     save() {
-        let cars = [...this.cars];
-        if(this.newCar)
-            cars.push(this.car);
+        const applicants = [...this.applicants];
+         if (this.newApplicant)
+            applicants.push(this.applicant);
         else
-            cars[this.findSelectedCarIndex()] = this.car;
-        
-        this.cars = cars;
-        this.car = null;
+            applicants[this.findSelectedApplicantIndex()] = this.applicant;
+
+
+        this.applicants = applicants;
+        this.applicant = null;
+        this.displayDialog = false; }
+
+    delete() {
+        const index = this.findSelectedApplicantIndex();
+        this.applicants = this.applicants.filter((val, i) => i !== index);
+        this.applicant = null;
         this.displayDialog = false;
     }
-    
-    delete() {
-        let index = this.findSelectedCarIndex();
-        this.cars = this.cars.filter((val,i) => i!=index);
-        this.car = null;
-        this.displayDialog = false;
-    }    
-    
+
     onRowSelect(event) {
-        this.newCar = false;
-        this.car = this.cloneCar(event.data);
+        this.newApplicant = false;
+        this.applicant = this.cloneApplicant(event.data);
         this.displayDialog = true;
     }
-    
-    cloneCar(c: Car): Car {
-        let car = new PrimeCar();
-        for(let prop in c) {
-            car[prop] = c[prop];
+
+    cloneApplicant(a: Applicant): Applicant {
+        const applicant = new PrimeApplicant();
+        for (const prop in a) {
+            applicant[prop] = a[prop];
         }
-        return car;
+        return applicant;
     }
-    
-    findSelectedCarIndex(): number {
-        return this.cars.indexOf(this.selectedCar);
+
+    findSelectedApplicantIndex(): number {
+        return this.applicants.indexOf(this.selectedApplicant);
     }
 }
 
-class PrimeCar implements Car {
-    
-    constructor(public vin?, public year?, public brand?, public color?) {}
+class PrimeApplicant implements Applicant {
+
+    constructor(public emailAddress?, public firstName?, public isFirstUser?,
+        public lastname?, public status?, public phone?, public rentalSiteId? ) {}
 }
