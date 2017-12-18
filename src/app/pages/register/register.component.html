@@ -42,21 +42,23 @@
                     <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
                 </div>
             </div>
-
-            <div class="form-group" [ngClass]="{'has-danger': birthdate.invalid && (birthdate.dirty || birthdate.touched), 
-                'has-success': birthdate.valid && (birthdate.dirty || birthdate.touched)}">
-                <label for="birthdate">For identity purposes, please provide your Birthdate: </label>
-                <input type="date" class="form-control" formControlName="birthdate" required>
-
-                <div class="form-control-feedback" *ngIf="birthdate.errors && (birthdate.dirty || birthdate.touched)">
-                    <p *ngIf="birthdate.errors.required">Date of birth is required</p>
+           
+            <div class="form-group">
+                <label>Birthdate: </label>
+                <div class="input-group">
+                <input class="form-control" formControlName="birthdate" ngbDatepicker #d="ngbDatepicker">
+                <button class="input-group-addon" (click)="d.toggle()" type="button">
+                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                </button>
                 </div>
-            </div>  
-
+            </div>
+    
             <div class="form-group pull-left">
                 <button [disabled]="loading || !registerForm.valid" class="btn btn-primary">Submit</button>
                 <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
             </div> 
+
+            <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
 
             </form>
             </div>

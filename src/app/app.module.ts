@@ -50,7 +50,7 @@ import { ButtonModule } from 'primeng/primeng';
     HttpClientModule,
     AppRoutingModule,
     ButtonModule,
-    NgbModule
+    NgbModule.forRoot()
   ],
   declarations: [
     AppComponent,
