@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   api: {
-    baseUrl: 'http://api.stage.betterleasing.com/leasenet'
+    baseUrl: `${location.protocol}//api.${location.hostname === 'localhost' ? 'stage.betterleasing.com' : location.host}/leasenet`
   }
 };
