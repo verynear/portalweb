@@ -1,6 +1,7 @@
 import {Component, OnInit } from '@angular/core';
 import { Applicant } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
+import { DataTableModule } from 'primeng/primeng';
 
 @Component({
     selector: 'app-datatable',
@@ -29,7 +30,7 @@ export class DatatableComponent implements OnInit {
     constructor(private applicantService: ApplicantService) { }
 
     ngOnInit() {
-        this.applicantService.getApplicantsSmall().then(applicantes => this.applicants = applicants);
+        this.applicantService.getApplicants().then(applicants => this.applicants = applicants);
     }
 
     showDialogToAdd() {
@@ -40,29 +41,29 @@ export class DatatableComponent implements OnInit {
 
     save() {
         const applicants = [...this.applicants];
-         if (this.newApplicant)
+        if (this.newApplicant) {
             applicants.push(this.applicant);
-        else
+        } else {
             applicants[this.findSelectedApplicantIndex()] = this.applicant;
-
-
+        }
         this.applicants = applicants;
         this.applicant = null;
-        this.displayDialog = false; }
-
+        this.displayDialog = false;
+    }
+    
     delete() {
         const index = this.findSelectedApplicantIndex();
         this.applicants = this.applicants.filter((val, i) => i !== index);
         this.applicant = null;
         this.displayDialog = false;
     }
-
+    
     onRowSelect(event) {
         this.newApplicant = false;
         this.applicant = this.cloneApplicant(event.data);
         this.displayDialog = true;
     }
-
+    
     cloneApplicant(a: Applicant): Applicant {
         const applicant = new PrimeApplicant();
         for (const prop in a) {
@@ -70,14 +71,13 @@ export class DatatableComponent implements OnInit {
         }
         return applicant;
     }
-
+    
     findSelectedApplicantIndex(): number {
         return this.applicants.indexOf(this.selectedApplicant);
     }
 }
 
-class PrimeApplicant implements Applicant {
-
-    constructor(public emailAddress?, public firstName?, public isFirstUser?,
-        public lastname?, public status?, public phone?, public rentalSiteId? ) {}
+export class PrimeApplicant implements Applicant {
+    
+    constructor(public emailAddress?, public firstname?, public lastname?, public status?, public phone?) {}
 }

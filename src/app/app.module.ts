@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { InputTextModule, ButtonModule, DataTableModule, DialogModule, SharedModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -36,7 +37,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
 import { LoginService } from './services/login.service';
-import { ButtonModule } from 'primeng/primeng';
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApplicantService } from './services/applicant.service';
@@ -46,7 +46,11 @@ import { ApplicantService } from './services/applicant.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpModule,
+    InputTextModule,
+    ButtonModule,
+    DataTableModule,
+    DialogModule,
+    SharedModule,
     HttpClientModule,
     AppRoutingModule,
     ButtonModule
@@ -76,6 +80,7 @@ import { ApplicantService } from './services/applicant.service';
       },
       AuthGuard,
       AlertService,
+      ApplicantService,
       AuthenticationService,
       UserService,
       StatusService,

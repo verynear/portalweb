@@ -1,9 +1,9 @@
 <p-dataTable [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
-    <p-header>CRUD for Applicants</p-header>
+    <p-header>Pending Applicants</p-header>
     <p-column field="emailAddress" header="Email" [sortable]="true"></p-column>
-    <p-column field="firstName" header="First" [sortable]="true"></p-column>
-    <p-column field="lastName" header="Last" [sortable]="true"></p-column>
-    <p-column field="status" header="status" [sortable]="true"></p-column>
+    <p-column field="firstname" header="First" [sortable]="true"></p-column>
+    <p-column field="lastname" header="Last" [sortable]="true"></p-column>
+    <p-column field="status" header="Status" [sortable]="true"></p-column>
     <p-column field="phone" header="Phone" [sortable]="true"></p-column>
     <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></p-footer>
 </p-dataTable>
@@ -15,12 +15,12 @@
             <div class="ui-grid-col-8"><input pInputText id="emailAddress" [(ngModel)]="applicant.emailAddress" /></div>
         </div>
         <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="firstName">First</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="firstName" [(ngModel)]="applicant.firstName" /></div>
+            <div class="ui-grid-col-4"><label for="firstname">First</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="firstname" [(ngModel)]="applicant.firstname" /></div>
         </div>
         <div class="ui-grid-row">
-            <div class="ui-grid-col-4"><label for="lastName">Last</label></div>
-            <div class="ui-grid-col-8"><input pInputText id="lastName" [(ngModel)]="applicant.lastName" /></div>
+            <div class="ui-grid-col-4"><label for="lastname">Last</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="lastname" [(ngModel)]="applicant.lastname" /></div>
         </div>
         <div class="ui-grid-row">
             <div class="ui-grid-col-4"><label for="status">Status</label></div>
@@ -35,6 +35,7 @@
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
             <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
             <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+            <button type="button" pButton icon="fa-check" (click)="approve()" label="Approve"></button>
         </div>
     </p-footer>
 </p-dialog>
