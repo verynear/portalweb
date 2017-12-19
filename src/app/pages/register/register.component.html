@@ -1,30 +1,68 @@
-<div class="ui-g-6 ui-g-offset-3">
-    <h2>Register</h2>
-    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
-            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <h5 class="card-header">Create an Account</h5>
+            <div class="card-block">
+            <form novalidate [formGroup]="registerForm" (ngSubmit)="register()">
+
+            <div class="form-group"[ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
+                        'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
+                <label>First Name: </label>
+                <input type="text" class="form-control" formControlName="firstName" required>     
+                <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)"> 
+                    <p *ngIf="firstName.errors.required">First Name is required</p>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-danger': lastName.invalid && (lastName.dirty || lastName.touched),
+                        'has-success': lastName.valid && (lastName.dirty || lastName.touched)}">
+                <label>Last Name: </label>
+                <input type="text" class="form-control" formControlName="lastName" required>
+                <div class="form-control-feedback" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)"> 
+                    <p *ngIf="lastName.errors.required">Last Name is required</p>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched), 
+            'has-success': email.valid && (email.dirty || email.touched)}">
+                <label>Email: </label>
+                <input type="email" class="form-control" formControlName="email" required>
+                <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)"> 
+                    <p *ngIf="email.errors.required">Email is required</p>
+                    <p *ngIf="password.errors.pattern">The email address must contain at least the @ character</p>
+                </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-danger': password.invalid && (password.dirty || password.touched),
+                'has-success': password.valid && (password.dirty || password.touched)}">
+                <label>Password: </label>
+                <input type="password" class="form-control" formControlName="password" required>
+                <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+                    <p *ngIf="password.errors.required">Password is required</p>
+                    <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <label>Birthdate: </label>
+                <div class="input-group">
+                <input class="form-control" formControlName="birthdate" ngbDatepicker #d="ngbDatepicker">
+                <button class="input-group-addon" (click)="d.toggle()" type="button">
+                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                </button>
+                </div>
+            </div>
+    
+            <div class="form-group pull-left">
+                <button [disabled]="loading || !registerForm.valid" class="btn btn-primary">Submit</button>
+                <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+            </div> 
+
+            <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
+
+            </form>
+            </div>
         </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
-            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-        </div>
-        <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Register</button>
-            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
-        </div>
-    </form>
+        <button [routerLink]="['/login']" class="btn btn-link pull-right">Go to Login</button>
+    </div>
 </div>

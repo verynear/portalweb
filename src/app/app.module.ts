@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -36,10 +38,12 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
 import { MenuComponent } from './components/menu/menu.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
-import { LoginService } from './services/login.service';
+
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApplicantService } from './services/applicant.service';
+import { LoginService } from './services/login.service';
+
 
 @NgModule({
   imports: [
@@ -51,9 +55,11 @@ import { ApplicantService } from './services/applicant.service';
     DataTableModule,
     DialogModule,
     SharedModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ButtonModule
+    ButtonModule,
+    NgbModule.forRoot()
   ],
   declarations: [
     AppComponent,
