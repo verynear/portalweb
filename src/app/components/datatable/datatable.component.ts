@@ -6,25 +6,14 @@ import { DataTableModule } from 'primeng/primeng';
 @Component({
     selector: 'app-datatable',
     templateUrl: './datatable.component.html',
-    styles: [`
-        .ui-grid-row div {
-          padding: 4px 10px
-        }
-        .ui-grid-row div label {
-          font-weight: bold;
-        }
-  `]
+    styleUrls: ['./datatable.component.scss']
 })
 export class DatatableComponent implements OnInit {
 
     displayDialog: boolean;
-
     applicant: Applicant = new PrimeApplicant();
-
     selectedApplicant: Applicant;
-
     newApplicant: boolean;
-
     applicants: Applicant[];
 
     constructor(private applicantService: ApplicantService) { }
