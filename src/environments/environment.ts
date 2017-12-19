@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   api: {
-    baseUrl: `${location.protocol}//api.${location.hostname === 'localhost' ? 'dev.betterleasing.com' : location.host}/leasenet`
+    baseUrl: `${location.protocol}//api.${location.hostname === 'localhost' ? 'devdemo.betterleasing.com' : location.host}/leasenet`
   }
 };

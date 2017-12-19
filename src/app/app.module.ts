@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { InputTextModule, ButtonModule, DataTableModule, DialogModule, SharedModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,16 +38,24 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
 import { MenuComponent } from './components/menu/menu.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
+
+import { ApplicantsComponent } from './pages/applicants/applicants.component';
+import { DatatableComponent } from './components/datatable/datatable.component';
+import { ApplicantService } from './services/applicant.service';
 import { LoginService } from './services/login.service';
-import { ButtonModule } from 'primeng/primeng';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    InputTextModule,
+    ButtonModule,
+    DataTableModule,
+    DialogModule,
+    SharedModule,
     ReactiveFormsModule,
-    HttpModule,
     HttpClientModule,
     AppRoutingModule,
     ButtonModule,
@@ -66,6 +75,8 @@ import { ButtonModule } from 'primeng/primeng';
     MaintenanceComponent,
     AnnouncementsComponent,
     MenuComponent,
+    ApplicantsComponent,
+    DatatableComponent,
   ],
   providers: [
       {
@@ -75,6 +86,7 @@ import { ButtonModule } from 'primeng/primeng';
       },
       AuthGuard,
       AlertService,
+      ApplicantService,
       AuthenticationService,
       UserService,
       StatusService,
