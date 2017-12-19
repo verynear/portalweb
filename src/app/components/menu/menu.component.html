@@ -1,47 +1,46 @@
-<ul>
-  <li>
-    <a routerLink="/dashboard" routerLinkActive="active">
-      <i class="fa fa-tachometer"></i> Dashboard
-    </a>
-  </li>
-  <li>
-    <a routerLink="/applicants" routerLinkActive="active">
-      <i class="fa fa-file-o"></i> Applicants
-    </a>
-  </li>
-  <li>
-    <a routerLink="/messages" routerLinkActive="active">
-      <i class="fa fa-comment-o"></i> Messages
-    </a>
-  </li>
-  <li>
-    <a routerLink="/maintenance" routerLinkActive="active">
-      <i class="fa fa-wrench"></i> Maintenance Request
-    </a>
-  </li>
-  <li>
-    <a routerLink="/announcement" routerLinkActive="active">
-      <i class="fa fa-bullhorn"></i> Make Announcement
-    </a>
-  </li>
-  <li>
-    <a routerLink="/payments" routerLinkActive="active">
-      <i class="fa fa-user"></i> Payments Reports
-    </a>
-  </li>
-  <li>
-    <a routerLink="/apartment" routerLinkActive="active">
-      <i class="fa fa-building-o"></i> Apartment Profile
-    </a>
-  </li>
-  <li>
-    <a routerLink="/my-account" routerLinkActive="active">
-      <i class="fa fa-tachometer"></i> My Account
-    </a>
-  </li>
   <li>
     <a routerLink="/login" [queryParams]="{out: 1}" routerLinkActive="active">
       <i class="fa fa-sign-out"></i> Log out
     </a>
   </li>
 </ul>
+
+<!-- Sticky Left Nav -->
+  <div class="nav-side-menu">
+    <div class="user-logo">
+      <a href="#" class="navbar-brand"><img src="assets/images/logo-demo.png" alt="BetterLeasing"></a>
+      <!--<h6 class="user-content">Welcome, AMaley<br><small class="text-muted">ABC Management<br>Treetop Village Apartment Homes</small></h6>-->
+      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    </div>
+
+    <div class="menu-list">
+      
+      <ul id="menu-content" class="menu-content collapse out">
+        <li class="active">
+          <a routerLink="/dashboard" routerLinkActive="active"><i class="fa fa-dashboard"></i> Dashboard</a>
+        </li>
+        <li>
+          <a routerLink="/applicants" routerLinkActive="active"><i class="fa fa-user"></i> Applicants</a>
+        </li>
+        <li>
+          <a routerLink="/payments" routerLinkActive="active"><i class="fa fa-dollar"></i> Payments</a>
+        </li>
+        <li>
+          <a routerLink="/maintenance" routerLinkActive="active"><i class="fa fa-wrench"></i> Maintenance</a>
+        </li>
+        <li  data-toggle="collapse" data-target="#products" class="collapsed">
+          <a href="#"><i class="fa fa-comments"></i> Message Center <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="products">
+          <li><a href="#"><i class="fa fa-envelope"></i> Mailbox</a></li>
+          <li><a href="#"><i class="fa fa-paper-plane"></i> Message Report</a></li>
+          <li><a routerLink="/announcement" routerLinkActive="active"><i class="fa fa-bullhorn"></i> Announcements</a></li>
+          <li><a href="#"><i class="fa fa-exclamation-circle"></i> Notifications</a></li>
+        </ul>
+        <li>
+          <a routerLink="/my-account" routerLinkActive="active"><i class="fa fa-id-card-o"></i> My Account</a>
+        </li>
+        
+      </ul><!-- /.menu-list -->
+     </div>
+  </div>
