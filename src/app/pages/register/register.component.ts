@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from '../../services/alert.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     moduleId: module.id.toString(),
-    templateUrl: 'register.component.html'
+    templateUrl: 'register.component.html',
+    styleUrls: ['register.component.scss']
 })
 
 export class RegisterComponent implements OnInit {
@@ -32,14 +33,9 @@ export class RegisterComponent implements OnInit {
         this.firstName = new FormControl('', Validators.required);
         this.lastName = new FormControl('', Validators.required);
         this.email = new FormControl('', [Validators.required, Validators.pattern('[^ @]*@[^ @]*')]);
-
-        this.password = new FormControl('', [
-            Validators.required,
-            Validators.minLength(7)
-        ]);
-
+        this.password = new FormControl('', Validators.required);
         this.birthdate = new FormControl('');
-        }
+    }
 
     createForm() {
         this.registerForm = new FormGroup({

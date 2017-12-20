@@ -2,63 +2,52 @@
     <div class="col-md-6 offset-md-3">
         <div class="card">
             <h5 class="card-header">Create an Account</h5>
-            <div class="card-block">
-            <form novalidate [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="card-body">
+            <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
 
-            <div class="form-group"[ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
-                        'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
-                <label>First Name: </label>
-                <input type="text" class="form-control" formControlName="firstName" required>     
-                <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)"> 
-                    <p *ngIf="firstName.errors.required">First Name is required</p>
-                </div>
-            </div>
-
-            <div class="form-group" [ngClass]="{'has-danger': lastName.invalid && (lastName.dirty || lastName.touched),
-                        'has-success': lastName.valid && (lastName.dirty || lastName.touched)}">
-                <label>Last Name: </label>
-                <input type="text" class="form-control" formControlName="lastName" required>
-                <div class="form-control-feedback" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)"> 
-                    <p *ngIf="lastName.errors.required">Last Name is required</p>
-                </div>
-            </div>
-
-            <div class="form-group" [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched), 
-            'has-success': email.valid && (email.dirty || email.touched)}">
-                <label>Email: </label>
-                <input type="email" class="form-control" formControlName="email" required>
-                <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)"> 
-                    <p *ngIf="email.errors.required">Email is required</p>
-                    <p *ngIf="password.errors.pattern">The email address must contain at least the @ character</p>
-                </div>
-            </div>
-
-            <div class="form-group" [ngClass]="{'has-danger': password.invalid && (password.dirty || password.touched),
-                'has-success': password.valid && (password.dirty || password.touched)}">
-                <label>Password: </label>
-                <input type="password" class="form-control" formControlName="password" required>
-                <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
-                    <p *ngIf="password.errors.required">Password is required</p>
-                    <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
-                </div>
-            </div>
-           
             <div class="form-group">
-                <label>Birthdate: </label>
+                <label>First Name: </label>
+                <input type="text" class="form-control" formControlName="firstName" 
+                [ngClass]="{'is-invalid': !firstName.valid && firstName.dirty}" required>     
+                <div class="invalid-feedback" *ngIf="!firstName.valid">First Name is required</div>
+            </div>
+
+            <div class="form-group">
+                <label>Last Name: </label>
+                <input type="text" class="form-control" formControlName="lastName" 
+                [ngClass]="{'is-invalid': !lastName.valid && lastName.dirty}" required>
+                <div class="invalid-feedback" *ngIf="!lastName.valid"> Last Name is required</div>
+            </div>
+
+            <div class="form-group">
+                <label>Email: </label>
+                <input type="email" class="form-control" formControlName="email" 
+                [ngClass]="{'is-invalid': !email.valid && email.touched}" required>
+                <div class="invalid-feedback" *ngIf="!email.valid">Email is required</div>
+            </div>
+
+            <div class="form-group">
+                <label>Password: </label>
+                <input type="password" class="form-control" formControlName="password" 
+                [ngClass]="{'is-invalid': !password.valid && password.dirty}" required>
+                <div class="invalid-feedback" *ngIf="!password.valid">Password is required</div>
+            </div>
+
+            <div class="form-group">
+                <label for="birthdate">For identity purposes, please provide your Birthdate: </label>
                 <div class="input-group">
-                <input class="form-control" formControlName="birthdate" ngbDatepicker #d="ngbDatepicker">
-                <button class="input-group-addon" (click)="d.toggle()" type="button">
-                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
-                </button>
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker" required>
+                  <button class="input-group-addon"  (click)="d.toggle()" type="button" style="cursor: pointer"> <i class="fa fa-calendar" ></i> </button>
+                  <div class="form-control-feedback" *ngIf="birthdate.errors && (birthdate.dirty || birthdate.touched)">
+                    <p class="invalid-feedback" *ngIf="!birthdate.valid">Date of birth is required</p>
+                  </div>
                 </div>
             </div>
-    
+
             <div class="form-group pull-left">
                 <button [disabled]="loading || !registerForm.valid" class="btn btn-primary">Submit</button>
                 <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
             </div> 
-
-            <!-- <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker> -->
 
             </form>
             </div>
@@ -66,3 +55,5 @@
         <button [routerLink]="['/login']" class="btn btn-link pull-right">Go to Login</button>
     </div>
 </div>
+
+

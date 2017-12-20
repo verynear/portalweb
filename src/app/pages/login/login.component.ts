@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.loginService.login(this.model.username, this.model.password)
+        this.loginService.login(this.model.emailAddress, this.model.password)
             .then(() => this.router.navigate([this.returnUrl]))
             .catch((error: any) => {
                 this.alertService.error(error);
