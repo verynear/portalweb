@@ -2,24 +2,21 @@
   <div class="col-md-6 offset-md-3">
       <div class="card">
         <h5 class="card-header"> Manager: Sign In </h5>
-          <div class="card-block">
-          <form novalidate name="form" (ngSubmit)="login()" #f="ngForm">
+          <div class="card-body">
+          <form  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
             <div class="form-group">
               <label> Email: </label>
-              <div [ngClass]="{ 'has-danger': !username.valid }">
-                <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required/>
-                <div *ngIf="!username.valid" class="form-control-feedback">Username is required</div>
-              </div>
+                <input type="text" class="form-control" name="emailAddress" [ngClass]="{ 'is-invalid': !emailAddress.valid && f.submitted }" [(ngModel)]="model.emailAddress" #emailAddress="ngModel" required/>
+                <div *ngIf="f.submitted && !emailAddress.valid" class="invalid-feedback">Email is required</div>
             </div>
             <div class="form-group">
               <label> Password: </label>
               <div [ngClass]="{ 'has-danger': !password.valid }">               
-                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required/>
-                <div *ngIf="!password.valid" class="form-control-feedback"> Password is required</div>
+                <input type="password" class="form-control" name="password" [ngClass]="{ 'is-invalid': !password.valid && f.submitted }" [(ngModel)]="model.password" #password="ngModel" required/>
+                <div *ngIf="f.submitted && !password.valid" class="invalid-feedback"> Password is required</div>
               </div>
               <a href="#">Forgot Password</a>
             </div>
-
             <div class="form-group">
                 <button class="btn btn-primary" [disabled]="loading">Login</button>
                 <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
@@ -27,10 +24,7 @@
           </form>
         </div>
       </div> 
-      
+
       <button class="btn btn-link pull-right" [routerLink]="['/register']">Create an Account</button>
   </div>
 </div>
-
-
-

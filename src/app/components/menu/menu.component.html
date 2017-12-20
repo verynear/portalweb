@@ -1,46 +1,21 @@
-  <li>
-    <a routerLink="/login" [queryParams]="{out: 1}" routerLinkActive="active">
-      <i class="fa fa-sign-out"></i> Log out
-    </a>
-  </li>
-</ul>
-
-<!-- Sticky Left Nav -->
-  <div class="nav-side-menu">
-    <div class="user-logo">
-      <a href="#" class="navbar-brand"><img src="assets/images/logo-demo.png" alt="BetterLeasing"></a>
-      <!--<h6 class="user-content">Welcome, AMaley<br><small class="text-muted">ABC Management<br>Treetop Village Apartment Homes</small></h6>-->
-      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+	<div class="fixed-top navbar navbar-expand flex-column flex-md-row bd-navbar">
+		<ul class="navbar-nav flex-row ml-md-auto d-sm-flex">
+			<li ngbDropdown class="nav-item dropdown">
+				<a class="nav-item nav-link" id="mail-alert" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle><i class="fa fa-envelope"></i> <sup><span class="badge badge-primary">3</span></sup></a>
+				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="mail-alert">
+					<a class="dropdown-item" href="#"><strong>John Smith &nbsp;<small>just now</small></strong><br>Lorem ipsum dolor noretek imit set...</a>
+					<a class="dropdown-item" href="#"><strong>Alex T. &nbsp;<small>15 mins ago</small></strong><br>Lorem ipsum dolor noretek imit set...</a>
+					<a class="dropdown-item" href="#"><strong>Jane Smith &nbsp;<small>25 mins ago</small></strong><br>Lorem ipsum dolor noretek imit set...</a>
+					<a class="dropdown-item" href="#"><strong>John Wilson &nbsp;<small>Dec 12, 2017</small></strong><br>Lorem ipsum dolor noretek imit set...</a>
+				</div>
+			</li>
+			<li ngbDropdown class="nav-item dropdown">
+				<a class="nav-item nav-link" id="notifications-alert" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle><i class="fa fa-bell"></i> <sup><span class="badge badge-danger">2</span></sup></a>
+				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="notifications-alert">
+					<a class="dropdown-item" href="#"><strong class="text-danger"><i class="fa fa-exclamation-circle"></i> Payment Due</strong><br>Lorem ipsum dolor noretek imit set...</a>
+					<a class="dropdown-item" href="#"><strong class="text-warning"><i class="fa fa-wrench"></i> Maintenance Request</strong><br>Lorem ipsum dolor noretek imit set...</a>
+				</div>
+			</li>
+			<li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-power-off"></i> Logout</a></li>
+		</ul>
     </div>
-
-    <div class="menu-list">
-      
-      <ul id="menu-content" class="menu-content collapse out">
-        <li class="active">
-          <a routerLink="/dashboard" routerLinkActive="active"><i class="fa fa-dashboard"></i> Dashboard</a>
-        </li>
-        <li>
-          <a routerLink="/applicants" routerLinkActive="active"><i class="fa fa-user"></i> Applicants</a>
-        </li>
-        <li>
-          <a routerLink="/payments" routerLinkActive="active"><i class="fa fa-dollar"></i> Payments</a>
-        </li>
-        <li>
-          <a routerLink="/maintenance" routerLinkActive="active"><i class="fa fa-wrench"></i> Maintenance</a>
-        </li>
-        <li  data-toggle="collapse" data-target="#products" class="collapsed">
-          <a href="#"><i class="fa fa-comments"></i> Message Center <span class="arrow"></span></a>
-        </li>
-        <ul class="sub-menu collapse" id="products">
-          <li><a href="#"><i class="fa fa-envelope"></i> Mailbox</a></li>
-          <li><a href="#"><i class="fa fa-paper-plane"></i> Message Report</a></li>
-          <li><a routerLink="/announcement" routerLinkActive="active"><i class="fa fa-bullhorn"></i> Announcements</a></li>
-          <li><a href="#"><i class="fa fa-exclamation-circle"></i> Notifications</a></li>
-        </ul>
-        <li>
-          <a routerLink="/my-account" routerLinkActive="active"><i class="fa fa-id-card-o"></i> My Account</a>
-        </li>
-        
-      </ul><!-- /.menu-list -->
-     </div>
-  </div>

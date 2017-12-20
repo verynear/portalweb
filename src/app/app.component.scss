@@ -1,3 +1,40 @@
+#main {
+  background-color: #fff;
+}
+.dropdown-menu,
+.btn{
+  border-radius: 0;
+}
+a,
+a.dropdown-item,
+.btn-link {
+  color: #123475;
+}
+a.dropdown-item {
+  text-transform: uppercase;
+}
+p {
+  text-align: justify;
+}
+.badge {
+  border-radius: 0.9375rem;
+  font-size: 0.5625rem;
+}
+.page-header {
+  margin-top: 0;
+}
+.dropdown-item {
+  border-bottom: 1px solid #ddd;
+  font-size: 0.6875rem;
+  color: #777;
+}
+.dropdown-item.active {
+  background-color: #123475;
+}
+.dropdown-item:last-child {
+  border: 0;
+}
+
 .wrap {
   display: flex;
   flex-direction: row;
