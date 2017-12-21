@@ -1,7 +1,7 @@
-<div class="wrap {{hasAuth ? 'auth' : 'no-auth'}}">
+<div *ngIf="hasAuth">
   <app-menu></app-menu>
   <app-nav></app-nav>
   
-  <router-outlet></router-outlet>
-
 </div>
+
+<router-outlet></router-outlet>
