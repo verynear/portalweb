@@ -1,5 +1,7 @@
+
 .btn,
-.card {
+.card,
+.alert {
   border-radius: 0;
 }
 .dropdown-menu,
@@ -7,11 +9,6 @@
   border-radius: 0;
   border: 0;
 }
-
-li:focus {
-    outline: none;
-}
-
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.25rem;
 }
@@ -27,8 +24,13 @@ h4 small,
 h5 small,
 h6 small {
   color: #777;
+  font-size: 75%
 }
-.btn-primary,
+.btn.btn-primary,
+a:hover.btn.btn-default,
+.btn-primary:not([disabled]):not(.disabled).active,
+.btn-primary:not([disabled]):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle,
 .dropdown-item.active,
 .flex-row .nav-item:last-child,
 .nav-side-menu ul .active,
@@ -37,14 +39,36 @@ h6 small {
 .nav-side-menu li .sub-menu li.active,
 .nav-side-menu li:hover,
 .nav-side-menu ul .sub-menu li:hover,
-.nav-side-menu li .sub-menu li:hover{
+.nav-side-menu li .sub-menu li:hover,
+.icon-box > .icon > .image {
   background-color: #123475;
 }
-a.dropdown-item {
-  text-transform: uppercase;
+a.btn.btn-default,
+a:hover.btn.btn-default,
+a.btn.btn-primary,
+a:hover.btn.btn-primary {
+  color: #fff;
+}
+.btn.btn-default,
+a:hover.btn.btn-primary {
+  background-color: #666;
 }
 p {
   text-align: justify;
+}
+.btn {
+    text-transform: uppercase;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+.btn-primary:not([disabled]):not(.disabled).active,
+.btn-primary:not([disabled]):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+     box-shadow: none;
+}
+.btn.btn-sm {
+   padding: 0.5rem 1.25rem;
+   font-size: 0.6875rem;
 }
 .badge {
   border-radius: 0.9375rem;
@@ -69,17 +93,20 @@ p {
   top: 100% !important;
   left: auto !important;
 }
-
 .card-header {
-  padding: 0.3125rem 0.9375rem;
+  padding: 0.625rem 0.9375rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 .list-group-item {
   padding: 0.9375rem 0.9375rem;
 }
+.alert {
+      background-color: transparent;
+}
 
 .nav-side-menu {
   overflow-y: auto;
-  font-size: 0.75rem;
   font-weight: 200;
   background-color: #f6f6f6;
   position: fixed;
@@ -87,7 +114,6 @@ p {
   height: 100%;
   width: 14.06rem;
   border-right: 0.0625rem solid #eee;
-  z-index: 9999;
 }
 .nav-side-menu .brand {
   text-align: center;
@@ -107,11 +133,14 @@ p {
   margin: 0;
   cursor: pointer;
 }
+.nav-side-menu li a {
+  margin-left: 0.625rem;
+}
 .nav-side-menu ul,
 .nav-side-menu li,
 .nav-side-menu ul .sub-menu li,
 .nav-side-menu li .sub-menu li {
-  line-height: 2.313rem;
+  line-height: 2.813rem;
 }
 .nav-side-menu ul .active a,
 .nav-side-menu li .active a,
@@ -121,18 +150,6 @@ p {
 .nav-side-menu ul .sub-menu li:hover a,
 .nav-side-menu li .sub-menu li:hover a{
   color: #fff;
-}
-.nav-side-menu ul .active,
-.nav-side-menu li .active,
-.nav-side-menu ul .sub-menu li.active,
-.nav-side-menu li .sub-menu li.active,
-.nav-side-menu li,
-.nav-side-menu ul .sub-menu li,
-.nav-side-menu li .sub-menu li,
-.nav-side-menu li:hover,
-.nav-side-menu ul .sub-menu li:hover,
-.nav-side-menu li .sub-menu li:hover {
-  border-left: 0.3125rem solid transparent;
 }
 .nav-side-menu li:hover,
 .nav-side-menu ul .sub-menu li:hover,
@@ -161,12 +178,9 @@ p {
 .nav-side-menu li .collapsed .arrow:before {
   content: "\f105";
 }
-.nav-side-menu li {
-  padding-left: 0px;
-}
 .nav-side-menu li a {
   font-weight: 400;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   text-transform: uppercase;
 }
 .nav-side-menu li a:hover,

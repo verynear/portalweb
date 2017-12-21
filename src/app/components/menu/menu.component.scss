@@ -1,6 +1,7 @@
 
 .btn,
-.card {
+.card,
+.alert {
   border-radius: 0;
 }
 .dropdown-menu,
@@ -23,8 +24,13 @@ h4 small,
 h5 small,
 h6 small {
   color: #777;
+  font-size: 75%
 }
-.btn-primary,
+.btn.btn-primary,
+a:hover.btn.btn-default,
+.btn-primary:not([disabled]):not(.disabled).active,
+.btn-primary:not([disabled]):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle,
 .dropdown-item.active,
 .flex-row .nav-item:last-child,
 .nav-side-menu ul .active,
@@ -33,14 +39,36 @@ h6 small {
 .nav-side-menu li .sub-menu li.active,
 .nav-side-menu li:hover,
 .nav-side-menu ul .sub-menu li:hover,
-.nav-side-menu li .sub-menu li:hover{
+.nav-side-menu li .sub-menu li:hover,
+.icon-box > .icon > .image {
   background-color: #123475;
 }
-a.dropdown-item {
-  text-transform: uppercase;
+a.btn.btn-default,
+a:hover.btn.btn-default,
+a.btn.btn-primary,
+a:hover.btn.btn-primary {
+  color: #fff;
+}
+.btn.btn-default,
+a:hover.btn.btn-primary {
+  background-color: #666;
 }
 p {
   text-align: justify;
+}
+.btn {
+    text-transform: uppercase;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+.btn-primary:not([disabled]):not(.disabled).active,
+.btn-primary:not([disabled]):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+     box-shadow: none;
+}
+.btn.btn-sm {
+   padding: 0.5rem 1.25rem;
+   font-size: 0.6875rem;
 }
 .badge {
   border-radius: 0.9375rem;
@@ -66,10 +94,15 @@ p {
   left: auto !important;
 }
 .card-header {
-  padding: 0.3125rem 0.9375rem;
+  padding: 0.625rem 0.9375rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 .list-group-item {
   padding: 0.9375rem 0.9375rem;
+}
+.alert {
+      background-color: transparent;
 }
 
 /* Sticky Top
