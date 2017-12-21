@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-    ngOnInit() {
-    }
+  constructor() { }
+
+  ngOnInit() {
+  }
 
 }

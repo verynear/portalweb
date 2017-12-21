@@ -1,0 +1,44 @@
+
+  <div class="nav-side-menu">
+    <div class="user-logo">
+      <a href="#" class="navbar-brand"><img src="assets/logo-demo.png" alt="BetterLeasing"></a>
+      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    </div>
+
+    <div class="menu-list">
+      
+      <ul id="menu-content" class="menu-content collapse out">
+        <li routerLink="/dashboard" routerLinkActive="active">
+          <a><i class="fa fa-dashboard"></i> Dashboard</a>
+        </li>
+        <li routerLink="/applicants" routerLinkActive="active">
+          <a><i class="fa fa-user"></i> Applicants</a>
+        </li>
+        <li routerLink="/payments" routerLinkActive="active">
+          <a><i class="fa fa-dollar"></i> Payments</a>
+        </li>
+        <li routerLink="/maintenance" routerLinkActive="active">
+          <a><i class="fa fa-wrench"></i> Maintenance</a>
+        </li>
+        <li routerLink="#" routerLinkActive="active" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target="#products" class="collapsed">
+          <a><i class="fa fa-comments"></i> Message Center <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="products" [ngbCollapse]="isCollapsed">
+          <li routerLinkActive="active"><a><i class="fa fa-envelope"></i> Mailbox</a></li>
+          <li routerLinkActive="active"><a><i class="fa fa-paper-plane"></i> Message Report</a></li>
+          <li routerLinkActive="active"><a><i class="fa fa-bullhorn"></i> Announcements</a></li>
+          <li routerLinkActive="active"><a><i class="fa fa-exclamation-circle"></i> Notifications</a></li>
+        </ul>
+        <li routerLink="/my-account" routerLinkActive="active">
+          <a><i class="fa fa-id-card-o"></i> My Account</a>
+        </li>
+        
+      </ul>
+     </div>
+  </div>
+
+  <div id="main">
+      <footer>
+        <small>&copy; 2018 BetterLeasing</small>
+      </footer>
+  </div>

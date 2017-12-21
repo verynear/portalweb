@@ -35,7 +35,7 @@ import { PaymentsComponent } from './pages/payments/payments.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { AnnouncementService } from './services/announcement.service';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
-import { MenuComponent } from './components/menu/menu.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
 
@@ -43,6 +43,7 @@ import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApplicantService } from './services/applicant.service';
 import { LoginService } from './services/login.service';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 @NgModule({
@@ -74,9 +75,10 @@ import { LoginService } from './services/login.service';
     PaymentsComponent,
     MaintenanceComponent,
     AnnouncementsComponent,
-    MenuComponent,
+    NavigationComponent,
     ApplicantsComponent,
     DatatableComponent,
+    MenuComponent,
   ],
   providers: [
       {
