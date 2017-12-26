@@ -9,13 +9,31 @@ import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { AuthGuard } from './auth.guard';
 import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import {MessagesComponent} from './pages/messages/messages.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'applicants', component: ApplicantsComponent },
+  { path: 'applicants', component: ApplicantsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'messages',
+    component: MessagesComponent,
+    canActivate: [AuthGuard],
+    // TODO create a page/component for each children
+    children: [
+      { path: '', redirectTo: '/messages/inbox', pathMatch: 'full' },
+      { path: 'inbox', component: MessagesComponent },
+      { path: 'reports', component: MessagesComponent },
+      { path: 'announcements', component: MessagesComponent },
+      { path: 'notifications', component: MessagesComponent }
+    ]
+  },
+  { path: 'messages/inbox', component: MessagesComponent, canActivate: [AuthGuard] },
+  { path: 'messages/reports', component: MessagesComponent, canActivate: [AuthGuard] },
+  { path: 'messages/announcements', component: MessagesComponent, canActivate: [AuthGuard] },
+  { path: 'messages/notifications', component: MessagesComponent, canActivate: [AuthGuard] },
   { path: 'status', component: StatusComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
