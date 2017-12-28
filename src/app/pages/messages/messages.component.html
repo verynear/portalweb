@@ -1,8 +1,25 @@
-<div *ngIf="messageService.messages.length">
 
-  <h2>Messages</h2>
-  <button class="clear"
-          (click)="messageService.clear()">clear</button>
-  <div *ngFor='let message of messageService.messages'> {{message}} </div>
-
+<div id="main"> 
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tbody>
+                  <tr *ngFor='let message of messages' (click)="openMessage(message.id)">
+                    <th scope="row"><input type="checkbox"></th>
+                    <td> 
+                         <i style="cursor: pointer" (click)="makeFavorite(message)" [hidden]="!message.favorite" class="fa fa-star"></i>
+                         <i style="cursor: pointer" (click)="makeFavorite(message)" [hidden]="message.favorite" class="fa fa-star-o" aria-hidden="true"></i>
+                    </td>
+                    <td> {{ message.managementUserId }}</td>
+                    <td> {{ message.subject }}</td>
+                    <td> {{ message.createDate | date}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

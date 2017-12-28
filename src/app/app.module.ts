@@ -44,6 +44,7 @@ import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApplicantService } from './services/applicant.service';
 import { LoginService } from './services/login.service';
 import { MenuComponent } from './components/menu/menu.component';
+import { InboxComponent } from './pages/inbox/inbox.component';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { MenuComponent } from './components/menu/menu.component';
     ApplicantsComponent,
     DatatableComponent,
     MenuComponent,
+    InboxComponent,
   ],
   providers: [
       {
