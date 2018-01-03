@@ -6,7 +6,7 @@
 
 * [Node](https://nodejs.org/) 8.9.1
 * [Angular CLI](https://cli.angular.io/) 1.3.1
-* [Angular](https://angular.io/) >= 4.2.4 (installed via `npm install`)
+* [Angular](https://angular.io/) >= 5.1.0 (installed via `npm install`)
 
 ### Build/Deployment
 
