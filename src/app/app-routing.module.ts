@@ -9,7 +9,8 @@ import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { AuthGuard } from './auth.guard';
 import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import {MessagesComponent} from './pages/messages/messages.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { InboxComponent } from './pages/inbox/inbox.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -24,16 +25,12 @@ const routes: Routes = [
     // TODO create a page/component for each children
     children: [
       { path: '', redirectTo: '/messages/inbox', pathMatch: 'full' },
-      { path: 'inbox', component: MessagesComponent },
+      { path: 'inbox', component: InboxComponent },
       { path: 'reports', component: MessagesComponent },
       { path: 'announcements', component: MessagesComponent },
       { path: 'notifications', component: MessagesComponent }
     ]
   },
-  { path: 'messages/inbox', component: MessagesComponent, canActivate: [AuthGuard] },
-  { path: 'messages/reports', component: MessagesComponent, canActivate: [AuthGuard] },
-  { path: 'messages/announcements', component: MessagesComponent, canActivate: [AuthGuard] },
-  { path: 'messages/notifications', component: MessagesComponent, canActivate: [AuthGuard] },
   { path: 'status', component: StatusComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
