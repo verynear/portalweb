@@ -1,4 +1,5 @@
 export interface Applicant {
+    id?;
     emailAddress?;
     firstname?;
     isFirstUser?;

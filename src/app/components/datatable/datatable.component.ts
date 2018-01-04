@@ -19,13 +19,33 @@ export class DatatableComponent implements OnInit {
     constructor(private applicantService: ApplicantService) { }
 
     ngOnInit() {
-        this.applicantService.getApplicants().then(applicants => this.applicants = applicants);
+        this.getApplicants();
+    }
+
+    getApplicants() {
+      this.applicantService.get().subscribe(
+      data => {
+        console.log('Youve received messages');
+        this.applicants = data;
+        console.log(data[0].lastname);
+      },
+      error => {
+        console.log('Error');
+      });
     }
 
     showDialogToAdd() {
         this.newApplicant = true;
         this.applicant = new PrimeApplicant();
         this.displayDialog = true;
+    }
+
+    approve() {
+        const applicants = [...this.applicants];
+        applicants[this.findSelectedApplicantIndex()] = this.applicant;
+        this.applicantService.approve(this.applicant);
+        console.log(this.applicant);
+        this.displayDialog = false;
     }
 
     save() {
@@ -69,5 +89,5 @@ export class DatatableComponent implements OnInit {
 
 export class PrimeApplicant implements Applicant {
 
-    constructor(public emailAddress?, public firstname?, public lastname?, public status?, public phone?) {}
+    constructor(public id?, public emailAddress?, public firstname?, public lastname?, public status?, public phone?) {}
 }
