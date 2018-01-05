@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ComposeComponent } from '../../components/compose/compose.component';
 
 @Component({
   selector: 'app-inbox',
@@ -11,7 +13,7 @@ export class InboxComponent implements OnInit {
 
   messages = [];
 
-  constructor(public messageService: MessageService) { }
+  constructor(public messageService: MessageService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getMessages();
@@ -37,6 +39,10 @@ export class InboxComponent implements OnInit {
   openMessage(id) {
     console.log('Youve Opened' + id);
     // TODO: Create a new component for reading messages.
+  }
+
+  compose() {
+    const modalRef = this.modalService.open(ComposeComponent);
   }
 
 }

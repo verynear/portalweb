@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditorModule } from 'primeng/primeng';
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -44,6 +45,7 @@ import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApplicantService } from './services/applicant.service';
 import { LoginService } from './services/login.service';
 import { MenuComponent } from './components/menu/menu.component';
+import { ComposeComponent } from './components/compose/compose.component';
 import { InboxComponent } from './pages/inbox/inbox.component';
 
 
@@ -52,6 +54,7 @@ import { InboxComponent } from './pages/inbox/inbox.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    EditorModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
@@ -80,6 +83,7 @@ import { InboxComponent } from './pages/inbox/inbox.component';
     ApplicantsComponent,
     DatatableComponent,
     MenuComponent,
+    ComposeComponent,
     InboxComponent,
   ],
   providers: [
@@ -105,6 +109,7 @@ import { InboxComponent } from './pages/inbox/inbox.component';
       LoginService,
       AUTH_HEADER_INTERCEPTOR_PROVIDER
   ],
+  entryComponents: [ComposeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
