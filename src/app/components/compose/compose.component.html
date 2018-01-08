@@ -1,8 +1,8 @@
-<div class="modal-dialog" role="document">
+<!-- <div class="modal-dialog" role="document"> -->
 		<div class="container">
 			<form [formGroup]="composeForm" (ngSubmit)="send()" novalidate>
 				<div class="modal-header">
-					<h5 class="modal-title" id="composeMailModalLabel"><i class="fa fa-edit"></i> Compose Email</h5>
+					<h5 class="modal-title" id="composeMailModalLabel"><i class="fa fa-edit"></i> Compose Message</h5>
 					<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -37,19 +37,38 @@
 						<small><em class="text-muted">Separate by (,) comma</em></small>
 					</div>
 					<div class="form-group">
-						<label for="emailType">Email Type:</label>
-						<select class="form-control" formControlName="emailType">
+						<label for="emailType">Message Type:</label>
+						<select class="form-control" formControlName="messageType">
 							<option value="">Select Type:</option>
-							<option *ngFor="let emailtype of emailtypes" [value]="emailtype">
-								{{emailtype}}
+							<option *ngFor="let messagetype of messagetypes" [value]="messagetype">
+								{{messagetype}}
                             </option>
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="emailSubject">Subject:</label>
-						<input type="email" class="form-control" formControlName="emailSubject" placeholder="Email Subject">
+						<label for="subject">Subject:</label>
+						<input type="email" class="form-control" formControlName="subject" placeholder="Subject">
 					</div>
-					<p-editor formControlName="message" [style]="{'height':'320px'}"></p-editor>
+					<p-editor formControlName="message" [style]="{'height':'320px'}">
+					  <p-header>
+					      <span class="ql-formats">
+					      	<select class="ql-size">
+					      	    <option value="small"></option>
+					      	    <option selected></option>
+					      	    <option value="large"></option>
+					      	    <option value="huge"></option>
+					      	  </select>
+					          <button class="ql-bold" aria-label="Bold"></button>
+					          <button class="ql-italic" aria-label="Italic"></button>
+					          <button class="ql-underline" aria-label="Underline"></button>
+					          <select class="ql-color">
+					      	  </select>
+					          <button class="ql-link" aria-label="Link"></button>
+					          <button class="ql-image" aria-label="Image"></button>
+					          <button class="ql-clean" aria-label="Clean"></button>
+					      </span>
+					  </p-header>
+					</p-editor>
 				</div>
 				
 				<div class="modal-footer">
@@ -58,4 +77,4 @@
 				</div>
 			</form>
 		</div>
-	</div>
+	<!-- </div> -->

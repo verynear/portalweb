@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
-import { EditorModule } from 'primeng/primeng';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EditorModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-compose',
@@ -24,7 +24,7 @@ export class ComposeComponent implements OnInit {
     'Building 3',
     'Building 4'
   ];
-  emailtypes: string[] = [
+  messagetypes: string[] = [
     'Standard',
     'Announcement',
     'Alert - Standard',
@@ -34,8 +34,8 @@ export class ComposeComponent implements OnInit {
   recipientType: FormControl;
   emailBuilding: FormControl;
   email: FormControl;
-  emailType: FormControl;
-  emailSubject: FormControl;
+  messageType: FormControl;
+  subject: FormControl;
   message: FormControl;
 
 
@@ -50,8 +50,8 @@ export class ComposeComponent implements OnInit {
         this.recipientType = new FormControl('', Validators.required);
         this.emailBuilding = new FormControl('', Validators.required);
         this.email = new FormControl('', Validators.required);
-        this.emailType = new FormControl('', Validators.required);
-        this.emailSubject = new FormControl('');
+        this.messageType = new FormControl('', Validators.required);
+        this.subject = new FormControl('');
         this.message = new FormControl('', Validators.required);
     }
 
@@ -60,8 +60,8 @@ export class ComposeComponent implements OnInit {
             recipientType: this.recipientType,
             emailBuilding: this.emailBuilding,
             email: this.email,
-            emailType: this.emailType,
-            emailSubject: this.emailSubject,
+            messageType: this.messageType,
+            subject: this.subject,
             message: this.message
         });
     }
