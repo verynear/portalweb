@@ -108,7 +108,7 @@
 				                            <input type="checkbox" [(ngModel)]="checkAll" (click)="selectAllMessages(checkAll)" name="checkbox">
 				                        </th>
 				                        <th class="noPadding"><app-th columnName="id" displayName="Name"></app-th></th>
-				                        <th class="noPadding"><app-th columnName="subject" displayName="Subject"></app-th></th>
+				                        <th class="noPadding"><app-th columnName="message" displayName="Subject"></app-th></th>
 				                        <th class="noPadding"><app-th columnName="createDate" displayName="Date"></app-th></th>
 				                    </thead>
 				                    <tbody>
@@ -122,11 +122,11 @@
 				                        </td>
 				                        <td> <b>John Wayne</b> <!--<small> (id={{message.id}}) </small>-->  </td> 
 				                        <td>
-				                            <span class="previewTitle"> {{message.name}} </span> 
-				                            <span class="previewMessage">- {{message.address1}} </span> 
+				                            <span class="previewTitle"> {{message.announcementViewDetails.subject}} </span> 
+				                            <span class="previewMessage">- {{message.announcementViewDetails.message}} </span> 
 				                        </td> 
-				                        <td><b>{{message.createDate | date: 'short' }}</b> </td>
-				                      </tr>
+				                        <td><b>{{message.announcementViewDetails.createDate | date: 'short' }}</b> </td>
+				                      </tr>				               
 				                    </tbody>
 				                  </table>
 				                </div>

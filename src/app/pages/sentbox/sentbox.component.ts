@@ -28,16 +28,16 @@ export class SentboxComponent implements OnInit {
     this.getSentMessages();       // Get Sent Messages.
   }
 
-  getMessages() {
-    this.messageService.get().subscribe(
-      data => {
-        this.messages = data;
-        this.totalItems = data.length;
-      },
-      error => {
-        console.log('Error');
-      });
-  }
+  // getMessages() {
+  //   this.messageService.get().subscribe(
+  //     data => {
+  //       this.messages = data;
+  //       this.totalItems = data.length;
+  //     },
+  //     error => {
+  //       console.log('Error');
+  //     });
+  // }
 
   getSentMessages() {
     this.messageService.getSent().subscribe(

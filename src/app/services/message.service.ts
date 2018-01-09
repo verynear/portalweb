@@ -18,7 +18,7 @@ export class MessageService {
   }
 
  getSent() {
-    return this.http.get<Message[]>(this.baseURL + '/site'); // will be changed to /message/sent
+    return this.http.get<Message[]>(this.baseURL + '/message');
   }
 
   sortMessages (messages, criteria: MessageSearchCriteria): Message[] {

@@ -15,7 +15,11 @@ export class SortService {
     }
 
     sortHelper(a, b, criteria) {
+
       let direction = 1;
+
+      a = a['announcementViewDetails'];
+      b = b['announcementViewDetails'];
 
       if (criteria.sortDirection === 'desc') {
         direction = -1;

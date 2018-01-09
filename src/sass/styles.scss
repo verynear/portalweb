@@ -325,6 +325,22 @@ table hr {
   z-index: 99999;
 }
 
+.user-logo {
+  padding: 0.9375rem;
+  text-align: center;
+}
+.user-logo h6 {
+  font-size: 0.875rem;
+  margin: 0.5rem 0;
+}
+.navbar-brand {
+  margin: 0;
+}
+.navbar-brand img {
+  max-height: 4.063rem;
+  display: inline-block;
+}
+
 .nav-side-menu {
   overflow-y: auto;
   font-weight: 200;
