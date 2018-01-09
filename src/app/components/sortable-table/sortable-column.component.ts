@@ -33,9 +33,9 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
-        console.log("Column name is: ");
+        console.log('Column name is: ');
         console.log(this.columnName);
-        console.log("Display Name: ");
+        console.log('Display Name: ');
         console.log(this.displayName);
 
         // subscribe to sort changes so we can react when other columns are sorted
