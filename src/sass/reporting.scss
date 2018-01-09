@@ -1,0 +1,35 @@
+/* Message Center Custom Styles
+-------------------------------------------------- */
+.nav-filter.btn-group-vertical {
+  margin-top: 1px;
+}
+.nav-filter.btn-group-vertical .btn {
+  text-align: left;
+}
+.nav-filter.btn-group-vertical span.badge {
+  float: right;
+  margin-top: 4px;
+}
+.nav-filter.btn-group-vertical i {
+  float: left;
+  margin-top: 4px;
+  margin-right: 5px;
+  width: 20px;
+}
+section.message-report ul {
+  list-style: none;
+  padding-left: 0;
+}
+section.message-report table.table td ul li span {
+  float: right;
+  margin-top: 4px;
+}
+section.message-report span.fa.fa-times {
+  color: #d13431;
+}
+section.message-report span.fa.fa-check {
+  color: #3d9241;
+}
+section.message-report span.fa.fa-check.unread {
+  color: #999;
+}

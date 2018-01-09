@@ -1,0 +1,143 @@
+	<div id="main">
+		<!-- Main Content Area -->
+		<div class="main-content">
+			<div class="container-fluid">
+				<h5><i class="fa fa-user"></i> Welcome, {{currentUser?.firstname}}<br><small>ABC Management / Treetop Village Apartment Homes</small></h5>
+				<hr>
+				<h1>Mailbox <small>Message Center</small></h1>
+				
+				<section class="top">
+				        <form>				
+				            
+				          <div class="row">
+				            <div class="col-md-3">
+				              <section>
+				                <div class="form-group">
+				                  <label class="sr-only" for="inlineFormInputGroup">Search</label>
+				                    <div class="input-group">
+				                    <input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
+				                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+				                  </div>
+				                </div>
+				              </section>
+
+				              <section>
+
+				              	<button type="button" class="btn btn-primary btn-block" (click)="compose()"><i class="fa fa-edit fa-lg"></i> Compose Mail</button>
+				                                    
+				                <div class="btn-group-vertical btn-block mail-nav">
+				                  <a class="btn btn-default"><span class="badge badge-info">{{totalItems}}</span><i class="fa fa-inbox"></i> Sent</a>
+				                </div>
+				                
+				              </section>
+				            </div>
+
+
+				            <div class="col-md-9">
+												<div class="d-flex">
+
+													<div class="mr-1">
+														<!--Sort mail -->
+														<div class="btn-group">
+															<div ngbDropdown class="dropdown">
+																<div ngbDropdownMenu class="dropdown-menu dropdown-noline pt-3 pb-3" aria-labelledby="dropdownSort">
+																	<div class="dropdown-item">Date Received</div>
+																	<div class="dropdown-item">From</div>
+																</div>
+															</div>
+
+															<!--Filter dropdown - multi-select-->
+															<div ngbDropdown  class="dropdown">
+																<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true" aria-expanded="false">
+																	Filter
+																</button>
+				                      
+				                        <div ngbDropdownMenu class="dropdown-menu dropdown-md p-3" aria-labelledby="dropdownFilter">
+																	<div class="row">
+																		<div class="col-md-6">
+																			<div class="dropdown-item">
+																				<label class="custom-control custom-checkbox">
+																					<input type="checkbox" class="custom-control-input">
+																					<span class="custom-control-indicator"></span>
+																					<span class="custom-control-description">Read</span>
+																				</label>
+				                              </div>
+				                              <div class="dropdown-item">
+																<label class="custom-control custom-checkbox">
+																	<input type="checkbox" class="custom-control-input">
+																	<span class="custom-control-indicator"></span>
+																	<span class="custom-control-description">Sent</span>
+																</label>
+															</div>
+				                            </div>
+				                            <div class="col-md-6">
+				                              <div class="dropdown-item">
+				                                <label class="custom-control custom-checkbox">
+				                                  <input type="checkbox" class="custom-control-input">
+				                                  <span class="custom-control-indicator"></span>
+				                                  <span class="custom-control-description">Unread</span>
+				                                </label>
+				                              </div>
+				                            </div>
+				                          </div>									
+																</div>
+															</div>
+														</div>
+													</div>
+				                <div>
+
+				                  <!-- These buttons should only show up when mail is selected -->
+				                  <div class="btn-group">
+				                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-exclamation fa-lg"></i></button>
+				                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash fa-lg"></i></button>
+				                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye fa-lg"></i></button>
+				                  </div>
+				                </div>
+				                <div class="ml-auto">
+				                  <!--paging-->
+				                  <ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3"></ngb-pagination>
+				                </div>
+				              </div>
+				              <!-- Mailbox -->
+				              <section class="inbox">
+				                <div class="table-responsive">
+				                  <table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
+				                    <thead class="thead-light">
+				                      <!-- CUSTOM ANGULAR4 SORT DIRECTIVES -->
+				                        <th> 
+				                            <input type="checkbox" [(ngModel)]="checkAll" (click)="selectAllMessages(checkAll)" name="checkbox">
+				                        </th>
+				                        <th class="noPadding"><app-th columnName="id" displayName="Name"></app-th></th>
+				                        <th class="noPadding"><app-th columnName="message" displayName="Subject"></app-th></th>
+				                        <th class="noPadding"><app-th columnName="createDate" displayName="Date"></app-th></th>
+				                    </thead>
+				                    <tbody>
+				                      <tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage*page' (click)="openMessage(message.id)">
+				                        <td style="width: 25px">
+				                          <ul class="list-inline m-0">
+				                            <li class="list-inline-item">
+				                              <input type="checkbox" [(ngModel)]="message.selected" name="checkbox">
+				                            </li>
+				                          </ul>
+				                        </td>
+				                        <td> <b>John Wayne</b> <!--<small> (id={{message.id}}) </small>-->  </td> 
+				                        <td>
+				                            <span class="previewTitle"> {{message.announcementViewDetails.subject}} </span> 
+				                            <span class="previewMessage">- {{message.announcementViewDetails.message}} </span> 
+				                        </td> 
+				                        <td><b>{{message.announcementViewDetails.createDate | date: 'short' }}</b> </td>
+				                      </tr>				               
+				                    </tbody>
+				                  </table>
+				                </div>
+				              </section>
+				              
+				              <ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
+				            
+				            </div>
+				          </div>
+				        </form>
+				      </section>
+				    </div>
+		</div>
+	</div>

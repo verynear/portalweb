@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditorModule } from 'primeng/primeng';
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -44,7 +45,14 @@ import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApplicantService } from './services/applicant.service';
 import { LoginService } from './services/login.service';
 import { MenuComponent } from './components/menu/menu.component';
+import { ComposeComponent } from './components/compose/compose.component';
 import { InboxComponent } from './pages/inbox/inbox.component';
+import { SentboxComponent } from './pages/sentbox/sentbox.component';
+import { ApproveformComponent } from './components/approveform/approveform.component';
+import { SortableColumnComponent } from './components/sortable-table/sortable-column.component';
+
+import { SortableTableDirective } from './components/sortable-table/sortable-table.directive';
+import { SortService } from './components/sortable-table/sort.service';
 
 
 @NgModule({
@@ -52,6 +60,7 @@ import { InboxComponent } from './pages/inbox/inbox.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    EditorModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
@@ -80,7 +89,12 @@ import { InboxComponent } from './pages/inbox/inbox.component';
     ApplicantsComponent,
     DatatableComponent,
     MenuComponent,
+    ComposeComponent,
     InboxComponent,
+    SentboxComponent,
+    ApproveformComponent,
+    SortableColumnComponent,
+    SortableTableDirective,
   ],
   providers: [
       {
@@ -103,8 +117,10 @@ import { InboxComponent } from './pages/inbox/inbox.component';
       AnnouncementService,
       SessionService,
       LoginService,
+      SortService,
       AUTH_HEADER_INTERCEPTOR_PROVIDER
   ],
+  entryComponents: [ComposeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

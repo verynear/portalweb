@@ -1,0 +1,6 @@
+<span class="full-th">
+    <span class="displayName">{{displayName}}</span>
+        <i class="fa fa-caret-down" *ngIf="sortDirection === 'asc'"></i>
+        <i class="fa fa-caret-up" *ngIf="sortDirection === 'desc'"></i>
+    <ng-content></ng-content>
+</span>
