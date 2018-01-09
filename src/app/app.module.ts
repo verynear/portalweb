@@ -47,6 +47,12 @@ import { LoginService } from './services/login.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { ComposeComponent } from './components/compose/compose.component';
 import { InboxComponent } from './pages/inbox/inbox.component';
+import { SentboxComponent } from './pages/sentbox/sentbox.component';
+import { ApproveformComponent } from './components/approveform/approveform.component';
+import { SortableColumnComponent } from './components/sortable-table/sortable-column.component';
+
+import { SortableTableDirective } from './components/sortable-table/sortable-table.directive';
+import { SortService } from './components/sortable-table/sort.service';
 
 
 @NgModule({
@@ -85,6 +91,10 @@ import { InboxComponent } from './pages/inbox/inbox.component';
     MenuComponent,
     ComposeComponent,
     InboxComponent,
+    SentboxComponent,
+    ApproveformComponent,
+    SortableColumnComponent,
+    SortableTableDirective,
   ],
   providers: [
       {
@@ -107,6 +117,7 @@ import { InboxComponent } from './pages/inbox/inbox.component';
       AnnouncementService,
       SessionService,
       LoginService,
+      SortService,
       AUTH_HEADER_INTERCEPTOR_PROVIDER
   ],
   entryComponents: [ComposeComponent],

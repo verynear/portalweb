@@ -10,6 +10,7 @@ import { AuthGuard } from './auth.guard';
 import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { MessagesComponent } from './pages/messages/messages.component';
+import { SentboxComponent } from './pages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/inbox/inbox.component';
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     // TODO create a page/component for each children
     children: [
-      { path: '', redirectTo: '/messages/inbox', pathMatch: 'full' },
+      { path: '', redirectTo: '/messages/sent', pathMatch: 'full' },
+      { path: 'sent', component: SentboxComponent },
       { path: 'inbox', component: InboxComponent },
       { path: 'reports', component: MessagesComponent },
       { path: 'announcements', component: MessagesComponent },

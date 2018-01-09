@@ -16,18 +16,14 @@ export class ApplicantService {
     constructor(private http: HttpClient) { }
 
     get() {
-    return this.http.get<Applicant[]>(this.baseURL + '/tenant');
+    return this.http.get<Applicant[]>(this.baseURL + '/applicants');
+      }
+
+    create(applicant: Applicant) {
+    return this.http.post(this.baseURL + '/applicants/sign-up/', applicant);
       }
 
     approve(applicant: Applicant) {
-      return this.http.put(this.baseURL + '/approveTenant/' + applicant.id, applicant).subscribe(
-      data => {
-        console.log('Youve converted applicant');
-        this.applicant = data;
-        console.log(data[0].subject);
-      },
-      error => {
-        console.log('Error');
-      });
+      return this.http.put(this.baseURL + '/applicants/approve/' + applicant.id, applicant);
       }
  }
