@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlertService } from '../../services/alert.service';
 import { EditorModule } from 'primeng/primeng';
 
 @Component({
@@ -39,7 +41,8 @@ export class ComposeComponent implements OnInit {
   message: FormControl;
 
 
-    constructor(public activeModal: NgbActiveModal, private messageService: MessageService) {}
+    constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
+      MessageService, private alertService: AlertService) {}
 
     ngOnInit() {
         this.createFormControls();
@@ -47,9 +50,10 @@ export class ComposeComponent implements OnInit {
     }
 
     createFormControls() {
-        this.recipientType = new FormControl('', Validators.required);
-        this.emailBuilding = new FormControl('', Validators.required);
-        this.email = new FormControl('', Validators.required);
+        this.type = new FormControl('', Validators.required);
+        this.rentalsitesId = new FormControl('', Validators.required);
+        this.rentalsiteBuildingId = new FormControl('');
+        this.rentalsiteBuildingUnitId = new FormControl('');
         this.messageType = new FormControl('', Validators.required);
         this.subject = new FormControl('');
         this.message = new FormControl('', Validators.required);
@@ -57,8 +61,8 @@ export class ComposeComponent implements OnInit {
 
     createForm() {
         this.composeForm = new FormGroup({
-            recipientType: this.recipientType,
-            emailBuilding: this.emailBuilding,
+            type: this.type,
+            rentalsitesId: this.rentalsitesId,
             email: this.email,
             messageType: this.messageType,
             subject: this.subject,
@@ -66,24 +70,24 @@ export class ComposeComponent implements OnInit {
         });
     }
 
-    // send() {
-    //     this.loading = true;
-    //     const user = new User();
+    send() {
+        this.loading = true;
+        const message = new Message();
 
-    //     user.firstname = this.registerForm.value.firstName;
-    //     user.lastname = this.registerForm.value.lastName;
-    //     user.username = this.registerForm.value.email;
-    //     user.password = this.registerForm.value.password;
+        message.type = this.composeForm.value.type;
+        message.rentalsitesId = this.composeForm.value.lastName;
+        message.message = this.composeForm.value.message;
+        message.password = this.composeForm.value.password;
 
-    //     this.userService.create(user).subscribe(
-    //         data => {
-    //             this.alertService.success('Registration successful', true);
-    //             this.router.navigate(['/login']);
-    //         },
-    //         error => {
-    //             this.alertService.error(error);
-    //             this.loading = false;
-    //         });
-    // }
+        this.messageService.create(message).subscribe(
+            data => {
+                this.alertService.success('Message Sent', true);
+                this.router.navigate(['/messages/sent']);
+            },
+            error => {
+                this.alertService.error(error);
+                this.loading = false;
+            });
+    }
 
 }

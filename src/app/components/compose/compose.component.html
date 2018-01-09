@@ -15,7 +15,7 @@
 					</div>
 					<div class="form-group">
 						<label>Recipient Type:</label>
-						<select class="form-control" formControlName="recipientType">
+						<select class="form-control" formControlName="type">
 							<option value="">Select Recipient Type:</option>
 							<option *ngFor="let recip of recips" [value]="recip">
 								{{recip}}
@@ -23,8 +23,8 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="emailBuilding">Building(s):</label>
-						<select class="form-control" formControlName="emailBuilding">
+						<label for="rentalsiteBuildingId">Building(s):</label>
+						<select class="form-control" formControlName="rentalsiteBuildingId">
 							<option value="">Select Building(s):</option>
 							<option *ngFor="let building of buildings" [value]="building">
 								{{building}}
@@ -33,7 +33,7 @@
 					</div>
 					<div class="form-group">
 						<label for="toEmail">To:</label>
-						<input type="email" class="form-control" formControlName="email" id="toEmail" aria-describedby="emailHelp" placeholder="Enter email">
+						<input type="email" class="form-control" formControlName="rentalsiteBuildingUnitId" id="toEmail" aria-describedby="emailHelp" placeholder="Enter units">
 						<small><em class="text-muted">Separate by (,) comma</em></small>
 					</div>
 					<div class="form-group">

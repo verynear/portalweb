@@ -5,6 +5,9 @@ export class Message {
   message: string;
   messageType: string;
   rentalsitesId: number;
+  rentalsiteBuildingId: number;
+  rentalsiteBuildingUnitId: number;
+  type: string;
   subject: string;
   isRead: boolean;
 }

@@ -5,6 +5,8 @@ import { Message } from '../models/message';
 import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 import { SortService } from '../components/sortable-table/sort.service';
 
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class MessageService {
   private baseURL = environment.api.baseUrl;
@@ -24,8 +26,13 @@ export class MessageService {
   sortMessages (messages, criteria: MessageSearchCriteria): Message[] {
      return messages.sort((a, b) => {
       return this.sortService.sortHelper(a, b, criteria);
-    }
-  ); }
+    });
+  }
+
+  sendMessage (message: Message) {
+    return this.http.post(this.baseURL + '/message', message)
+    .map( (response: Response) => response.json());
+  }
 
 }
 
