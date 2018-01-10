@@ -17,8 +17,8 @@
 						<label>Recipient Type:</label>
 						<select class="form-control" formControlName="type">
 							<option value="">Select Recipient Type:</option>
-							<option *ngFor="let recip of recips" [value]="recip">
-								{{recip}}
+							<option *ngFor="let recip of recips" [value]="recip.messageType">
+								{{recip.name}}
                             </option>
 						</select>
 					</div>
@@ -72,7 +72,7 @@
 				</div>
 				
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Send</button>
+					<button type="button" class="btn btn-primary" (click)="send()">Send</button>
 					<button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
 				</div>
 			</form>

@@ -29,9 +29,16 @@ export class MessageService {
     });
   }
 
+  getbuildings() {
+     return this.http.get<Building[]>(this.baseURL + '/site');
+  }
+
+  getUnitsByBuildingId(id: number) {
+     return this.http.get<Unit[]>(this.baseURL + '/site/building' + id);
+  }
+
   sendMessage (message: Message) {
-    return this.http.post(this.baseURL + '/message', message)
-    .map( (response: Response) => response.json());
+    return this.http.post(this.baseURL + '/message', message);
   }
 
 }
@@ -39,6 +46,16 @@ export class MessageService {
 class MessageSearchCriteria {
   sortColumn: string;
   sortDirection: string;
+}
+
+class Building {
+  buildingId: number;
+  buildingName: string;
+}
+
+class Unit {
+  unitId: number;
+  unitNumber: number;
 }
 
 
