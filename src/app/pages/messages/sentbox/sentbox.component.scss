@@ -1,0 +1,98 @@
+/* Message Center Custom Styles
+-------------------------------------------------- */
+/* Mailbox */
+.mail-nav.btn-group-vertical {
+	margin-top: 1px;
+}
+.mail-nav.btn-group-vertical .btn {
+	text-align: left;
+}
+.mail-nav.btn-group-vertical span.badge {
+	float: right;
+	margin-top: 4px;
+}
+.mail-nav.btn-group-vertical i {
+	float: left;
+	margin-top: 4px;
+	margin-right: 5px;
+	width: 20px;
+}
+.inbox {
+	margin-top: 17px;
+}
+
+// John Styles
+.container-fluid {
+    min-height: 768px;
+}
+
+tr {
+    cursor: pointer;
+}
+
+.fa-sort {
+	cursor: pointer;
+}
+
+.noBorder {
+	border: 0px;
+}
+
+.sort {
+	font-size: 13px;
+	margin-top: 4px;
+}
+
+::ng-deep .page-item.active .page-link {
+	color: black;
+	background-color: #efefef;
+	border: 1px solid #ddd;
+}
+
+::ng-deep .page-link {
+	color: black;
+}	
+
+.previewMessage {
+	opacity: .75;
+	width: 15em;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: inline-block;
+}
+
+.previewTitle {
+	font-style: bold;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.mailHeader {
+	cursor: pointer;
+	color: white;	
+}
+
+.mailHead {
+	cursor: pointer;
+}
+
+.mailTable {
+	font-size: 14px;
+}
+
+.noPadding {
+	padding: 0px;
+}
+
+.thead-light {
+	cursor:pointer;
+}
+
+.addOpacity {
+	opacity: .5;
+}
+
+.spinner {
+	margin-top: 150px;
+}

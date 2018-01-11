@@ -1,0 +1,39 @@
+<div class="float-right">							
+	<ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3"></ngb-pagination>
+</div>
+<!-- Mailbox -->
+<section class="inbox">
+	<div class="table-responsive">
+		<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
+			<thead class="thead-light">
+				<!-- CUSTOM ANGULAR4 SORT DIRECTIVES -->
+					<th> 
+							<input type="checkbox" [(ngModel)]="checkAll" (click)="selectAllMessages(checkAll)" name="checkbox">
+					</th>
+					<th class="noPadding"><app-th columnName="id" displayName="Name"></app-th></th>
+					<th class="noPadding"><app-th columnName="message" displayName="Subject"></app-th></th>
+					<th class="noPadding"><app-th columnName="createDate" displayName="Date"></app-th></th>
+			</thead>
+			<tbody>
+				<tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage*page' (click)="openMessage(message.id)">
+					<td style="width: 25px">
+						<ul class="list-inline m-0">
+							<li class="list-inline-item">
+								<input type="checkbox" [(ngModel)]="message.selected" name="checkbox">
+							</li>
+						</ul>
+					</td>
+					<td> <b>John Wayne</b> <!--<small> (id={{message.id}}) </small>-->  </td> 
+					<td>
+							<span class="previewTitle"> {{message.announcementViewDetails.subject}} </span> 
+							<span class="previewMessage">- {{message.announcementViewDetails.message}} </span> 
+					</td> 
+					<td><b>{{message.announcementViewDetails.createDate | date: 'short' }}</b> </td>
+				</tr>				               
+			</tbody>
+		</table>
+	</div>
+</section>     
+
+<ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
+

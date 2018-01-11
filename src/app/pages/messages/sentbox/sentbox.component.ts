@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from '../../services/message.service';
-import { Message } from '../../models/message';
+import { MessageService } from '../../../services/message.service';
+import { Message } from '../../../models/message';
 import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ComposeComponent } from '../../components/compose/compose.component';
+import { ComposeComponent } from '../../../components/compose/compose.component';
 
 @Component({
   selector: 'app-sentbox',
@@ -16,7 +16,7 @@ export class SentboxComponent implements OnInit {
   page: number;
   checkAll: boolean;
 
-  constructor(public messageService: MessageService, config: NgbDropdownConfig, private modalService: NgbModal) {
+  constructor(public messageService: MessageService, config: NgbDropdownConfig) {
     // Default values for dropdowns.
     config.autoClose = 'outside';
   }
@@ -25,19 +25,8 @@ export class SentboxComponent implements OnInit {
     this.itemsPerPage = 25;   // Number of Mail Items per page.
     this.page = 1;            // Starting Page
     this.checkAll = false;    // By Default, all mail items unchecked.
-    this.getSentMessages();       // Get Sent Messages.
+    this.getSentMessages();   // Get Sent Messages.
   }
-
-  // getMessages() {
-  //   this.messageService.get().subscribe(
-  //     data => {
-  //       this.messages = data;
-  //       this.totalItems = data.length;
-  //     },
-  //     error => {
-  //       console.log('Error');
-  //     });
-  // }
 
   getSentMessages() {
     this.messageService.getSent().subscribe(
@@ -66,10 +55,6 @@ export class SentboxComponent implements OnInit {
   openMessage(id) {
     console.log('You\'ve Opened' + id);
     // TODO: Create a new component for reading messages.
-  }
-
-  compose() {
-    const modalRef = this.modalService.open(ComposeComponent);
   }
 
 }
