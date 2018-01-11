@@ -7,5 +7,6 @@ export const environment = {
   production: false,
   api: {
     baseUrl: `${location.protocol}//api.${location.hostname === 'localhost' ? 'devdemo.betterleasing.com' : location.host}/leasenet`
-  }
+  },
+  version: '18.1.11'  // Version number of app. Format: (Year.Month.Day)
 };

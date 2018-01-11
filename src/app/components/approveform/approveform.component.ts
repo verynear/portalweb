@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Applicant } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
+import { Applicant } from '../../models/applicant';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -12,8 +12,8 @@ import {HttpErrorResponse} from '@angular/common/http';
   styleUrls: ['./approveform.component.scss']
 })
 export class ApproveformComponent implements OnInit {
-    model: any = {};
     loading = false;
+    applicant: any = {};
     message: string;
     errorMessage: string;
 
@@ -22,32 +22,44 @@ export class ApproveformComponent implements OnInit {
   ngOnInit() {
   }
 
-  approve() {
+  create() {
     this.message = '';
     this.errorMessage = '';
+    const applicant = new Applicant();
 
     this.loading = true;
-    this.service.create(this.model)
+    this.service.create(this.applicant)
       .subscribe(
         data => {
+          console.log(data);
+          this.applicant = data;
+          console.log(data['id']);
           this.loading = true;
           this.message = 'Applicant Created';
         },
         (res: HttpErrorResponse) => {
           this.errorMessage = 'Unable to create new applicant';
           this.loading = false;
-        });
-    this.service.approve(this.model)
+        });    
+    console.log('after no this');
+    console.log(applicant);
+    console.log('after with this');
+    console.log(this.applicant);
+  }
+
+  approve() {
+    this.service.approve(this.applicant['id'])
       .subscribe(
       data => {
+        console.log('approve response' + data);
+        console.log(data);
         this.loading = true;
         this.message = 'Applicant Approved';
-        this.model = {};
+        // this.applicant = {};
         },
         (res: HttpErrorResponse) => {
           this.errorMessage = 'Unable to approve resident';
           this.loading = false;
         });
-  }
-
+   }
 }

@@ -40,6 +40,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
 
+import { ProgressSpinnerModule } from 'primeng/primeng';
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApplicantService } from './services/applicant.service';
@@ -69,6 +70,7 @@ import { MultiselectComponent } from './components/multiselect/multiselect.compo
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ProgressSpinnerModule,
     AppRoutingModule,
     ButtonModule,
     NgbModule.forRoot()

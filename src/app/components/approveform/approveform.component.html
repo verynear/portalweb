@@ -19,23 +19,32 @@
       <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && approve()" novalidate>
         <div class="form-group" [ngClass]="{ 'is-invalid': f.submitted && !firstname.valid }">
           <label for="firstname">First Name</label>
-          <input type="text" class="form-control" name="firstname" [(ngModel)]="model.firstname" #firstname="ngModel" required />
+          <input type="text" class="form-control" name="firstname" [(ngModel)]="applicant.firstname" #firstname="ngModel" required />
           <div *ngIf="f.submitted && !firstname.valid" class="invalid-feedback">First name is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
           <label for="lastname">Last Name</label>
-          <input type="text" class="form-control" name="lastname" [(ngModel)]="model.lastname" #lastname="ngModel" required />
+          <input type="text" class="form-control" name="lastname" [(ngModel)]="applicant.lastname" #lastname="ngModel" required />
           <div *ngIf="f.submitted && !lastname.valid" class="invalid-feedback">Last name is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !emailAddress.valid }">
           <label for="emailAddress">Email</label>
-          <input type="email" class="form-control" name="emailAddress" [(ngModel)]="model.emailAddress" #emailAddress="ngModel" required />
+          <input type="email" class="form-control" name="emailAddress" [(ngModel)]="applicant.emailAddress" #emailAddress="ngModel" required />
           <div *ngIf="f.submitted && !emailAddress.valid" class="invalid-feedback">Email address is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
           <label for="phone">Phone</label>
-          <input type="text" class="form-control" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required />
+          <input type="text" class="form-control" name="phone" [(ngModel)]="applicant.phone" #phone="ngModel" required />
           <div *ngIf="f.submitted && !phone.valid" class="invalid-feedback">Phone number is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !applicantPropertyName.valid }">
+          <label for="applicantPropertyName">Property Name</label>
+          <input type="text" class="form-control" name="applicantPropertyName" [(ngModel)]="applicant.applicantPropertyName" #applicantPropertyName="ngModel" required />
+          <div *ngIf="f.submitted && !applicantPropertyName.valid" class="invalid-feedback">Property name is required</div>
+        </div>
+        <div class="form-group">
+          <label for="applicantUnit">Requested Unit</label>
+          <input type="text" class="form-control" name="applicantUnit" [(ngModel)]="applicant.applicantUnit" #applicantUnit="ngModel" />
         </div>
         <div class="form-group">
           <button [disabled]="loading" class="btn btn-primary">Approve</button>

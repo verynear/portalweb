@@ -10,6 +10,7 @@ import { AuthGuard } from './auth.guard';
 import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { MessagesComponent } from './pages/messages/messages.component';
+import { DatatableComponent } from './components/datatable/datatable.component';
 import { SentboxComponent } from './pages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/inbox/inbox.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'applicants', component: ApplicantsComponent, canActivate: [AuthGuard] },
+  { path: 'applicantlist', component: DatatableComponent, canActivate: [AuthGuard] },
   {
     path: 'messages',
     component: MessagesComponent,
