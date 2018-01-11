@@ -5,6 +5,7 @@ import { Message } from '../../models/message';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
+import { MultiselectComponent } from '../multiselect/multiselect.component';
 import { EditorModule } from 'primeng/primeng';
 
 @Component({
@@ -17,15 +18,11 @@ export class ComposeComponent implements OnInit {
   recips = [
     {messageType: 'SITE', name: 'Building(s)'},
     {messageType: 'BUILDING', name: 'Unit(s)'},
-    {messageType: 'UNIT', name: 'Renter(s)'},
+    {messageType: 'UNIT', name: 'Resident(s)'},
   ];
-  buildings: string[] = [
-    'All',
-    'Building 1',
-    'Building 2',
-    'Building 3',
-    'Building 4'
-  ];
+  list: any[];
+  checkedList: any[];
+  indi: {};
   messagetypes: string[] = [
     'Standard',
     'Announcement',
@@ -43,7 +40,15 @@ export class ComposeComponent implements OnInit {
 
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
-      MessageService, private alertService: AlertService) {}
+      MessageService, private alertService: AlertService) {
+      this.list =
+        [
+          {name: 'Building 1', checked: false},
+          {name: 'Building 2', checked: false},
+          {name: 'Building 3', checked: false},
+          {name: 'Building 4', checked: false}
+        ];
+      }
 
     ngOnInit() {
         this.createFormControls();
@@ -70,6 +75,15 @@ export class ComposeComponent implements OnInit {
             subject: this.subject,
             message: this.message
         });
+    }
+
+    shareCheckedList(item: any[]) {
+        this.checkedList = item;
+        console.log(item);
+    }
+    shareIndividualCheckedList(item: {}) {
+        this.indi = item;
+        console.log(item);
     }
 
     send() {

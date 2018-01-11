@@ -53,6 +53,7 @@ import { SortableColumnComponent } from './components/sortable-table/sortable-co
 
 import { SortableTableDirective } from './components/sortable-table/sortable-table.directive';
 import { SortService } from './components/sortable-table/sort.service';
+import { MultiselectComponent } from './components/multiselect/multiselect.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { SortService } from './components/sortable-table/sort.service';
     ApproveformComponent,
     SortableColumnComponent,
     SortableTableDirective,
+    MultiselectComponent,
   ],
   providers: [
       {
