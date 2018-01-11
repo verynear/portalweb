@@ -1,0 +1,35 @@
+/* Message Center Custom Styles
+-------------------------------------------------- */
+/* Mailbox */
+.mail-nav.btn-group-vertical {
+	margin-top: 1px;
+}
+.mail-nav.btn-group-vertical .btn {
+	text-align: left;
+}
+.mail-nav.btn-group-vertical span.badge {
+	float: right;
+	margin-top: 4px;
+}
+.mail-nav.btn-group-vertical i {
+	float: left;
+	margin-top: 4px;
+	margin-right: 5px;
+	width: 20px;
+}
+.inbox {
+	margin-top: 17px;
+}
+
+// John Styles
+.container-fluid {
+    min-height: 768px;
+}
+
+tr {
+    cursor: pointer;
+}
+
+.addOpacity {
+	opacity: .5;
+}

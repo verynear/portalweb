@@ -11,8 +11,9 @@ import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
-import { SentboxComponent } from './pages/sentbox/sentbox.component';
-import { InboxComponent } from './pages/inbox/inbox.component';
+import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
+import { InboxComponent } from './pages/messages/inbox/inbox.component';
+import { AnnouncementsComponent } from './pages/messages/announcements/announcements.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -30,8 +31,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/messages/sent', pathMatch: 'full' },
       { path: 'sent', component: SentboxComponent },
       { path: 'inbox', component: InboxComponent },
-      { path: 'reports', component: MessagesComponent },
-      { path: 'announcements', component: MessagesComponent },
+      { path: 'announcements', component: AnnouncementsComponent },
       { path: 'notifications', component: MessagesComponent }
     ]
   },
