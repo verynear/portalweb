@@ -11,7 +11,7 @@ import { DataTableModule } from 'primeng/primeng';
 export class DatatableComponent implements OnInit {
 
     displayDialog: boolean;
-    applicant: Applicant = new PrimeApplicant();
+    applicant: Applicant = new Applicant();
     selectedApplicant: Applicant;
     newApplicant: boolean;
     applicants: Applicant[];
@@ -36,7 +36,7 @@ export class DatatableComponent implements OnInit {
 
     showDialogToAdd() {
         this.newApplicant = true;
-        this.applicant = new PrimeApplicant();
+        this.applicant = new Applicant();
         this.displayDialog = true;
     }
 
@@ -74,7 +74,7 @@ export class DatatableComponent implements OnInit {
     }
 
     cloneApplicant(a: Applicant): Applicant {
-        const applicant = new PrimeApplicant();
+        const applicant = new Applicant();
         for (const prop in a) {
             if (applicant[prop] = a[prop]) {
             }
@@ -85,9 +85,4 @@ export class DatatableComponent implements OnInit {
     findSelectedApplicantIndex(): number {
         return this.applicants.indexOf(this.selectedApplicant);
     }
-}
-
-export class PrimeApplicant implements Applicant {
-
-    constructor(public id?, public emailAddress?, public firstname?, public lastname?, public status?, public phone?) {}
 }
