@@ -33,26 +33,23 @@ export class ApproveformComponent implements OnInit {
         data => {
           console.log(data);
           this.applicant = data;
-          console.log(data['id']);
+          console.log('id');
+          // this.approve(data['id']);
           this.loading = true;
           this.message = 'Applicant Created';
         },
         (res: HttpErrorResponse) => {
           this.errorMessage = 'Unable to create new applicant';
           this.loading = false;
-        });    
-    console.log('after no this');
-    console.log(applicant);
+        });
     console.log('after with this');
     console.log(this.applicant);
   }
 
-  approve() {
-    this.service.approve(this.applicant['id'])
+  approve(id: number) {
+    this.service.approve(id)
       .subscribe(
       data => {
-        console.log('approve response' + data);
-        console.log(data);
         this.loading = true;
         this.message = 'Applicant Approved';
         // this.applicant = {};
