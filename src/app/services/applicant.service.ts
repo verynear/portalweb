@@ -20,10 +20,10 @@ export class ApplicantService {
       }
 
     create(applicant: Applicant) {
-    return this.http.post(this.baseURL + '/applicants/sign-up/', applicant);
+    return this.http.post(this.baseURL + '/tenant/', applicant);
       }
 
-    approve(applicant: Applicant) {
-      return this.http.put(this.baseURL + '/applicants/approve/' + applicant.id, applicant);
+    approve(id: number) {
+      return this.http.put(this.baseURL + '/applicants/approve/' + id, id);
       }
  }

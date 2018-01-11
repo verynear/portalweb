@@ -17,19 +17,18 @@
 						<label>Recipient Type:</label>
 						<select class="form-control" formControlName="type">
 							<option value="">Select Recipient Type:</option>
-							<option *ngFor="let recip of recips" [value]="recip">
-								{{recip}}
+							<option *ngFor="let recip of recips" [value]="recip.messageType">
+								{{recip.name}}
                             </option>
 						</select>
 					</div>
-					<div class="form-group">
+					<div class="form-group" *ngIf="composeForm.value.type === 'SITE'">
 						<label for="rentalsiteBuildingId">Building(s):</label>
-						<select class="form-control" formControlName="rentalsiteBuildingId">
-							<option value="">Select Building(s):</option>
-							<option *ngFor="let building of buildings" [value]="building">
-								{{building}}
-                            </option>
-						</select>
+						<app-multiselect
+						 [list]="list"
+						 (shareCheckedList)="shareCheckedList($event)" 
+						 (shareIndividualCheckedList)="shareIndividualCheckedList($event)">
+						</app-multiselect>
 					</div>
 					<div class="form-group">
 						<label for="toEmail">To:</label>
@@ -72,7 +71,7 @@
 				</div>
 				
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Send</button>
+					<button type="button" class="btn btn-primary" (click)="send()">Send</button>
 					<button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
 				</div>
 			</form>

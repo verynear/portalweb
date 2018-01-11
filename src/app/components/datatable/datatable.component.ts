@@ -43,7 +43,7 @@ export class DatatableComponent implements OnInit {
     approve() {
         const applicants = [...this.applicants];
         applicants[this.findSelectedApplicantIndex()] = this.applicant;
-        this.applicantService.approve(this.applicant);
+        this.applicantService.approve(this.applicant.id);
         console.log(this.applicant);
         this.displayDialog = false;
     }

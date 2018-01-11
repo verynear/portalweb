@@ -1,10 +1,11 @@
-export interface Applicant {
-    id?;
-    emailAddress?;
-    firstname?;
-    isFirstUser?;
-    lastname?;
-    status?;
-    phone?;
-    rentalSiteId?;
+export class Applicant {
+    id: number;
+    emailAddress: string;
+    firstname: string;
+    lastname: string;
+    status: string;
+    phone: string;
+    rentalSiteId: number;
+    applicantPropertyName: string;
+    applicantUnit: string;
 }

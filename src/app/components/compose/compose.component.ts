@@ -5,6 +5,7 @@ import { Message } from '../../models/message';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
+import { MultiselectComponent } from '../multiselect/multiselect.component';
 import { EditorModule } from 'primeng/primeng';
 
 @Component({
@@ -14,18 +15,14 @@ import { EditorModule } from 'primeng/primeng';
 })
 export class ComposeComponent implements OnInit {
   loading = false;
-  recips: string[] = [
-    'Building(s)',
-    'Unit(s)',
-    'Renter(s)',
+  recips = [
+    {messageType: 'SITE', name: 'Building(s)'},
+    {messageType: 'BUILDING', name: 'Unit(s)'},
+    {messageType: 'UNIT', name: 'Resident(s)'},
   ];
-  buildings: string[] = [
-    'All',
-    'Building 1',
-    'Building 2',
-    'Building 3',
-    'Building 4'
-  ];
+  list: any[];
+  checkedList: any[];
+  indi: {};
   messagetypes: string[] = [
     'Standard',
     'Announcement',
@@ -33,16 +30,25 @@ export class ComposeComponent implements OnInit {
     'Alert - Urgent'
   ];
   composeForm: FormGroup;
-  recipientType: FormControl;
-  emailBuilding: FormControl;
-  email: FormControl;
+  type: FormControl;
+  rentalsitesId: FormControl;
+  rentalsiteBuildingId: FormControl;
+  rentalsiteBuildingUnitId: FormControl;
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
 
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
-      MessageService, private alertService: AlertService) {}
+      MessageService, private alertService: AlertService) {
+      this.list =
+        [
+          {name: 'Building 1', checked: false},
+          {name: 'Building 2', checked: false},
+          {name: 'Building 3', checked: false},
+          {name: 'Building 4', checked: false}
+        ];
+      }
 
     ngOnInit() {
         this.createFormControls();
@@ -63,11 +69,21 @@ export class ComposeComponent implements OnInit {
         this.composeForm = new FormGroup({
             type: this.type,
             rentalsitesId: this.rentalsitesId,
-            email: this.email,
+            rentalsiteBuildingId: this.rentalsiteBuildingId,
+            rentalsiteBuildingUnitId: this.rentalsiteBuildingUnitId,
             messageType: this.messageType,
             subject: this.subject,
             message: this.message
         });
+    }
+
+    shareCheckedList(item: any[]) {
+        this.checkedList = item;
+        console.log(item);
+    }
+    shareIndividualCheckedList(item: {}) {
+        this.indi = item;
+        console.log(item);
     }
 
     send() {
@@ -77,9 +93,10 @@ export class ComposeComponent implements OnInit {
         message.type = this.composeForm.value.type;
         message.rentalsitesId = this.composeForm.value.lastName;
         message.message = this.composeForm.value.message;
-        message.password = this.composeForm.value.password;
+        message.subject = this.composeForm.value.subject;
+        console.log(message);
 
-        this.messageService.create(message).subscribe(
+        this.messageService.sendMessage(message).subscribe(
             data => {
                 this.alertService.success('Message Sent', true);
                 this.router.navigate(['/messages/sent']);

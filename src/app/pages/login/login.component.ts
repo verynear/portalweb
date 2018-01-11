@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService } from '../../services/alert.service';
-import {LoginService} from '../../services/login.service';
+import { LoginService } from '../../services/login.service';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
+    version: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -28,6 +30,8 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+        this.version = environment.version;
 
       if (this.route.snapshot.queryParams['out']) {
         this.loginService.logout();
