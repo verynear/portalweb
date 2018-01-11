@@ -34,7 +34,7 @@ export class ApproveformComponent implements OnInit {
           console.log(data);
           this.applicant = data;
           console.log('id');
-          // this.approve(data['id']);
+          this.approve(data['id']);
           this.loading = true;
           this.message = 'Applicant Created';
         },
