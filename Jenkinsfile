@@ -25,7 +25,7 @@ node {
         ngEnv = 'production'
     }
 
-    sh "docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng build --target=${ngEnv}"
+    sh "docker run --rm -v `pwd`:/app:rw -w /app falci/ng ng build --target=${ngEnv} --output-hashing=all"
 }
 
 node {
