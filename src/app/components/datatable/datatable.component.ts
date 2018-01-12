@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Applicant } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
 import { DataTableModule } from 'primeng/primeng';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
     selector: 'app-datatable',
@@ -15,6 +16,8 @@ export class DatatableComponent implements OnInit {
     selectedApplicant: Applicant;
     newApplicant: boolean;
     applicants: Applicant[];
+    message: string;
+    errorMessage: string;
 
     constructor(private applicantService: ApplicantService) { }
 
@@ -40,11 +43,37 @@ export class DatatableComponent implements OnInit {
         this.displayDialog = true;
     }
 
-    approve() {
+    approve(id: number) {
         const applicants = [...this.applicants];
         applicants[this.findSelectedApplicantIndex()] = this.applicant;
-        this.applicantService.approve(this.applicant.id);
-        console.log(this.applicant);
+        if (this.newApplicant) {
+            this.applicantService.create(this.applicant)
+              .subscribe(
+                data => {
+                  this.message = 'Applicant Created';
+                  this.applicantService.approve(data['id'])
+                      .subscribe(
+                         data1 => {
+                           this.message = 'Applicant Approved';
+                       },
+                         (res: HttpErrorResponse) => {
+                            this.errorMessage = 'Unable to approve applicant';
+                       });
+                       },
+                          (res: HttpErrorResponse) => {
+                             this.errorMessage = 'Unable to create new applicant';
+                       });
+         } else {
+            this.applicantService.approve(this.applicant.id)
+                .subscribe(
+                    data => {
+                      this.message = 'Applicant Approved';
+                      this.getApplicants();
+                },
+                (res: HttpErrorResponse) => {
+                  this.errorMessage = 'Unable to create new applicant';
+                });
+         }
         this.displayDialog = false;
     }
 
@@ -52,6 +81,15 @@ export class DatatableComponent implements OnInit {
         const applicants = [...this.applicants];
         if (this.newApplicant) {
             applicants.push(this.applicant);
+            this.applicantService.create(this.applicant)
+               .subscribe(
+                  data => {
+                     this.message = 'Applicant Created';
+                     this.getApplicants();
+        },
+        (res: HttpErrorResponse) => {
+          this.errorMessage = 'Unable to create new applicant';
+        });
         } else {
             applicants[this.findSelectedApplicantIndex()] = this.applicant;
         }

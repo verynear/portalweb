@@ -2,25 +2,29 @@
         <!-- Main Content Area -->
         <div class="main-content">
             <div class="container-fluid">
-                                <p-dataTable [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+                                <p-dataTable [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" exportFilename="applicants" (onRowSelect)="onRowSelect($event)"  [rows]="15" [paginator]="true" [rowsPerPageOptions]="[15,30,50]" [responsive]="true" resizableColumns="true" sortMode="multiple">
                     <p-header>Pending Applicants</p-header>
                     <p-column field="emailAddress" header="Email" [sortable]="true"></p-column>
                     <p-column field="firstname" header="First" [sortable]="true"></p-column>
                     <p-column field="lastname" header="Last" [sortable]="true"></p-column>
-                    <p-column field="role" header="Status" [sortable]="true"></p-column>
+                    <p-column field="phone" header="Phone" [sortable]="false"></p-column>
+                    <p-column field="role" header="Status" [sortable]="false"></p-column>
+                    <p-column field="applicantPropertyName" header="Property" [sortable]="true"></p-column>
+                    <p-column field="applicantUnit" header="Unit" [sortable]="true"></p-column>
                     <p-column header="Date Applied" [sortable]="true">
                         <ng-template let-applicant="rowData" pTemplate type="body">
                             {{ applicant.createDate | date: 'short' }}
                           </ng-template>
                     </p-column>
-                    <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></p-footer>
+                    <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button><button type="button" pButton icon="fa-file-o" iconPos="left" label="Save to CSV" (click)="dt.exportCSV()" style="float:right"></button>
+                    </div></p-footer>
                 </p-dataTable>
 
                 <p-dialog header="Applicant Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
                     <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="applicant">
                         <div class="ui-grid-row">
-                            <div class="ui-grid-col-4"><label for="emailAddress">Email</label></div>
-                            <div class="ui-grid-col-8"><input pInputText id="emailAddress" [(ngModel)]="applicant.emailAddress" /></div>
+                            <div class="ui-grid-col-4"><label for="status">Status</label></div>
+                            <div class="ui-grid-col-8"><input pInputText id="status" disabled="true" [(ngModel)]="applicant.role" /></div>
                         </div>
                         <div class="ui-grid-row">
                             <div class="ui-grid-col-4"><label for="firstname">First</label></div>
@@ -32,17 +36,25 @@
                             <div class="ui-grid-col-8"><input pInputText id="lastname" [(ngModel)]="applicant.lastname" /></div>
                         </div>
                         <div class="ui-grid-row">
-                            <div class="ui-grid-col-4"><label for="status">Status</label></div>
-                            <div class="ui-grid-col-8"><input pInputText id="status" [(ngModel)]="applicant.role" /></div>
+                            <div class="ui-grid-col-4"><label for="emailAddress">Email</label></div>
+                            <div class="ui-grid-col-8"><input pInputText id="emailAddress" [(ngModel)]="applicant.emailAddress" /></div>
                         </div>
                         <div class="ui-grid-row">
                             <div class="ui-grid-col-4"><label for="phone">Phone</label></div>
                             <div class="ui-grid-col-8"><input pInputText id="phone" [(ngModel)]="applicant.phone" /></div>
                         </div>
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-4"><label for="applicantPropertyName">Property Name</label></div>
+                            <div class="ui-grid-col-8"><input pInputText id="applicantPropertyName" [(ngModel)]="applicant.applicantPropertyName" /></div>
+                        </div>
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-4"><label for="applicantUnit">Requested Unit</label></div>
+                            <div class="ui-grid-col-8"><input pInputText id="applicantUnit" [(ngModel)]="applicant.applicantUnit" /></div>
+                        </div>
                     </div>
                     <p-footer>
                         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                            <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+                            <button type="button" disabled="true" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
                             <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
                             <button type="button" pButton icon="fa-check" (click)="approve()" label="Approve"></button>
                         </div>

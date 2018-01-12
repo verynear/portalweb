@@ -22,7 +22,7 @@ export class ApproveformComponent implements OnInit {
   ngOnInit() {
   }
 
-  create() {
+  create(form) {
     this.message = '';
     this.errorMessage = '';
     const applicant = new Applicant();
@@ -31,26 +31,25 @@ export class ApproveformComponent implements OnInit {
     this.service.create(this.applicant)
       .subscribe(
         data => {
-          console.log(data);
           this.applicant = data;
-          console.log('id');
+          console.log('new applicant id');
+          console.log(data['id']);
           this.approve(data['id']);
           this.loading = true;
           this.message = 'Applicant Created';
+          form.resetForm();
         },
         (res: HttpErrorResponse) => {
           this.errorMessage = 'Unable to create new applicant';
-          this.loading = false;
+          this.loading = true;
         });
-    console.log('after with this');
-    console.log(this.applicant);
   }
 
   approve(id: number) {
     this.service.approve(id)
       .subscribe(
       data => {
-        this.loading = true;
+        this.loading = false;
         this.message = 'Applicant Approved';
         // this.applicant = {};
         },
