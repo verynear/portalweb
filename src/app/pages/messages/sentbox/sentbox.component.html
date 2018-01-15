@@ -3,32 +3,60 @@
 </div>
 <!-- Mailbox -->
 <section class="inbox">
-	<div class="table-responsive">
+	<div class="table table-responsive">
 		<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 			<thead class="thead-light">
 				<!-- CUSTOM ANGULAR4 SORT DIRECTIVES -->
 					<th> 
+						<label class="checkbox-container">
 							<input type="checkbox" [(ngModel)]="checkAll" (click)="selectAllMessages(checkAll)" name="checkbox">
+							<span class="checkmark top-checkmark"></span>
+						</label>
 					</th>
 					<th class="noPadding"><app-th columnName="id" displayName="Name"></app-th></th>
+					<th>
+					</th>
 					<th class="noPadding"><app-th columnName="message" displayName="Subject"></app-th></th>
 					<th class="noPadding"><app-th columnName="createDate" displayName="Date"></app-th></th>
 			</thead>
 			<tbody>
 				<tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage*page' (click)="openMessage(message.id)">
-					<td style="width: 25px">
-						<ul class="list-inline m-0">
-							<li class="list-inline-item">
-								<input type="checkbox" [(ngModel)]="message.selected" name="checkbox">
-							</li>
-						</ul>
+					<td class="fixed-30">
+						<label class="checkbox-container">
+							<input type="checkbox" [(ngModel)]="message.selected" name="checkbox">
+							<span class="checkmark"></span>
+						</label>
+						<!-- <input type="checkbox" > -->
 					</td>
-					<td> <b>John Wayne</b> <!--<small> (id={{message.id}}) </small>-->  </td> 
-					<td>
-							<span class="previewTitle"> {{message.announcementViewDetails.subject}} </span> 
-							<span class="previewMessage">- {{message.announcementViewDetails.message}} </span> 
+					<td class="fixed-60 nowrap"> 
+						<span> To: </span>
+						<span *ngFor='let tenant of message.tenants; let i=index; let isLast=last'>
+							<span *ngIf="i < 3" >
+								<span> {{tenant.firstname}}<span *ngIf="i < 2 && !isLast">, </span>
+								</span>
+							</span>
+						</span>
+
+						<!-- If we have more than 3 recipients, display "..." -->
+						<span *ngIf="message.tenants.length > 3">
+								...
+						</span>
+
+						<span *ngIf="message.tenants.length"> ({{message.tenants.length}}) </span>
 					</td> 
-					<td><b>{{message.announcementViewDetails.createDate | date: 'short' }}</b> </td>
+					<td class="fixed-60">
+						<button [ngClass]="message.announcementViewDetails.type" class="btn btn-sm btn-default previewTitle sentType">
+							<!-- TODO: Move logic to component -->
+							<span *ngIf="message.announcementViewDetails.type==='SITE'">Community</span>
+							<span *ngIf="message.announcementViewDetails.type!='SITE'">{{message.announcementViewDetails.type}}</span>
+							<!-- End -->
+						</button>
+					</td>
+					<td class="w-65 nowrap">
+						<span class="previewTitle"> Title </span> 
+						<span class="previewMessage">- {{message.announcementViewDetails.message}} </span> 
+					</td> 
+					<td class="fixed-60 nowrap"><b>{{message.announcementViewDetails.createDate | date:'shortDate' }}</b> </td>
 				</tr>				               
 			</tbody>
 		</table>
