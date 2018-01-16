@@ -18,8 +18,8 @@ export class SortService {
 
       let direction = 1;
 
-      a = a['announcementViewDetails'];
-      b = b['announcementViewDetails'];
+      // a = a['announcementViewDetails'];
+      // b = b['announcementViewDetails'];
 
       if (criteria.sortDirection === 'desc') {
         direction = -1;

@@ -57,6 +57,7 @@ import { SortableTableDirective } from './components/sortable-table/sortable-tab
 import { SortService } from './components/sortable-table/sort.service';
 import { MultiselectComponent } from './components/multiselect/multiselect.component';
 import { AnnouncementcomposeComponent } from './components/announcementcompose/announcementcompose.component';
+import { MessageComponent } from './pages/messages/message/message.component';
 
 
 @NgModule({
@@ -103,6 +104,7 @@ import { AnnouncementcomposeComponent } from './components/announcementcompose/a
     SortableTableDirective,
     MultiselectComponent,
     AnnouncementcomposeComponent,
+    MessageComponent,
   ],
   providers: [
       {

@@ -9,7 +9,6 @@ import { AlertService } from '../../services/alert.service';
 // import { MultiselectComponent } from '../multiselect/multiselect.component';
 import { MultiSelectModule } from 'primeng/primeng';
 import { EditorModule } from 'primeng/primeng';
-import { SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'app-announcementcompose',
@@ -19,7 +18,7 @@ import { SelectItem } from 'primeng/primeng';
 export class AnnouncementcomposeComponent implements OnInit {
   loading = false;
   list: any[];
-  buildings: SelectItem[];
+  buildings: Building[];
   selectedBuildings: Building[];
   indi: {};
   announcementForm: FormGroup;
@@ -28,32 +27,23 @@ export class AnnouncementcomposeComponent implements OnInit {
   message: FormControl;
 
   constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
-      MessageService, private alertService: AlertService) {
-        this.buildings =
-          [
-            {label: 'NY', value: {id: 1, address1: 'New York'} },
-            {label: 'US', value: {id: 2, address1: 'US'}},
-            {label: 'CH', value: {id: 3, address1: 'China'}},
-            {label: 'FR', value: {id: 4, address1: 'France'}}
-          ];
-      }
+      MessageService, private alertService: AlertService) {}
 
     ngOnInit() {
-        // this.getSiteBuildings();
+        this.getSiteBuildings();
         this.createFormControls();
         this.createForm();
     }
 
-    // getSiteBuildings() {
-    // this.messageService.getbuildings().subscribe(
-    //   data => {
-    //     this.buildings = data;
-    //     this.list = this.buildings;
-    //   },
-    //   error => {
-    //     console.log('Error');
-    //   });
-    // }
+    getSiteBuildings() {
+    this.messageService.getbuildings().subscribe(
+      data => {
+        this.buildings = data;
+      },
+      error => {
+        console.log('Error');
+      });
+    }
 
     createFormControls() {
         this.rentalsiteBuildingId = new FormControl('');
@@ -74,7 +64,7 @@ export class AnnouncementcomposeComponent implements OnInit {
         const message = new Message();
 
         message.type = 'BUILDING';
-        message.rentalsiteBuildingId = this.announcementForm.value.rentalsiteBuildingId;
+        message.rentalsiteBuildingId = this.announcementForm.value.rentalsiteBuildingId[0]['id'];
         message.message = this.announcementForm.value.message;
         message.subject = this.announcementForm.value.subject;
         message.messageType = 'Announcement';

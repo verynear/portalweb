@@ -15,7 +15,7 @@
 					</div>
 					<div class="form-group">
 						<label for="rentalsiteBuildingId">Select Building(s): </label>
-						<p-multiSelect [options]="buildings" formControlName="rentalsiteBuildingId" [panelStyle]="{minWidth:'12em'}" ></p-multiSelect>
+						<p-multiSelect [options]="buildings" [filter]=false formControlName="rentalsiteBuildingId" optionLabel="address1"></p-multiSelect>
 					</div>
 					<div class="form-group">
 						<label for="subject">Subject:</label>
