@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule } from 'primeng/primeng';
+import { MultiSelectModule } from 'primeng/primeng';
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -35,7 +36,7 @@ import { MaintenanceService } from './services/maintenance.service';
 import { PaymentsComponent } from './pages/payments/payments.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { AnnouncementService } from './services/announcement.service';
-import { AnnouncementsComponent } from './pages/messages/announcements/announcements.component';
+import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
@@ -55,6 +56,7 @@ import { SortableColumnComponent } from './components/sortable-table/sortable-co
 import { SortableTableDirective } from './components/sortable-table/sortable-table.directive';
 import { SortService } from './components/sortable-table/sort.service';
 import { MultiselectComponent } from './components/multiselect/multiselect.component';
+import { AnnouncementcomposeComponent } from './components/announcementcompose/announcementcompose.component';
 
 
 @NgModule({
@@ -63,6 +65,7 @@ import { MultiselectComponent } from './components/multiselect/multiselect.compo
     BrowserAnimationsModule,
     FormsModule,
     EditorModule,
+    MultiSelectModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
@@ -99,6 +102,7 @@ import { MultiselectComponent } from './components/multiselect/multiselect.compo
     SortableColumnComponent,
     SortableTableDirective,
     MultiselectComponent,
+    AnnouncementcomposeComponent,
   ],
   providers: [
       {
@@ -124,7 +128,7 @@ import { MultiselectComponent } from './components/multiselect/multiselect.compo
       SortService,
       AUTH_HEADER_INTERCEPTOR_PROVIDER
   ],
-  entryComponents: [ComposeComponent],
+  entryComponents: [ComposeComponent, AnnouncementcomposeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

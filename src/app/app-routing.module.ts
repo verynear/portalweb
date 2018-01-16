@@ -13,7 +13,7 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
-import { AnnouncementsComponent } from './pages/messages/announcements/announcements.component';
+import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -31,10 +31,10 @@ const routes: Routes = [
       { path: '', redirectTo: '/messages/sent', pathMatch: 'full' },
       { path: 'sent', component: SentboxComponent },
       { path: 'inbox', component: InboxComponent },
-      { path: 'announcements', component: AnnouncementsComponent },
       { path: 'notifications', component: MessagesComponent }
     ]
   },
+  { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'status', component: StatusComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }

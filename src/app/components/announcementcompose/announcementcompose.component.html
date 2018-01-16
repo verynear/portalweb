@@ -1,0 +1,52 @@
+<!-- <div class="modal-dialog" role="document"> -->
+		<div class="container">
+			<form [formGroup]="announcementForm" (ngSubmit)="send()" novalidate>
+				<div class="modal-header">
+					<h5 class="modal-title" id="composeMailModalLabel"><i class="fa fa-edit"></i> Create Announcement</h5>
+					<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="fromEmail">From:</label>
+						<input type="text" readonly class="form-control-plaintext" id="fromEmail" value="info@treetopvillage.com">
+					</div>
+					<div class="form-group">
+						<label for="rentalsiteBuildingId">Select Building(s): </label>
+						<p-multiSelect [options]="buildings" formControlName="rentalsiteBuildingId" [panelStyle]="{minWidth:'12em'}" ></p-multiSelect>
+					</div>
+					<div class="form-group">
+						<label for="subject">Subject:</label>
+						<input type="email" class="form-control" formControlName="subject" placeholder="Subject">
+					</div>
+					<p-editor formControlName="message" [style]="{'height':'320px'}">
+					  <p-header>
+					      <span class="ql-formats">
+					      	<select class="ql-size">
+					      	    <option value="small"></option>
+					      	    <option selected></option>
+					      	    <option value="large"></option>
+					      	    <option value="huge"></option>
+					      	  </select>
+					          <button class="ql-bold" aria-label="Bold"></button>
+					          <button class="ql-italic" aria-label="Italic"></button>
+					          <button class="ql-underline" aria-label="Underline"></button>
+					          <select class="ql-color">
+					      	  </select>
+					          <button class="ql-link" aria-label="Link"></button>
+					          <button class="ql-image" aria-label="Image"></button>
+					          <button class="ql-clean" aria-label="Clean"></button>
+					      </span>
+					  </p-header>
+					</p-editor>
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" (click)="send()">Send</button>
+					<button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+				</div>
+			</form>
+		</div>
+	<!-- </div> -->
