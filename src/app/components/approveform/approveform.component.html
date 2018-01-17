@@ -8,13 +8,7 @@
         Register and Approve
       </p>
 
-      <div class="alert alert-info" *ngIf="message">
-        {{message}}
-      </div>
-
-      <div class="alert alert-danger" *ngIf="errorMessage">
-        {{errorMessage}}
-      </div>
+      <app-alert></app-alert>
 
       <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && create(f)" novalidate>
         <div class="form-group" [ngClass]="{ 'is-invalid': f.submitted && !firstname.valid }">

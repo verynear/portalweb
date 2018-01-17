@@ -14,17 +14,14 @@ import {HttpErrorResponse} from '@angular/common/http';
 export class ApproveformComponent implements OnInit {
     loading = false;
     applicant: any = {};
-    message: string;
-    errorMessage: string;
 
-  constructor(private service: ApplicantService) { }
+  constructor(private alertService: AlertService,
+    private service: ApplicantService) { }
 
   ngOnInit() {
   }
 
   create(form) {
-    this.message = '';
-    this.errorMessage = '';
     const applicant = new Applicant();
 
     this.loading = true;
@@ -36,11 +33,11 @@ export class ApproveformComponent implements OnInit {
           console.log(data['id']);
           this.approve(data['id']);
           this.loading = true;
-          this.message = 'Applicant Created';
+          this.alertService.success('Applicant Created');
           form.resetForm();
         },
         (res: HttpErrorResponse) => {
-          this.errorMessage = 'Unable to create new applicant';
+          this.alertService.error('Unable to create new applicant');
           this.loading = true;
         });
   }
@@ -50,11 +47,11 @@ export class ApproveformComponent implements OnInit {
       .subscribe(
       data => {
         this.loading = false;
-        this.message = 'Applicant Approved';
+        this.alertService.success('Applicant Approved');
         // this.applicant = {};
         },
         (res: HttpErrorResponse) => {
-          this.errorMessage = 'Unable to approve resident';
+          this.alertService.error('Unable to approve resident');
           this.loading = false;
         });
    }

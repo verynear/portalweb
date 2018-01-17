@@ -55,7 +55,6 @@ import { SortableColumnComponent } from './components/sortable-table/sortable-co
 
 import { SortableTableDirective } from './components/sortable-table/sortable-table.directive';
 import { SortService } from './components/sortable-table/sort.service';
-import { MultiselectComponent } from './components/multiselect/multiselect.component';
 import { AnnouncementcomposeComponent } from './components/announcementcompose/announcementcompose.component';
 import { MessageComponent } from './pages/messages/message/message.component';
 
@@ -102,7 +101,6 @@ import { MessageComponent } from './pages/messages/message/message.component';
     ApproveformComponent,
     SortableColumnComponent,
     SortableTableDirective,
-    MultiselectComponent,
     AnnouncementcomposeComponent,
     MessageComponent,
   ],

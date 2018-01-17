@@ -1,6 +1,6 @@
 <!-- <div class="modal-dialog" role="document"> -->
 		<div class="container">
-			<form [formGroup]="announcementForm" (ngSubmit)="send()" novalidate>
+			<form [formGroup]="announcementForm" (ngSubmit)="send(); activeModal.close('Close click')" novalidate>
 				<div class="modal-header">
 					<h5 class="modal-title" id="composeMailModalLabel"><i class="fa fa-edit"></i> Create Announcement</h5>
 					<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -44,7 +44,7 @@
 				</div>
 				
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" (click)="send()">Send</button>
+					<button type="button" class="btn btn-primary" (click)="send(); activeModal.close('Close click')">Send</button>
 					<button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
 				</div>
 			</form>

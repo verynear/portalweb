@@ -5,8 +5,7 @@ import { Message } from '../../models/message';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
-import { MultiselectComponent } from '../multiselect/multiselect.component';
-import { EditorModule } from 'primeng/primeng';
+import { EditorModule, MultiSelectModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-compose',

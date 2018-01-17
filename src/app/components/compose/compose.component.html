@@ -23,12 +23,8 @@
 						</select>
 					</div>
 					<div class="form-group" *ngIf="composeForm.value.type === 'SITE'">
-						<label for="rentalsiteBuildingId">Building(s):</label>
-						<app-multiselect
-						 [list]="list"
-						 (shareCheckedList)="shareCheckedList($event)" 
-						 (shareIndividualCheckedList)="shareIndividualCheckedList($event)">
-						</app-multiselect>
+						<label for="rentalsiteBuildingId">Select Building(s):</label>
+						<p-multiSelect [options]="buildings" [filter]=false formControlName="rentalsiteBuildingId" optionLabel="address1"></p-multiSelect>
 					</div>
 					<div class="form-group">
 						<label for="toEmail">To:</label>

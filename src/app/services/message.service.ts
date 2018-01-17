@@ -30,7 +30,7 @@ export class MessageService {
   }
 
   getbuildings() {
-     return this.http.get<Building[]>(this.baseURL + '/site/2'); // - will retrive buildings by site ID //
+     return this.http.get<Building[]>(this.baseURL + '/site/1'); // - will retrive buildings by site ID //
   }
 
   getUnitsByBuildingId(id: number) {
