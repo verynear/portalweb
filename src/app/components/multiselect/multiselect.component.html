@@ -1,13 +1,13 @@
 <div>
     <div (mouseleave)="showDropDown = false">
-        <button class="drop-toggle btn flat" (click)="showDropDown=!showDropDown">
-            <span *ngIf="checkedList.length<=0">Select:</span>
+        <button type=button class="drop-toggle btn flat" (click)="showDropDown=!showDropDown">
+            <span *ngIf="checkedList.length<=0">Select</span>
             <span *ngIf="checkedList.length>0">{{checkedList.join(', ')}}</span>
             <i class="fa fa-angle-down"></i>
         </button>
         <div class="drop-show" *ngIf="showDropDown">
             <label *ngFor="let a of list">
-                <input type="checkbox" class="form-control" [value]="a.checked" 
+                <input type="checkbox" [value]="a.checked" 
                     (change)="getSelectedValue( a.checked, a.name)" />
                 <span>{{a.name}}</span>
             </label>

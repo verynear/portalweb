@@ -3,6 +3,7 @@ import { MessageService } from '../../../services/message.service';
 import { Message } from '../../../models/message';
 import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ComposeComponent } from '../../../components/compose/compose.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sentbox',
@@ -15,8 +16,9 @@ export class SentboxComponent implements OnInit {
   totalItems: number;
   page: number;
   checkAll: boolean;
+  loading: boolean;
 
-  constructor(public messageService: MessageService, config: NgbDropdownConfig) {
+  constructor(private router: Router, public messageService: MessageService, config: NgbDropdownConfig) {
     // Default values for dropdowns.
     config.autoClose = 'outside';
   }
@@ -25,12 +27,14 @@ export class SentboxComponent implements OnInit {
     this.itemsPerPage = 25;   // Number of Mail Items per page.
     this.page = 1;            // Starting Page
     this.checkAll = false;    // By Default, all mail items unchecked.
+    this.loading = true;
     this.getSentMessages();   // Get Sent Messages.
   }
 
   getSentMessages() {
     this.messageService.getSent().subscribe(
       data => {
+        this.loading = false;
         this.messages = data;
         this.totalItems = data.length;
       },
@@ -53,8 +57,7 @@ export class SentboxComponent implements OnInit {
   }
 
   openMessage(id) {
-    console.log('You\'ve Opened' + id);
-    // TODO: Create a new component for reading messages.
+    this.router.navigate(['/messages/view', id]);
   }
 
 }

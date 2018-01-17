@@ -11,9 +11,11 @@ export class MultiselectComponent {
     @Output() shareIndividualCheckedList = new EventEmitter();
     checkedList: any[];
     currentSelected: {};
+
     constructor() {
         this.checkedList = [];
     }
+
     getSelectedValue(status: Boolean, value: String) {
         if (status) {
           this.checkedList.push(value);
@@ -21,10 +23,11 @@ export class MultiselectComponent {
             const index = this.checkedList.indexOf(value);
             this.checkedList.splice(index, 1);
         }
-        this.currentSelected = {checked : status, name: value};
+        this.currentSelected = {checked: status, name: value};
 
         // share checked list
         this.shareCheckedlist();
+        console.log(this.checkedList);
         // share individual selected item
         this.shareIndividualStatus();
     }
