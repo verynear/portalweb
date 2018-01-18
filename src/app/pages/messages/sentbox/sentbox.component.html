@@ -33,11 +33,11 @@
 						</span>
 
 						<!-- If we have more than 3 recipients, display "..." -->
-						<span *ngIf="message.recipients.length > 3">
+						<span *ngIf="message.alertRecipients.length > 3">
 								...
 						</span>
 
-						<span *ngIf="message.recipients.length"> ({{message.recipients.length}}) </span>
+						<span *ngIf="message.alertRecipients.length"> ({{message.alertRecipients.length}}) </span>
 					</td> 
 					<td class="fixed-60">
 						<button [ngClass]="message.type" class="btn btn-sm btn-default previewTitle sentType">

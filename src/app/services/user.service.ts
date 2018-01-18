@@ -27,7 +27,7 @@ export class UserService {
   }
 
   getRentalSites(user: User) {
-    return this.http.get(this.baseURL + '/site/');
+    return this.http.get(this.baseURL + '/sites/');
   }
 
   create(user: User) {
