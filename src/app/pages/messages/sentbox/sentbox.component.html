@@ -47,7 +47,7 @@
 							<!-- End -->
 						</button>
 					</td>
-					<td class="w-65 nowrap">
+					<td width="50%">
 						<span class="previewTitle"> {{message.subject}} </span> 
 						<span class="previewMessage">- {{message.message}} </span> 
 					</td> 
@@ -60,5 +60,5 @@
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
               
-<p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="4" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
+<p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 

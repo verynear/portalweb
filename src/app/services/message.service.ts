@@ -29,8 +29,8 @@ export class MessageService {
     });
   }
 
-  getbuildings() {
-     return this.http.get<Building[]>(this.baseURL + '/site/1'); // - will retrive buildings by site ID //
+  getbuildings(id: number) {
+     return this.http.get<Building[]>(this.baseURL + '/site/' + id); // - will retrive buildings by site ID //
   }
 
   getUnitsByBuildingId(id: number) {
