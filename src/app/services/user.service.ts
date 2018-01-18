@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserService {
   private baseURL = environment.api.baseUrl;
+  currentSiteId: number;
 
   constructor(private http: HttpClient,
               private messageService: MessageService) {
@@ -23,6 +24,10 @@ export class UserService {
   getById(id: number) {
     return this.http.get(this.baseURL + '/users/' + id)
       .map((response: Response) => response.json());
+  }
+
+  getRentalSites(user: User) {
+    return this.http.get(this.baseURL + '/sites/');
   }
 
   create(user: User) {
@@ -38,5 +43,13 @@ export class UserService {
   delete(id: number) {
     return this.http.delete(this.baseURL + '/users/' + id)
       .map((response: Response) => response.json());
+  }
+
+  getCurrentSiteId() {
+    return this.currentSiteId;
+  }
+
+  setCurrentSiteId(data: number) {
+    this.currentSiteId = data;
   }
 }

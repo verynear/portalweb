@@ -4,4 +4,6 @@ export class User {
     password: string;
     firstname: string;
     lastname: string;
+    managementCompanyId: number;
+    userRentalSitesRefs: Array<any>;
 }

@@ -17,28 +17,46 @@
 						<label>Recipient Type:</label>
 						<select class="form-control" formControlName="type">
 							<option value="">Select Recipient Type:</option>
-							<option *ngFor="let recip of recips" [value]="recip.messageType">
+							<option *ngFor="let recip of recips" [value]="recip.type">
 								{{recip.name}}
                             </option>
 						</select>
 					</div>
-					<div class="form-group" *ngIf="composeForm.value.type === 'SITE'">
+					<div class="form-group" *ngIf="composeForm.value.type === 'BUILDING' || composeForm.value.type === 'UNIT'">
 						<label for="rentalsiteBuildingId">Select Building(s):</label>
 						<p-multiSelect [options]="buildings" [filter]=false formControlName="rentalsiteBuildingId" optionLabel="address1"></p-multiSelect>
 					</div>
-					<div class="form-group">
+					<div class="form-group" *ngIf="composeForm.value.type === 'UNIT'">
 						<label for="toEmail">To:</label>
 						<input type="email" class="form-control" formControlName="rentalsiteBuildingUnitId" id="toEmail" aria-describedby="emailHelp" placeholder="Enter units">
 						<small><em class="text-muted">Separate by (,) comma</em></small>
 					</div>
 					<div class="form-group">
-						<label for="emailType">Message Type:</label>
-						<select class="form-control" formControlName="messageType">
-							<option value="">Select Type:</option>
-							<option *ngFor="let messagetype of messagetypes" [value]="messagetype">
-								{{messagetype}}
-                            </option>
-						</select>
+						<p class="mb-0"><label for="messageType">Message Type:</label></p>
+						<div class="row">
+							<div class="col-sm-12">
+								<ul class="list-inline mb-0">
+									<li class="list-inline-item">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" formControlName="messageType" id="messageStandard" value="Standard" checked>
+											<label class="form-check-label" for="messageStandard">Standard Message</label>
+										</div>
+									</li>
+									<li class="list-inline-item">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertStandard" value="Alert">
+											<label class="form-check-label" for="messageAlertStandard">Alert Standard</label>
+										</div>
+									</li>
+									<li class="list-inline-item">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertUrgent" value="Alert Urgent">
+											<label class="form-check-label" for="messageAlertUrgent">Alert Urgent</label>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="subject">Subject:</label>

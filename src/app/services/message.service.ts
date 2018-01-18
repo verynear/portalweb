@@ -16,11 +16,15 @@ export class MessageService {
   }
 
  get() {
-    return this.http.get<Message[]>(this.baseURL + '/message');
+    return this.http.get<Message[]>(this.baseURL + '/messages');
   }
 
  getSent() {
-    return this.http.get<Message[]>(this.baseURL + '/message');
+    return this.http.get<Message[]>(this.baseURL + '/messages');
+  }
+
+  getSentAnnouncements() {
+    return this.http.get<Message[]>(this.baseURL + '/announcements');
   }
 
   sortMessages (messages, criteria: MessageSearchCriteria): Message[] {
@@ -29,12 +33,12 @@ export class MessageService {
     });
   }
 
-  getbuildings() {
-     return this.http.get<Building[]>(this.baseURL + '/site/1'); // - will retrive buildings by site ID //
+  getbuildings(id: number) {
+     return this.http.get<Building[]>(this.baseURL + '/sites/' + id + '/buildings/'); // - will retrive buildings by site ID //
   }
 
   getUnitsByBuildingId(id: number) {
-     return this.http.get<Unit[]>(this.baseURL + '/site/building' + id);
+     return this.http.get<Unit[]>(this.baseURL + '/sites/buildings' + id + 'units');
   }
 
   sendMessage (message: Message) {
