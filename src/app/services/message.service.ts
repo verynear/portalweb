@@ -19,11 +19,7 @@ export class MessageService {
     return this.http.get<Message[]>(this.baseURL + '/messages');
   }
 
-<<<<<<< HEAD
-  getSent() {
-=======
  getSent() {
->>>>>>> 2a2a523699d7b343372bbe07dc1e40e73ac65ec6
     return this.http.get<Message[]>(this.baseURL + '/messages');
   }
 
