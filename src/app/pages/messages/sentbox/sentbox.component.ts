@@ -4,6 +4,7 @@ import { Message } from '../../../models/message';
 import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ComposeComponent } from '../../../components/compose/compose.component';
 import { Router } from '@angular/router';
+import { CheckboxModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-sentbox',
@@ -32,6 +33,7 @@ export class SentboxComponent implements OnInit {
   }
 
   getSentMessages() {
+    console.log('Getting Sent');
     this.messageService.getSent().subscribe(
       data => {
         this.loading = false;
@@ -45,7 +47,7 @@ export class SentboxComponent implements OnInit {
 
   selectAllMessages(checkAll) {
     for (const message of this.messages) {
-      message.selected = !checkAll;
+      message.selected = checkAll;
     }
   }
 

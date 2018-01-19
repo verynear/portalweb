@@ -94,7 +94,8 @@ tr {
 }
 
 .spinner {
-  margin-top: 150px;
+  display: block;
+  margin: 0 auto;
 }
 
 .table-responsive {
@@ -115,7 +116,7 @@ tr {
 
 .sentType {
   padding: 0.47rem .4rem;
-  background-color: #dad9d9;
+  // background-color: #dad9d9;
   color: white;
   padding-top: 5px;
   padding-bottom: 3px;
@@ -142,74 +143,63 @@ tr {
   white-space: nowrap;
 }
 
-// FOR CHECKBOX.
-
-/* Customize the label (the container) */
-.checkbox-container {
-  display: block;
-  position: relative;
-  margin-bottom: 22px;
-  cursor: pointer;
-  font-size: 11px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding-right: 15px;
+.table {
+  max-width: none;
+  table-layout: fixed;
+  word-wrap: break-word;
 }
 
-/* Hide the browser's default checkbox */
-.checkbox-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
+td, th {
+  white-space: nowrap;
 }
 
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 17px;
-  width: 17px;
-  background-color: #eee;
+td {
+  overflow-x: hidden;
 }
 
-/* On mouse-over, add a grey background color */
-.checkbox-container:hover input ~ .checkmark {
-  background-color: #868e96;
+// Various classes for fixed width table.
+.width-150 {
+  width: 150px;
 }
 
-/* When the checkbox is checked, add a blue background */
-.checkbox-container input:checked ~ .checkmark {
-  background-color: #868e96;
+.width-250 {
+  width: 250px;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
+.width-100 {
+  width: 100px;
 }
 
-/* Show the checkmark when checked */
-.checkbox-container input:checked ~ .checkmark:after {
-  display: block;
+.width-25 {
+  width: 25px;
 }
 
-/* Style the checkmark/indicator */
-.checkbox-container .checkmark:after {
-  left: 6px;
-  top: 0px;
-  width: 5px;
-  height: 12px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+.min-width-100 {
+  min-width: 100px;
 }
 
-.top-checkmark {
-  background-color: #868e96;
+.min-width-150 {
+  min-width: 150px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 745px) {
+  td {
+    padding: .1rem;
+  }
+  th {
+    padding: .1rem;
+  }
+}
+
+@media screen and (max-width: 1182px) {
+  td {
+    padding: .2rem;
+  }
+  th {
+    padding: .2rem;
+  }
 }

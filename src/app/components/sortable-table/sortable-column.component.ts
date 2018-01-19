@@ -23,10 +23,18 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
     @Input('sortDirection')
     sortDirection: string;
 
+    // For instances where we need the padding, but not the functionality.
+    @Input('disable')
+    disable: boolean;
+
+
     private columnSortedSubscription: Subscription;
 
     @HostListener('click')
     sort() {
+        if (this.disable) {
+            return;
+        }
         this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
         this.sortService.columnSorted({ sortColumn: this.columnName, sortDirection: this.sortDirection });
     }

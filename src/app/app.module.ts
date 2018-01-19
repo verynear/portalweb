@@ -12,7 +12,7 @@ import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { InputTextModule, ButtonModule, DataTableModule, DialogModule, SharedModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, DataTableModule, DialogModule, SharedModule, CheckboxModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -76,6 +76,7 @@ import { MessageComponent } from './pages/messages/message/message.component';
     ProgressSpinnerModule,
     AppRoutingModule,
     ButtonModule,
+    CheckboxModule,
     NgbModule.forRoot()
   ],
   declarations: [
