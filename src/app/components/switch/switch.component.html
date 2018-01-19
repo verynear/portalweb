@@ -1,0 +1,8 @@
+
+<h2>Continute to {{currentSite.name}} ?</h2>
+
+<a routerLink="['/dashboard', currentSite.id]" class="btn btn-primary btn-sm mr-1" routerLinkActive="active" *ngFor="let site of userSites" class="dropdown-item">Proceed</a>
+
+<h2>Select Another Community:</h2>
+
+<a routerLink="['/dashboard', site.id]" class="btn btn-primary btn-sm mr-1" routerLinkActive="active" *ngFor="let site of userSites" class="dropdown-item">{{site.name}}</a>
