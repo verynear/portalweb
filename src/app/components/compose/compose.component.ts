@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
+import { Building } from '../../models/building';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
@@ -13,50 +15,51 @@ import { EditorModule, MultiSelectModule } from 'primeng/primeng';
   styleUrls: ['./compose.component.scss']
 })
 export class ComposeComponent implements OnInit {
+  buildings: Building[];
+  selectedBuildings: Building[];
   loading = false;
   recips = [
-    {messageType: 'SITE', name: 'Building(s)'},
-    {messageType: 'BUILDING', name: 'Unit(s)'},
-    {messageType: 'UNIT', name: 'Resident(s)'},
+    {type: 'SITE', name: 'Community'},
+    {type: 'BUILDING', name: 'Building(s)'},
+    {type: 'UNIT', name: 'Unit(s)'},
+    {type: 'UNIT', name: 'Resident(s)'}
   ];
   list: any[];
   checkedList: any[];
   indi: {};
-  messagetypes: string[] = [
-    'Standard',
-    'Announcement',
-    'Alert - Standard',
-    'Alert - Urgent'
-  ];
   composeForm: FormGroup;
   type: FormControl;
-  rentalsitesId: FormControl;
+  rentalsitesId: number;
   rentalsiteBuildingId: FormControl;
   rentalsiteBuildingUnitId: FormControl;
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
+  public currentSiteId: number;
 
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
-      MessageService, private alertService: AlertService) {
-      this.list =
-        [
-          {name: 'Building 1', checked: false},
-          {name: 'Building 2', checked: false},
-          {name: 'Building 3', checked: false},
-          {name: 'Building 4', checked: false}
-        ];
-      }
+      MessageService, private alertService: AlertService, private userService: UserService) {}
 
     ngOnInit() {
+        this.currentSiteId = this.userService.getCurrentSiteId();
+        this.getSiteBuildings();
         this.createFormControls();
         this.createForm();
     }
 
+    getSiteBuildings() {
+    this.messageService.getbuildings(this.currentSiteId).subscribe(
+      data => {
+        this.buildings = data;
+      },
+      error => {
+        console.log('Error');
+      });
+    }
+
     createFormControls() {
         this.type = new FormControl('', Validators.required);
-        this.rentalsitesId = new FormControl('', Validators.required);
         this.rentalsiteBuildingId = new FormControl('');
         this.rentalsiteBuildingUnitId = new FormControl('');
         this.messageType = new FormControl('', Validators.required);
@@ -67,7 +70,6 @@ export class ComposeComponent implements OnInit {
     createForm() {
         this.composeForm = new FormGroup({
             type: this.type,
-            rentalsitesId: this.rentalsitesId,
             rentalsiteBuildingId: this.rentalsiteBuildingId,
             rentalsiteBuildingUnitId: this.rentalsiteBuildingUnitId,
             messageType: this.messageType,
@@ -90,7 +92,9 @@ export class ComposeComponent implements OnInit {
         const message = new Message();
 
         message.type = this.composeForm.value.type;
-        message.rentalsitesId = this.composeForm.value.lastName;
+        if (message.type === 'SITE') {message.rentalsitesId = this.currentSiteId; }
+        if (message.type === 'BUILDING') {message.rentalsiteBuildingId = this.composeForm.value.rentalsiteBuildingId[0]['id']; }
+        message.messageType = this.composeForm.value.messageType;
         message.message = this.composeForm.value.message;
         message.subject = this.composeForm.value.subject;
         console.log(message);

@@ -17,7 +17,7 @@
 					<th class="min-width-100">
 						<app-th columnName="message" displayName="Subject"></app-th>
 					</th>
-					<th class="text-right">
+					<th class="text-right" style="padding-left:50px;">
 						<app-th columnName="createDate" displayName="Date"></app-th>
 					</th>
 			<tbody> 
@@ -31,12 +31,13 @@
 					</td>
 					<td style="font-size: 12px; text-overflow: ellipsis;"> 
 						<span> To: </span>
-						<span *ngFor='let recipient of message.alertRecipients; let i=index; let isLast=last'>
+						<!-- <span *ngFor='let recipient of message.alertRecipients; let i=index; let isLast=last'>
 							<span> {{recipient.rentalSiteBuildingUnit.address1}}<span *ngIf="i < 2 && !isLast">, </span>
 							</span>
-						</span>
+						</span> -->
 
-						<span *ngIf="message.alertRecipients"> ({{message.alertRecipients.length}}) </span>
+						<!-- <span *ngIf="message.alertRecipients.length"> ({{message.alertRecipients.length}}) </span> -->
+
 					</td> 
 					<td>
 						<button class="btn btn-sm btn-default sentType previewTitle float-right">Get Report</button>
@@ -48,11 +49,13 @@
 						</button> -->
 
 					</td>
-					<td class="min-width-100">
+
+			
+					<td class="min-width-100" style="padding-right: 20px">
 						<span class="previewTitle"> {{message.subject}} </span> 
 						<span class="previewMessage">- {{message.message}} </span> 
 					</td> 
-					<td class="text-right">
+					<td class="text-right" style="padding-left: 50px">
 						<!-- <button class="btn btn-sm btn-primary float-right sentType">View Report</button> -->
 						<span>{{message.createDate | date:'mediumDate' }} </span>
 					</td>
@@ -64,7 +67,7 @@
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
               
-<p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="4" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
+<p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 
 
 <!-- <section class="inbox">

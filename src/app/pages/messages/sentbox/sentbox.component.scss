@@ -96,6 +96,10 @@ tr {
 .spinner {
   display: block;
   margin: 0 auto;
+  // margin-top: 150px;
+  // float: right;
+  // position: relative;
+  // right: 60%;
 }
 
 .table-responsive {
@@ -143,6 +147,7 @@ tr {
   white-space: nowrap;
 }
 
+// Below are custom table modifications for responsiveness.
 .table {
   max-width: none;
   table-layout: fixed;
@@ -151,13 +156,16 @@ tr {
 
 td, th {
   white-space: nowrap;
-}
-
-td {
   overflow-x: hidden;
 }
 
-// Various classes for fixed width table.
+// Various classes for fixed width table.  TODO: Make Global
+.width-25 {
+  width: 25px;
+}
+.width-100 {
+  width: 100px;
+}
 .width-150 {
   width: 150px;
 }
@@ -166,18 +174,9 @@ td {
   width: 250px;
 }
 
-.width-100 {
-  width: 100px;
-}
-
-.width-25 {
-  width: 25px;
-}
-
 .min-width-100 {
   min-width: 100px;
 }
-
 .min-width-150 {
   min-width: 150px;
 }
@@ -186,6 +185,9 @@ td {
   text-overflow: ellipsis;
 }
 
+/*
+  As browser width decreases, change padding in table.
+*/
 @media screen and (max-width: 745px) {
   td {
     padding: .1rem;

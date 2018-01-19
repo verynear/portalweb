@@ -22,60 +22,24 @@
 							
 						</div>
 					</section>
-					<div class="float-right">							
-						<ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3"></ngb-pagination>
-					</div>
+					<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
 					
 					<section>
-						<table class="table">
+						<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 							<thead class="thead-light">
-								<tr>
-									<th>Date Created</th>
-									<th>Recepient</th>
-									<th>Subject</th>
-									<th>Message</th>
-								</tr>
+								<th class="noPadding"><app-th columnName="id" displayName="Subject"></app-th></th>
+								<th class="noPadding"><app-th columnName="message" displayName="Message"></app-th></th>
+								<th class="noPadding"><app-th columnName="createDate" displayName="Date Sent"></app-th></th>
 							</thead>
 							<tbody>
-								<tr>
-									<td>01/10/2018</td>
-									<td>Community Distribution</td>
-									<td>Laundry Facility Maintenance 01/23/2018</td>
+								<tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage*page' (click)="openMessage(message.id)">
+									<td width="30%">
+										<span class="previewTitle"> {{message.subject}} </span>  
+									</td> 
 									<td width="50%">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+										<span class="previewMessage"> {{message.message}} </span> 
 									</td>
-								</tr>
-								<tr>
-									<td>01/01/2018</td>
-									<td>Community Distribution</td>
-									<td>Parking Lot Closure 01/13/2018</td>
-									<td width="50%">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-									</td>
-								</tr>
-								<tr>
-									<td>01/01/2018</td>
-									<td>Community Distribution</td>
-									<td>Lorem ipsum dolor</td>
-									<td width="50%">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-									</td>
-								</tr>
-								<tr>
-									<td>01/01/2018</td>
-									<td>Community Distribution</td>
-									<td>Lorem ipsum dolor</td>
-									<td width="50%">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-									</td>
-								</tr>
-								<tr>
-									<td>01/01/2018</td>
-									<td>Community Distribution</td>
-									<td>Lorem ipsum dolor</td>
-									<td width="50%">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-									</td>
+									<td class="fixed-60 nowrap"><b>{{message.createDate | date:'short' }}</b> </td>
 								</tr>
 							</tbody>
 						</table>
@@ -88,7 +52,9 @@
 							</div>
 							
 						</div>
-						<ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
+						<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
+						              
+						<p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 					</section>
 				</div>
 				
