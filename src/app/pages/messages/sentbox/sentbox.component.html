@@ -38,20 +38,22 @@
 
 						<!-- <span *ngIf="message.alertRecipients.length"> ({{message.alertRecipients.length}}) </span> -->
 
+						<!-- If we have more than 3 recipients, display "..." -->
+						<span *ngIf="message.alertRecipients.length > 3">
+								...
+						</span>
+
+						<span *ngIf="message.alertRecipients.length"> ({{message.alertRecipients.length}}) </span>
+
 					</td> 
 					<td>
 						<button class="btn btn-sm btn-default sentType previewTitle float-right">Get Report</button>
-						<!-- <button [ngClass]="message.alertType" class="btn btn-sm btn-default previewTitle sentType float-right">
-				
-							<span *ngIf="message.alertType==='SITE'">Community</span>
-							<span *ngIf="message.alertType!='SITE'">{{message.alertType}}</span>
-				
-						</button> -->
+
 
 					</td>
-
 			
 					<td class="min-width-100" style="padding-right: 20px">
+
 						<span class="previewTitle"> {{message.subject}} </span> 
 						<span class="previewMessage">- {{message.message}} </span> 
 					</td> 
