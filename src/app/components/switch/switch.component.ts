@@ -13,24 +13,32 @@ import { Site } from '../../models/site';
 })
 export class SwitchComponent implements OnInit {
   public currentUser: User;
+  public mySite: number;
   public currentSite: any = {};
   public userSites: any = [];
 
   constructor(private userService: UserService,
               private session: SessionService,
+              private route: ActivatedRoute,
               private router: Router,
-              private alertService: AlertService) { }
+              private alertService: AlertService) {
+         this.route.queryParams.subscribe(params => {
+               const mySite = params.site;
+             console.log(params.site); // Print the parameter to the console.
+         }); }
 
   ngOnInit() {
-    this.session.getObservable('currentSite')
-      .subscribe((site: Site) => this.currentSite = site);
-    this.userService.getRentalSites(this.currentUser).subscribe(
+    this.userService.getCurrentUserInfo().subscribe(
             data => {
-                this.userSites = data;
+                this.userSites = data['rentalSites'];
             },
             error => {
                 this.alertService.error('Unable to retrieve sites');
             });
+  }
+
+  switchSite(id: number) {
+    this.router.navigate(['/dashboard'], { queryParams: { site: id }, skipLocationChange: false });
   }
 
 }

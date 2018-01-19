@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
+import { Site } from '../../models/site';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AlertService } from '../../services/alert.service';
@@ -13,7 +14,7 @@ import { SessionService } from '../../services/session.service';
 })
 export class DashboardComponent implements OnInit {
   public currentUser: User;
-  public userSites: any = [];
+  public userSites: Site[];
   public mySite: number;
   public siteIds: any = [];
   public siteNames: any = [];
@@ -27,11 +28,13 @@ export class DashboardComponent implements OnInit {
               private router: Router,
               private alertService: AlertService) {
     this.route.queryParams.subscribe(params => {
-        if (params['site']) {
-          let mySite = params['site'];
+        if (params.site) {
+          this.mySite = params.site;
         } else {
-          let mySite = null;
+          this.mySite = null;
         }
+        console.log('params');
+        console.log(params.site);
         console.log(this.mySite); // Print the parameter to the console.
     });
   }
@@ -39,17 +42,27 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.session.getObservable('currentUser')
       .subscribe((user: User) => this.currentUser = user);
-      this.userService.getRentalSites(this.currentUser).subscribe(
+      this.userService.getCurrentUserInfo().subscribe(
             data => {
-                this.userSites = data;
+                this.userSites = data['rentalSites'];
+                console.log('userSites ARRAY');
+                console.log(this.userSites);
                 if (this.userSites.length > 1) {
                   this.multiSite = true;
                 }
+                console.log('mySite?:');
+                console.log(this.mySite);
                 if (this.mySite) {
-                  this.currentSite = this.userSites.filter(site => site.id === this.mySite);
+                  this.currentSite = this.userSites.filter(this.isBigEnough());
+                  console.log('this mySite');
+                  console.log(this.mySite);
+                  console.log('currentsiteafterfilter');
+                  console.log(this.currentSite);
                 } else {
                   this.currentSite = this.userSites[this.defaultSite];
                 }
+                console.log('set currentSite');
+                console.log(this.currentSite);
                 this.session.set('currentSite', this.currentSite);
             },
             error => {
@@ -57,14 +70,12 @@ export class DashboardComponent implements OnInit {
             });
   }
 
-  getSiteIds(userSites) {
-    for (const site of userSites) {
-      this.siteIds.push(site.id);
-      this.siteNames.push(site.name);
-    }
+  isBigEnough(element, index, array) {
+     return (element = this.mySite);
   }
 
+
   switchSite(id: number) {
-    this.router.navigate(['/switch', id], { skipLocationChange: false });
+    this.router.navigate(['/switch'], { queryParams: { site: id }, skipLocationChange: false });
   }
 }

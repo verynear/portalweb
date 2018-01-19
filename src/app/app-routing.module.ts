@@ -19,10 +19,10 @@ import { SwitchComponent } from './components/switch/switch.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/:site', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'switch', component: SwitchComponent, canActivate: [AuthGuard]},
+  { path: 'switch/:site', component: SwitchComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'applicants', component: ApplicantsComponent, canActivate: [AuthGuard] },
   { path: 'applicantlist', component: DatatableComponent, canActivate: [AuthGuard] },
