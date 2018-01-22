@@ -23,7 +23,7 @@ export class SwitchComponent implements OnInit {
               private router: Router,
               private alertService: AlertService) {
          this.route.params.subscribe(params => {
-               this.mySite = params.site;
+               this.mySite = Number (params.site);
              console.log(this.mySite); // Print the parameter to the console.
          }); }
 

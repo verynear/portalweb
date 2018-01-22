@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
               private alertService: AlertService) {
     this.route.params.subscribe(params => {
         if (params.site) {
-          this.mySite = params.site;
+          this.mySite = Number (params.site);
         } else {
           this.mySite = null;
         }
