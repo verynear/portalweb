@@ -2,9 +2,15 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
-body {
+body, footer {
   font-family: 'Roboto', sans-serif;
+  background-color: #ddd;
 }
+
+#main {
+  background-color: #fff;
+}
+
 section,
 .alert{
  margin-bottom: 2.188rem;
