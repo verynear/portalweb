@@ -1,3 +1,4 @@
+<div id="marginFix">
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
 <!-- Mailbox -->
 <section class="inbox" *ngIf="!loading">
@@ -26,18 +27,18 @@
 					<td class="fixed-60 nowrap"> 
 						<span> To: </span>
 						<span *ngFor='let recipient of message.recipients; let i=index; let isLast=last'>
-							<span *ngIf="i < 3" >
+							<!-- <span *ngIf="i < 3" >
 								<span> {{recipient.firstname}}<span *ngIf="i < 2 && !isLast">, </span>
 								</span>
 							</span>
-						</span>
+						</span> -->
 
 						<!-- If we have more than 3 recipients, display "..." -->
-						<span *ngIf="message.alertRecipients.length > 3">
+<!-- <!-- 						<!-- <span *ngIf="message.recipients.length > 3">
 								...
 						</span>
 
-						<span *ngIf="message.alertRecipients.length"> ({{message.alertRecipients.length}}) </span>
+						<span *ngIf="message.recipients.length"> ({{message.alertRecipients.length}})  --></span>
 					</td> 
 					<td class="fixed-60">
 						<button [ngClass]="message.type" class="btn btn-sm btn-default previewTitle sentType">
@@ -62,3 +63,4 @@
               
 <p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 
+</div>

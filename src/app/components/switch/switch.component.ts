@@ -22,15 +22,21 @@ export class SwitchComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private alertService: AlertService) {
-         this.route.queryParams.subscribe(params => {
-               const mySite = params.site;
-             console.log(params.site); // Print the parameter to the console.
+         this.route.params.subscribe(params => {
+               this.mySite = params.site;
+             console.log(this.mySite); // Print the parameter to the console.
          }); }
 
   ngOnInit() {
     this.userService.getCurrentUserInfo().subscribe(
             data => {
                 this.userSites = data['rentalSites'];
+                for (const userSite of this.userSites) {
+                     if (userSite.id == this.mySite) {
+                       this.currentSite = userSite;
+                     }
+                   }
+                console.log(this.currentSite);
             },
             error => {
                 this.alertService.error('Unable to retrieve sites');
@@ -38,7 +44,7 @@ export class SwitchComponent implements OnInit {
   }
 
   switchSite(id: number) {
-    this.router.navigate(['/dashboard'], { queryParams: { site: id }, skipLocationChange: false });
+    this.router.navigate(['/dashboard', id ], { skipLocationChange: false });
   }
 
 }

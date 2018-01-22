@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private alertService: AlertService) {
-    this.route.queryParams.subscribe(params => {
+    this.route.params.subscribe(params => {
         if (params.site) {
           this.mySite = params.site;
         } else {
@@ -53,7 +53,11 @@ export class DashboardComponent implements OnInit {
                 console.log('mySite?:');
                 console.log(this.mySite);
                 if (this.mySite) {
-                  this.currentSite = this.userSites.filter(this.isBigEnough());
+                   for (const userSite of this.userSites) {
+                     if (userSite.id == this.mySite) {
+                       this.currentSite = userSite;
+                     }
+                   }
                   console.log('this mySite');
                   console.log(this.mySite);
                   console.log('currentsiteafterfilter');
@@ -70,12 +74,8 @@ export class DashboardComponent implements OnInit {
             });
   }
 
-  isBigEnough(element, index, array) {
-     return (element = this.mySite);
-  }
-
 
   switchSite(id: number) {
-    this.router.navigate(['/switch'], { queryParams: { site: id }, skipLocationChange: false });
+    this.router.navigate(['/switch', id ], { skipLocationChange: false });
   }
 }
