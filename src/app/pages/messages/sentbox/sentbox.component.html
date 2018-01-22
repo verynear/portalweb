@@ -35,9 +35,14 @@
 						<span *ngFor='let recipient of message.recipients; let i=index; let isLast=last'></span>
 					</td>
 					<td>
-					</td> 
+						<span *ngFor='let recipient of message.recipients; let i=index; let isLast=last'>
+						<span *ngIf="i < 3" >
+								<span> {{recipient.firstname}}<span *ngIf="i < 2 && !isLast">, </span>
+								</span>
+							</span>
+						</span>
+					</td>
 					<td class="min-width-100" style="padding-right: 20px">
-
 						<span class="previewTitle"> {{message.subject}} </span> 
 						<span class="previewMessage">- {{message.message}} </span> 
 					</td> 

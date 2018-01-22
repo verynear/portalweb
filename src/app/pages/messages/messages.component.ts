@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
 import { ComposeComponent } from '../../components/compose/compose.component';
+import { SessionService } from '../../services/session.service';
 import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,10 +11,13 @@ import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent implements OnInit {
+  public currentSite: any = {};
 
-  constructor( private modalService: NgbModal) { }
+  constructor( private session: SessionService,
+               private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.currentSite = this.session.get('currentSite');
   }
 
   compose() {
