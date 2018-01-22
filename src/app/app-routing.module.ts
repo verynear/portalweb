@@ -15,11 +15,14 @@ import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { MessageComponent } from './pages/messages/message/message.component';
+import { SwitchComponent } from './components/switch/switch.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/:site', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
+  { path: 'switch/:site', component: SwitchComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'applicants', component: ApplicantsComponent, canActivate: [AuthGuard] },
   { path: 'applicantlist', component: DatatableComponent, canActivate: [AuthGuard] },

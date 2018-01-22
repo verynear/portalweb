@@ -30,6 +30,10 @@ export class UserService {
     return this.http.get(this.baseURL + '/sites/');
   }
 
+  getCurrentUserInfo() {
+    return this.http.get(this.baseURL + '/auth/me');
+  }
+
   create(user: User) {
     return this.http.post(this.baseURL + '/user/sign-up', user);
       // .map( (response: Response) => response.json());

@@ -181,6 +181,13 @@ td, th {
   text-overflow: ellipsis;
 }
 
+.top-checkmark {
+  background-color: #868e96;
+}
+
+#marginFix {
+  margin-top: -50px;
+}
 /*
   As browser width decreases, change padding in table.
 */

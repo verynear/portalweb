@@ -1,3 +1,4 @@
+<div id="marginFix">
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
 
 <section class="inbox" *ngIf="!loading">
@@ -31,26 +32,17 @@
 					</td>
 					<td style="font-size: 12px; text-overflow: ellipsis;"> 
 						<span> To: </span>
-						<!-- <span *ngFor='let recipient of message.alertRecipients; let i=index; let isLast=last'>
-							<span> {{recipient.rentalSiteBuildingUnit.address1}}<span *ngIf="i < 2 && !isLast">, </span>
+						<span *ngFor='let recipient of message.recipients; let i=index; let isLast=last'>
+							<!-- <span *ngIf="i < 3" >
+								<span> {{recipient.firstname}}<span *ngIf="i < 2 && !isLast">, </span>
+								</span>
 							</span>
 						</span> -->
 
-						<!-- <span *ngIf="message.alertRecipients.length"> ({{message.alertRecipients.length}}) </span> -->
-
 						<!-- If we have more than 3 recipients, display "..." -->
-						<span *ngIf="message.alertRecipients.length > 3">
+<!-- <!-- 						<!-- <span *ngIf="message.recipients.length > 3">
 								...
 						</span>
-
-						<span *ngIf="message.alertRecipients.length"> ({{message.alertRecipients.length}}) </span>
-
-					</td> 
-					<td>
-						<button class="btn btn-sm btn-default sentType previewTitle float-right">Get Report</button>
-
-
-					</td>
 			
 					<td class="min-width-100" style="padding-right: 20px">
 
@@ -71,36 +63,4 @@
               
 <p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 
-
-<!-- <section class="inbox">
- <div class="table-responsive">
-		<table class="table table-striped table-bordered table-hover" style="overflow-x: hidden">
-			<tbody>
-				<tr onclick="window.location='message.html';">
-					<td>
-						<ul class="list-inline m-0">
-							<li class="list-inline-item"><input type="checkbox"></li>
-							<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-						</ul>
-					</td>
-					<td class="nowrap">John Smith</td>
-					<td class="nowrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</td>
-					<td class="nowrap">12/27 8:00pm <i class="fa fa-check text-success"></i></td>
-					<td class="nowrap">12/27 8:30pm <i class="fa fa-check text-success"></i></td>
-				</tr>
-				<tr>
-					<td class="nowrap">
-						<ul class="list-inline m-0">
-							<li class="list-inline-item"><input type="checkbox"></li>
-							<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-						</ul>
-					</td>
-					<td class="nowrap">Mary Doe</td>
-					<td class="nowrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</td>
-					<td class="nowrap">12/27 8:00pm <i class="fa fa-check text-success"></i></td>
-					<td class="nowrap">12/27 8:30pm <i class="fa fa-check text-success"></i></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</section> -->
+</div>
