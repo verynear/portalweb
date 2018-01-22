@@ -1,30 +1,36 @@
 <div id="marginFix">
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
-<!-- Mailbox -->
+
 <section class="inbox" *ngIf="!loading">
-	<div class="table table-responsive">
+	<div class="table">
 		<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 			<thead class="thead-light">
-				<!-- CUSTOM ANGULAR4 SORT DIRECTIVES -->
-					<th> 
-						<input type="checkbox" [(ngModel)]="checkAll" (click)="selectAllMessages(checkAll)" name="checkbox">
+					<th class="width-25"> 
+						<app-th disable="true">
+							<p-checkbox name="groupname" value="val2" [(ngModel)]="checkAll" binary="true" (click)="selectAllMessages(checkAll)"></p-checkbox>
+						</app-th>
 					</th>
-					<th class="noPadding"><app-th columnName="id" displayName="Name"></app-th></th>
-					<th>
+					<th class="width-250">
+						<app-th columnName="id" displayName="Recipient"></app-th>
 					</th>
-					<th class="noPadding"><app-th columnName="message" displayName="Subject"></app-th></th>
-					<th class="noPadding"><app-th columnName="createDate" displayName="Date"></app-th></th>
-			</thead>
-			<tbody>
-				<tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage*page' (click)="openMessage(message.id)">
-					<td class="fixed-30">
+					<th class="width-150">
+					</th>
+					<th class="min-width-100">
+						<app-th columnName="message" displayName="Subject"></app-th>
+					</th>
+					<th class="text-right" style="padding-left:50px;">
+						<app-th columnName="createDate" displayName="Date"></app-th>
+					</th>
+			<tbody> 
+				<tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage' (click)="openMessage(message.id)">
+					<td>
 						<ul class="list-inline m-0">
 						  <li class="list-inline-item">
-						    <input type="checkbox" [(ngModel)]="message.selected" name="checkbox">
+							<p-checkbox name="groupname" value="val2" [(ngModel)]="message.selected" binary="true"></p-checkbox>
 						  </li>
 						</ul>
 					</td>
-					<td class="fixed-60 nowrap"> 
+					<td style="font-size: 12px; text-overflow: ellipsis;"> 
 						<span> To: </span>
 						<span *ngFor='let recipient of message.recipients; let i=index; let isLast=last'>
 							<!-- <span *ngIf="i < 3" >
@@ -37,22 +43,16 @@
 <!-- <!-- 						<!-- <span *ngIf="message.recipients.length > 3">
 								...
 						</span>
+			
+					<td class="min-width-100" style="padding-right: 20px">
 
-						<span *ngIf="message.recipients.length"> ({{message.alertRecipients.length}})  --></span>
-					</td> 
-					<td class="fixed-60">
-						<button [ngClass]="message.type" class="btn btn-sm btn-default previewTitle sentType">
-							<!-- TODO: Move logic to component -->
-							<span *ngIf="message.type==='SITE'">Community</span>
-							<span *ngIf="message.type!='SITE'">{{message.type}}</span>
-							<!-- End -->
-						</button>
-					</td>
-					<td width="50%">
 						<span class="previewTitle"> {{message.subject}} </span> 
 						<span class="previewMessage">- {{message.message}} </span> 
 					</td> 
-					<td class="fixed-60 nowrap"><b>{{message.createDate | date:'short' }}</b> </td>
+					<td class="text-right" style="padding-left: 50px">
+						<!-- <button class="btn btn-sm btn-primary float-right sentType">View Report</button> -->
+						<span>{{message.createDate | date:'mediumDate' }} </span>
+					</td>
 				</tr>				               
 			</tbody>
 		</table>
