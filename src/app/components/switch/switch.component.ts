@@ -32,7 +32,7 @@ export class SwitchComponent implements OnInit {
             data => {
                 this.userSites = data['rentalSites'];
                 for (const userSite of this.userSites) {
-                     if (userSite.id == this.mySite) {
+                     if (userSite.id === this.mySite) {
                        this.currentSite = userSite;
                      }
                    }

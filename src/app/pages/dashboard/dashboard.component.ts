@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
                 console.log(this.mySite);
                 if (this.mySite) {
                    for (const userSite of this.userSites) {
-                     if (userSite.id == this.mySite) {
+                     if (userSite.id === this.mySite) {
                        this.currentSite = userSite;
                      }
                    }
