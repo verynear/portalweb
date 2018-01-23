@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { SessionService } from '../../services/session.service';
 import { AlertService } from '../../services/alert.service';
 import { User } from '../../models/user';
 import { Site } from '../../models/site';
@@ -18,13 +17,11 @@ export class SwitchComponent implements OnInit {
   public userSites: any = [];
 
   constructor(private userService: UserService,
-              private session: SessionService,
               private route: ActivatedRoute,
               private router: Router,
               private alertService: AlertService) {
          this.route.params.subscribe(params => {
                this.mySite = Number (params.site);
-             console.log(this.mySite); // Print the parameter to the console.
          }); }
 
   ngOnInit() {
@@ -36,7 +33,6 @@ export class SwitchComponent implements OnInit {
                        this.currentSite = userSite;
                      }
                    }
-                console.log(this.currentSite);
             },
             error => {
                 this.alertService.error('Unable to retrieve sites');
@@ -45,6 +41,10 @@ export class SwitchComponent implements OnInit {
 
   switchSite(id: number) {
     this.router.navigate(['/dashboard', id ], { skipLocationChange: false });
+  }
+
+  backSite() {
+    this.router.navigate(['/dashboard'], { skipLocationChange: false });
   }
 
 }

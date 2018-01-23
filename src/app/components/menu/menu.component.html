@@ -1,5 +1,10 @@
 	<div class="fixed-top navbar navbar-expand flex-column flex-md-row bd-navbar">
 		<ul class="navbar-nav flex-row ml-md-auto d-md-flex">
+			<li *ngIf="multiSite" ngbDropdown class="dropdown-menu-left">
+			      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Community</button>
+			      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+			        <button *ngFor="let site of userSites" class="dropdown-item" (click)="switchSite(site.id)">{{site.name}}</button>
+			      </div></li>
 			<li ngbDropdown class="nav-item dropdown">
 				<a class="nav-item nav-link" id="mail-alert" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle><i class="fa fa-envelope"></i> <sup><span class="badge badge-primary">3</span></sup></a>
 				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="mail-alert">

@@ -1,5 +1,5 @@
 <div id="marginFix">
-<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
+<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="5" class="float-right"></ngb-pagination>
 
 <section class="inbox" *ngIf="!loading">
 	<div class="table">
@@ -22,7 +22,7 @@
 						<app-th columnName="createDate" displayName="Date"></app-th>
 					</th> 
 			<tbody> 
-				<tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage' (click)="openMessage(message.id)">
+				<tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage*page' (click)="openMessage(message.id)">
 					<td>
 						<ul class="list-inline m-0">
 						  <li class="list-inline-item">
