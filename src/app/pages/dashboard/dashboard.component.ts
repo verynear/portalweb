@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ValueProvider } from '@angular/core';
 import { User } from '../../models/user';
 import { Site } from '../../models/site';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   public mySite: number;
   public siteIds: any = [];
   public siteNames: any = [];
+  public currentSiteId: number;
   public currentSite: any = {};
   public defaultSite = 0;
   public multiSite = false;
@@ -33,15 +34,17 @@ export class DashboardComponent implements OnInit {
         } else {
           this.mySite = null;
         }
-        console.log('params');
-        console.log(params.site);
-        console.log(this.mySite); // Print the parameter to the console.
     });
   }
 
   ngOnInit() {
     this.session.getObservable('currentUser')
       .subscribe((user: User) => this.currentUser = user);
+      console.log('prev site from session');
+      console.log(localStorage.getItem('currentSiteId'));
+      this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
+      console.log('prev set current site');
+      console.log(this.currentSiteId);
       this.userService.getCurrentUserInfo().subscribe(
             data => {
                 this.userSites = data['rentalSites'];
@@ -58,16 +61,33 @@ export class DashboardComponent implements OnInit {
                        this.currentSite = userSite;
                      }
                    }
-                  console.log('this mySite');
-                  console.log(this.mySite);
-                  console.log('currentsiteafterfilter');
+                  console.log('new site from param');
+                  localStorage.setItem('currentSiteId', this.currentSite.id);
+                } else if (this.currentSiteId) {
+                  console.log('current site exists');
+                  console.log(this.userSites);
+                  for (const userSite of this.userSites) {
+                     if (userSite.id === this.currentSiteId) {
+                       this.currentSite = userSite;
+                     }
+                   }
+                  console.log('before set localstorage');
+                  console.log(this.currentSite);
+                  localStorage.setItem('currentSiteId', this.currentSite.id);
+                  console.log('after set local storage');
                   console.log(this.currentSite);
                 } else {
+                  console.log('no current site or param');
                   this.currentSite = this.userSites[this.defaultSite];
+                  localStorage.setItem('currentSiteId', this.currentSite.id);
+                  console.log(localStorage);
                 }
-                console.log('set currentSite');
+                console.log('end currentSite');
                 console.log(this.currentSite);
-                this.session.set('currentSite', this.currentSite);
+                console.log('end currentSiteId var');
+                console.log(this.currentSiteId);
+                console.log('end currentSiteId localstorage');
+                console.log(localStorage.getItem('currentSiteId'));
             },
             error => {
                 this.alertService.error('Unable to retrieve site');

@@ -1,11 +1,7 @@
 <div id="main">    
   <div class="main-content">
     <div class="container-fluid">
-      <h5><i class="fa fa-user"></i> Welcome, {{currentUser?.firstname}}<br><small>ABC Management / {{currentSite.name}}</small><div *ngIf="multiSite" ngbDropdown class="d-inline-block">
-      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Switch</button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button *ngFor="let site of userSites" class="dropdown-item" (click)="switchSite(site.id)">{{site.name}}</button>
-      </div></div></h5>
+      <h5><i class="fa fa-user"></i> Welcome, {{currentUser?.firstname}}<br><small>ABC Management / {{currentSite.name}}</small></h5>
       <hr>
       <h2>Dashboard</h2>
         
