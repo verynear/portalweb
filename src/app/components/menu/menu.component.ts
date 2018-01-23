@@ -14,11 +14,6 @@ import { SessionService } from '../../services/session.service';
 export class MenuComponent implements OnInit {
   public currentUser: User;
   public userSites: Site[];
-  public mySite: number;
-  public siteIds: any = [];
-  public siteNames: any = [];
-  public currentSite: any = {};
-  public defaultSite = 0;
   public multiSite = false;
 
   constructor(private userService: UserService,

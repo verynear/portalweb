@@ -37,8 +37,10 @@ export class SentboxComponent implements OnInit {
     this.messageService.getSent().subscribe(
       data => {
         this.loading = false;
-        this.messages = data;
-        this.totalItems = data.length;
+        console.log('data');
+        console.log(data);
+        this.messages = data['content'];
+        this.totalItems = data['totalElements'];
       },
       error => {
         console.log('Error');

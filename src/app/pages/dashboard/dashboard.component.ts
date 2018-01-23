@@ -1,4 +1,4 @@
-import { Component, OnInit, ValueProvider } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { Site } from '../../models/site';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,8 +16,6 @@ export class DashboardComponent implements OnInit {
   public currentUser: User;
   public userSites: Site[];
   public mySite: number;
-  public siteIds: any = [];
-  public siteNames: any = [];
   public currentSiteId: number;
   public currentSite: any = {};
   public defaultSite = 0;

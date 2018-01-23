@@ -94,8 +94,10 @@ tr {
 }
 
 .spinner {
-  display: block;
-  margin: 0 auto;
+  margin-top: 150px;
+  float: right;
+  position: relative;
+  right: 60%;
 }
 
 .table-responsive {

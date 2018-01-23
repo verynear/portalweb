@@ -20,7 +20,7 @@ export class MessageService {
   }
 
  getSent() {
-    return this.http.get<Message[]>(this.baseURL + '/messages');
+    return this.http.get<Message[]>(this.baseURL + '/messages?page=0&size=100');
   }
 
   getSentAnnouncements() {
