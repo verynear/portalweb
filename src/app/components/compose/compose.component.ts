@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
@@ -7,7 +7,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
-import { EditorModule, MultiSelectModule } from 'primeng/primeng';
+import { EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-compose',
@@ -15,6 +15,8 @@ import { EditorModule, MultiSelectModule } from 'primeng/primeng';
   styleUrls: ['./compose.component.scss']
 })
 export class ComposeComponent implements OnInit {
+  @Output() onVoted = new EventEmitter<boolean>();
+  sent = false;
   buildings: Building[];
   selectedBuildings: Building[];
   loading = false;
@@ -30,8 +32,12 @@ export class ComposeComponent implements OnInit {
   composeForm: FormGroup;
   type: FormControl;
   rentalsitesId: number;
-  rentalsiteBuildingId: FormControl;
-  rentalsiteBuildingUnitId: FormControl;
+  rentalsiteBuildingIds: FormControl;
+  rentalsiteBuildingUnitIds: FormControl;
+  tenantIds: FormControl;
+  finalBuildingIds: any[];
+  finalBuildingUnitIds: any[];
+  finaltenantIds: any[];
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
@@ -42,7 +48,7 @@ export class ComposeComponent implements OnInit {
       MessageService, private alertService: AlertService, private userService: UserService) {}
 
     ngOnInit() {
-        this.currentSiteId = this.userService.getCurrentSiteId();
+        this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
         this.getSiteBuildings();
         this.createFormControls();
         this.createForm();
@@ -60,8 +66,8 @@ export class ComposeComponent implements OnInit {
 
     createFormControls() {
         this.type = new FormControl('', Validators.required);
-        this.rentalsiteBuildingId = new FormControl('');
-        this.rentalsiteBuildingUnitId = new FormControl('');
+        this.rentalsiteBuildingIds = new FormControl('');
+        this.rentalsiteBuildingUnitIds = new FormControl('');
         this.messageType = new FormControl('', Validators.required);
         this.subject = new FormControl('');
         this.message = new FormControl('', Validators.required);
@@ -70,8 +76,8 @@ export class ComposeComponent implements OnInit {
     createForm() {
         this.composeForm = new FormGroup({
             type: this.type,
-            rentalsiteBuildingId: this.rentalsiteBuildingId,
-            rentalsiteBuildingUnitId: this.rentalsiteBuildingUnitId,
+            rentalsiteBuildingIds: this.rentalsiteBuildingIds,
+            rentalsiteBuildingUnitId: this.rentalsiteBuildingUnitIds,
             messageType: this.messageType,
             subject: this.subject,
             message: this.message
@@ -93,7 +99,7 @@ export class ComposeComponent implements OnInit {
 
         message.type = this.composeForm.value.type;
         if (message.type === 'SITE') {message.rentalsitesId = this.currentSiteId; }
-        if (message.type === 'BUILDING') {message.rentalsiteBuildingId = this.composeForm.value.rentalsiteBuildingId[0]['id']; }
+        if (message.type === 'BUILDING') {message.rentalsiteBuildingIds = this.parseIds(this.composeForm.value.rentalsiteBuildingIds); }
         message.messageType = this.composeForm.value.messageType;
         message.message = this.composeForm.value.message;
         message.subject = this.composeForm.value.subject;
@@ -101,13 +107,20 @@ export class ComposeComponent implements OnInit {
 
         this.messageService.sendMessage(message).subscribe(
             data => {
+                console.log('sent');
                 this.alertService.success('Message Sent', true);
-                this.router.navigate(['/messages/sent']);
             },
             error => {
                 this.alertService.error(error);
                 this.loading = false;
             });
+    }
+
+    parseIds(formValues: Array<any>) {
+      for (const formValue of formValues) {
+         this.finalBuildingIds.push(formValue.id);
+      }
+      return this.finalBuildingIds;
     }
 
 }

@@ -42,7 +42,7 @@ export class MessageService {
   }
 
   sendMessage (message: Message) {
-    return this.http.post(this.baseURL + '/message', message);
+    return this.http.post(this.baseURL + '/messages', message);
   }
 
 }
