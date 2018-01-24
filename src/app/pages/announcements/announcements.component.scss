@@ -1,0 +1,57 @@
+p {
+    text-align: left;
+}
+
+.date-margin {
+    margin-top: -10px;
+}
+
+.control-buttons {
+    opacity: .75;
+    background-color: #1970bc; 
+}
+
+.btn-info
+{
+  background-color: #1970bc !important;
+}
+
+.small {
+    font-size: 85%;
+}
+
+.container-fluid {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.row:hover {
+    background-color: #f9f9f9;
+}
+
+
+/*
+    Classes for rich text.
+*/ 
+
+.ql-size-huge {
+    font-size: 30px;
+}
+
+.ql-size-small {
+    font-size: 10px;
+}
+
+.ql-size-large {
+    font-size: 18px;
+}
+
+::ng-deep .page-item.active .page-link {
+    color: black;
+    background-color: #efefef;
+    border: 1px solid #ddd;
+  }
+  
+::ng-deep .page-link {
+    color: black;
+} 
