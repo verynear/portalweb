@@ -14,7 +14,9 @@ export class AppComponent {
   constructor(private loginService: LoginService) {
     this.loginService.onLogin
       .subscribe((user: User | boolean) => {
+        console.log("Hello from Auth");
         this.hasAuth = !!user;
+        console.log(this.hasAuth);
       });
   }
 }
