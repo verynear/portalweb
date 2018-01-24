@@ -3,6 +3,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
 import { Building } from '../../models/building';
+import { Unit } from '../../models/unit';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -15,10 +16,12 @@ import { EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/pri
   styleUrls: ['./compose.component.scss']
 })
 export class ComposeComponent implements OnInit {
-  @Output() onVoted = new EventEmitter<boolean>();
+  @Output() onSent = new EventEmitter<boolean>();
   sent = false;
   buildings: Building[];
   selectedBuildings: Building[];
+  units: Unit[];
+  selectedUnits: Unit[];
   loading = false;
   recips = [
     {type: 'SITE', name: 'Community'},
@@ -32,12 +35,14 @@ export class ComposeComponent implements OnInit {
   composeForm: FormGroup;
   type: FormControl;
   rentalsitesId: number;
+  buildingIdforUnit: FormControl;
   rentalsiteBuildingIds: FormControl;
   rentalsiteBuildingUnitIds: FormControl;
   tenantIds: FormControl;
-  finalBuildingIds: any[];
-  finalBuildingUnitIds: any[];
-  finaltenantIds: any[];
+  filtered = [];
+  finalBuildingIds = [];
+  finalBuildingUnitIds = [];
+  finaltenantIds = [];
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
@@ -64,10 +69,20 @@ export class ComposeComponent implements OnInit {
       });
     }
 
+    getUnitsForBuilding(event) {
+      const query = event.query;
+      this.messageService.getUnitsByBuildingId(this.composeForm.value.buildingIdforUnit).then(units => {
+       this.selectedUnits = this.filterUnit(query, units);
+       });
+      console.log('selected units');
+      console.log(this.selectedUnits);
+    }
+
     createFormControls() {
         this.type = new FormControl('', Validators.required);
         this.rentalsiteBuildingIds = new FormControl('');
         this.rentalsiteBuildingUnitIds = new FormControl('');
+        this.buildingIdforUnit = new FormControl('');
         this.messageType = new FormControl('', Validators.required);
         this.subject = new FormControl('');
         this.message = new FormControl('', Validators.required);
@@ -77,7 +92,8 @@ export class ComposeComponent implements OnInit {
         this.composeForm = new FormGroup({
             type: this.type,
             rentalsiteBuildingIds: this.rentalsiteBuildingIds,
-            rentalsiteBuildingUnitId: this.rentalsiteBuildingUnitIds,
+            rentalsiteBuildingUnitIds: this.rentalsiteBuildingUnitIds,
+            buildingIdforUnit: this.buildingIdforUnit,
             messageType: this.messageType,
             subject: this.subject,
             message: this.message
@@ -93,13 +109,32 @@ export class ComposeComponent implements OnInit {
         console.log(item);
     }
 
+    filterUnit(query, units: any[]): any[] {
+        for (let i = 0; i < units.length; i++) {
+            const unit = units[i];
+            if (unit.unitNumber.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                this.filtered.push(unit);
+                console.log('filtered');
+                console.log(this.filtered);
+            }
+        }
+        return this.filtered;
+    }
+
     send() {
         this.loading = true;
         const message = new Message();
 
         message.type = this.composeForm.value.type;
         if (message.type === 'SITE') {message.rentalsitesId = this.currentSiteId; }
-        if (message.type === 'BUILDING') {message.rentalsiteBuildingIds = this.parseIds(this.composeForm.value.rentalsiteBuildingIds); }
+        for (const building of this.composeForm.value.rentalsiteBuildingIds) {
+          this.finalBuildingIds.push(building.id);
+        }
+        if (message.type === 'BUILDING') {message.rentalsiteBuildingIds = this.finalBuildingIds; }
+        for (const unit of this.selectedUnits) {
+          this.finalBuildingUnitIds.push(unit.id);
+        }
+        if (message.type === 'UNIT') {message.rentalsiteBuildingUnitIds = this.finalBuildingUnitIds; }
         message.messageType = this.composeForm.value.messageType;
         message.message = this.composeForm.value.message;
         message.subject = this.composeForm.value.subject;
@@ -114,13 +149,6 @@ export class ComposeComponent implements OnInit {
                 this.alertService.error(error);
                 this.loading = false;
             });
-    }
-
-    parseIds(formValues: Array<any>) {
-      for (const formValue of formValues) {
-         this.finalBuildingIds.push(formValue.id);
-      }
-      return this.finalBuildingIds;
     }
 
 }

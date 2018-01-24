@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Message } from '../models/message';
+import { Unit } from '../models/unit';
 import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 import { SortService } from '../components/sortable-table/sort.service';
 
@@ -38,7 +39,8 @@ export class MessageService {
   }
 
   getUnitsByBuildingId(id: number) {
-     return this.http.get<Unit[]>(this.baseURL + '/sites/buildings' + id + 'units');
+     return this.http.get<Unit[]>(this.baseURL + '/sites/buildings/' + id + '/units')
+                    .toPromise();
   }
 
   sendMessage (message: Message) {
@@ -57,11 +59,6 @@ class Building {
   address1: string;
   buildingId: number;
   buildingNumber: number;
-}
-
-class Unit {
-  unitId: number;
-  unitNumber: number;
 }
 
 

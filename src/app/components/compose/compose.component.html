@@ -22,14 +22,24 @@
                             </option>
 						</select>
 					</div>
-					<div class="form-group" *ngIf="composeForm.value.type === 'BUILDING' || composeForm.value.type === 'UNIT'">
+					<div class="form-group" [style.display]="(composeForm.value.type === 'BUILDING') ? 'block' : 'none' ">
 						<label for="rentalsiteBuildingIds">Select Building(s):</label>
 						<p-multiSelect [options]="buildings" [filter]=false formControlName="rentalsiteBuildingIds" optionLabel="address1"></p-multiSelect>
 					</div>
-					<div class="form-group" *ngIf="composeForm.value.type === 'UNIT'">
+					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
+						<label>Select Building:</label>
+						<select class="form-control" formControlName="buildingIdforUnit">
+							<option value="">Select Building:</option>
+							<option *ngFor="let building of buildings" [value]="building.id">
+								{{building.address1}}
+                            </option>
+						</select>
+					</div>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
 						<label for="toEmail">To:</label>
-						<input type="email" class="form-control" formControlName="rentalsiteBuildingUnitId" id="toEmail" aria-describedby="emailHelp" placeholder="Enter units">
-						<small><em class="text-muted">Separate by (,) comma</em></small>
+						<p-autoComplete formControlName="rentalsiteBuildingUnitIds" [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)"
+						       [immutable]=false [minLength]="1" placeholder="Enter Units" field="unitNumber" [multiple]="true">
+						    </p-autoComplete>
 					</div>
 					<div class="form-group">
 						<p class="mb-0"><label for="messageType">Message Type:</label></p>
