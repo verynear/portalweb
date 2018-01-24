@@ -25,7 +25,7 @@ export class AnnouncementcomposeComponent implements OnInit {
   subject: FormControl;
   message: FormControl;
 
-  constructor(private router: Router, public activeModal: NgbActiveModal, private userService: UserService, 
+  constructor(private router: Router, public activeModal: NgbActiveModal, private userService: UserService,
     public announcementService: AnnouncementService) {}
 
     ngOnInit() {
@@ -57,11 +57,11 @@ export class AnnouncementcomposeComponent implements OnInit {
 
         this.announcementService.postAnnouncement(message).subscribe(
             data => {
-                this.activeModal.close("success"); 
-                this.loading = false;  
+                this.activeModal.close('success');
+                this.loading = false;
             },
             error => {
-                this.activeModal.close("failure"); 
+                this.activeModal.close('failure');
                 this.loading = false;
         });
 

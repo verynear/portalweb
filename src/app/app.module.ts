@@ -57,7 +57,7 @@ import { SortService } from './components/sortable-table/sort.service';
 import { AnnouncementcomposeComponent } from './components/announcementcompose/announcementcompose.component';
 import { MessageComponent } from './pages/messages/message/message.component';
 import { SwitchComponent } from './components/switch/switch.component';
-import { SafeHtmlPipe } from "./pipes/safe-html.pipe";
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   imports: [

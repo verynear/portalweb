@@ -11,4 +11,4 @@ export class Announcement {
     subject: string;
     isRead: boolean;
   }
-  
+
