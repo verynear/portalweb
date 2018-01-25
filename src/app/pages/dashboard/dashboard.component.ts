@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
   public currentSiteId: number;
   public currentSite: any = {};
   public defaultSite = 0;
-  public multiSite = false;
 
   constructor(private userService: UserService,
               private session: SessionService,
@@ -42,9 +41,6 @@ export class DashboardComponent implements OnInit {
       this.userService.getCurrentUserInfo().subscribe(
             data => {
                 this.userSites = data['rentalSites'];
-                if (this.userSites.length > 1) {
-                  this.multiSite = true;
-                }
                 if (this.mySite) {
                    for (const userSite of this.userSites) {
                      if (userSite.id === this.mySite) {
@@ -53,12 +49,8 @@ export class DashboardComponent implements OnInit {
                    }
                   localStorage.setItem('currentSiteId', this.currentSite.id);
                 } else if (this.currentSiteId) {
-                  for (const userSite of this.userSites) {
-                     if (userSite.id === this.currentSiteId) {
-                       this.currentSite = userSite;
-                     }
-                   }
-                  localStorage.setItem('currentSiteId', this.currentSite.id);
+                  console.log('site already set. id:');
+                  console.log(this.currentSiteId);
                 } else {
                   this.currentSite = this.userSites[this.defaultSite];
                   localStorage.setItem('currentSiteId', this.currentSite.id);
