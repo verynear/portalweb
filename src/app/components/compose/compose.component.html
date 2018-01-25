@@ -37,8 +37,28 @@
 					</div>
 					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
 						<label for="toEmail">To:</label>
-						<p-autoComplete formControlName="rentalsiteBuildingUnitIds" [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)"
-						       [immutable]=false [minLength]="1" placeholder="Enter Units" field="unitNumber" [multiple]="true">
+						<p-autoComplete formControlName="rentalsiteBuildingUnitIds" [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)" (onSelect)="addUnit($event)" [immutable]=false [minLength]="1"  placeholder="Enter Units" field="unitNumber" [multiple]="true">
+						    </p-autoComplete>
+					</div>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+						<label>Select Building:</label>
+						<select class="form-control" formControlName="buildingIdforUnit">
+							<option value="">Select Building:</option>
+							<option *ngFor="let building of buildings" [value]="building.id">
+								{{building.address1}}
+                            </option>
+						</select>
+					</div>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+						<p-autoComplete [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)" (onSelect)="setUnit($event)" [immutable]=false [minLength]="1"  placeholder="Enter Unit" field="unitNumber" [multiple]="false">
+						    </p-autoComplete>
+					</div>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+						<label for="toEmail">To:</label>
+						<p-autoComplete formControlName="tenantIds" [suggestions]="selectedTenants" (completeMethod)="getTenantsForUnit($event)" (onSelect)="addTenant($event)" [immutable]=false [minLength]="1"  placeholder="Enter Tenants" [multiple]="true">
+							<ng-template let-item pTemplate="tenants">
+							       <div >{{tenant.firstname}} {{tenant.lastname}}</div>
+							   </ng-template>
 						    </p-autoComplete>
 					</div>
 					<div class="form-group">

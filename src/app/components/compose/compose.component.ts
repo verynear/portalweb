@@ -4,6 +4,7 @@ import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
 import { Building } from '../../models/building';
 import { Unit } from '../../models/unit';
+import { Tenant } from '../../models/tenant';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -20,14 +21,17 @@ export class ComposeComponent implements OnInit {
   sent = false;
   buildings: Building[];
   selectedBuildings: Building[];
-  units: Unit[];
-  selectedUnits: Unit[];
+  units: any[];
+  selectedUnits: any[];
+  tenant: any;
+  tenants: any[];
+  selectedTenants: any[];
   loading = false;
   recips = [
     {type: 'SITE', name: 'Community'},
     {type: 'BUILDING', name: 'Building(s)'},
     {type: 'UNIT', name: 'Unit(s)'},
-    {type: 'UNIT', name: 'Resident(s)'}
+    {type: 'TENANT', name: 'Resident(s)'}
   ];
   list: any[];
   checkedList: any[];
@@ -38,6 +42,7 @@ export class ComposeComponent implements OnInit {
   buildingIdforUnit: FormControl;
   rentalsiteBuildingIds: FormControl;
   rentalsiteBuildingUnitIds: FormControl;
+  unitIdForTenant: any;
   tenantIds: FormControl;
   filtered = [];
   finalBuildingIds = [];
@@ -54,6 +59,7 @@ export class ComposeComponent implements OnInit {
 
     ngOnInit() {
         this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
+        this.finalBuildingUnitIds = [];
         this.getSiteBuildings();
         this.createFormControls();
         this.createForm();
@@ -76,6 +82,19 @@ export class ComposeComponent implements OnInit {
        });
       console.log('selected units');
       console.log(this.selectedUnits);
+      console.log('just units');
+      console.log(this.units);
+    }
+
+    getTenantsForUnit(event) {
+      const query = event.query;
+      this.messageService.getTenantsByUnitId(this.unitIdForTenant).then(tenants => {
+       this.selectedTenants = this.filterTenant(query, tenants);
+       });
+      console.log('selected tenants');
+      console.log(this.selectedTenants);
+      console.log('just units');
+      console.log(this.tenants);
     }
 
     createFormControls() {
@@ -83,6 +102,7 @@ export class ComposeComponent implements OnInit {
         this.rentalsiteBuildingIds = new FormControl('');
         this.rentalsiteBuildingUnitIds = new FormControl('');
         this.buildingIdforUnit = new FormControl('');
+        this.tenantIds = new FormControl('');
         this.messageType = new FormControl('', Validators.required);
         this.subject = new FormControl('');
         this.message = new FormControl('', Validators.required);
@@ -94,6 +114,7 @@ export class ComposeComponent implements OnInit {
             rentalsiteBuildingIds: this.rentalsiteBuildingIds,
             rentalsiteBuildingUnitIds: this.rentalsiteBuildingUnitIds,
             buildingIdforUnit: this.buildingIdforUnit,
+            tenantIds: this.tenantIds,
             messageType: this.messageType,
             subject: this.subject,
             message: this.message
@@ -110,6 +131,7 @@ export class ComposeComponent implements OnInit {
     }
 
     filterUnit(query, units: any[]): any[] {
+        this.filtered = [];
         for (let i = 0; i < units.length; i++) {
             const unit = units[i];
             if (unit.unitNumber.toLowerCase().indexOf(query.toLowerCase()) === 0) {
@@ -121,20 +143,54 @@ export class ComposeComponent implements OnInit {
         return this.filtered;
     }
 
+    filterTenant(query, tenants: any[]): any[] {
+        this.filtered = [];
+        for (let i = 0; i < tenants.length; i++) {
+            const tenant = tenants[i];
+            if (tenant.unitNumber.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                this.filtered.push(tenant);
+                console.log('filtered');
+                console.log(this.filtered);
+            }
+        }
+        return this.filtered;
+    }
+
+    addUnit(value) {
+      console.log('selected');
+      console.log(value);
+      this.finalBuildingUnitIds.push(value.id);
+    }
+
+    setUnit(value) {
+      this.unitIdForTenant = value.id;
+    }
+
+    addTenant(value) {
+      console.log('selected');
+      console.log(value);
+      this.finaltenantIds.push(value.id);
+    }
+
+
     send() {
         this.loading = true;
         const message = new Message();
 
-        message.type = this.composeForm.value.type;
-        if (message.type === 'SITE') {message.rentalsitesId = this.currentSiteId; }
+        if (this.composeForm.value.type === 'SITE' || this.composeForm.value.type ===
+          'BUILDING' || this.composeForm.value.type === 'UNIT') { message.type =
+          this.composeForm.value.type; } else { message.type = 'UNIT'; }
+        if (this.composeForm.value.type === 'SITE') {message.rentalsitesId = this.currentSiteId; }
         for (const building of this.composeForm.value.rentalsiteBuildingIds) {
           this.finalBuildingIds.push(building.id);
         }
-        if (message.type === 'BUILDING') {message.rentalsiteBuildingIds = this.finalBuildingIds; }
-        for (const unit of this.selectedUnits) {
-          this.finalBuildingUnitIds.push(unit.id);
-        }
-        if (message.type === 'UNIT') {message.rentalsiteBuildingUnitIds = this.finalBuildingUnitIds; }
+        if (this.composeForm.value.type === 'BUILDING') {message.rentalsiteBuildingIds = this.finalBuildingIds; }
+        // for (const unit of this.selectedUnits) {
+        //   this.finalBuildingUnitIds.push(unit.id);
+        // }
+        if (this.composeForm.value.type === 'UNIT') {message.rentalsiteBuildingUnitIds = this.finalBuildingUnitIds; }
+        if (this.composeForm.value.type === 'TENANT') {message.rentalsiteBuildingUnitIds = this.unitIdForTenant;
+          message.tenantIds = this.finaltenantIds; }
         message.messageType = this.composeForm.value.messageType;
         message.message = this.composeForm.value.message;
         message.subject = this.composeForm.value.subject;
