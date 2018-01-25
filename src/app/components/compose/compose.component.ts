@@ -147,7 +147,7 @@ export class ComposeComponent implements OnInit {
         this.filtered = [];
         for (let i = 0; i < tenants.length; i++) {
             const tenant = tenants[i];
-            if (tenant.unitNumber.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+             if (tenant.lastname.toLowerCase().indexOf(query.toLowerCase()) === 0) {
                 this.filtered.push(tenant);
                 console.log('filtered');
                 console.log(this.filtered);
@@ -200,6 +200,7 @@ export class ComposeComponent implements OnInit {
             data => {
                 console.log('sent');
                 this.alertService.success('Message Sent', true);
+                window.location.reload();
             },
             error => {
                 this.alertService.error(error);
