@@ -49,8 +49,12 @@ export class DashboardComponent implements OnInit {
                    }
                   localStorage.setItem('currentSiteId', this.currentSite.id);
                 } else if (this.currentSiteId) {
-                  console.log('site already set. id:');
-                  console.log(this.currentSiteId);
+                  for (const userSite of this.userSites) {
+                     if (userSite.id === this.currentSiteId) {
+                       this.currentSite = userSite;
+                     }
+                   }
+                  localStorage.setItem('currentSiteId', this.currentSite.id);
                 } else {
                   this.currentSite = this.userSites[this.defaultSite];
                   localStorage.setItem('currentSiteId', this.currentSite.id);
