@@ -1,6 +1,6 @@
 <!-- <div class="modal-dialog" role="document"> -->
 		<div class="container">
-			<form [formGroup]="composeForm" (ngSubmit)="send()" novalidate>
+			<form [formGroup]="composeForm" (ngSubmit)="send(); activeModal.close('Close click')" novalidate>
 				<div class="modal-header">
 					<h5 class="modal-title" id="composeMailModalLabel"><i class="fa fa-edit"></i> Compose Message</h5>
 					<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -22,14 +22,44 @@
                             </option>
 						</select>
 					</div>
-					<div class="form-group" *ngIf="composeForm.value.type === 'BUILDING' || composeForm.value.type === 'UNIT'">
-						<label for="rentalsiteBuildingId">Select Building(s):</label>
-						<p-multiSelect [options]="buildings" [filter]=false formControlName="rentalsiteBuildingId" optionLabel="address1"></p-multiSelect>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'BUILDING') ? 'block' : 'none' ">
+						<label for="rentalsiteBuildingIds">Select Building(s):</label>
+						<p-multiSelect [options]="buildings" [filter]=false formControlName="rentalsiteBuildingIds" optionLabel="address1"></p-multiSelect>
 					</div>
-					<div class="form-group" *ngIf="composeForm.value.type === 'UNIT'">
+					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
+						<label>Select Building:</label>
+						<select class="form-control" formControlName="buildingIdforUnit">
+							<option value="">Select Building:</option>
+							<option *ngFor="let building of buildings" [value]="building.id">
+								{{building.address1}}
+                            </option>
+						</select>
+					</div>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
 						<label for="toEmail">To:</label>
-						<input type="email" class="form-control" formControlName="rentalsiteBuildingUnitId" id="toEmail" aria-describedby="emailHelp" placeholder="Enter units">
-						<small><em class="text-muted">Separate by (,) comma</em></small>
+						<p-autoComplete formControlName="rentalsiteBuildingUnitIds" [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)" (onSelect)="addUnit($event)" [immutable]=false [minLength]="1"  placeholder="Enter Units" field="unitNumber" [multiple]="true">
+						    </p-autoComplete>
+					</div>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+						<label>Select Building:</label>
+						<select class="form-control" formControlName="buildingIdforUnit">
+							<option value="">Select Building:</option>
+							<option *ngFor="let building of buildings" [value]="building.id">
+								{{building.address1}}
+                            </option>
+						</select>
+					</div>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+						<p-autoComplete [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)" (onSelect)="setUnit($event)" [immutable]=false [minLength]="1"  placeholder="Enter Unit" field="unitNumber" [multiple]="false">
+						    </p-autoComplete>
+					</div>
+					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+						<label for="toEmail">To:</label>
+						<p-autoComplete formControlName="tenantIds" [suggestions]="selectedTenants" (completeMethod)="getTenantsForUnit($event)" (onSelect)="addTenant($event)" [immutable]=false [minLength]="1"  placeholder="Enter Tenants" [multiple]="true">
+							<ng-template let-item pTemplate="tenants">
+							       <div >{{tenant.firstname}} {{tenant.lastname}}</div>
+							   </ng-template>
+						    </p-autoComplete>
 					</div>
 					<div class="form-group">
 						<p class="mb-0"><label for="messageType">Message Type:</label></p>
@@ -38,19 +68,19 @@
 								<ul class="list-inline mb-0">
 									<li class="list-inline-item">
 										<div class="form-check">
-											<input class="form-check-input" type="radio" formControlName="messageType" id="messageStandard" value="Standard" checked>
+											<input class="form-check-input" type="radio" formControlName="messageType" id="messageStandard" value="STANDARD" checked>
 											<label class="form-check-label" for="messageStandard">Standard Message</label>
 										</div>
 									</li>
 									<li class="list-inline-item">
 										<div class="form-check">
-											<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertStandard" value="Alert">
+											<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertStandard" value="ALERTSTANDARD">
 											<label class="form-check-label" for="messageAlertStandard">Alert Standard</label>
 										</div>
 									</li>
 									<li class="list-inline-item">
 										<div class="form-check">
-											<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertUrgent" value="Alert Urgent">
+											<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertUrgent" value="ALERTURGENT">
 											<label class="form-check-label" for="messageAlertUrgent">Alert Urgent</label>
 										</div>
 									</li>
@@ -85,7 +115,7 @@
 				</div>
 				
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" (click)="send()">Send</button>
+					<button type="button" class="btn btn-primary" (click)="send(); activeModal.close('Close click')">Send</button>
 					<button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
 				</div>
 			</form>

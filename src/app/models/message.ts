@@ -5,8 +5,9 @@ export class Message {
   message: string;
   messageType: string;
   rentalsitesId: number;
-  rentalsiteBuildingId: number;
-  rentalsiteBuildingUnitId: number;
+  rentalsiteBuildingIds: Array<any>;
+  rentalsiteBuildingUnitIds: Array<any>;
+  tenantIds: Array<any>;
   type: string;
   subject: string;
   isRead: boolean;
