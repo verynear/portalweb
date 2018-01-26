@@ -4,7 +4,6 @@ import { Message } from '../../../models/message';
 import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ComposeComponent } from '../../../components/compose/compose.component';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
 import { CheckboxModule } from 'primeng/primeng';
 
 @Component({
