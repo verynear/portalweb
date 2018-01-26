@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
-import { EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/primeng';
+import { SelectItem, EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-compose',
@@ -17,15 +17,15 @@ import { EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/pri
   styleUrls: ['./compose.component.scss']
 })
 export class ComposeComponent implements OnInit {
-  @Output() onSent = new EventEmitter<boolean>();
-  sent = false;
+  @Output() onSent = new EventEmitter();
   buildings: Building[];
   selectedBuildings: Building[];
   units: any[];
   selectedUnits: any[];
-  tenant: any;
-  tenants: any[];
-  selectedTenants: any[];
+  selectedTenantUnits: any[];
+  tenants: SelectItem[];
+  selectedTenants: Tenant[];
+  fetchedTenants: Tenant[];
   loading = false;
   recips = [
     {type: 'SITE', name: 'Community'},
@@ -40,6 +40,7 @@ export class ComposeComponent implements OnInit {
   type: FormControl;
   rentalsitesId: number;
   buildingIdforUnit: FormControl;
+  buildingIdforTenantUnit: FormControl;
   rentalsiteBuildingIds: FormControl;
   rentalsiteBuildingUnitIds: FormControl;
   unitIdForTenant: any;
@@ -60,6 +61,7 @@ export class ComposeComponent implements OnInit {
     ngOnInit() {
         this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
         this.finalBuildingUnitIds = [];
+        this.finaltenantIds = [];
         this.getSiteBuildings();
         this.createFormControls();
         this.createForm();
@@ -86,15 +88,15 @@ export class ComposeComponent implements OnInit {
       console.log(this.units);
     }
 
-    getTenantsForUnit(event) {
+    getUnitsForBuildingTenant(event) {
       const query = event.query;
-      this.messageService.getTenantsByUnitId(this.unitIdForTenant).then(tenants => {
-       this.selectedTenants = this.filterTenant(query, tenants);
+      this.messageService.getUnitsByBuildingId(this.composeForm.value.buildingIdforTenantUnit).then(units => {
+       this.selectedTenantUnits = this.filterUnit(query, units);
        });
-      console.log('selected tenants');
-      console.log(this.selectedTenants);
+      console.log('selected tenant units');
+      console.log(this.selectedTenantUnits);
       console.log('just units');
-      console.log(this.tenants);
+      console.log(this.units);
     }
 
     createFormControls() {
@@ -102,6 +104,7 @@ export class ComposeComponent implements OnInit {
         this.rentalsiteBuildingIds = new FormControl('');
         this.rentalsiteBuildingUnitIds = new FormControl('');
         this.buildingIdforUnit = new FormControl('');
+        this.buildingIdforTenantUnit = new FormControl('');
         this.tenantIds = new FormControl('');
         this.messageType = new FormControl('', Validators.required);
         this.subject = new FormControl('');
@@ -114,6 +117,7 @@ export class ComposeComponent implements OnInit {
             rentalsiteBuildingIds: this.rentalsiteBuildingIds,
             rentalsiteBuildingUnitIds: this.rentalsiteBuildingUnitIds,
             buildingIdforUnit: this.buildingIdforUnit,
+            buildingIdforTenantUnit: this.buildingIdforTenantUnit,
             tenantIds: this.tenantIds,
             messageType: this.messageType,
             subject: this.subject,
@@ -143,18 +147,6 @@ export class ComposeComponent implements OnInit {
         return this.filtered;
     }
 
-    filterTenant(query, tenants: any[]): any[] {
-        this.filtered = [];
-        for (let i = 0; i < tenants.length; i++) {
-            const tenant = tenants[i];
-             if (tenant.lastname.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                this.filtered.push(tenant);
-                console.log('filtered');
-                console.log(this.filtered);
-            }
-        }
-        return this.filtered;
-    }
 
     addUnit(value) {
       console.log('selected');
@@ -164,14 +156,22 @@ export class ComposeComponent implements OnInit {
 
     setUnit(value) {
       this.unitIdForTenant = value.id;
+      console.log('unitIdforTenant');
+      console.log(this.unitIdForTenant);
+      this.messageService.getTenantsByUnitId(this.unitIdForTenant).subscribe(
+      data => {
+        this.fetchedTenants = data;
+        this.tenants = [];
+        for (const tenant of this.fetchedTenants) {
+            this.tenants.push({label: tenant.firstname + ' ' + tenant.lastname, value: tenant.id});
+        }
+        console.log('selectItem formatted tenants');
+        console.log(this.tenants);
+      },
+      error => {
+        console.log('Error');
+      });
     }
-
-    addTenant(value) {
-      console.log('selected');
-      console.log(value);
-      this.finaltenantIds.push(value.id);
-    }
-
 
     send() {
         this.loading = true;
@@ -185,22 +185,22 @@ export class ComposeComponent implements OnInit {
           this.finalBuildingIds.push(building.id);
         }
         if (this.composeForm.value.type === 'BUILDING') {message.rentalsiteBuildingIds = this.finalBuildingIds; }
-        // for (const unit of this.selectedUnits) {
-        //   this.finalBuildingUnitIds.push(unit.id);
-        // }
         if (this.composeForm.value.type === 'UNIT') {message.rentalsiteBuildingUnitIds = this.finalBuildingUnitIds; }
-        if (this.composeForm.value.type === 'TENANT') {message.rentalsiteBuildingUnitIds = this.unitIdForTenant;
-          message.tenantIds = this.finaltenantIds; }
+        if (this.composeForm.value.type === 'TENANT') {
+          message.rentalsiteBuildingIds = [Number (this.composeForm.value.buildingIdforTenantUnit)];
+          message.tenantIds = this.composeForm.value.tenantIds;
+        }
         message.messageType = this.composeForm.value.messageType;
         message.message = this.composeForm.value.message;
         message.subject = this.composeForm.value.subject;
         console.log(message);
+        this.messageService.onSent(); // TEMPORARILY HERE WHILE API MESSAGE POST IS DOWN
 
         this.messageService.sendMessage(message).subscribe(
             data => {
                 console.log('sent');
                 this.alertService.success('Message Sent', true);
-                window.location.reload();
+                this.messageService.onSent();
             },
             error => {
                 this.alertService.error(error);

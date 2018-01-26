@@ -22,6 +22,9 @@ export class SentboxComponent implements OnInit {
   constructor(private router: Router, public messageService: MessageService, config: NgbDropdownConfig) {
     // Default values for dropdowns.
     config.autoClose = 'outside';
+    messageService.onSent$.subscribe(sent => {
+      this.onModalSend();
+    });
   }
 
   ngOnInit() {
@@ -58,6 +61,15 @@ export class SentboxComponent implements OnInit {
     console.log('Got Sort Event');
     console.log($event);
     this.messages = this.messageService.sortMessages(this.messages, $event);
+  }
+
+  onModalSend() {
+    this.itemsPerPage = 25;
+    this.page = 1;
+    this.checkAll = false;
+    this.loading = true;
+    setTimeout(() => { this.getSentMessages(); }, 500);
+    console.log('EMITTTED');
   }
 
   openMessage(id) {
