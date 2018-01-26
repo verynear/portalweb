@@ -3,7 +3,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Message } from '../models/message';
 import { Unit } from '../models/unit';
-import { Tenant } from '../models/tenant';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 import { SortService } from '../components/sortable-table/sort.service';
 
@@ -13,6 +14,12 @@ import 'rxjs/add/operator/map';
 export class MessageService {
   private baseURL = environment.api.baseUrl;
   messages: Array<Message>;
+  private _listners = new Subject<any>();
+  onSent$ = this._listners.asObservable();
+
+  onSent() {
+    this._listners.next();
+  }
 
  constructor(private http: HttpClient, private sortService: SortService) {
   }
@@ -45,8 +52,7 @@ export class MessageService {
   }
 
   getTenantsByUnitId(id: number) {
-     return this.http.get<Tenant[]>(this.baseURL + '/sites/buildings/units/' + id + '/residents')
-                    .toPromise();
+     return this.http.get<Tenant[]>(this.baseURL + '/sites/buildings/units/' + id + '/residents');
   }
 
   sendMessage (message: Message) {
@@ -66,5 +72,14 @@ class Building {
   buildingId: number;
   buildingNumber: number;
 }
+
+class Tenant {
+    id: number;
+    firstname: string;
+    lastname: string;
+    emailAddress: string;
+    fullname: string;
+}
+
 
 

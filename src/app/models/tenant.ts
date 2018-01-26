@@ -3,4 +3,5 @@ export interface Tenant {
     firstname: string;
     lastname: string;
     emailAddress: string;
+    fullname: string;
 }
