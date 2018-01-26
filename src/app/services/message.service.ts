@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Message } from '../models/message';
+import { Building } from '../models/building';
+import { Tenant } from '../models/tenant';
 import { Unit } from '../models/unit';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -66,20 +68,6 @@ class MessageSearchCriteria {
   sortDirection: string;
 }
 
-class Building {
-  id: number;
-  address1: string;
-  buildingId: number;
-  buildingNumber: number;
-}
-
-class Tenant {
-    id: number;
-    firstname: string;
-    lastname: string;
-    emailAddress: string;
-    fullname: string;
-}
 
 
 
