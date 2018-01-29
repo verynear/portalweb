@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import { ConfigService } from './config.service';
 import {User} from '../models/user';
 import {MessageService} from './message.service';
 import {PaymentService} from './payment.service';
@@ -10,11 +10,13 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService {
-  private baseURL = environment.api.baseUrl;
+  private baseURL: string;
   currentSiteId: number;
 
   constructor(private http: HttpClient,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private config: ConfigService) {
+    this.baseURL = config.get().api.baseURL;
   }
 
   getAll() {

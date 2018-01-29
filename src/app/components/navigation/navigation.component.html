@@ -1,7 +1,7 @@
 
   <div class="nav-side-menu">
     <div class="user-logo">
-      <a routerLink="/" class="navbar-brand"><img src="assets/logo-demo.png" alt="BetterLeasing"></a>
+      <a routerLink="/" class="navbar-brand"><img *ngIf="ste" [src]="site.siteBranding.logoUrl" alt="BetterLeasing" [title]="site.name"></a>
       <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     </div>
 

@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { Message } from '../models/message';
 import { Building } from '../models/building';
 import { Tenant } from '../models/tenant';
 import { Unit } from '../models/unit';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { ConfigService } from './config.service';
 import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 import { SortService } from '../components/sortable-table/sort.service';
 
-import 'rxjs/add/operator/map';
-
 @Injectable()
 export class MessageService {
-  private baseURL = environment.api.baseUrl;
+  private baseURL: string;
   messages: Array<Message>;
   private _listners = new Subject<any>();
   onSent$ = this._listners.asObservable();
@@ -23,7 +21,8 @@ export class MessageService {
     this._listners.next();
   }
 
- constructor(private http: HttpClient, private sortService: SortService) {
+ constructor(private http: HttpClient, private sortService: SortService, private config: ConfigService) {
+   this.baseURL = config.get().api.baseURL;
   }
 
  get() {

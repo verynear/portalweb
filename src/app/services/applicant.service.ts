@@ -4,16 +4,20 @@ import { Applicant } from '../models/applicant';
 import 'rxjs/add/operator/toPromise';
 
 import {environment} from '../../environments/environment';
+import { ConfigService } from './config.service';
 
 
 
 @Injectable()
 export class ApplicantService {
-    private baseURL = environment.api.baseUrl;
+    private baseURL: string;
 
     applicant = this.applicant;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+                private config: ConfigService ) {
+    this.baseURL = config.get().api.baseURL;
+      }
 
     get() {
     return this.http.get<Applicant[]>(this.baseURL + '/applicants');

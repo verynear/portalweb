@@ -39,6 +39,8 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
+import { ConfigService } from './services/config.service';
+import { SiteService } from './services/site.service';
 
 import { ProgressSpinnerModule } from 'primeng/primeng';
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
@@ -119,6 +121,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
       ApplicantService,
       AuthenticationService,
       UserService,
+      ConfigService,
+      SiteService,
       StatusService,
       fakeBackendProvider,
       MockBackend,

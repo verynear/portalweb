@@ -3,7 +3,6 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AlertService } from '../../services/alert.service';
 import { User } from '../../models/user';
-import { Site } from '../../models/site';
 
 @Component({
   selector: 'app-switch',

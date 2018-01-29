@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
-import {Status} from '../models/status';
+import { HttpClient } from '@angular/common/http';
+import { Site } from '../models/site';
 import { ConfigService } from './config.service';
-import {HttpClient} from '@angular/common/http';
 
 @Injectable()
-export class StatusService {
+export class SiteService {
   private url: string;
 
   constructor(private http: HttpClient,
               private config: ConfigService) {
+
     this.url = config.get().api.baseURL;
   }
 
-  getStatus(): Promise<Status> {
-    return this.http.get<Status>(this.url)
+  getRentalSite(id: number): Promise<Site> {
+    return this.http.get<Site>(`${this.url}/sites/${id}`)
       .toPromise();
   }
+
 }
