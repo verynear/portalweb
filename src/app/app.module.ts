@@ -58,6 +58,7 @@ import { AnnouncementcomposeComponent } from './components/announcementcompose/a
 import { MessageComponent } from './pages/messages/message/message.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 
 @NgModule({
   imports: [
@@ -106,7 +107,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     AnnouncementcomposeComponent,
     MessageComponent,
     SwitchComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    HtmlToPlainPipe
   ],
   providers: [
       {

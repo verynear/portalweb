@@ -5,6 +5,7 @@ import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ComposeComponent } from '../../../components/compose/compose.component';
 import { Router } from '@angular/router';
 import { CheckboxModule } from 'primeng/primeng';
+import { HtmlToPlainPipe } from '../../../pipes/html-to-plain.pipe';
 
 @Component({
   selector: 'app-sentbox',
@@ -18,6 +19,7 @@ export class SentboxComponent implements OnInit {
   page: number;
   checkAll: boolean;
   loading: boolean;
+
 
   constructor(private router: Router, public messageService: MessageService, config: NgbDropdownConfig) {
     // Default values for dropdowns.

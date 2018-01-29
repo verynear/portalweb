@@ -44,7 +44,7 @@
 					</td>
 					<td class="min-width-100" style="padding-right: 20px">
 						<span class="previewTitle"> {{message.subject}} -</span> 
-						<span [innerHTML]="message.message"> </span> 
+						<span [innerHTML]="message.message | htmlToPlain"> </span> 
 					</td> 
 					<td class="text-right" style="padding-left: 50px">
 
