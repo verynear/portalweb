@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import { ConfigService } from './config.service';
-import {User} from '../models/user';
+import { User } from '../models/user';
 import {MessageService} from './message.service';
 import {PaymentService} from './payment.service';
 import {MaintenanceService} from './maintenance.service';
@@ -28,10 +28,6 @@ export class UserService {
       .map((response: Response) => response.json());
   }
 
-  getRentalSites(user: User) {
-    return this.http.get(this.baseURL + '/sites/');
-  }
-
   getCurrentUserInfo() {
     return this.http.get(this.baseURL + '/auth/me');
   }
@@ -49,13 +45,5 @@ export class UserService {
   delete(id: number) {
     return this.http.delete(this.baseURL + '/users/' + id)
       .map((response: Response) => response.json());
-  }
-
-  getCurrentSiteId() {
-    return this.currentSiteId;
-  }
-
-  setCurrentSiteId(data: number) {
-    this.currentSiteId = data;
   }
 }

@@ -43,19 +43,6 @@ export class MessageService {
     });
   }
 
-  getbuildings(id: number) {
-     return this.http.get<Building[]>(this.baseURL + '/sites/' + id + '/buildings/'); // - will retrive buildings by site ID //
-  }
-
-  getUnitsByBuildingId(id: number) {
-     return this.http.get<Unit[]>(this.baseURL + '/sites/buildings/' + id + '/units')
-                    .toPromise();
-  }
-
-  getTenantsByUnitId(id: number) {
-     return this.http.get<Tenant[]>(this.baseURL + '/sites/buildings/units/' + id + '/residents');
-  }
-
   sendMessage (message: Message) {
     return this.http.post(this.baseURL + '/messages', message);
   }

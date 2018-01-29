@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
+import { SiteService } from '../../services/site.service';
 import { Message } from '../../models/message';
 import { Building } from '../../models/building';
 import { Unit } from '../../models/unit';
 import { Tenant } from '../../models/tenant';
-import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
@@ -56,7 +56,7 @@ export class ComposeComponent implements OnInit {
 
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
-      MessageService, private alertService: AlertService, private userService: UserService) {}
+      MessageService, private alertService: AlertService, private siteService: SiteService) {}
 
     ngOnInit() {
         this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
@@ -68,7 +68,7 @@ export class ComposeComponent implements OnInit {
     }
 
     getSiteBuildings() {
-    this.messageService.getbuildings(this.currentSiteId).subscribe(
+    this.siteService.getbuildings(this.currentSiteId).subscribe(
       data => {
         this.buildings = data;
       },
@@ -79,7 +79,7 @@ export class ComposeComponent implements OnInit {
 
     getUnitsForBuilding(event) {
       const query = event.query;
-      this.messageService.getUnitsByBuildingId(this.composeForm.value.buildingIdforUnit).then(units => {
+      this.siteService.getUnitsByBuildingId(this.composeForm.value.buildingIdforUnit).then(units => {
        this.selectedUnits = this.filterUnit(query, units);
        });
       console.log('selected units');
@@ -90,7 +90,7 @@ export class ComposeComponent implements OnInit {
 
     getUnitsForBuildingTenant(event) {
       const query = event.query;
-      this.messageService.getUnitsByBuildingId(this.composeForm.value.buildingIdforTenantUnit).then(units => {
+      this.siteService.getUnitsByBuildingId(this.composeForm.value.buildingIdforTenantUnit).then(units => {
        this.selectedTenantUnits = this.filterUnit(query, units);
        });
       console.log('selected tenant units');
@@ -158,7 +158,7 @@ export class ComposeComponent implements OnInit {
       this.unitIdForTenant = value.id;
       console.log('unitIdforTenant');
       console.log(this.unitIdForTenant);
-      this.messageService.getTenantsByUnitId(this.unitIdForTenant).subscribe(
+      this.siteService.getTenantsByUnitId(this.unitIdForTenant).subscribe(
       data => {
         this.fetchedTenants = data;
         this.tenants = [];
@@ -194,7 +194,6 @@ export class ComposeComponent implements OnInit {
         message.message = this.composeForm.value.message;
         message.subject = this.composeForm.value.subject;
         console.log(message);
-        // this.messageService.onSent(); // TEMPORARILY HERE WHILE API MESSAGE POST IS DOWN
 
         this.messageService.sendMessage(message).subscribe(
             data => {
