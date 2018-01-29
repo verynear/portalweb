@@ -194,7 +194,7 @@ export class ComposeComponent implements OnInit {
         message.message = this.composeForm.value.message;
         message.subject = this.composeForm.value.subject;
         console.log(message);
-        this.messageService.onSent(); // TEMPORARILY HERE WHILE API MESSAGE POST IS DOWN
+        // this.messageService.onSent(); // TEMPORARILY HERE WHILE API MESSAGE POST IS DOWN
 
         this.messageService.sendMessage(message).subscribe(
             data => {

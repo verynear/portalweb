@@ -14,11 +14,11 @@
         <li routerLink="/applicants" routerLinkActive="active">
           <a><i class="fa fa-user"></i> Applicants</a>
         </li>
-        <li routerLink="/payments" routerLinkActive="active">
-          <a><i class="fa fa-dollar"></i> Payments</a>
+        <li>
+          <a class="inactive"><i class="fa fa-dollar"></i> Payments</a>
         </li>
-        <li routerLink="/maintenance" routerLinkActive="active">
-          <a><i class="fa fa-wrench"></i> Maintenance</a>
+        <li>
+          <a class="inactive"><i class="fa fa-wrench"></i> Maintenance</a>
         </li>
         <li routerLink="/messages" (click)="isCollapsed = !isCollapsed"
           [attr.aria-expanded]="!isCollapsed" aria-controls="products">
