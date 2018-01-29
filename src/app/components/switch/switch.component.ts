@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AlertService } from '../../services/alert.service';
+import { SiteService } from '../../services/site.service';
 import { User } from '../../models/user';
 
 @Component({
@@ -10,6 +11,7 @@ import { User } from '../../models/user';
   styleUrls: ['./switch.component.scss']
 })
 export class SwitchComponent implements OnInit {
+  @Output() onSent = new EventEmitter();
   public currentUser: User;
   public mySite: number;
   public currentSite: any = {};
@@ -18,7 +20,8 @@ export class SwitchComponent implements OnInit {
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private siteService: SiteService) {
          this.route.params.subscribe(params => {
                this.mySite = Number (params.site);
          }); }
@@ -40,6 +43,7 @@ export class SwitchComponent implements OnInit {
 
   switchSite(id: number) {
     this.router.navigate(['/dashboard', id ], { skipLocationChange: false });
+    this.siteService.onSwitch();
   }
 
   backSite() {

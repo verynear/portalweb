@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteService } from '../../services/site.service';
-import { Site } from '../../models/site';
 
 @Component({
   selector: 'app-nav',
@@ -8,20 +7,50 @@ import { Site } from '../../models/site';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-    public site: Site;
+    public site: any = {};
+    public logoUrl: string;
     public currentSiteId: number;
     public isCollapsed = true;
-    public logoUrl: string;
     constructor(private siteService: SiteService) {
+      siteService.onSwitch$.subscribe(sent => {
+      this.onSiteSwitch();
+    });
 
     }
 
     ngOnInit() {
-        const currentSiteId = Number (localStorage.getItem('currentSiteId'));
+        this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
 
-        this.siteService.getRentalSite(currentSiteId)
-      .then((site: Site) => this.site = site);
+        this.siteService.getRentalSite(this.currentSiteId).subscribe(
+          data => {
+            this.site = data;
+            if (this.site.rentalSitesBrandings[0]) {
+              this.logoUrl = this.site.rentalSitesBrandings[0].logoUrl;
+            } else {
+              this.logoUrl = 'assets/backuplogo.png';
+            }
+          },
+          error => {
+            console.log('Error Retriving Site Branding');
+          });
 
+    }
+
+    onSiteSwitch() {
+      setTimeout(() => {
+        this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
+        this.siteService.getRentalSite(this.currentSiteId).subscribe(
+        data => {
+          this.site = data;
+          if (this.site.rentalSitesBrandings[0]) {
+            this.logoUrl = this.site.rentalSitesBrandings[0].logoUrl;
+          } else {
+            this.logoUrl = 'assets/backuplogo.png';
+          }
+        },
+        error => {
+          console.log('Error Retriving Site Branding');
+        }); }, 500);
     }
 
 }
