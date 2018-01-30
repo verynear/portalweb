@@ -9,6 +9,7 @@ import { SiteService } from '../../services/site.service';
 export class NavigationComponent implements OnInit {
     public site: any = {};
     public logoUrl: string;
+    public currentSite: any = {};
     public currentSiteId: number;
     public isCollapsed = true;
     constructor(private siteService: SiteService) {
@@ -19,38 +20,22 @@ export class NavigationComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
-
-        this.siteService.getRentalSite(this.currentSiteId).subscribe(
-          data => {
-            this.site = data;
-            if (this.site.rentalSitesBrandings[0]) {
-              this.logoUrl = this.site.rentalSitesBrandings[0].logoUrl;
-            } else {
-              this.logoUrl = 'assets/backuplogo.png';
-            }
-          },
-          error => {
-            console.log('Error Retriving Site Branding');
-          });
-
+        this.currentSite = this.siteService.getCurrentSite();
+        if (this.currentSite.rentalSitesBrandings[0]) {
+          this.logoUrl = this.site.rentalSitesBrandings[0].logoUrl;
+        } else {
+          this.logoUrl = 'assets/backuplogo.png';
+        }
     }
 
     onSiteSwitch() {
       setTimeout(() => {
-        this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
-        this.siteService.getRentalSite(this.currentSiteId).subscribe(
-        data => {
-          this.site = data;
-          if (this.site.rentalSitesBrandings[0]) {
-            this.logoUrl = this.site.rentalSitesBrandings[0].logoUrl;
-          } else {
-            this.logoUrl = 'assets/backuplogo.png';
-          }
-        },
-        error => {
-          console.log('Error Retriving Site Branding');
-        }); }, 500);
+        this.currentSite = this.siteService.getCurrentSite();
+        if (this.currentSite.rentalSitesBrandings[0]) {
+          this.logoUrl = this.site.rentalSitesBrandings[0].logoUrl;
+        } else {
+          this.logoUrl = 'assets/backuplogo.png';
+        }, 500);
     }
 
 }

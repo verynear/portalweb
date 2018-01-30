@@ -27,7 +27,6 @@ export class LoginService {
   ) { }
 
   login(username: string, password: string): Promise<User> {
-    this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
     return this.authService.login(username, password)
       .then((token: string) => {
         localStorage.setItem('authorizationToken', token);
@@ -36,27 +35,6 @@ export class LoginService {
       .then(() => this.getCurrentUser())
       .then((user: User) => {
         this.session.set('currentUser', user);
-        this.siteService.getRentalSites(user)
-        .subscribe(
-            data => {
-                this.userSites = data;
-                if (this.currentSiteId) {
-                  for (const userSite of this.userSites) {
-                     if (userSite.id === this.currentSiteId) {
-                       this.currentSite = userSite;
-                     }
-                   }
-                  localStorage.setItem('currentSiteId', this.currentSite.id);
-                  this.siteService.setCurrentSite(this.currentSite);
-                } else {
-                  this.currentSite = this.userSites[this.defaultSite];
-                  localStorage.setItem('currentSiteId', this.currentSite.id);
-                  this.siteService.setCurrentSite(this.currentSite);
-                }
-            },
-            error => {
-                this.alertService.error('Unable to retrieve site');
-            });
         return user;
          });
     }
