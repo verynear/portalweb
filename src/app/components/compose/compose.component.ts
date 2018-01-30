@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
 import { SelectItem, EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/primeng';
+import { ReplacePipe } from '../../pipes/replace.pipe';
 
 @Component({
   selector: 'app-compose',
@@ -195,6 +196,8 @@ export class ComposeComponent implements OnInit {
         message.subject = this.composeForm.value.subject;
         console.log(message);
         // this.messageService.onSent(); // TEMPORARILY HERE WHILE API MESSAGE POST IS DOWN
+
+        message.message = new ReplacePipe().transform(message.message, '<br>'); // Remove all occurences of <br>
 
         this.messageService.sendMessage(message).subscribe(
             data => {

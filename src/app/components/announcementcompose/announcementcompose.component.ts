@@ -57,7 +57,7 @@ export class AnnouncementcomposeComponent implements OnInit {
         message.subject = this.announcementForm.value.subject;
         message.messageType = 'Announcement';
 
-        message.message = new ReplacePipe().transform(message.message, "<br>"); // Remove all occurences of <br>
+        message.message = new ReplacePipe().transform(message.message, '<br>'); // Remove all occurences of <br>
 
         this.announcementService.postAnnouncement(message).subscribe(
             data => {
