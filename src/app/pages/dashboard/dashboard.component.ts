@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AlertService } from '../../services/alert.service';
 import { SessionService } from '../../services/session.service';
+import { SiteService } from '../../services/site.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class DashboardComponent implements OnInit {
               private session: SessionService,
               private route: ActivatedRoute,
               private router: Router,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private siteService: SiteService) {
     this.route.params.subscribe(params => {
         if (params.site) {
           this.mySite = Number (params.site);
@@ -37,6 +39,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.session.getObservable('currentUser')
       .subscribe((user: User) => this.currentUser = user);
+      // this.currentSite = this.siteService.getCurrentSite();
+      // console.log('fetched currentsite');
+      // console.log(this.currentSite);
       this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
       this.userService.getCurrentUserInfo().subscribe(
             data => {
