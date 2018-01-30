@@ -20,22 +20,27 @@ export class NavigationComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.currentSite = this.siteService.getCurrentSite();
-        if (this.currentSite.rentalSitesBrandings[0]) {
-          this.logoUrl = this.site.rentalSitesBrandings[0].logoUrl;
-        } else {
-          this.logoUrl = 'assets/backuplogo.png';
-        }
+      setTimeout(() => {
+      this.currentSite = this.siteService.currentSite;
+      console.log('nav current site');
+      console.log(this.currentSite);
+      if (this.currentSite.rentalSitesBrandings[0]) {
+        this.logoUrl = this.currentSite.rentalSitesBrandings[0].logoUrl;
+      } else {
+        this.logoUrl = 'assets/backuplogo.png';
+      }}, 500);
     }
 
     onSiteSwitch() {
       setTimeout(() => {
-        this.currentSite = this.siteService.getCurrentSite();
+        this.currentSite = this.siteService.currentSite;
+        console.log('nav current site');
+        console.log(this.currentSite);
         if (this.currentSite.rentalSitesBrandings[0]) {
-          this.logoUrl = this.site.rentalSitesBrandings[0].logoUrl;
+          this.logoUrl = this.currentSite.rentalSitesBrandings[0].logoUrl;
         } else {
           this.logoUrl = 'assets/backuplogo.png';
-        }, 500);
+        }}, 500);
     }
 
 }
