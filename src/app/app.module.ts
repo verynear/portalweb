@@ -39,6 +39,8 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
+import { ConfigService } from './services/config.service';
+import { SiteService } from './services/site.service';
 
 import { ProgressSpinnerModule } from 'primeng/primeng';
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
@@ -56,7 +58,6 @@ import { SortableTableDirective } from './components/sortable-table/sortable-tab
 import { SortService } from './components/sortable-table/sort.service';
 import { AnnouncementcomposeComponent } from './components/announcementcompose/announcementcompose.component';
 import { MessageComponent } from './pages/messages/message/message.component';
-import { SwitchComponent } from './components/switch/switch.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
@@ -107,7 +108,6 @@ import { ReplacePipe } from './pipes/replace.pipe';
     SortableTableDirective,
     AnnouncementcomposeComponent,
     MessageComponent,
-    SwitchComponent,
     SafeHtmlPipe,
     HtmlToPlainPipe,
     ReplacePipe,
@@ -123,6 +123,8 @@ import { ReplacePipe } from './pipes/replace.pipe';
       ApplicantService,
       AuthenticationService,
       UserService,
+      ConfigService,
+      SiteService,
       StatusService,
       fakeBackendProvider,
       MockBackend,

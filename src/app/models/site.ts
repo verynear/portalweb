@@ -10,4 +10,16 @@ export class Site {
     // userid: number;
     // zip: string;
     state: string;
+    rentalSitesBrandings: SiteBranding;
+}
+
+export class SiteBranding {
+  id: number;
+  accentColor: string;
+  bgColor: string;
+  galleryUrl: string;
+  logoUrl: string;
+  description: string;
+  textColor: string;
+  domain: string;
 }

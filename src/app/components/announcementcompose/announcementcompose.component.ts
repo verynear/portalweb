@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { MessageService } from '../../services/message.service';
-import { UserService } from '../../services/user.service';
 import { AnnouncementService } from '../../services/announcement.service';
 
 import { Announcement } from '../../models/announcement';
@@ -27,7 +26,7 @@ export class AnnouncementcomposeComponent implements OnInit {
   subject: FormControl;
   message: FormControl;
 
-  constructor(private router: Router, public activeModal: NgbActiveModal, private userService: UserService,
+  constructor(private router: Router, public activeModal: NgbActiveModal,
     public announcementService: AnnouncementService) {}
 
     ngOnInit() {

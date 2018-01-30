@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Status} from '../models/status';
-import { environment } from './../../environments/environment';
+import { ConfigService } from './config.service';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class StatusService {
-  private url = `${environment.api.baseUrl}/`;
+  private url: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private config: ConfigService) {
+    this.url = config.get().api.baseURL;
+  }
 
   getStatus(): Promise<Status> {
     return this.http.get<Status>(this.url)

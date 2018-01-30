@@ -1,14 +1,17 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
 import 'rxjs/add/operator/map';
 import {User} from '../models/user';
 import {HttpClient, HttpResponse} from '@angular/common/http';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class AuthenticationService {
-  private url = environment.api.baseUrl;
+  private url: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private config: ConfigService) {
+    this.url = config.get().api.baseURL;
+  }
 
   login(username: string, password: string): Promise<string> {
     return this.http.post(`${this.url}/login`, {username, password}, {observe: 'response'})
