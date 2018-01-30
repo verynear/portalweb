@@ -9,10 +9,36 @@
 				</div>
 
 				<div class="modal-body">
+					<p> From: info@treetopvillage.com </p>
+
 					<div class="form-group">
-						<label for="fromEmail">From:</label>
-						<input type="text" readonly class="form-control-plaintext" id="fromEmail" value="info@treetopvillage.com">
-					</div>
+							<p class="mb-0"><label for="messageType">Message Type:</label></p>
+							<div class="row">
+								<div class="col-sm-12">
+									<ul class="list-inline mb-0">
+										<li class="list-inline-item">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" formControlName="messageType" id="messageStandard" value="STANDARD" checked>
+												<label class="form-check-label" for="messageStandard">Standard Message</label>
+											</div>
+										</li>
+										<li class="list-inline-item">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertStandard" value="ALERTSTANDARD">
+												<label class="form-check-label" for="messageAlertStandard">Alert Standard</label>
+											</div>
+										</li>
+										<li class="list-inline-item">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertUrgent" value="ALERTURGENT">
+												<label class="form-check-label" for="messageAlertUrgent">Alert Urgent</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
 					<div class="form-group">
 						<label>Recipient Type:</label>
 						<select class="form-control" formControlName="type">
@@ -22,9 +48,12 @@
                             </option>
 						</select>
 					</div>
+
 					<div class="form-group" [style.display]="(composeForm.value.type === 'BUILDING') ? 'block' : 'none' ">
 						<label for="rentalsiteBuildingIds">Select Building(s):</label>
-						<p-multiSelect [options]="buildings" [filter]=false formControlName="rentalsiteBuildingIds" optionLabel="address1"></p-multiSelect>
+							<div class="ui-fluid">
+								<p-multiSelect [style]="{'display':'block'}" [options]="buildings" [filter]=false formControlName="rentalsiteBuildingIds" optionLabel="address1"></p-multiSelect>
+							</div>
 					</div>
 					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
 						<label>Select Building:</label>
@@ -37,8 +66,10 @@
 					</div>
 					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
 						<label for="toEmail">To:</label>
-						<p-autoComplete formControlName="rentalsiteBuildingUnitIds" [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)" (onSelect)="addUnit($event)" [immutable]=false [minLength]="1"  placeholder="Enter Units" field="unitNumber" [multiple]="true">
-						    </p-autoComplete>
+						<div class="ui-fluid">
+							<p-autoComplete formControlName="rentalsiteBuildingUnitIds" [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)" (onSelect)="addUnit($event)" [immutable]=false [minLength]="1"  placeholder="Enter Units" field="unitNumber" [multiple]="true">
+								</p-autoComplete>
+						</div>
 					</div>
 					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
 						<label>Select Building:</label>
@@ -50,49 +81,30 @@
 						</select>
 					</div>
 					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
-						<p-autoComplete [suggestions]="selectedTenantUnits" (completeMethod)="getUnitsForBuildingTenant($event)" (onSelect)="setUnit($event)" [minLength]="1"  placeholder="Enter Unit" field="unitNumber" [multiple]="false">
-						    </p-autoComplete>
-					</div>
-					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
-						<label for="tenantIds">To:</label>
-						<p-multiSelect [options]="tenants" [showToggleAll]=false formControlName="tenantIds">
-						</p-multiSelect>
-					</div>
-					<div class="form-group">
-						<p class="mb-0"><label for="messageType">Message Type:</label></p>
-						<div class="row">
-							<div class="col-sm-12">
-								<ul class="list-inline mb-0">
-									<li class="list-inline-item">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" formControlName="messageType" id="messageStandard" value="STANDARD" checked>
-											<label class="form-check-label" for="messageStandard">Standard Message</label>
-										</div>
-									</li>
-									<li class="list-inline-item">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertStandard" value="ALERTSTANDARD">
-											<label class="form-check-label" for="messageAlertStandard">Alert Standard</label>
-										</div>
-									</li>
-									<li class="list-inline-item">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" formControlName="messageType" id="messageAlertUrgent" value="ALERTURGENT">
-											<label class="form-check-label" for="messageAlertUrgent">Alert Urgent</label>
-										</div>
-									</li>
-								</ul>
-							</div>
+						<label> Enter Unit: </label>
+						<div class="ui-fluid">
+							<p-autoComplete [suggestions]="selectedTenantUnits" (completeMethod)="getUnitsForBuildingTenant($event)" (onSelect)="setUnit($event)" [minLength]="1"  placeholder="Enter Unit" field="unitNumber" [multiple]="false">
+							</p-autoComplete>
 						</div>
 					</div>
+
+					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+							<label for="tenantIds">To:</label>
+						<div class="ui-fluid">
+							<p-multiSelect [options]="tenants" [showToggleAll]=false formControlName="tenantIds">
+							</p-multiSelect>
+						</div>
+					</div>
+
+
 					<div class="form-group">
 						<label for="subject">Subject:</label>
 						<input type="email" class="form-control" formControlName="subject" placeholder="Subject">
 					</div>
-					<p-editor formControlName="message" [style]="{'height':'320px'}">
+					<p-editor formControlName="message" [style]="{'height':'280px'}">
 					  <p-header>
 					      <span class="ql-formats">
-					      	<select class="ql-size">
+					      	  <select class="ql-size">
 					      	    <option value="small"></option>
 					      	    <option selected></option>
 					      	    <option value="large"></option>
@@ -101,11 +113,9 @@
 					          <button class="ql-bold" aria-label="Bold"></button>
 					          <button class="ql-italic" aria-label="Italic"></button>
 					          <button class="ql-underline" aria-label="Underline"></button>
-					          <select class="ql-color">
-					      	  </select>
-					          <button class="ql-link" aria-label="Link"></button>
-					          <button class="ql-image" aria-label="Image"></button>
-					          <button class="ql-clean" aria-label="Clean"></button>
+					          <!-- <select class="ql-color">
+					      	  </select> -->
+					          <!-- <button class="ql-image" aria-label="Image"></button> -->
 					      </span>
 					  </p-header>
 					</p-editor>

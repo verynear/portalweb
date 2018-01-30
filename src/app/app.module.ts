@@ -59,6 +59,8 @@ import { SortService } from './components/sortable-table/sort.service';
 import { AnnouncementcomposeComponent } from './components/announcementcompose/announcementcompose.component';
 import { MessageComponent } from './pages/messages/message/message.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
+import { ReplacePipe } from './pipes/replace.pipe';
 
 @NgModule({
   imports: [
@@ -106,7 +108,9 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     SortableTableDirective,
     AnnouncementcomposeComponent,
     MessageComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    HtmlToPlainPipe,
+    ReplacePipe,
   ],
   providers: [
       {

@@ -65,7 +65,6 @@ tr {
 .previewTitle {
   font-style: bold;
   overflow: hidden;
-  display: inline-block;
 }
 
 .mailHeader {
@@ -118,7 +117,6 @@ tr {
 
 .sentType {
   padding: 0.47rem .4rem;
-  // background-color: #dad9d9;
   color: white;
   padding-top: 5px;
   padding-bottom: 3px;
@@ -167,7 +165,6 @@ td, th {
 .width-150 {
   width: 150px;
 }
-
 .width-250 {
   width: 250px;
 }

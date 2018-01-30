@@ -30,26 +30,49 @@
 						  </li>
 						</ul>
 					</td>
-					<td style="font-size: 12px; text-overflow: ellipsis;"> 
-						<span> To: </span>
-						<span *ngFor='let recipient of message.recipients; let i=index; let isLast=last'></span>
-					</td>
-					<td>
-						<span *ngFor='let recipient of message.recipients; let i=index; let isLast=last'>
-						<span *ngIf="i < 3" >
+
+					<td class="ellipsis">
+						To:
+						<!-- If the recipient was a community. -->
+						<span *ngIf="message.type ==='SITE'">
+							{{message.messageRecipients[0].rentalSite}}		<!-- TODO:  Should rentalSite property exist on message?-->
+						</span>
+
+						<!-- If the recipient is a building -->
+						<span *ngIf="message.type === 'BUILDING'">
+
+						</span>
+
+
+						<!-- <span *ngFor='let recipient of message.messageRecipients; let i=index; let isLast=last'>
+						<span *ngIf="i < 3">
 								<span> {{recipient.firstname}}<span *ngIf="i < 2 && !isLast">, </span>
 								</span>
 							</span>
-						</span>
+						</span> -->
 					</td>
+
+					<td>
+						<button [ngClass]="message.type" class="btn sentType UNIT">
+							<span *ngIf="message.type==='SITE'">
+								Community
+							</span>
+							<span *ngIf="message.type!='SITE'">
+								{{message.type}}
+							</span>
+						</button>
+					</td>
+
 					<td class="min-width-100" style="padding-right: 20px">
 						<span class="previewTitle"> {{message.subject}} -</span> 
-						<span [innerHTML]="message.message"> </span> 
+						<span [innerHTML]="message.message | htmlToPlain"> </span> 
 					</td> 
+
 					<td class="text-right" style="padding-left: 50px">
 
 						<span>{{message.createDate | date:'mediumDate' }} </span>
 					</td>
+					
 				</tr>				               
 			</tbody>
 		</table>
