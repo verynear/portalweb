@@ -12,6 +12,8 @@ import { Announcement } from '../../models/announcement';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule, ProgressSpinnerModule } from 'primeng/primeng';
 
+import { ReplacePipe } from '../../pipes/replace.pipe';
+
 @Component({
   selector: 'app-announcementcompose',
   templateUrl: './announcementcompose.component.html',
@@ -54,6 +56,8 @@ export class AnnouncementcomposeComponent implements OnInit {
         message.message = this.announcementForm.value.message;
         message.subject = this.announcementForm.value.subject;
         message.messageType = 'Announcement';
+
+        message.message = new ReplacePipe().transform(message.message, '<br>'); // Remove all occurences of <br>
 
         this.announcementService.postAnnouncement(message).subscribe(
             data => {
