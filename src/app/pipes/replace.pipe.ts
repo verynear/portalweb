@@ -1,7 +1,10 @@
 /*
   This custom pipe replaces [all] occurences of a char, or string within a string with the empty string: ''
-  "str: string" -- the entire string
-  "find: string" -- the characer(s) to replace
+
+  @Param: 'str' -- The large string.
+  @Param: 'find' -- The substring to replace.
+
+  @Return the modified string.
 */
 
 import { Pipe, PipeTransform } from '@angular/core';
