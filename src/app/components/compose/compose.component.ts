@@ -5,6 +5,7 @@ import { SiteService } from '../../services/site.service';
 import { Message } from '../../models/message';
 import { Building } from '../../models/building';
 import { Unit } from '../../models/unit';
+import { Site } from '../../models/site';
 import { Tenant } from '../../models/tenant';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -53,14 +54,14 @@ export class ComposeComponent implements OnInit {
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
-  public currentSiteId: number;
+  public currentSite: Site;
 
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
       MessageService, private alertService: AlertService, private siteService: SiteService) {}
 
     ngOnInit() {
-        this.currentSiteId = Number (localStorage.getItem('currentSiteId'));
+        this.currentSite = this.siteService.currentSite;
         this.finalBuildingUnitIds = [];
         this.finaltenantIds = [];
         this.getSiteBuildings();
@@ -69,7 +70,7 @@ export class ComposeComponent implements OnInit {
     }
 
     getSiteBuildings() {
-    this.siteService.getbuildings(this.currentSiteId).subscribe(
+    this.siteService.getbuildings(this.currentSite.id).subscribe(
       data => {
         this.buildings = data;
       },
@@ -181,7 +182,7 @@ export class ComposeComponent implements OnInit {
         if (this.composeForm.value.type === 'SITE' || this.composeForm.value.type ===
           'BUILDING' || this.composeForm.value.type === 'UNIT') { message.type =
           this.composeForm.value.type; } else { message.type = 'UNIT'; }
-        if (this.composeForm.value.type === 'SITE') {message.rentalsitesId = this.currentSiteId; }
+        if (this.composeForm.value.type === 'SITE') {message.rentalsitesId = this.currentSite.id; }
         for (const building of this.composeForm.value.rentalsiteBuildingIds) {
           this.finalBuildingIds.push(building.id);
         }
