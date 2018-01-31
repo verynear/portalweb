@@ -14,8 +14,8 @@ import { SessionService } from '../../services/session.service';
 })
 export class MenuComponent implements OnInit {
   public currentUser: User;
-  public userSites: any = [];
-  public multiSite = false;
+  public sites: any = [];
+  public multiSite: boolean;
 
   constructor(private userService: UserService,
               private session: SessionService,
@@ -26,26 +26,23 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
         this.session.getObservable('currentUser')
-        .subscribe((user: User) => this.currentUser = user);
-        this.siteService.getRentalSites(this.currentUser)
-        .subscribe(
-            data => {
-                this.userSites = data;
-                if (this.userSites.length > 1) {
-                  this.multiSite = true;
-                }
-            },
-            error => {
-                this.alertService.error('Unable to retrieve site');
-            });
+          .subscribe((user: User) => this.currentUser = user);
+
+        this.session.getObservable('sites')
+          .subscribe((sites: Site[]) => {
+
+          console.log('Getting Sites In Menu');
+          console.log(sites);
+
+          if (sites.length > 1) {
+            this.multiSite = true;
+          }
+
+          this.sites = sites;
+        });
   }
 
-  switchSite(site: Site) {
-    this.siteService.setCurrentSite(site);
-     setTimeout(() => {
-       this.siteService.onSwitch();
-       this.router.navigate(['/dashboard'], { skipLocationChange: false });
-        }, 500);
+  switchSite(site) {
+    this.siteService.currentSite = site;
   }
-
 }

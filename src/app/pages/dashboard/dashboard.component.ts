@@ -16,6 +16,7 @@ import { SiteService } from '../../services/site.service';
 export class DashboardComponent implements OnInit {
   public currentUser: User;
   public currentSite: any = {};
+  public sites: any = [];
 
   constructor(private userService: UserService,
               private session: SessionService,
@@ -28,6 +29,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.session.getObservable('currentUser')
       .subscribe((user: User) => this.currentUser = user);
+
+    this.session.getObservable('sites')
+    .subscribe((sites: Site[]) => {
+      console.log('Getting Current Sites');
+      this.sites = sites;
+    });
+
+
   }
 
 }
