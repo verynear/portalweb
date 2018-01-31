@@ -61,6 +61,7 @@ import { MessageComponent } from './pages/messages/message/message.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
+import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
 
 @NgModule({
   imports: [
@@ -107,6 +108,7 @@ import { ReplacePipe } from './pipes/replace.pipe';
     SortableColumnComponent,
     SortableTableDirective,
     AnnouncementcomposeComponent,
+    RecentActivityComponent,
     MessageComponent,
     SafeHtmlPipe,
     HtmlToPlainPipe,
