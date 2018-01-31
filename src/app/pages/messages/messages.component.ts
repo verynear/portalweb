@@ -14,7 +14,6 @@ import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MessagesComponent implements OnInit {
   public currentSite: any = {};
-  public currentSiteId: number;
   public userSites: any = [];
 
   constructor( private userService: UserService,

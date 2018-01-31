@@ -11,7 +11,6 @@ import {AuthHeaderInterceptor} from '../auth-header.interceptor';
 @Injectable()
 export class LoginService {
   public onLogin = new EventEmitter<User | boolean>();
-  public currentSiteId: number;
   public userSites: any = [];
   public currentSite: any = {};
   public defaultSite = 0; // TEMP until defaultSite attribute added to user

@@ -10,7 +10,6 @@ export class NavigationComponent implements OnInit {
     public site: any = {};
     public logoUrl: string;
     public currentSite: any = {};
-    public currentSiteId: number;
     public isCollapsed = true;
     constructor(private siteService: SiteService) {
       siteService.onSwitch$.subscribe(sent => {

@@ -13,7 +13,6 @@ import { AlertService } from './alert.service';
 
 @Injectable()
 export class SiteService {
-  currentSiteId: number;
   public defaultSite = 0; // until default site attribute and user edit
   public currentSite: Site;
   public userSites: Site[];

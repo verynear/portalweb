@@ -11,7 +11,6 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserService {
   private baseURL: string;
-  currentSiteId: number;
 
   constructor(private http: HttpClient,
               private messageService: MessageService,
