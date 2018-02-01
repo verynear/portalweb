@@ -54,7 +54,8 @@
 							<div class="ui-fluid">
 								<p-multiSelect [style]="{'display':'block'}" [options]="buildings" [filter]=false formControlName="rentalsiteBuildingIds" optionLabel="address1"></p-multiSelect>
 							</div>
-					</div>
+					</div> 
+
 					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
 						<label>Select Building:</label>
 						<select class="form-control" formControlName="buildingIdforUnit">
@@ -64,6 +65,8 @@
                             </option>
 						</select>
 					</div>
+					
+
 					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
 						<label for="toEmail">To:</label>
 						<div class="ui-fluid">
@@ -71,7 +74,8 @@
 								</p-autoComplete>
 						</div>
 					</div>
-					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+
+					 <div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
 						<label>Select Building:</label>
 						<select class="form-control" formControlName="buildingIdforTenantUnit">
 							<option value="">Select Building:</option>
@@ -79,14 +83,15 @@
 								{{building.address1}}
                             </option>
 						</select>
-					</div>
-					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+					</div> 
+
+					 <div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
 						<label> Enter Unit: </label>
 						<div class="ui-fluid">
 							<p-autoComplete [suggestions]="selectedTenantUnits" (completeMethod)="getUnitsForBuildingTenant($event)" (onSelect)="setUnit($event)" [minLength]="1"  placeholder="Enter Unit" field="unitNumber" [multiple]="false">
 							</p-autoComplete>
 						</div>
-					</div>
+					</div> 
 
 					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
 							<label for="tenantIds">To:</label>
