@@ -6,6 +6,9 @@ import { UserService } from '../../services/user.service';
 import { SiteService } from '../../services/site.service';
 import { AlertService } from '../../services/alert.service';
 import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SessionService } from '../../services/session.service';
+import { Site } from '../../models/site';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-messages',
@@ -13,16 +16,28 @@ import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent implements OnInit {
-  public currentSite: any = {};
+  public sites: any = [];
   public userSites: any = [];
+  public currentUser: User;
 
   constructor( private userService: UserService,
                private alertService: AlertService,
                private modalService: NgbModal,
-               private siteService: SiteService) { }
+               private siteService: SiteService,
+               private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.currentSite = this.siteService.currentSite;
+
+    this.sessionService.getObservable('currentUser')
+    .subscribe((user: User) => this.currentUser = user);
+
+    this.sessionService.getObservable('sites')
+      .subscribe((sites: Site[]) => {
+      console.log('Getting Current Sites');
+      this.sites = sites;
+    });
+
+
   }
 
   compose() {

@@ -1,7 +1,9 @@
 
   <div class="nav-side-menu">
     <div class="user-logo">
-      <a routerLink="/" class="navbar-brand"><img *ngIf="site" [src]="logoUrl" alt="BetterLeasing" [title]="site.name"></a>
+      <a routerLink="/" class="navbar-brand">
+        <img [src]="siteService.currentSite.rentalSitesBrandings[0].logoUrl" alt="BetterLeasing"> </a>
+        
       <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     </div>
 
@@ -14,12 +16,6 @@
         <li routerLink="/applicants" routerLinkActive="active">
           <a><i class="fa fa-user"></i> Applicants</a>
         </li>
-        <!-- <li>
-          <a class="inactive"><i class="fa fa-dollar"></i> Payments</a>
-        </li>
-        <li>
-          <a class="inactive"><i class="fa fa-wrench"></i> Maintenance</a>
-        </li> -->
         <li routerLink="/messages" (click)="isCollapsed = !isCollapsed"
           [attr.aria-expanded]="!isCollapsed" aria-controls="products">
           <a><i class="fa fa-comments"></i> Communications <span class="arrow"></span></a>

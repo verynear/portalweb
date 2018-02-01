@@ -12,6 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
 import { SelectItem, EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/primeng';
 import { ReplacePipe } from '../../pipes/replace.pipe';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-compose',
@@ -55,13 +56,18 @@ export class ComposeComponent implements OnInit {
   subject: FormControl;
   message: FormControl;
   public currentSite: Site;
-
+  sites: any = [];
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
-      MessageService, private alertService: AlertService, private siteService: SiteService) {}
+      MessageService, private alertService: AlertService, private siteService: SiteService, private sessionService: SessionService) {}
 
     ngOnInit() {
-        this.currentSite = this.siteService.currentSite;
+        this.sessionService.getObservable('sites')
+        .subscribe((sites: Site[]) => {
+          this.sites = sites;
+          this.currentSite = this.siteService.currentSite;    // Temporary.
+        });
+
         this.finalBuildingUnitIds = [];
         this.finaltenantIds = [];
         this.getSiteBuildings();
@@ -70,7 +76,7 @@ export class ComposeComponent implements OnInit {
     }
 
     getSiteBuildings() {
-    this.siteService.getbuildings(this.currentSite.id).subscribe(
+    this.siteService.getBuildings(this.currentSite.id).subscribe(
       data => {
         this.buildings = data;
       },
