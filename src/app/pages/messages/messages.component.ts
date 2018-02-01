@@ -41,6 +41,7 @@ export class MessagesComponent implements OnInit {
   }
 
   compose() {
+    console.log('Compose');
     const modalRef = this.modalService.open(ComposeComponent);
   }
 

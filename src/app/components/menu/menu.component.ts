@@ -28,17 +28,18 @@ export class MenuComponent implements OnInit {
               }
 
   ngOnInit() {
-        console.log('Menu: NgOnInit');
-        this.session.getObservable('currentUser')
-          .subscribe((user: User) => this.currentUser = user);
+    this.session.getObservable('currentUser').subscribe((user: User) => this.currentUser = user);
+    this.getRentalSites();
+  }
 
-        this.siteService.getRentalSites().subscribe((sites: Site[]) => {
-          if (sites.length > 1) {
-            this.multiSite = true;
-          }
+  getRentalSites() {
+    this.siteService.getRentalSites().subscribe((sites: Site[]) => {
+      if (sites.length > 1) {
+        this.multiSite = true;
+      }
 
-          this.sites = sites;
-        });
+      this.sites = sites;
+    });
   }
 
   switchSite(site) {
