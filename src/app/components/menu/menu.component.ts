@@ -3,7 +3,6 @@ import { Site } from '../../models/site';
 import { User } from '../../models/user';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
-
 import { SiteService } from '../../services/site.service';
 import { AlertService } from '../../services/alert.service';
 import { SessionService } from '../../services/session.service';
@@ -27,14 +26,14 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
         this.session.getObservable('currentUser')
-          .subscribe((user: User) => {
-            this.currentUser = user;
-          }
-        );
+          .subscribe((user: User) => this.currentUser = user);
 
         this.session.getObservable('sites')
           .subscribe((sites: Site[]) => {
-        
+
+          console.log('Getting Sites In Menu');
+          console.log(sites);
+
           if (sites.length > 1) {
             this.multiSite = true;
           }
