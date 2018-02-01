@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HtmlToPlainPipe } from '../../../pipes/html-to-plain.pipe';
 import { MessageService } from '../../../services/message.service';
 import { Message } from '../../../models/message';
-import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ComposeComponent } from '../../../components/compose/compose.component';
-import { Router } from '@angular/router';
 import { CheckboxModule } from 'primeng/primeng';
-import { HtmlToPlainPipe } from '../../../pipes/html-to-plain.pipe';
+import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sentbox',
@@ -20,7 +20,6 @@ export class SentboxComponent implements OnInit {
   checkAll: boolean;
   loading: boolean;
 
-
   constructor(private router: Router, public messageService: MessageService, config: NgbDropdownConfig) {
     // Default values for dropdowns.
     config.autoClose = 'outside';
@@ -34,18 +33,23 @@ export class SentboxComponent implements OnInit {
     this.page = 1;            // Starting Page
     this.checkAll = false;    // By Default, all mail items unchecked.
     this.loading = true;
-    this.getSentMessages();   // Get Sent Messages.
+    this.getSentMessages(this.page, this.itemsPerPage);   // Get Sent Messages.
   }
 
-  getSentMessages() {
-    this.messageService.getSent().subscribe(
+  pageChange($pageChange) {
+    console.log("Page Changed");
+    console.log($pageChange);
+  }
+
+  getSentMessages(page, itemsPerPage) {
+    this.messageService.getSent(page, itemsPerPage).subscribe(
       data => {
         this.loading = false;
         this.messages = data['messages'];
-        this.totalItems = data['messages'].length;
+        this.totalItems = data['totalPages'];
       },
       error => {
-        console.log('Error');
+        console.log('Error: getSentMessages(): SentboxComponent()');
       });
   }
 
@@ -57,18 +61,13 @@ export class SentboxComponent implements OnInit {
 
   // For sort event./
   onSorted($event) {
-    console.log('Got Sort Event');
-    console.log($event);
     this.messages = this.messageService.sortMessages(this.messages, $event);
   }
 
   onModalSend() {
-    this.itemsPerPage = 25;
     this.page = 1;
-    this.checkAll = false;
     this.loading = true;
-    setTimeout(() => { this.getSentMessages(); }, 500);
-    console.log('EMITTTED');
+    this.getSentMessages(this.itemsPerPage, this.page);
   }
 
   openMessage(id) {

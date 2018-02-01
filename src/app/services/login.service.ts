@@ -5,7 +5,6 @@ import {User} from '../models/user';
 import {Site} from '../models/site';
 import {SessionService} from './session.service';
 import {AlertService} from './alert.service';
-import {SiteService} from './site.service';
 import {AuthHeaderInterceptor} from '../auth-header.interceptor';
 
 @Injectable()
@@ -18,9 +17,10 @@ export class LoginService {
     private alertService: AlertService,
     private authInterceptor: AuthHeaderInterceptor,
     private route: ActivatedRoute,
-    private router: Router,
-    private siteService: SiteService
-  ) { }
+    private router: Router
+  ) { 
+
+  }
 
   login(username: string, password: string): Promise<User> {
     return this.authService.login(username, password)

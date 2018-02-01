@@ -27,12 +27,20 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    console.log("session from dashboard:  ");
+    console.log(this.session);
+
     this.session.getObservable('currentUser')
-      .subscribe((user: User) => this.currentUser = user);
+      .subscribe((user: User) => {
+        this.currentUser = user;
+
+        console.log("Getting Current User: Dashboard");
+      });
 
     this.session.getObservable('sites')
     .subscribe((sites: Site[]) => {
-      console.log('Getting Current Sites');
+      console.log('Getting Current Sites:  Dashboard');
       this.sites = sites;
     });
 

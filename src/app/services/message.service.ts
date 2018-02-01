@@ -25,12 +25,12 @@ export class MessageService {
    this.baseURL = config.get().api.baseURL;
   }
 
- get() {
+  get() {
     return this.http.get<Message[]>(this.baseURL + '/messages');
   }
 
- getSent() {
-    return this.http.get<Message[]>(this.baseURL + '/messages?page=0&size=100');
+  getSent(page, size) {
+    return this.http.get<Message[]>(this.baseURL + '/messages?page=' + page + '&size=' + size);
   }
 
   getSentAnnouncements() {

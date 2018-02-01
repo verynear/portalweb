@@ -3,9 +3,10 @@ import { Site } from '../../models/site';
 import { User } from '../../models/user';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { SessionService } from '../../services/session.service';
 import { SiteService } from '../../services/site.service';
 import { AlertService } from '../../services/alert.service';
-import { SessionService } from '../../services/session.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -25,15 +26,22 @@ export class MenuComponent implements OnInit {
               private siteService: SiteService) { }
 
   ngOnInit() {
-        this.session.getObservable('currentUser')
-          .subscribe((user: User) => this.currentUser = user);
+        console.log("Constructor:  Menu");
+        
+        // this.session.getObservable('currentUser')
+        //   .subscribe((user: User) => {
+        //     console.log("Getting Current User:  Menu");
+        //     this.currentUser = user;
+        //   }
+        // );
+
+        console.log("session from menu:  ");
+        console.log(this.session);
 
         this.session.getObservable('sites')
           .subscribe((sites: Site[]) => {
-
-          console.log('Getting Sites In Menu');
-          console.log(sites);
-
+          
+          console.log("Getting Current Sites: Menu");
           if (sites.length > 1) {
             this.multiSite = true;
           }
@@ -42,7 +50,7 @@ export class MenuComponent implements OnInit {
         });
   }
 
-  switchSite(site) {
-    this.siteService.currentSite = site;
-  }
+  // switchSite(site) {
+  //   this.siteService.currentSite = site;
+  // }
 }

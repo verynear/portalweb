@@ -20,10 +20,11 @@ export class SiteService {
               private config: ConfigService,
               private alertService: AlertService,
               private sessionService: SessionService) {
-
+    
+    console.log("Site Service:  Constructor");
     this.url = config.get().api.baseURL;
-
-    // On INIT, Get the rental sites, and create an observable.
+    
+    // On INIT, Get the rental sites, and create an observable. 
     this.getRentalSites().then(sites => {
         this.sessionService.set('sites', sites);
         this.currentSite = sites[0]; // Default site is at 0 index.
