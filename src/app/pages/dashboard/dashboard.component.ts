@@ -35,6 +35,8 @@ export class DashboardComponent implements OnInit {
     this.siteService.getRentalSites().subscribe((sites: Site[]) => {
       this.sites = sites;
     });
+
+    this.currentSite = this.siteService.currentSite;
   }
 
 }

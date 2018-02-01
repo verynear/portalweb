@@ -5,7 +5,7 @@
             <h5>
                 <i class="fa fa-user"></i> Welcome, {{currentUser?.firstname}}
                 <br>
-                <small>ABC Management / {{siteService.currentSite?.name}}</small>
+                <small>ABC Management / {{currentSite?.name}}</small>
             </h5>
             <hr>
             <h1>Messages</h1>
@@ -33,12 +33,12 @@
 
                                 <div class="btn-group-vertical btn-block mail-nav">
                                     <a class="btn btn-default">
-                                        <span class="badge badge-info">{{totalItems}}</span>
+                                        <span class="badge badge-info"><!--{{totalItems}}--></span>
                                         <i class="fa fa-inbox"></i> Sent</a>
                                 </div>
 
                             </section>
-                        </div> 
+                        </div>
 
                         <div class="col-md-10">
                             <div class="d-flex">
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
 
-                   
+
                                         <div ngbDropdown class="dropdown">
                                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true"
                                                 aria-expanded="false">
@@ -103,7 +103,7 @@
 
                             <!-- Where the inbox should go -->
                             <router-outlet></router-outlet>
-                        </div> 
+                        </div>
                         </div>
                 </form>
             </section>
