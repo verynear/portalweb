@@ -2,10 +2,10 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {AuthenticationService} from './authentication.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {User} from '../models/user';
-import {Site} from '../models/site';
 import {SessionService} from './session.service';
 import {AlertService} from './alert.service';
 import {AuthHeaderInterceptor} from '../auth-header.interceptor';
+import {SiteService} from './site.service';
 
 @Injectable()
 export class LoginService {
@@ -13,12 +13,15 @@ export class LoginService {
 
   constructor(
     private authService: AuthenticationService,
+    private siteService: SiteService,
     private session: SessionService,
     private alertService: AlertService,
     private authInterceptor: AuthHeaderInterceptor,
     private route: ActivatedRoute,
     private router: Router
-  ) { 
+
+  ) {
+    console.log('LoginService:  Constructor');
 
   }
 

@@ -24,19 +24,17 @@ export class DashboardComponent implements OnInit {
               private router: Router,
               private alertService: AlertService,
               private siteService: SiteService) {
+              console.log('Dashboard:  Constructor');
   }
 
   ngOnInit() {
+    console.log('Dashboard:  NgOnInit');
     this.session.getObservable('currentUser')
       .subscribe((user: User) => this.currentUser = user);
 
-    this.session.getObservable('sites')
-    .subscribe((sites: Site[]) => {
-      console.log('Getting Current Sites');
+    this.siteService.getRentalSites().subscribe((sites: Site[]) => {
       this.sites = sites;
     });
-
-
   }
 
 }

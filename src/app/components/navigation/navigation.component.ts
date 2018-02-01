@@ -14,12 +14,11 @@ export class NavigationComponent implements OnInit {
     public logoUrl: string;
     public isCollapsed = true;
     constructor(private siteService: SiteService, private sessionService: SessionService) {
+      console.log('Navigation:  Constructor');
     }
 
     ngOnInit() {
-      this.sessionService.getObservable('sites')
-      .subscribe((sites: Site[]) => {
-        console.log('Getting Current Sites In Nav');
+      this.siteService.getRentalSites().subscribe((sites: Site[]) => {
         this.sites = sites;
       });
     }

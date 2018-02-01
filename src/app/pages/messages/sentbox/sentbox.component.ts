@@ -37,7 +37,7 @@ export class SentboxComponent implements OnInit {
   }
 
   pageChange($pageChange) {
-    console.log("Page Changed");
+    console.log('Page Changed');
     console.log($pageChange);
   }
 

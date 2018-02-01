@@ -22,18 +22,17 @@ export class MenuComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private alertService: AlertService,
-              private siteService: SiteService) { }
+              private siteService: SiteService) {
+
+                console.log('Menu: Constructor');
+              }
 
   ngOnInit() {
+        console.log('Menu: NgOnInit');
         this.session.getObservable('currentUser')
           .subscribe((user: User) => this.currentUser = user);
 
-        this.session.getObservable('sites')
-          .subscribe((sites: Site[]) => {
-
-          console.log('Getting Sites In Menu');
-          console.log(sites);
-
+        this.siteService.getRentalSites().subscribe((sites: Site[]) => {
           if (sites.length > 1) {
             this.multiSite = true;
           }

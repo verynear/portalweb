@@ -22,6 +22,7 @@ export class MessageService {
   }
 
  constructor(private http: HttpClient, private sortService: SortService, private config: ConfigService) {
+   console.log('message service: constructor');
    this.baseURL = config.get().api.baseURL;
   }
 
