@@ -3,7 +3,7 @@
 			<li *ngIf="multiSite" ngbDropdown class="dropdown-menu-left">
 			      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Community</button>
 			      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-			        <button *ngFor="let site of userSites" class="dropdown-item" (click)="switchSite(site)">{{site.name}}</button>
+			        <button *ngFor="let site of sites" class="dropdown-item" (click)="switchSite(site)">{{site.name}}</button>
 			      </div></li>
 			<li ngbDropdown class="nav-item dropdown">
 				<a class="nav-item nav-link" id="mail-alert" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle><i class="fa fa-envelope"></i> <sup><span class="badge badge-primary">3</span></sup></a>

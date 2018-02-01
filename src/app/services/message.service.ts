@@ -22,15 +22,16 @@ export class MessageService {
   }
 
  constructor(private http: HttpClient, private sortService: SortService, private config: ConfigService) {
+   console.log('message service: constructor');
    this.baseURL = config.get().api.baseURL;
   }
 
- get() {
+  get() {
     return this.http.get<Message[]>(this.baseURL + '/messages');
   }
 
- getSent() {
-    return this.http.get<Message[]>(this.baseURL + '/messages?page=0&size=100');
+  getSent(page, size) {
+    return this.http.get<Message[]>(this.baseURL + '/messages?page=' + page + '&size=' + size);
   }
 
   getSentAnnouncements() {
