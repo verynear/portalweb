@@ -37,7 +37,7 @@ import { MaintenanceComponent } from './pages/maintenance/maintenance.component'
 import { AnnouncementService } from './services/announcement.service';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { AuthHeaderInterceptor, AUTH_HEADER_INTERCEPTOR_PROVIDER } from './auth-header.interceptor';
+import { AuthHeaderInterceptor } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
 import { ConfigService } from './services/config.service';
 import { SiteService } from './services/site.service';
@@ -61,6 +61,7 @@ import { MessageComponent } from './pages/messages/message/message.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
+import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
 
 @NgModule({
   imports: [
@@ -107,6 +108,7 @@ import { ReplacePipe } from './pipes/replace.pipe';
     SortableColumnComponent,
     SortableTableDirective,
     AnnouncementcomposeComponent,
+    RecentActivityComponent,
     MessageComponent,
     SafeHtmlPipe,
     HtmlToPlainPipe,
@@ -136,7 +138,10 @@ import { ReplacePipe } from './pipes/replace.pipe';
       SessionService,
       LoginService,
       SortService,
-      AUTH_HEADER_INTERCEPTOR_PROVIDER
+      {
+        provide: AuthHeaderInterceptor,
+        useValue: AuthHeaderInterceptor.getInstance(),
+    }
   ],
   entryComponents: [ComposeComponent, AnnouncementcomposeComponent],
   bootstrap: [AppComponent]

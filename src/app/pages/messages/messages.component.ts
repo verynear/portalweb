@@ -19,6 +19,7 @@ export class MessagesComponent implements OnInit {
   public sites: any = [];
   public userSites: any = [];
   public currentUser: User;
+  totalItems: number;
 
   constructor( private userService: UserService,
                private alertService: AlertService,

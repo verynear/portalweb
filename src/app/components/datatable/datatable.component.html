@@ -2,7 +2,7 @@
         <!-- Main Content Area -->
         <div class="main-content">
             <div class="container-fluid">
-                                <p-dataTable [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" exportFilename="applicants" (onRowSelect)="onRowSelect($event)"  [rows]="15" [paginator]="true" [rowsPerPageOptions]="[15,30,50]" [responsive]="true" resizableColumns="true" sortMode="multiple">
+                                <p-dataTable #dt [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" exportFilename="applicants" (onRowSelect)="onRowSelect($event)"  [rows]="15" [paginator]="true" [rowsPerPageOptions]="[15,30,50]" [responsive]="true" resizableColumns="true" sortMode="multiple">
                     <p-header>Pending Applicants</p-header>
                     <p-column field="emailAddress" header="Email" [sortable]="true"></p-column>
                     <p-column field="firstname" header="First" [sortable]="true"></p-column>

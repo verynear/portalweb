@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private alertService: AlertService,
-              private siteService: SiteService) {
+              public siteService: SiteService) {
               console.log('Dashboard:  Constructor');
   }
 
