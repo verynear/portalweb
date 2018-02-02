@@ -16,6 +16,8 @@ import 'rxjs/add/operator/share';
 @Injectable()
 export class SiteService {
   private url: string;
+  private defaultSiteId: Number;
+  public user: User;
   public currentSite: Site;
 
   constructor(private http: HttpClient,
@@ -24,14 +26,14 @@ export class SiteService {
               private sessionService: SessionService) {
 
     this.url = config.get().api.baseURL;
+  }
 
-    this.getRentalSites().subscribe(sites => {
-        this.currentSite = sites[0]; // Default site is at 0 index.
-    });
+  init() {
+    this.setDefaultSite();
   }
 
   getRentalSites() {
-    return this.http.get(`${this.url}/sites/`).share();
+    return this.http.get(`${this.url}/sites/`);
   }
 
   getRentalSite(id: number) {
@@ -50,4 +52,16 @@ export class SiteService {
      return this.http.get<Tenant[]>(`${this.url}/sites/buildings/units/${id}/residents`);
   }
 
+  setDefaultSite() {
+    this.getRentalSites().subscribe((sites: Site[]) => {
+      this.currentSite = sites[0]; // If there are no sites.
+      const user = this.sessionService.get('currentUser');
+
+      for (const site of sites) {
+        if (site.id === user.defaultRentalSiteId) {
+          this.currentSite = site;
+        }
+      }
+    });
+  }
 }

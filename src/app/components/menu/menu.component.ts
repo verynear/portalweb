@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
   public currentUser: User;
   public sites: any = [];
   public multiSite: boolean;
+  private currentSite: Site;
 
   constructor(private userService: UserService,
               private session: SessionService,
@@ -28,7 +29,8 @@ export class MenuComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.session.getObservable('currentUser').subscribe((user: User) => this.currentUser = user);
+    this.currentUser = this.session.get('currentUser');
+    this.currentSite = this.session.get('currentSite');
     this.getRentalSites();
   }
 
