@@ -37,12 +37,12 @@ export class SentboxComponent implements OnInit {
   }
 
   /* Event Callback from NgBootstrap Pagination */
-  pageChange() {  //TODO: Why is this called on init?
+  pageChange() {  // TODO: Why is this called on init?
     this.nextPage(this.page - 1, this.itemsPerPage); // page-1 because NgBootstrap starts at page=1
   }
 
   getSentMessages(page, itemsPerPage) {
-    console.log("Get Sent Messages");
+    console.log('Get Sent Messages');
     this.loading = true;
     this.messageService.getSent(page, itemsPerPage).subscribe(
       data => {
