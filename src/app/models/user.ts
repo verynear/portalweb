@@ -5,5 +5,6 @@ export class User {
     firstname: string;
     lastname: string;
     managementCompanyId: number;
+    defaultRentalSiteId: number;
     userRentalSitesRefs: Array<any>;
 }

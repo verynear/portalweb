@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteService } from '../../services/site.service';
 import { SessionService } from '../../services/session.service';
+import { SiteService } from '../../services/site.service';
 import { Site } from '../../models/site';
 import { AsyncPipe } from '@angular/common';
 
@@ -10,19 +10,14 @@ import { AsyncPipe } from '@angular/common';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-    public sites: any = {};
     public logoUrl: string;
     public isCollapsed = true;
-    constructor(private siteService: SiteService, private sessionService: SessionService) {
+    public currentSite: Site;
+
+    constructor(private sessionService: SessionService, private siteService: SiteService) {
     }
+
 
     ngOnInit() {
-      this.getRentalSites();
-    }
-
-    getRentalSites() {
-      this.siteService.getRentalSites().subscribe((sites: Site[]) => {
-        this.sites = sites;
-      });
     }
 }

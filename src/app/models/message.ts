@@ -11,4 +11,5 @@ export class Message {
   type: string;
   subject: string;
   isRead: boolean;
+  selected: boolean;
 }
