@@ -1,5 +1,6 @@
 <div id="marginFix">
-<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="5" class="float-right"></ngb-pagination>
+
+<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
 <section class="inbox" *ngIf="!loading">
 	<div class="table">
@@ -22,7 +23,7 @@
 						<app-th columnName="createDate" displayName="Date"></app-th>
 					</th> 
 			<tbody> 
-				<tr *ngFor='let message of messages | slice:(page-1)*itemsPerPage:itemsPerPage*page' (click)="openMessage(message.id)">
+				<tr *ngFor='let message of messages' (click)="openMessage(message.id)">
 					<td>
 						<ul class="list-inline m-0">
 						  <li class="list-inline-item">
@@ -35,21 +36,13 @@
 						To:
 						<!-- If the recipient was a community. -->
 						<span *ngIf="message.type ==='SITE'">
-							{{message.messageRecipients[0].rentalSite}}		<!-- TODO:  Should rentalSite property exist on message?-->
+							{{message.messageRecipients[0].rentalSite}}		
 						</span>
 
 						<!-- If the recipient is a building -->
 						<span *ngIf="message.type === 'BUILDING'">
 
 						</span>
-
-
-						<!-- <span *ngFor='let recipient of message.messageRecipients; let i=index; let isLast=last'>
-						<span *ngIf="i < 3">
-								<span> {{recipient.firstname}}<span *ngIf="i < 2 && !isLast">, </span>
-								</span>
-							</span>
-						</span> -->
 					</td>
 
 					<td>
@@ -69,17 +62,15 @@
 					</td> 
 
 					<td class="text-right" style="padding-left: 50px">
-
 						<span>{{message.createDate | date:'mediumDate' }} </span>
 					</td>
-					
 				</tr>				               
 			</tbody>
 		</table>
 	</div>
 </section>     
 
-<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right"></ngb-pagination>
+<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
               
 <p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 

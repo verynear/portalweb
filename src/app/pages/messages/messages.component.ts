@@ -19,6 +19,7 @@ export class MessagesComponent implements OnInit {
   public sites: any = [];
   public userSites: any = [];
   public currentUser: User;
+  public currentSite: Site;
 
   constructor( private userService: UserService,
                private alertService: AlertService,
@@ -27,21 +28,11 @@ export class MessagesComponent implements OnInit {
                private sessionService: SessionService) { }
 
   ngOnInit() {
-
-    this.sessionService.getObservable('currentUser')
-    .subscribe((user: User) => this.currentUser = user);
-
-    this.sessionService.getObservable('sites')
-      .subscribe((sites: Site[]) => {
-      console.log('Getting Current Sites');
-      this.sites = sites;
-    });
-
+    this.currentUser = this.sessionService.get('currentUser');
 
   }
 
   compose() {
-    console.log('Compose');
     const modalRef = this.modalService.open(ComposeComponent);
   }
 
