@@ -1,131 +1,130 @@
 <div id="main">    
   <div class="main-content">
     <div class="container-fluid">
-      <h5><i class="fa fa-user"></i> Welcome, {{currentUser?.firstname}}<br><small>ABC Management / {{siteService.currentSite?.address1}}</small></h5>
+      <h5><i class="fa fa-user"></i> Welcome, {{currentUser?.firstname}}<br><small>ABC Management / {{siteService.currentSite?.name}}</small></h5>
       <hr>
       <h1>Dashboard</h1>       
         <section id="quick-info">
-          <div class="row">
-            
-            <div class="col-md-4">
-              <div class="icon-box">
-                <div class="icon">
-                  <div class="image">
-                    <span class="badge badge-info">2</span>
-                    <i class="fa fa-envelope"></i>
-                  </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Communications</h5>
-                      <small class="text-muted">11/01/2017 - 12/01/2017</small>
-                      <h5 class="mb-0"><span class="text-info">2</span> <small>New Messages</small></h5>
-                      <a href="/messages" class="btn btn-primary btn-sm mr-1">View Messages</a>
+
+            <div class="row">
+                <div class="col-md-8">
+                  <section id="quick-info">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="icon-box">
+                          <div class="icon">
+                            <div class="image">
+                              <span class="badge badge-info">2</span>
+                              <i class="fas fa-envelope fa-2x"></i>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Communications</h5>
+                                <small class="text-muted">11/01/2017 - 12/01/2017</small>
+                                <h5 class="mb-0"><span class="text-info">2</span> <small>New Messages</small></h5>
+                                <a href="message.html" class="btn btn-primary btn-sm mr-1">View Messages</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="icon-box">
+                          <div class="icon">
+                            <div class="image">
+                              <span class="badge badge-info">2</span>
+                              <i class="fas fa-bullhorn fa-2x"></i>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Announcements</h5>
+                                <small class="text-muted">11/01/2017 - 12/01/2017</small>
+                                <h5 class="mb-0"><span class="text-info">2</span> <small>New Announcements</small></h5>
+                                <a href="announcements.html" class="btn btn-primary btn-sm mr-1">Create Announcements</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                  </section>
+              
+                  <section>
+                    <div class="card mb-5">
+                      <div class="card-header">
+                        <i class="fas fa-paper-plane"></i> Most Recent Message Sent
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <h5 class="card-title"><small>Sent: 12/17/2017</small><br>Maintenance Update to Fitness Facility</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                            <a href="message-report.html" class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="message.html" class="btn btn-default btn-sm">View All Messages</a>
+                          </div>
+                          <div class="col-md-5 offset-md-1">
+                             <ul class="list-inline">
+                              <li class="list-inline-item">
+                                <div class="alert alert-success" role="alert">
+                                  <h4 class="alert-heading mb-0">75%<br><small>Read</small></h4>
+                                </div>
+                              </li>
+                              <li class="list-inline-item">
+                                <div class="alert alert-warning" role="alert">
+                                  <h4 class="alert-heading mb-0">25%<br><small>Pending</small></h4>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+                <div class="col-md-4">
+                  <!-- Recent Activity -->
+                  <div class="card mb-5">
+                    <div class="card-header">
+                      Recent Activity
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <h6><i class="fas fa-envelope"></i> Messages <small>Community BBQ</small></h6>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
+                      </li>
+                      <li class="list-group-item">
+                        <h6><i class="fas fa-dollar-sign"></i> Payments</h6>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
+                      </li>
+                      <li class="list-group-item">
+                        <h6><i class="fas fa-wrench"></i> Maintenance Requests</h6>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
+                      </li>
+                      <li class="list-group-item">
+                        <h6><i class="fas fa-envelope"></i> Messages <small>Community BBQ</small></h6>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
+                      </li>
+                      <li class="list-group-item">
+                        <h6><i class="fas fa-dollar-sign"></i> Payments</h6>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
+                      </li>
+                      <li class="list-group-item">
+                        <h6><i class="fas fa-wrench"></i> Maintenance Requests</h6>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
+                      </li>
+                      <li class="list-group-item"><a href="#" class="btn btn-default btn-sm">View More</a></li>
+                    </ul>
                   </div>
                 </div>
+              
+              
               </div>
-            </div>
-            <!-- <div class="col-md-4 inactive">
-              <div class="icon-box mb-4">
-                <div class="icon">
-                  <div class="image">
-                    <span class="badge badge-warning">2</span>
-                    <i class="fa fa-wrench"></i>
-                  </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Maintenance</h5>
-                      <small class="text-muted">11/01/2017 - 12/01/2017</small>
-                      <h5 class="mb-0"><span class="text-info">2</span> <small>New</small> / <span class="text-success">20</span> <small>Completed</small></h5>
-                      <a  class="btn btn-primary btn-sm mr-1">View Requests</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 inactive">
-              <div class="icon-box mb-4">
-                <div class="icon">
-                  <div class="image">
-                    <span class="badge badge-success">2</span>
-                    <i class="fa fa-dollar"></i>
-                  </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Payments</h5>
-                      <small class="text-muted">11/01/2017 - 12/01/2017</small>
-                      <h5 class="mb-0"><span class="text-info">2</span> <small>New</small> / <span class="text-success">500</span> <small>Payments Received</small></h5>
-                      <a   class="btn btn-primary btn-sm mr-1">View Payments</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            
-          </div>
+
+
         </section>
 
-        <section>
-          <div class="card mb-5">
-            <div class="card-header">
-              <i class="fa fa-send"></i> Most Recent Message Sent
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-7">
-                  <h5 class="card-title"><small>Sent: 12/17/2017</small><br>Maintenance Update to Fitness Facility</h5>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                  <a href="#" class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="/messages" class="btn btn-default btn-sm">View All Messages</a>
-                </div>
-                <div class="col-md-3 offset-md-1">
-                   <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <div class="alert alert-success" role="alert">
-                        <h4 class="alert-heading mb-0">75%<br><small>Read</small></h4>
-                      </div>
-                    </li>
-                    <li class="list-inline-item">
-                      <div class="alert alert-warning" role="alert">
-                        <h4 class="alert-heading mb-0">25%<br><small>Pending</small></h4>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <section>
-          <!-- Recent Activity -->
-          <div class="card mb-5">
-            <div class="card-header">
-              Recent Activity
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <h6><i class="fa fa-envelope"></i> Messages <small>Community BBQ</small></h6>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
-              </li>
-              <li class="list-group-item">
-                <h6><i class="fa fa-dollar"></i> Payments</h6>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
-              </li>
-              <li class="list-group-item">
-                <h6><i class="fa fa-wrench"></i> Maintenance Requests</h6>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
-              </li>
-              <li class="list-group-item">
-                  <h6><i class="fa fa-wrench"></i> Maintenance Requests</h6>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
-              </li>
-              <li class="list-group-item">
-                  <h6><i class="fa fa-wrench"></i> Maintenance Requests</h6>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh...
-              </li>                              
-            </ul>
-          </div>
-        </section>
+
+
       </div>
     </div>
     

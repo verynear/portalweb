@@ -29,7 +29,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.session.get('currentUser');
-    this.currentSite = this.session.get('currentSite');
   }
 
 }

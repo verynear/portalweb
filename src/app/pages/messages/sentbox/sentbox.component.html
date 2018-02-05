@@ -33,7 +33,7 @@
 					</td>
 
 					<td class="ellipsis">
-						To:
+		
 						<!-- If the recipient was a community. -->
 						<span *ngIf="message.type ==='SITE'">
 							{{message.messageRecipients[0].rentalSite}}		
@@ -57,6 +57,7 @@
 					</td>
 
 					<td class="min-width-100" style="padding-right: 20px">
+		
 						<span class="previewTitle"> {{message.subject}} -</span> 
 						<span [innerHTML]="message.message | htmlToPlain"> </span> 
 					</td> 
