@@ -79,8 +79,8 @@ export class SentboxComponent implements OnInit {
   }
 
   onModalSend() {
-    this.page = 1;
-    this.getSentMessages(this.itemsPerPage, this.page);
+    this.page = 0;
+    this.getSentMessages(this.page, this.itemsPerPage);
   }
 
   openMessage(id) {
