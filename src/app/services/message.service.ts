@@ -14,11 +14,11 @@ import { SortService } from '../components/sortable-table/sort.service';
 export class MessageService {
   private baseURL: string;
   messages: Array<Message>;
-  private _listners = new Subject<any>();
-  onSent$ = this._listners.asObservable();
+  private _listeners = new Subject<any>();
+  onSent$ = this._listeners.asObservable();
 
   onSent() {
-    this._listners.next();
+    this._listeners.next();
   }
 
  constructor(private http: HttpClient, private sortService: SortService, private config: ConfigService) {
