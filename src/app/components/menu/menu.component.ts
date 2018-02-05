@@ -30,18 +30,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.session.get('currentUser');
-    this.currentSite = this.session.get('currentSite');
-    this.getRentalSites();
-  }
-
-  getRentalSites() {
-    this.siteService.getRentalSites().subscribe((sites: Site[]) => {
-      if (sites.length > 1) {
-        this.multiSite = true;
-      }
-
-      this.sites = sites;
-    });
   }
 
   switchSite(site) {
