@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
 import { ComposeComponent } from '../../components/compose/compose.component';
@@ -26,7 +27,8 @@ export class MessagesComponent implements OnInit {
                private alertService: AlertService,
                private modalService: NgbModal,
                private siteService: SiteService,
-               private sessionService: SessionService) { }
+               private sessionService: SessionService,
+               private router: Router) { }
 
   ngOnInit() {
     this.currentUser = this.sessionService.get('currentUser');

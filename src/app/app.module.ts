@@ -62,6 +62,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
+import { FilterUnitsPipe } from './pipes/filter-units.pipe';
 
 @NgModule({
   imports: [
@@ -113,6 +114,7 @@ import {RecentActivityComponent} from './pages/recent-activity/recent-activity.c
     SafeHtmlPipe,
     HtmlToPlainPipe,
     ReplacePipe,
+    FilterUnitsPipe,
   ],
   providers: [
       {

@@ -27,9 +27,12 @@
                                     <i class="fa fa-edit fa-lg"></i> Compose Mail</button>
 
                                 <div class="btn-group-vertical btn-block mail-nav">
-                                    <a class="btn btn-default">
+                                    <a [routerLink]="['','messages', 'sent']" class="btn btn-default">
                                         <span class="badge badge-info">{{totalItems}}</span>
-                                        <i class="fa fa-inbox"></i> Sent</a>
+                                        <i class="fa fa-send"></i> Sent</a>
+                                    <a [routerLink]="['','messages', 'inbox']" class="btn btn-default">
+                                        <span class="badge badge-info">{{totalItems}}</span>
+                                        <i class="fa fa-inbox"></i> Inbox</a>
                                 </div>
 
                             </section>
@@ -96,7 +99,12 @@
                             </div>
 
                             <!-- Where the inbox should go -->
-                            <router-outlet></router-outlet>
+                            <span *ngIf="router.url === '/messages/sent'">
+                                <app-sentbox></app-sentbox>
+                            </span>
+                            <span *ngIf="router.url === '/messages/inbox'">
+                                <app-inbox></app-inbox>
+                            </span>
                         </div> 
                         </div>
                 </form>
