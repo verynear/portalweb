@@ -21,6 +21,8 @@ export class MessagesComponent implements OnInit {
   public userSites: any = [];
   public currentUser: User;
   totalItems: number;
+  loading: boolean;
+  loading1: boolean;
   public currentSite: Site;
 
   constructor( private userService: UserService,
@@ -31,6 +33,8 @@ export class MessagesComponent implements OnInit {
                private router: Router) { }
 
   ngOnInit() {
+    this.loading = false;
+    this.loading1 = false;
     this.currentUser = this.sessionService.get('currentUser');
 
   }

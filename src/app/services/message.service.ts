@@ -34,6 +34,10 @@ export class MessageService {
     return this.http.get<Message[]>(this.baseURL + '/messages?page=' + page + '&size=' + size);
   }
 
+  getInquiry(page, size) {
+    return this.http.get<Message[]>(this.baseURL + '/inquiry?page=' + page + '&size=' + size);
+  }
+
   getSentAnnouncements() {
     return this.http.get<Message[]>(this.baseURL + '/announcements');
   }
