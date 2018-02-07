@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HtmlToPlainPipe } from '../../../pipes/html-to-plain.pipe';
+import { FilterUnitsPipe } from '../../../pipes/filter-units.pipe';
 import { MessageService } from '../../../services/message.service';
 import { Message } from '../../../models/message';
 import { ComposeComponent } from '../../../components/compose/compose.component';
@@ -19,6 +20,7 @@ export class SentboxComponent implements OnInit {
   page: number;
   checkAll: boolean;
   loading: boolean;
+  unitReciptients: string[];
 
   constructor(private router: Router, public messageService: MessageService, config: NgbDropdownConfig) {
     // Default values for dropdowns.
