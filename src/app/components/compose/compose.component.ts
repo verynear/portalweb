@@ -68,6 +68,7 @@ export class ComposeComponent implements OnInit {
         this.getSiteBuildings();
         this.createFormControls();
         this.createForm();
+        this.setDefaultValues();
     }
 
     getSiteBuildings() {
@@ -110,7 +111,7 @@ export class ComposeComponent implements OnInit {
         this.buildingIdforTenantUnit = new FormControl('');
         this.tenantIds = new FormControl('');
         this.messageType = new FormControl('', Validators.required);
-        this.subject = new FormControl('');
+        this.subject = new FormControl('', Validators.required);
         this.message = new FormControl('', Validators.required);
     }
 
@@ -135,6 +136,10 @@ export class ComposeComponent implements OnInit {
     shareIndividualCheckedList(item: {}) {
         this.indi = item;
         console.log(item);
+    }
+
+    setDefaultValues() {
+       this.composeForm.patchValue({messageType: 'STANDARD'});
     }
 
     filterUnit(query, units: any[]): any[] {
