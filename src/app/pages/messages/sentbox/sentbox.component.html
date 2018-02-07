@@ -4,7 +4,7 @@
 
 <section class="inbox" *ngIf="!loading">
 	<div class="table">
-		<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
+	 	<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 			<thead class="thead-light">
 					 <th class="width-25"> 
 						<app-th disable="true">
@@ -34,15 +34,11 @@
 
 					<td class="ellipsis">
 		
-						<!-- If the recipient was a community. -->
 						<span *ngIf="message.type ==='SITE'">
-							{{message.messageRecipients[0].rentalSite}}		
+							{{message.messageRecipients[0]?.rentalSite}}		
 						</span>
 
-						<!-- If the recipient is a building -->
-						<span *ngIf="message.type === 'BUILDING'">
-
-						</span>
+						<span *ngIf="message.type === 'BUILDING'"></span>
 					</td>
 
 					<td>
