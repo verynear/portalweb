@@ -29,20 +29,22 @@ export class SentboxComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('ngOnInit: SentBox');
     this.loading = true;
     this.itemsPerPage = 25;   // Number of Mail Items per page.
-    this.page = 0;            // Starting Page
+    this.page = 1;            // Starting Page
     this.checkAll = false;    // By Default, all mail items unchecked.
-    this.getSentMessages(this.page, this.itemsPerPage);
+    this.getSentMessages(this.page - 1, this.itemsPerPage);
   }
 
   /* Event Callback from NgBootstrap Pagination */
   pageChange() {  // TODO: Why is this called on init?
+    console.log('pageChange: SentBox');
     this.nextPage(this.page - 1, this.itemsPerPage); // page-1 because NgBootstrap starts at page=1
   }
 
   getSentMessages(page, itemsPerPage) {
-    console.log('Get Sent Messages');
+    console.log('getSentMessages: SentBox');
     this.loading = true;
     this.messageService.getSent(page, itemsPerPage).subscribe(
       data => {
@@ -56,6 +58,7 @@ export class SentboxComponent implements OnInit {
   }
 
   nextPage(page, itemsPerPage) {
+    console.log('nextPage: SentBox');
     this.loading = true;
     this.messageService.getSent(page, itemsPerPage).subscribe(
       data => {
