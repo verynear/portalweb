@@ -114,6 +114,10 @@ a:hover.btn.btn-default,
 .icon-box > .icon > .image {
   background-color: #123475;
 }
+
+.btn.btn-primary[disabled] {
+  cursor: not-allowed;
+}
 a.btn.btn-default,
 a:hover.btn.btn-default,
 a.btn.btn-primary,

@@ -38,7 +38,17 @@
 							{{message.messageRecipients[0]?.rentalSite}}		
 						</span>
 
-						<span *ngIf="message.type === 'BUILDING'"></span>
+						<span *ngIf="message.type === 'BUILDING'">
+							Building - {{message.messageRecipients[0]?.rentalSiteBuilding}}
+						</span>
+
+						<span *ngIf="message.type === 'UNIT'">
+							{{message.messageRecipients[0]?.rentalSiteBuilding}}:
+							Units -
+							<span *ngFor='let message of message.messageRecipients | filterUnits'>
+							    {{message}}
+						    </span>
+						</span>
 					</td>
 
 					<td>
@@ -69,6 +79,6 @@
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
               
-<p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
+<p-progressSpinner id="sentbox" class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
 import { ComposeComponent } from '../../components/compose/compose.component';
@@ -19,15 +20,21 @@ export class MessagesComponent implements OnInit {
   public sites: any = [];
   public userSites: any = [];
   public currentUser: User;
+  totalItems: number;
+  loading: boolean;
+  loading1: boolean;
   public currentSite: Site;
 
   constructor( private userService: UserService,
                private alertService: AlertService,
                private modalService: NgbModal,
                private siteService: SiteService,
-               private sessionService: SessionService) { }
+               private sessionService: SessionService,
+               private router: Router) { }
 
   ngOnInit() {
+    this.loading = false;
+    this.loading1 = false;
     this.currentUser = this.sessionService.get('currentUser');
 
   }

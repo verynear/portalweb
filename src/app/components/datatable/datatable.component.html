@@ -2,7 +2,7 @@
         <!-- Main Content Area -->
         <div class="main-content">
             <div class="container-fluid">
-                                <p-dataTable [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" exportFilename="applicants" (onRowSelect)="onRowSelect($event)"  [rows]="15" [paginator]="true" [rowsPerPageOptions]="[15,30,50]" [responsive]="true" resizableColumns="true" sortMode="multiple">
+                                <p-dataTable #dt [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" exportFilename="applicants" (onRowSelect)="onRowSelect($event)"  [rows]="15" [paginator]="true" [rowsPerPageOptions]="[15,30,50]" [responsive]="true" resizableColumns="true" sortMode="multiple">
                     <p-header>Pending Applicants</p-header>
                     <p-column field="emailAddress" header="Email" [sortable]="true"></p-column>
                     <p-column field="firstname" header="First" [sortable]="true"></p-column>
@@ -16,7 +16,7 @@
                             {{ applicant.createDate | date: 'short' }}
                           </ng-template>
                     </p-column>
-                    <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button><button type="button" pButton icon="fa-file-o" iconPos="left" label="Save to CSV" (click)="dt.exportCSV()" style="float:right"></button>
+                    <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button><!--<button type="button" pButton icon="fa-file-o" iconPos="left" label="Save to CSV" (click)="dt.exportCSV()" style="float:right"></button>-->
                     </div></p-footer>
                 </p-dataTable>
 
