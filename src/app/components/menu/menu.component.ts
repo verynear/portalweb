@@ -24,15 +24,25 @@ export class MenuComponent implements OnInit {
               private router: Router,
               private alertService: AlertService,
               private siteService: SiteService) {
-
-                console.log('Menu: Constructor');
               }
 
   ngOnInit() {
     this.currentUser = this.session.get('currentUser');
+
+    this.siteService.getCurrentSite().subscribe(site => {
+      this.currentSite = site;
+    });
+
+    this.getSites();
   }
 
-  switchSite(site) {
-    this.siteService.currentSite = site;
+  getSites() {
+    this.siteService.getRentalSites().subscribe(site => {
+      this.sites = site;
+    });
+  }
+
+  switchSite(site: Site) {
+    this.siteService.setCurrentSite(site);
   }
 }

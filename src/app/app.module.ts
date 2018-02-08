@@ -30,9 +30,7 @@ import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { MessageService } from './services/message.service';
-import { PaymentService } from './services/payment.service';
 import { MaintenanceService } from './services/maintenance.service';
-import { PaymentsComponent } from './pages/payments/payments.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { AnnouncementService } from './services/announcement.service';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
@@ -95,7 +93,6 @@ import { FilterUnitsPipe } from './pipes/filter-units.pipe';
     PageNotFoundComponent,
     DashboardComponent,
     MessagesComponent,
-    PaymentsComponent,
     MaintenanceComponent,
     AnnouncementsComponent,
     NavigationComponent,
@@ -134,7 +131,6 @@ import { FilterUnitsPipe } from './pipes/filter-units.pipe';
       MockBackend,
       BaseRequestOptions,
       MessageService,
-      PaymentService,
       MaintenanceService,
       AnnouncementService,
       SessionService,

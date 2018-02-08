@@ -17,7 +17,9 @@ export class NavigationComponent implements OnInit {
     constructor(private sessionService: SessionService, private siteService: SiteService) {
     }
 
-
     ngOnInit() {
+      this.siteService.getCurrentSite().subscribe(site => {
+        this.currentSite = site;
+      });
     }
 }
