@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Applicant } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
 import { DatatableComponent } from '../../components/datatable/datatable.component';
+import { SessionService } from '../../services/session.service';
+import { Site } from '../../models/site';
 
 @Component({
   selector: 'app-applicants',
@@ -10,9 +12,17 @@ import { DatatableComponent } from '../../components/datatable/datatable.compone
 })
 export class ApplicantsComponent implements OnInit {
 
-  constructor() { }
+  site: Site;
+
+  constructor(private session: SessionService) {
+
+  }
 
   ngOnInit() {
+    this.session.getObservable('currentSite').subscribe(user => {
+      this.site = user;
+    });
+
   }
 
 }

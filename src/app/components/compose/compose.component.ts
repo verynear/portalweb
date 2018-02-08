@@ -62,7 +62,10 @@ export class ComposeComponent implements OnInit {
       MessageService, private alertService: AlertService, private siteService: SiteService, private sessionService: SessionService) {}
 
     ngOnInit() {
-        this.currentSite = this.siteService.currentSite;
+        this.siteService.getCurrentSite().subscribe(site => {
+          this.currentSite = site;
+        });
+
         this.finalBuildingUnitIds = [];
         this.finaltenantIds = [];
         this.getSiteBuildings();

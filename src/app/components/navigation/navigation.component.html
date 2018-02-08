@@ -1,33 +1,29 @@
 
   <div class="nav-side-menu">
     <div class="user-logo">
-
-      <a routerLink="/" class="navbar-brand">
-        
-        <img [src]="siteService.currentSite?.rentalSitesBrandings[0]?.logoUrl" alt="BetterLeasing"
-        onError="this.src='./assets/backuplogo.png';" > </a>
-      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-     
+        <a routerLink="/" class="navbar-brand"> 
+        <img [src]="currentSite?.rentalSitesBrandings[0].logoUrl" alt="BetterLeasing" onError="this.src='./assets/backuplogo.png';"> </a> 
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     </div>
-    
+
     <div class="menu-list">
       <ul id="menu-content" class="menu-content collapse out">
-        <li routerLink="/dashboard" routerLinkActive="active">
-          <a><i class="fa fa-dashboard"></i> Dashboard</a>
+        <li class="primary" routerLink="/dashboard" routerLinkActive="active">
+          <a><i class="fa fa-dashboard"></i> Dashboard </a>
         </li>
-        <li routerLink="/applicants" routerLinkActive="active">
+        <li class="primary" routerLink="/applicants" routerLinkActive="active">
           <a><i class="fa fa-user"></i> Applicants</a>
         </li>
-        <li routerLink="/messages" (click)="isCollapsed = !isCollapsed"
+        <li class="primary" routerLink="/messages" (click)="isCollapsed = !isCollapsed"
           [attr.aria-expanded]="!isCollapsed" aria-controls="products">
           <a><i class="fa fa-comments"></i> Communications <span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="products" routerLinkActive="show" [ngbCollapse]="isCollapsed">
-          <li routerLink="/messages/sent" routerLinkActive="active"><a><i class="fa fa-envelope"></i> Messages</a></li>
-          <li routerLink="/messages/reports" routerLinkActive="active"><a><i class="fa fa-paper-plane"></i> Message Report</a></li>
-          <li routerLink="/announcements" routerLinkActive="active"><a><i class="fa fa-bullhorn"></i> Announcements</a></li>
+          <li class="primary" routerLink="/messages/sent" routerLinkActive="active"><a><i class="fa fa-envelope"></i> Messages</a></li>
+          <li class="primary" routerLink="/messages/reports" routerLinkActive="active"><a><i class="fa fa-paper-plane"></i> Message Report</a></li>
+          <li class="primary" routerLink="/announcements" routerLinkActive="active"><a><i class="fa fa-bullhorn"></i> Announcements</a></li>
         </ul>
-        <li routerLink="/my-account" routerLinkActive="active">
+        <li class="primary" routerLink="/my-account" routerLinkActive="active">
           <a><i class="fa fa-id-card-o"></i> My Account</a>
         </li>
 
