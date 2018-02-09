@@ -20,6 +20,11 @@ export class NavigationComponent implements OnInit {
     ngOnInit() {
       this.siteService.getCurrentSite().subscribe(site => {
         this.currentSite = site;
+        console.log('SITE');
+        console.log(site);
       });
+      console.log('THIS CURRENTSITE');
+      console.log(this.currentSite);
+      this.logoUrl = this.currentSite.rentalSitesBrandings[0].logoUrl;
     }
 }

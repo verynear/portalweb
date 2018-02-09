@@ -1,15 +1,30 @@
 export class Message {
+  totalReceipts: number;
+  readReceipts: number;
+  unreadReceipts: number;
+  messageRecipients: MessageRecipients[];
   id: number;
-  createDate: Date;
-  managementUserId: string;
-  message: string;
   messageType: string;
+  type: string;
+  message: string;
+  selected: boolean;
+  subject: string;
+  createDate: Date;
   rentalsitesId: number;
   rentalsiteBuildingIds: Array<any>;
   rentalsiteBuildingUnitIds: Array<any>;
   tenantIds: Array<any>;
-  type: string;
-  subject: string;
-  isRead: boolean;
-  selected: boolean;
+}
+
+export class MessageRecipients {
+  emailAddress: number;
+  firstname: string;
+  lastname: string;
+  phone: string;
+  isArchived: string;
+  isRead: string;
+  updateDate: Date;
+  rentalSite: string;
+  rentalSiteBuilding: string;
+  rentalSiteBuildingUnit: string;
 }

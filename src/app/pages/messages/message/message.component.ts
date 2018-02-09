@@ -17,13 +17,13 @@ export class MessageComponent implements OnInit {
   loading: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, public messageService: MessageService) {
-  }
-
-  ngOnInit() {
     this.route.params.subscribe(params => {
           this.id = Number (params.id);
     });
       this.getMessage(this.id);
+  }
+
+  ngOnInit() {
   }
 
   // ngOnDestroy() {

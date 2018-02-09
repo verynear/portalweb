@@ -1,8 +1,8 @@
 
   <div class="nav-side-menu">
-    <div class="user-logo">
+    <div *ngIf="currentSite.rentalSitesBrandings" class="user-logo">
         <a routerLink="/" class="navbar-brand"> 
-        <img [src]="currentSite?.rentalSitesBrandings[0].logoUrl" alt="BetterLeasing" onError="this.src='./assets/backuplogo.png';"> </a> 
+        <img src="logoUrl" alt="BetterLeasing" onError="this.src='./assets/backuplogo.png';"> </a> 
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     </div>
 

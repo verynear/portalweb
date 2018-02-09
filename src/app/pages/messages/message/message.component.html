@@ -6,12 +6,12 @@
         <tr>
           <td>
             <p>  
-              <strong>{{message.subject}}<br>
-                <small>{{message.createDate | date}}</small>
+              <strong>{{message?.subject}}<br>
+                <small>{{message?.createDate | date}}</small>
               </strong>
             </p>
             <p>
-              <span [innerHTML]="message.message | safeHtml"></span>
+              <span [innerHTML]="message?.message | safeHtml"></span>
             </p>
           </td>
         </tr>
