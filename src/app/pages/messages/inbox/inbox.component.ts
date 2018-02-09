@@ -20,6 +20,7 @@ export class InboxComponent implements OnInit {
   page1: number;
   checkAll1: boolean;
   loading1: boolean;
+  loading: boolean;
   unitReciptients: string[];
 
   constructor(private router: Router, public messageService: MessageService) {}
@@ -27,6 +28,7 @@ export class InboxComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit: InBox');
     this.loading1 = true;
+    this.loading = true;
     this.itemsPerPage1 = 25;   // Number of Mail Items per page.
     this.page1 = 1;            // Starting Page
     this.checkAll1 = false;    // By Default, all mail items unchecked.
@@ -41,7 +43,7 @@ export class InboxComponent implements OnInit {
   getInquiries(page1, itemsPerPage1) {
     console.log('getSentMessages: SentBox');
     this.loading1 = true;
-    this.messageService.getInquiry(page1, itemsPerPage1).subscribe(
+    this.messageService.getInquiries(page1, itemsPerPage1).subscribe(
       data => {
         this.loading1 = false;
         this.inquiries = data['generalInquiries'];
@@ -56,7 +58,7 @@ export class InboxComponent implements OnInit {
   nextPage(page1, itemsPerPage1) {
     console.log('nextPage: InBox');
     this.loading1 = true;
-    this.messageService.getInquiry(page1, itemsPerPage1).subscribe(
+    this.messageService.getInquiries(page1, itemsPerPage1).subscribe(
       data => {
         this.loading1 = false;
         this.inquiries = data['generalInquiries'];
@@ -77,8 +79,8 @@ export class InboxComponent implements OnInit {
     this.inquiries = this.messageService.sortMessages(this.inquiries, $event);
   }
 
-  openInquiry(id) {
-    this.router.navigate(['/messages/view', id]);
+  openInquiry(inq) {
+    this.router.navigate(['/messages/inquiry', inq]);
   }
 
 }

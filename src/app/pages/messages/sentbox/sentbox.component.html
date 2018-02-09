@@ -2,7 +2,7 @@
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
-<section class="inbox" *ngIf="!loading">
+<section class="inbox" *ngIf="!loading && loading1">
 	<div class="table">
 	 	<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 			<thead class="thead-light">
@@ -79,6 +79,6 @@
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
               
-<p-progressSpinner id="sentbox" class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
+<p-progressSpinner id="sentbox" class="spinner" *ngIf="loading && !loading1" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 
 </div>

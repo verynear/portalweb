@@ -41,7 +41,7 @@ export class SiteService {
   }
 
   getBuildings(id: number) {
-     return this.http.get<Building[]>(`${this.url}/sites/${id}/buildings/`); 
+     return this.http.get<Building[]>(`${this.url}/sites/${id}/buildings/`);
   }
 
   getUnitsByBuildingId(id: number) {

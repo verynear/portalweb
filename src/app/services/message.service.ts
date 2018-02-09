@@ -26,15 +26,19 @@ export class MessageService {
    this.baseURL = config.get().api.baseURL;
   }
 
-  get() {
-    return this.http.get<Message[]>(this.baseURL + '/messages');
+  get(id) {
+    return this.http.get<Message[]>(this.baseURL + '/messages/' + id);
+  }
+
+  getInquiry(id) {
+    return this.http.get(this.baseURL + '/inquiry/' + id);
   }
 
   getSent(page, size) {
     return this.http.get<Message[]>(this.baseURL + '/messages?page=' + page + '&size=' + size);
   }
 
-  getInquiry(page, size) {
+  getInquiries(page, size) {
     return this.http.get<Message[]>(this.baseURL + '/inquiry?page=' + page + '&size=' + size);
   }
 

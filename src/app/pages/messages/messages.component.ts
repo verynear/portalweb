@@ -24,6 +24,7 @@ export class MessagesComponent implements OnInit {
   loading: boolean;
   loading1: boolean;
   public currentSite: Site;
+  public indiMessage: boolean;
 
   constructor( private userService: UserService,
                private alertService: AlertService,
@@ -33,10 +34,33 @@ export class MessagesComponent implements OnInit {
                private router: Router) { }
 
   ngOnInit() {
-    this.loading = false;
-    this.loading1 = false;
     this.currentUser = this.sessionService.get('currentUser');
 
+  }
+
+  isInbox() {
+    return this.router.url === '/messages/inbox';
+  }
+
+  isSentbox() {
+    return this.router.url === '/messages/sent';
+  }
+
+
+  viewingMessage() {
+    if (this.router.url.includes('messages/view')) {
+      return true;
+    }
+
+    return false;
+  }
+
+  viewingInquiry() {
+    if (this.router.url.includes('messages/inquiry')) {
+      return true;
+    }
+
+    return false;
   }
 
   compose() {

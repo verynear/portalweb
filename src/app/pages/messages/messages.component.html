@@ -1,14 +1,13 @@
 <div id="main">
-    <!-- Main Content Area -->
+        <!-- Main Content Area -->
     <div class="main-content">
         <div class="container-fluid">
-
             <h1>Messages</h1>
 
             <section class="top">
                 <form>
                     <div class="row">
-                         <div class="col-md-2">
+                        <div class="col-md-3">
                             <section>
                                 <div class="form-group">
                                     <label class="sr-only" for="inlineFormInputGroup">Search</label>
@@ -21,7 +20,7 @@
                                 </div>
                             </section>
 
-                            <section>
+                             <section>
 
                                 <button type="button" class="btn btn-primary btn-block text-left" (click)="compose()">
                                     <i class="fa fa-edit fa-lg"></i> Compose Mail</button>
@@ -36,12 +35,13 @@
                                 </div>
 
                             </section>
-                        </div> 
+                        </div>
 
-                        <div class="col-md-10">
+                        <div class="col-md-9">
                             <div class="d-flex">
 
                                 <div class="mr-1">
+                                    <!--Sort mail -->
                                     <div class="btn-group">
                                         <div ngbDropdown class="dropdown">
                                             <div ngbDropdownMenu class="dropdown-menu dropdown-noline pt-3 pb-3" aria-labelledby="dropdownSort">
@@ -50,11 +50,16 @@
                                             </div>
                                         </div>
 
+                                        <!--Filter dropdown - multi-select-->
                                         <div ngbDropdown class="dropdown">
-                                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true"
+                                            <button *ngIf="isInbox() || isSentbox()" class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true"
                                                 aria-expanded="false">
                                                 Filter
                                             </button>
+
+                                            <a *ngIf="viewingMessage()" routerLink="/messages/sent" routerLinkActive="active" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i> Back</a>
+
+                                            <a *ngIf="viewingInquiry()" routerLink="/messages/inbox" routerLinkActive="active" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i> Back</a>
 
                                             <div ngbDropdownMenu class="dropdown-menu dropdown-md p-3" aria-labelledby="dropdownFilter">
                                                 <div class="row">
@@ -64,13 +69,6 @@
                                                                 <input type="checkbox" class="custom-control-input">
                                                                 <span class="custom-control-indicator"></span>
                                                                 <span class="custom-control-description">Read</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="dropdown-item">
-                                                            <label class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input">
-                                                                <span class="custom-control-indicator"></span>
-                                                                <span class="custom-control-description">Sent</span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -90,23 +88,22 @@
                                 </div>
                                 <div>
 
+                                    <!-- These buttons should only show up when mail is selected -->
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <i class="fa fa-trash fa-lg"></i>
                                         </button>
                                     </div>
+
                                 </div>
                             </div>
+                            <!-- Mailbox -->
 
-                            <!-- Where the inbox should go -->
-                            <span [style.display]="(router.url === '/messages/sent') ? 'block' : 'none' ">
-                                <app-sentbox></app-sentbox>
-                            </span>
-                            <span [style.display]="(router.url === '/messages/inbox') ? 'block' : 'none' ">
-                                <app-inbox></app-inbox>
-                            </span>
-                        </div> 
+                            <!-- Where the message / inbox goes -->
+                            <!-- Inbox -->
+                            <router-outlet></router-outlet>
                         </div>
+                    </div>
                 </form>
             </section>
         </div>

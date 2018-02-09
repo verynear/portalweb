@@ -5,15 +5,15 @@ import { Message } from '../../../models/message';
 import { SafeHtmlPipe } from '../../../pipes/safe-html.pipe';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss']
+  selector: 'app-inquiry',
+  templateUrl: './inquiry.component.html',
+  styleUrls: ['./inquiry.component.scss']
 })
-export class MessageComponent implements OnInit {
+export class InquiryComponent implements OnInit {
 
   id: number;
   private sub: any;
-  message: any;
+  inquiry: any;
   loading: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, public messageService: MessageService) {
@@ -21,22 +21,22 @@ export class MessageComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-          this.id = Number (params.id);
+          this.id = Number (params.inq);
     });
-      this.getMessage(this.id);
+      this.getInquiry(this.id);
   }
 
   // ngOnDestroy() {
-  //   this.sub.unsubscribe();
+  //   this.route.unsubscribe();
   // }
 
-  getMessage(id) {
-    this.messageService.get(id).subscribe(
+  getInquiry(id) {
+    this.messageService.getInquiry(id).subscribe(
       data => {
         this.loading = false;
-        this.message = data;
-        console.log('FETCHED MESSAGE');
-        console.log(this.message);
+        this.inquiry = data;
+        console.log('FETCHED INQUIRY');
+        console.log(this.inquiry);
       },
       error => {
         console.log('Error');

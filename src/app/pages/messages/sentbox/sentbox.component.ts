@@ -20,6 +20,7 @@ export class SentboxComponent implements OnInit {
   page: number;
   checkAll: boolean;
   loading: boolean;
+  loading1: boolean;
   unitReciptients: string[];
 
   constructor(private router: Router, public messageService: MessageService, config: NgbDropdownConfig) {
@@ -33,6 +34,7 @@ export class SentboxComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit: SentBox');
     this.loading = true;
+    this.loading1 = true;
     this.itemsPerPage = 25;   // Number of Mail Items per page.
     this.page = 1;            // Starting Page
     this.checkAll = false;    // By Default, all mail items unchecked.
@@ -90,6 +92,8 @@ export class SentboxComponent implements OnInit {
 
   openMessage(id) {
     this.router.navigate(['/messages/view', id]);
+    console.log('OPEN MESSAGE');
+    console.log(id);
   }
 
 }
