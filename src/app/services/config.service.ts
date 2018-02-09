@@ -10,19 +10,19 @@ export class ConfigService {
     // customer.devdemo.betterleasing.com
     // localhost
     const parts = location.hostname.split('.'),
-      // site = parts.shift(),
-      site = null,
+      site = parts.shift(),
       host = parts.join('.') || 'devdemo.betterleasing.com';
 
     this.data = {
       api: {
-        baseURL: `${location.protocol}//api.devdemo.betterleasing.com/leasenet`
-        // baseURL: `${location.protocol}//api.${host}` + '/leasenet'
+        baseURL: `${location.protocol}//api.${host}` + '/leasenet',
+        resnet: `${location.protocol}//api.${host}` + '/resnet'
       },
       customer: {
         subdomain: site,
         host
-      }
+      },
+      environments: ['devdemo', 'stage', 'api']
     };
   }
 
