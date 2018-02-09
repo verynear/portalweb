@@ -61,6 +61,8 @@ import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
 import { FilterUnitsPipe } from './pipes/filter-units.pipe';
+import { RentalService } from './services/rental.service';
+import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
 
 @NgModule({
   imports: [
@@ -108,6 +110,7 @@ import { FilterUnitsPipe } from './pipes/filter-units.pipe';
     AnnouncementcomposeComponent,
     RecentActivityComponent,
     MessageComponent,
+    InvalidDomainComponent,
     SafeHtmlPipe,
     HtmlToPlainPipe,
     ReplacePipe,
@@ -127,6 +130,7 @@ import { FilterUnitsPipe } from './pipes/filter-units.pipe';
       ConfigService,
       SiteService,
       StatusService,
+      RentalService,
       fakeBackendProvider,
       MockBackend,
       BaseRequestOptions,
@@ -139,7 +143,7 @@ import { FilterUnitsPipe } from './pipes/filter-units.pipe';
       {
         provide: AuthHeaderInterceptor,
         useValue: AuthHeaderInterceptor.getInstance(),
-    }
+      }
   ],
   entryComponents: [ComposeComponent, AnnouncementcomposeComponent],
   bootstrap: [AppComponent]
