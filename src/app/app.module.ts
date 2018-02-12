@@ -62,6 +62,8 @@ import { ReplacePipe } from './pipes/replace.pipe';
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
 import { FilterUnitsPipe } from './pipes/filter-units.pipe';
 import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
+import { RentalService } from './services/rental.service';
+import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
 
 @NgModule({
   imports: [
@@ -109,6 +111,7 @@ import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
     AnnouncementcomposeComponent,
     RecentActivityComponent,
     MessageComponent,
+    InvalidDomainComponent,
     SafeHtmlPipe,
     HtmlToPlainPipe,
     ReplacePipe,
@@ -129,6 +132,7 @@ import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
       ConfigService,
       SiteService,
       StatusService,
+      RentalService,
       fakeBackendProvider,
       MockBackend,
       BaseRequestOptions,
@@ -141,7 +145,7 @@ import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
       {
         provide: AuthHeaderInterceptor,
         useValue: AuthHeaderInterceptor.getInstance(),
-    }
+      }
   ],
   entryComponents: [ComposeComponent, AnnouncementcomposeComponent],
   bootstrap: [AppComponent]
