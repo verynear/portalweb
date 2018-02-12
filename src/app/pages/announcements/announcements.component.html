@@ -5,7 +5,6 @@
 				<div class="container-fluid">
 					<h1>Manage Announcements</h1>
 					
-					
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">					
@@ -38,7 +37,7 @@
 							
 							<div class="clearfix">
 								<button class="btn btn-sm btn-primary float-right ">Edit</button>
-								<button class="btn btn-sm btn-primary btn-default float-right mr-2">Delete</button>	
+								<button (click)="deleteAnnouncement(announcement.id)" class="btn btn-sm btn-primary btn-default float-right mr-2">Delete</button>	
 							</div>
 							
 							<br>

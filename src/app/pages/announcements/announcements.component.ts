@@ -12,21 +12,18 @@ import { NgbDropdownConfig, NgbModalOptions, NgbModal } from '@ng-bootstrap/ng-b
 })
 export class AnnouncementsComponent implements OnInit {
   announcements: Array<any>;
-  itemsPerPage: number;      // Announcements per page
-  totalItems: number;
-  page: number;
-  checkAll: boolean;
+  itemsPerPage: number;         // # Of Announcements Per Page
+  totalItems: number;           // Total # of Announcements (For Pagination)
+  page: number;                 // Current Page
+  checkAll: boolean;           
   loading: boolean;
 
   constructor(private modalService: NgbModal, public announcementService: AnnouncementService) { }
 
   ngOnInit() {
-    console.log('Hello');
-    this.itemsPerPage = 5;
-    this.page = 1; // Starting Page
-    this.loading = true;
-    this.getSentAnnouncements();   // Get Sent Messages.
-
+    this.itemsPerPage = 5;        
+    this.page = 1;               
+    this.getSentAnnouncements();  
   }
 
   getSentAnnouncements() {
@@ -40,6 +37,16 @@ export class AnnouncementsComponent implements OnInit {
       error => {
         console.log('Error');
       });
+  }
+
+  deleteAnnouncement(id: number) {
+    console.log("Delete");
+    this.loading = true;
+    this.announcementService.deleteAnnouncement(id).subscribe(
+      data => {
+        console.log("Announcement Deleted");
+        this.loading = false;
+      })  
   }
 
   compose() {
