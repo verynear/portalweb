@@ -49,8 +49,15 @@
 							    {{message}}
 						    </span>
 						</span>
-					</td>
 
+						<span *ngIf="message.type === 'RESIDENT'">
+							{{message.messageRecipients[0]?.rentalSiteBuilding}}
+								-
+							<span *ngFor='let message of message.messageRecipients; let isLast=last'>
+								{{message.lastname}}{{isLast ? '' : ', '}}
+							</span>
+						</span>
+					</td>
 					<td>
 						<button [ngClass]="message.type" class="btn sentType UNIT">
 							<span *ngIf="message.type==='SITE'">
@@ -78,7 +85,6 @@
 </section>     
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
-              
 <p-progressSpinner id="sentbox" class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 
 </div>
