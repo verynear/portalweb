@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.addLoginListener();
-    // this.validateDomain();
+    this.validateDomain();
 
     this.brandingCSS = this.sanitizer.bypassSecurityTrustResourceUrl(this.rentalService.getBrandingCssUrl());
   }
@@ -48,6 +48,8 @@ export class AppComponent implements OnInit {
         if (!isValidDomain) {
           this.sessionService.set('invalidDomain', true);
           this.router.navigate(['invalid-domain']);
+        } else {
+          this.sessionService.set('invalidDomain', false);
         }
       });
   }
