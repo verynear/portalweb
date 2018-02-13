@@ -2,13 +2,8 @@
     <!-- Main Content Area -->
     <div class="main-content">
         <div class="container-fluid">
-            <h5>
-                <i class="fa fa-user"></i> Welcome, {{currentUser?.firstname}}
-                <br>
-                <small>ABC Management / {{currentSite?.name}}</small>
-            </h5>
-            <hr>
-            <h1>Messages</h1>
+
+            <h1>Messages</h1> 
 
             <section class="top">
                 <form>
@@ -29,16 +24,21 @@
                             <section>
 
                                 <button type="button" class="btn btn-primary btn-block text-left" (click)="compose()">
-                                    <i class="fa fa-edit fa-lg"></i> Compose Mail</button>
+                                    <i class="fa fa-edit fa-lg"></i> Create New</button>
 
                                 <div class="btn-group-vertical btn-block mail-nav">
-                                    <a class="btn btn-default">
-                                        <span class="badge badge-info"><!--{{totalItems}}--></span>
-                                        <i class="fa fa-inbox"></i> Sent</a>
+                                    <a [routerLink]="['','messages', 'inbox']" class="btn btn-default">
+                                        <span class="badge badge-info">{{totalItems}}</span>
+                                        <i class="fa fa-inbox"></i> Received</a>
+
+                                    <a [routerLink]="['','messages', 'sent']" class="btn btn-default">
+                                        <span class="badge badge-info">{{totalItems}}</span>
+                                        <i class="fa fa-send"></i> Sent</a>
+
                                 </div>
 
                             </section>
-                        </div>
+                        </div> 
 
                         <div class="col-md-10">
                             <div class="d-flex">
@@ -51,7 +51,6 @@
                                                 <div class="dropdown-item">From</div>
                                             </div>
                                         </div>
-
 
                                         <div ngbDropdown class="dropdown">
                                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true"
@@ -92,7 +91,6 @@
                                     </div>
                                 </div>
                                 <div>
-
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <i class="fa fa-trash fa-lg"></i>
@@ -102,15 +100,21 @@
                             </div>
 
                             <!-- Where the inbox should go -->
-                            <router-outlet></router-outlet>
-                        </div>
-                        </div>
+                            <span [style.display]="(router.url === '/messages/inbox') ? 'block' : 'none' ">
+                                <app-inbox></app-inbox>
+                            </span>
+                            <span [style.display]="(router.url === '/messages/sent') ? 'block' : 'none' ">
+                                <app-sentbox></app-sentbox>
+                            </span>
+
+                        </div> 
+                    </div>
                 </form>
             </section>
         </div>
     </div>
 
     <footer>
-            <small>&copy; 2018 BetterLeasing</small>
-          </footer>
+        <small>&copy; 2018 BetterLeasing</small>
+    </footer>
 </div>

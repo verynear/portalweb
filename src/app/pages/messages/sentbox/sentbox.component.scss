@@ -92,13 +92,6 @@ tr {
   opacity: .5;
 }
 
-.spinner {
-  margin-top: 150px;
-  float: right;
-  position: relative;
-  right: 60%;
-}
-
 .table-responsive {
   overflow-x: none;
 }
@@ -116,12 +109,10 @@ tr {
 }
 
 .sentType {
-  padding: 0.47rem .4rem;
+  padding: 0.24rem .5rem .10rem;
   color: white;
-  padding-top: 5px;
-  padding-bottom: 3px;
-  border-radius: 10px;
-
+  border-radius: 5px;
+  font-size: 9px;
 }
 
 .UNIT {

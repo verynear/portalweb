@@ -12,7 +12,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
 import { SelectItem, EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/primeng';
 import { ReplacePipe } from '../../pipes/replace.pipe';
-import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-compose',
@@ -21,11 +20,11 @@ import { SessionService } from '../../services/session.service';
 })
 export class ComposeComponent implements OnInit {
   @Output() onSent = new EventEmitter();
+  public currentSite: Site;
   buildings: Building[];
-  selectedBuildings: Building[];
-  units: any[];
-  selectedUnits: any[];
-  selectedTenantUnits: any[];
+  units: Unit[];
+  selectedUnits: Unit[];
+  selectedTenantUnits: Unit[];
   tenants: SelectItem[];
   selectedTenants: Tenant[];
   fetchedTenants: Tenant[];
@@ -34,40 +33,38 @@ export class ComposeComponent implements OnInit {
     {type: 'SITE', name: 'Community'},
     {type: 'BUILDING', name: 'Building(s)'},
     {type: 'UNIT', name: 'Unit(s)'},
-    {type: 'TENANT', name: 'Resident(s)'}
+    {type: 'RESIDENT', name: 'Resident(s)'}
   ];
-  list: any[];
   checkedList: any[];
   indi: {};
   composeForm: FormGroup;
   type: FormControl;
-  rentalsitesId: number;
   buildingIdforUnit: FormControl;
   buildingIdforTenantUnit: FormControl;
   rentalsiteBuildingIds: FormControl;
   rentalsiteBuildingUnitIds: FormControl;
-  unitIdForTenant: any;
+  unitIdForTenant: number;
   tenantIds: FormControl;
   filtered = [];
   finalBuildingIds = [];
   finalBuildingUnitIds = [];
-  finaltenantIds = [];
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
-  public currentSite: Site;
-  sites: any = [];
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
-      MessageService, private alertService: AlertService, private siteService: SiteService, private sessionService: SessionService) {}
+      MessageService, private alertService: AlertService, private siteService: SiteService) {}
 
     ngOnInit() {
-        this.currentSite = this.siteService.currentSite;
+        this.siteService.getCurrentSite().subscribe(site => {
+          this.currentSite = site;
+        });
+
         this.finalBuildingUnitIds = [];
-        this.finaltenantIds = [];
         this.getSiteBuildings();
         this.createFormControls();
         this.createForm();
+        this.setDefaultValues();
     }
 
     getSiteBuildings() {
@@ -110,7 +107,7 @@ export class ComposeComponent implements OnInit {
         this.buildingIdforTenantUnit = new FormControl('');
         this.tenantIds = new FormControl('');
         this.messageType = new FormControl('', Validators.required);
-        this.subject = new FormControl('');
+        this.subject = new FormControl('', Validators.required);
         this.message = new FormControl('', Validators.required);
     }
 
@@ -135,6 +132,10 @@ export class ComposeComponent implements OnInit {
     shareIndividualCheckedList(item: {}) {
         this.indi = item;
         console.log(item);
+    }
+
+    setDefaultValues() {
+       this.composeForm.patchValue({messageType: 'STANDARD'});
     }
 
     filterUnit(query, units: any[]): any[] {
@@ -180,16 +181,21 @@ export class ComposeComponent implements OnInit {
         this.loading = true;
         const message = new Message();
 
-        if (this.composeForm.value.type === 'SITE' || this.composeForm.value.type ===
-          'BUILDING' || this.composeForm.value.type === 'UNIT') { message.type =
-          this.composeForm.value.type; } else { message.type = 'UNIT'; }
-        if (this.composeForm.value.type === 'SITE') {message.rentalsitesId = this.currentSite.id; }
+        message.type = this.composeForm.value.type;
+
+        if (this.composeForm.value.type === 'SITE') {
+          message.rentalsitesId = this.currentSite.id;
+        }
         for (const building of this.composeForm.value.rentalsiteBuildingIds) {
           this.finalBuildingIds.push(building.id);
         }
-        if (this.composeForm.value.type === 'BUILDING') {message.rentalsiteBuildingIds = this.finalBuildingIds; }
-        if (this.composeForm.value.type === 'UNIT') {message.rentalsiteBuildingUnitIds = this.finalBuildingUnitIds; }
-        if (this.composeForm.value.type === 'TENANT') {
+        if (this.composeForm.value.type === 'BUILDING') {
+          message.rentalsiteBuildingIds = this.finalBuildingIds;
+        }
+        if (this.composeForm.value.type === 'UNIT') {
+          message.rentalsiteBuildingUnitIds = this.finalBuildingUnitIds;
+        }
+        if (this.composeForm.value.type === 'RESIDENT') {
           message.rentalsiteBuildingIds = [Number (this.composeForm.value.buildingIdforTenantUnit)];
           message.tenantIds = this.composeForm.value.tenantIds;
         }

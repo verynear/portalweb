@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
   public currentUser: User;
   public sites: any = [];
   public multiSite: boolean;
+  private currentSite: Site;
 
   constructor(private userService: UserService,
               private session: SessionService,
@@ -23,26 +24,25 @@ export class MenuComponent implements OnInit {
               private router: Router,
               private alertService: AlertService,
               private siteService: SiteService) {
-
-                console.log('Menu: Constructor');
               }
 
   ngOnInit() {
-    this.session.getObservable('currentUser').subscribe((user: User) => this.currentUser = user);
-    this.getRentalSites();
+    this.currentUser = this.session.get('currentUser');
+
+    this.siteService.getCurrentSite().subscribe(site => {
+      this.currentSite = site;
+    });
+
+    this.getSites();
   }
 
-  getRentalSites() {
-    this.siteService.getRentalSites().subscribe((sites: Site[]) => {
-      if (sites.length > 1) {
-        this.multiSite = true;
-      }
-
-      this.sites = sites;
+  getSites() {
+    this.siteService.getRentalSites().subscribe(site => {
+      this.sites = site;
     });
   }
 
-  switchSite(site) {
-    this.siteService.currentSite = site;
+  switchSite(site: Site) {
+    this.siteService.setCurrentSite(site);
   }
 }

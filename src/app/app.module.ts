@@ -30,9 +30,7 @@ import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { MessageService } from './services/message.service';
-import { PaymentService } from './services/payment.service';
 import { MaintenanceService } from './services/maintenance.service';
-import { PaymentsComponent } from './pages/payments/payments.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { AnnouncementService } from './services/announcement.service';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
@@ -62,6 +60,9 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
+import { FilterUnitsPipe } from './pipes/filter-units.pipe';
+import { RentalService } from './services/rental.service';
+import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
 
 @NgModule({
   imports: [
@@ -94,7 +95,6 @@ import {RecentActivityComponent} from './pages/recent-activity/recent-activity.c
     PageNotFoundComponent,
     DashboardComponent,
     MessagesComponent,
-    PaymentsComponent,
     MaintenanceComponent,
     AnnouncementsComponent,
     NavigationComponent,
@@ -110,9 +110,11 @@ import {RecentActivityComponent} from './pages/recent-activity/recent-activity.c
     AnnouncementcomposeComponent,
     RecentActivityComponent,
     MessageComponent,
+    InvalidDomainComponent,
     SafeHtmlPipe,
     HtmlToPlainPipe,
     ReplacePipe,
+    FilterUnitsPipe,
   ],
   providers: [
       {
@@ -128,20 +130,20 @@ import {RecentActivityComponent} from './pages/recent-activity/recent-activity.c
       ConfigService,
       SiteService,
       StatusService,
+      RentalService,
       fakeBackendProvider,
       MockBackend,
       BaseRequestOptions,
       MessageService,
-      PaymentService,
       MaintenanceService,
       AnnouncementService,
       SessionService,
       LoginService,
       SortService,
-    {
-      provide: AuthHeaderInterceptor,
-      useValue: AuthHeaderInterceptor.getInstance(),
-    }
+      {
+        provide: AuthHeaderInterceptor,
+        useValue: AuthHeaderInterceptor.getInstance(),
+      }
   ],
   entryComponents: [ComposeComponent, AnnouncementcomposeComponent],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
 import { ComposeComponent } from '../../components/compose/compose.component';
@@ -16,35 +17,20 @@ import { User } from '../../models/user';
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent implements OnInit {
-  public sites: any = [];
-  public userSites: any = [];
   public currentUser: User;
-  public currentSite: Site;
 
   constructor( private userService: UserService,
                private alertService: AlertService,
                private modalService: NgbModal,
-               private siteService: SiteService,
-               private sessionService: SessionService) { }
+               private sessionService: SessionService,
+               private router: Router) { }
 
   ngOnInit() {
-
-    this.sessionService.getObservable('currentUser')
-    .subscribe((user: User) => this.currentUser = user);
-
-    this.sessionService.getObservable('sites')
-      .subscribe((sites: Site[]) => {
-      console.log('Getting Current Sites');
-      this.sites = sites;
-    });
-
-    this.currentSite = this.siteService.currentSite;
-
+    this.currentUser = this.sessionService.get('currentUser');
   }
 
   compose() {
-    console.log('Compose');
-    const modalRef = this.modalService.open(ComposeComponent);
+    const modalRef = this.modalService.open(ComposeComponent, { size: 'lg' });
   }
 
 }

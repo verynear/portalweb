@@ -24,6 +24,8 @@ export class SessionService {
   }
 
   getObservable(key: string): any {
+    console.log('get Observable');
+    console.log(key);
     if (!this.observables[key]) {
       this.createObserver(key);
     }

@@ -1,0 +1,56 @@
+<div id="marginFix">
+
+<ngb-pagination *ngIf="!loading1" [collectionSize]="totalItems1" [pageSize]="itemsPerPage1" [(page)]="page1" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+
+<section class="inbox" *ngIf="!loading1">
+	<div class="table">
+	 	<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
+			<thead class="thead-light">
+					 <th class="width-25"> 
+						<app-th disable="true">
+							<p-checkbox name="groupname" value="val2" [(ngModel)]="checkAll1" binary="true" (click)="selectAllInquiries(checkAll1)"></p-checkbox>
+						</app-th>
+					</th>
+					 <th class="width-150">
+						<app-th columnName="tenant" displayName="Tenant"></app-th>
+					</th> 
+					<th class="min-width-100">
+						<app-th columnName="inquiry" displayName="Subject"></app-th>
+					</th>
+					<th class="text-right1" style="padding-left:50px;">
+						<app-th columnName="createDate" displayName="Date"></app-th>
+					</th> 
+			<tbody> 
+				<tr *ngFor='let inquiry of inquiries' (click)="openInquiry(inquiry.id)">
+					<td>
+						<ul class="list-inline m-0">
+						  <li class="list-inline-item">
+							<p-checkbox name="groupname1" value="val2" [(ngModel)]="inquiry.selected" binary="true"></p-checkbox>
+						  </li>
+						</ul>
+					</td>
+
+					<td class="width-150">
+						    {{inquiry.tenant.lastname}}, {{inquiry.tenant.firstname}}
+					</td>
+
+					<td class="min-width-100" style="padding-right: 20px;">
+		
+						<span class="previewTitle"> {{inquiry.subject}} -</span> 
+						<span class="previewTitle1" [innerHTML]="inquiry.message | htmlToPlain"> </span> 
+					</td> 
+
+					<td class="text-right1" style="padding-left: 50px;">
+						<span>{{inquiry.createDate | date:'mediumDate' }} </span>
+					</td>
+				</tr>				               
+			</tbody>
+		</table>
+	</div>
+</section>     
+
+<ngb-pagination [collectionSize]="totalItems1" [pageSize]="itemsPerPage1" [(page)]="page1" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+              
+<p-progressSpinner class="spinner1" id="inbox" *ngIf="loading1" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
+
+</div>
