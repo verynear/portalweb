@@ -21,7 +21,7 @@ export class InquiryComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-          this.id = Number (params.inq);
+          this.id = Number (params.id);
     });
       this.getInquiry(this.id);
   }

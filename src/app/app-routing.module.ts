@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: 'sent', component: SentboxComponent },
       { path: 'inbox', component: InboxComponent },
       { path: 'view/:id', component: MessageComponent },
-      { path: 'inquiry/:inq', component: InquiryComponent }
+      { path: 'inquiry/:id', component: InquiryComponent }
     ]
   },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },

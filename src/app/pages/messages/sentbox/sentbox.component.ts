@@ -22,7 +22,6 @@ export class SentboxComponent implements OnInit {
   page: number;
   checkAll: boolean;
   loading: boolean;
-  loading1: boolean;
   unitReciptients: string[];
 
 
@@ -37,7 +36,6 @@ export class SentboxComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit: SentBox');
     this.loading = true;
-    this.loading1 = true;
     this.itemsPerPage = 25;   // Number of Mail Items per page.
     this.page = 1;            // Starting Page
     this.checkAll = false;    // By Default, all mail items unchecked.
@@ -60,6 +58,7 @@ export class SentboxComponent implements OnInit {
         this.totalItems = data['totalPages'] * data['numberOfElements'];
       },
       error => {
+        this.loading = false;
         console.log('Error: getSentMessages(): SentboxComponent()');
       });
   }

@@ -22,7 +22,6 @@ export class InboxComponent implements OnInit {
   page1: number;
   checkAll1: boolean;
   loading1: boolean;
-  loading: boolean;
   unitReciptients: string[];
 
   constructor(private router: Router, public messageService: MessageService) {}
@@ -30,7 +29,6 @@ export class InboxComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit: InBox');
     this.loading1 = true;
-    this.loading = true;
     this.itemsPerPage1 = 25;   // Number of Mail Items per page.
     this.page1 = 1;            // Starting Page
     this.checkAll1 = false;    // By Default, all mail items unchecked.
@@ -67,6 +65,7 @@ export class InboxComponent implements OnInit {
         this.inquiries = data['generalInquiries'];
       },
       error => {
+        this.loading1 = false;
         console.log('Error: getInquiries(): InboxComponent()');
       });
   }
@@ -82,8 +81,8 @@ export class InboxComponent implements OnInit {
     this.inquiries = this.messageService.sortInquiries(this.inquiries, $event);
   }
 
-  openInquiry(inq: number) {
-    this.router.navigate(['/messages/inquiry', inq]);
+  openInquiry(id: number) {
+    this.router.navigate(['/messages/inquiry', id]);
   }
 
 }
