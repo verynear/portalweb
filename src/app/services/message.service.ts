@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Message } from '../models/message';
-import { Inquiry } from '../../../models/inquiry';
+import { Inquiry } from '../models/inquiry';
 import { Building } from '../models/building';
 import { Tenant } from '../models/tenant';
 import { Unit } from '../models/unit';

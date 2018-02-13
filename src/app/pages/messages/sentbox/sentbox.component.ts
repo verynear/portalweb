@@ -93,7 +93,7 @@ export class SentboxComponent implements OnInit {
     this.getSentMessages(this.page, this.itemsPerPage);
   }
 
-  openMessage(id) {
+  openMessage(id: number) {
     this.router.navigate(['/messages/view', id]);
     console.log('OPEN MESSAGE');
     console.log(id);
