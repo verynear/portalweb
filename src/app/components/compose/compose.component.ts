@@ -33,7 +33,7 @@ export class ComposeComponent implements OnInit {
     {type: 'SITE', name: 'Community'},
     {type: 'BUILDING', name: 'Building(s)'},
     {type: 'UNIT', name: 'Unit(s)'},
-    {type: 'TENANT', name: 'Resident(s)'}
+    {type: 'RESIDENT', name: 'Resident(s)'}
   ];
   checkedList: any[];
   indi: {};
@@ -181,12 +181,8 @@ export class ComposeComponent implements OnInit {
         this.loading = true;
         const message = new Message();
 
-        if (this.composeForm.value.type === 'SITE' || this.composeForm.value.type ===
-          'BUILDING' || this.composeForm.value.type === 'UNIT') {
-          message.type = this.composeForm.value.type;
-        } else {
-          message.type = 'UNIT';
-        }
+        message.type = this.composeForm.value.type;
+
         if (this.composeForm.value.type === 'SITE') {
           message.rentalsitesId = this.currentSite.id;
         }
@@ -199,7 +195,7 @@ export class ComposeComponent implements OnInit {
         if (this.composeForm.value.type === 'UNIT') {
           message.rentalsiteBuildingUnitIds = this.finalBuildingUnitIds;
         }
-        if (this.composeForm.value.type === 'TENANT') {
+        if (this.composeForm.value.type === 'RESIDENT') {
           message.rentalsiteBuildingIds = [Number (this.composeForm.value.buildingIdforTenantUnit)];
           message.tenantIds = this.composeForm.value.tenantIds;
         }

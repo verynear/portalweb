@@ -74,7 +74,7 @@
 						</div>
 					</div>
 
-					 <div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+					 <div class="form-group" [style.display]="(composeForm.value.type === 'RESIDENT') ? 'block' : 'none' ">
 						<label>Select Building:</label>
 						<select class="form-control" formControlName="buildingIdforTenantUnit">
 							<option value="">Select Building:</option>
@@ -84,7 +84,7 @@
 						</select>
 					</div> 
 
-					 <div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+					 <div class="form-group" [style.display]="(composeForm.value.type === 'RESIDENT') ? 'block' : 'none' ">
 						<label> Enter Unit: </label>
 						<div class="ui-fluid">
 							<p-autoComplete [suggestions]="selectedTenantUnits" (completeMethod)="getUnitsForBuildingTenant($event)" (onSelect)="setUnit($event)" [minLength]="1"  placeholder="Enter Unit" field="unitNumber" [multiple]="false">
@@ -92,7 +92,7 @@
 						</div>
 					</div> 
 
-					<div class="form-group" [style.display]="(composeForm.value.type === 'TENANT') ? 'block' : 'none' ">
+					<div class="form-group" [style.display]="(composeForm.value.type === 'RESIDENT') ? 'block' : 'none' ">
 							<label for="tenantIds">To:</label>
 						<div class="ui-fluid">
 							<p-multiSelect [options]="tenants" [showToggleAll]=false formControlName="tenantIds">
