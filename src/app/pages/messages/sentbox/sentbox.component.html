@@ -69,14 +69,6 @@
 						</button>
 					</td>
 
-					<span *ngIf="message.type === 'RESIDENT'">
-						{{message.messageRecipients[0]?.rentalSiteBuilding}}
-						 -
-						<span *ngFor='let message of message.messageRecipients; let isLast=last'>
-						    {{message.lastname}}{{isLast ? '' : ', '}}
-					    </span>
-				    </span>
-
 					<td class="min-width-100" style="padding-right: 20px">
 		
 						<span class="previewTitle"> {{message.subject}} -</span> 
