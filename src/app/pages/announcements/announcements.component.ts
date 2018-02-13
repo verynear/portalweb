@@ -15,24 +15,41 @@ export class AnnouncementsComponent implements OnInit {
   itemsPerPage: number;         // # Of Announcements Per Page
   totalItems: number;           // Total # of Announcements (For Pagination)
   page: number;                 // Current Page
-  checkAll: boolean;           
+  checkAll: boolean;
   loading: boolean;
 
   constructor(private modalService: NgbModal, public announcementService: AnnouncementService) { }
 
   ngOnInit() {
-    this.itemsPerPage = 5;        
-    this.page = 1;               
-    this.getSentAnnouncements();  
+    this.itemsPerPage = 5;
+    this.page = 1;
+    this.getSentAnnouncements(this.page - 1, this.itemsPerPage);
   }
 
-  getSentAnnouncements() {
-    console.log('getting announcements');
-    this.announcementService.getSentAnnouncements().subscribe(
+  pageChange() {
+    this.nextPage(this.page - 1, this.itemsPerPage); // page-1 because NgBootstrap starts at page=1
+  }
+
+  nextPage(page, itemsPerPage) {
+    console.log('nextPage: InBox');
+    this.loading = true;
+    this.announcementService.getSentAnnouncements(page, itemsPerPage).subscribe(
       data => {
         this.loading = false;
         this.announcements = data['content'];
-        this.totalItems = data['content'].length;
+        this.totalItems = data['totalPages'] * data['numberOfElements'];
+      },
+      error => {
+        console.log('Error: getInquiries(): InboxComponent()');
+      });
+  }
+
+  getSentAnnouncements(page, itemsPerPage) {
+    this.announcementService.getSentAnnouncements(page, itemsPerPage).subscribe(
+      data => {
+        this.loading = false;
+        this.announcements = data['content'];
+        this.totalItems = data['totalPages'] * data['numberOfElements'];
       },
       error => {
         console.log('Error');
@@ -40,21 +57,19 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   deleteAnnouncement(id: number) {
-    console.log("Delete");
     this.loading = true;
     this.announcementService.deleteAnnouncement(id).subscribe(
       data => {
-        console.log("Announcement Deleted");
-        this.loading = false;
-      })  
+        this.getSentAnnouncements(this.page, this.itemsPerPage);
+      });
   }
 
   compose() {
-    const options: NgbModalOptions = { backdrop: 'static' };
+    const options: NgbModalOptions = {backdrop: 'static', size: 'lg'};
     const modalRef = this.modalService.open(AnnouncementcomposeComponent, options);
 
     modalRef.result.then((userResponse) => {
-      this.getSentAnnouncements();  // Get Announcements.
+      this.getSentAnnouncements(0, this.itemsPerPage);  // Get Announcements.
     });
   }
 

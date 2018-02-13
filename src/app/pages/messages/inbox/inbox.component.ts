@@ -14,6 +14,8 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./inbox.component.scss']
 })
 export class InboxComponent implements OnInit {
+  pageName = 'Received';
+
   inquiries: Array<Message>;
   itemsPerPage1: number;      // The number of emails per page.
   totalItems1: number;

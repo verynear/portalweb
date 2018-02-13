@@ -14,25 +14,29 @@ export class AnnouncementService {
     this.baseURL = config.get().api.baseURL;
   }
 
-  getSentAnnouncements() {
-    return this.http.get<Announcement[]>(this.baseURL + '/announcements');
+  getSentAnnouncements(page, size): Observable<Announcement> {
+    return this.http.get<Announcement[]>(this.baseURL + '/announcements?page=' + page + '&size=' + size)
+    .catch((error: any) => {
+      return Observable.throw(this.errorHandler(error));
+    });
   }
 
   postAnnouncement(announcement: Announcement) {
-    return this.http.post(this.baseURL + '/announcements', announcement);
+    return this.http.post(this.baseURL + '/announcements', announcement)
+    .catch((error: any) => {
+      return Observable.throw(this.errorHandler(error));
+    });
   }
 
   deleteAnnouncement(id: number): Observable<Announcement> {
     return this.http.delete(this.baseURL + '/announcements/' + id)
-      .map((res:Response) => {
-        res.json()
-      }).catch((error:any) => { 
-        return Observable.throw(this.errorHandler(error))
-      }); 
+    .catch((error: any) => {
+      return Observable.throw(this.errorHandler(error));
+    });
   }
 
   errorHandler(error: any): void {
-    console.log("Error: AnnouncementService");
-    console.log(error)
+    console.log('Error: AnnouncementService');
+    console.log(error);
   }
 }

@@ -22,8 +22,14 @@
 								<button type="button" class="btn btn-lg btn-primary float-right" (click)="compose()"><i class="fa fa-edit fa-lg"></i> Create New Announcement</button>
 							</div>
 						</div>
-				
-					<div class="row d-block" *ngFor='let announcement of announcements | slice:(page-1)*itemsPerPage:itemsPerPage*page' style="word-wrap: break-word">
+
+						<div class="row mt-4">
+							<div class="col-md-12">
+								<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right" ></ngb-pagination>	
+							</div>
+						</div>
+
+					<div class="row d-block" *ngFor='let announcement of announcements' style="word-wrap: break-word">
 						<div class="col-md-12">
 							<hr>
 							
@@ -47,12 +53,16 @@
 					
 					<hr>
 
+					<p-progressSpinner class="spinner" *ngIf="loading" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
+				
 					<div class="row">
 						<div class="col-md-12">
-							<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" class="float-right" ></ngb-pagination>	
+							<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right" ></ngb-pagination>	
 						</div>
 					</div>
 				</div>
+
+	
 			</form>
 		</div>
 </div>

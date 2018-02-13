@@ -3,7 +3,7 @@
     <div class="main-content">
         <div class="container-fluid">
 
-            <h1>Messages</h1>
+            <h1>Messages</h1> 
 
             <section class="top">
                 <form>
@@ -24,15 +24,17 @@
                             <section>
 
                                 <button type="button" class="btn btn-primary btn-block text-left" (click)="compose()">
-                                    <i class="fa fa-edit fa-lg"></i> Compose Mail</button>
+                                    <i class="fa fa-edit fa-lg"></i> Create New</button>
 
                                 <div class="btn-group-vertical btn-block mail-nav">
+                                    <a [routerLink]="['','messages', 'inbox']" class="btn btn-default">
+                                        <span class="badge badge-info">{{totalItems}}</span>
+                                        <i class="fa fa-inbox"></i> Received</a>
+
                                     <a [routerLink]="['','messages', 'sent']" class="btn btn-default">
                                         <span class="badge badge-info">{{totalItems}}</span>
                                         <i class="fa fa-send"></i> Sent</a>
-                                    <a [routerLink]="['','messages', 'inbox']" class="btn btn-default">
-                                        <span class="badge badge-info">{{totalItems}}</span>
-                                        <i class="fa fa-inbox"></i> Inbox</a>
+
                                 </div>
 
                             </section>
@@ -89,7 +91,6 @@
                                     </div>
                                 </div>
                                 <div>
-
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <i class="fa fa-trash fa-lg"></i>
@@ -99,20 +100,21 @@
                             </div>
 
                             <!-- Where the inbox should go -->
-                            <span [style.display]="(router.url === '/messages/sent') ? 'block' : 'none' ">
-                                <app-sentbox></app-sentbox>
-                            </span>
                             <span [style.display]="(router.url === '/messages/inbox') ? 'block' : 'none' ">
                                 <app-inbox></app-inbox>
                             </span>
+                            <span [style.display]="(router.url === '/messages/sent') ? 'block' : 'none' ">
+                                <app-sentbox></app-sentbox>
+                            </span>
+
                         </div> 
-                        </div>
+                    </div>
                 </form>
             </section>
         </div>
     </div>
 
     <footer>
-            <small>&copy; 2018 BetterLeasing</small>
-          </footer>
+        <small>&copy; 2018 BetterLeasing</small>
+    </footer>
 </div>

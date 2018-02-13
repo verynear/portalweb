@@ -14,6 +14,8 @@ import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./sentbox.component.scss']
 })
 export class SentboxComponent implements OnInit {
+  pageName = 'Sent';
+
   messages: Array<Message>;
   itemsPerPage: number;      // The number of emails per page.
   totalItems: number;
@@ -21,6 +23,7 @@ export class SentboxComponent implements OnInit {
   checkAll: boolean;
   loading: boolean;
   unitReciptients: string[];
+
 
   constructor(private router: Router, public messageService: MessageService, config: NgbDropdownConfig) {
     // Default values for dropdowns.
