@@ -3,7 +3,7 @@
     <div class="main-content">
         <div class="container-fluid">
 
-            <h1>Messages</h1> 
+            <h1>Messages</h1>
 
             <section class="top">
                 <form>
@@ -28,17 +28,17 @@
 
                                 <div class="btn-group-vertical btn-block mail-nav">
                                     <a [routerLink]="['','messages', 'inbox']" class="btn btn-default">
-                                        <span class="badge badge-info">{{totalItems}}</span>
+                                        <span class="badge badge-info"><!--{{totalItems}}--></span>
                                         <i class="fa fa-inbox"></i> Received</a>
 
                                     <a [routerLink]="['','messages', 'sent']" class="btn btn-default">
-                                        <span class="badge badge-info">{{totalItems}}</span>
+                                        <span class="badge badge-info"><!--{{totalItems}}--></span>
                                         <i class="fa fa-send"></i> Sent</a>
 
                                 </div>
 
                             </section>
-                        </div> 
+                        </div>
 
                         <div class="col-md-10">
                             <div class="d-flex">
@@ -100,14 +100,13 @@
                             </div>
 
                             <!-- Where the inbox should go -->
-                            <span [style.display]="(router.url === '/messages/inbox') ? 'block' : 'none' ">
+                          <span [style.display]="isInbox() ? 'block' : 'none' ">
                                 <app-inbox></app-inbox>
                             </span>
-                            <span [style.display]="(router.url === '/messages/sent') ? 'block' : 'none' ">
+                          <span [style.display]="isSentBox() ? 'block' : 'none' ">
                                 <app-sentbox></app-sentbox>
                             </span>
-
-                        </div> 
+                        </div>
                     </div>
                 </form>
             </section>
