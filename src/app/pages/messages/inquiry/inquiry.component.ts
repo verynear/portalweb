@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../../services/message.service';
-import { Message } from '../../../models/message';
+import { Inquiry } from '../../../models/inquiry';
 import { SafeHtmlPipe } from '../../../pipes/safe-html.pipe';
 
 @Component({

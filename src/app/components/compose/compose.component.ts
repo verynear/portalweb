@@ -194,7 +194,7 @@ export class ComposeComponent implements OnInit {
         if (this.composeForm.value.type === 'UNIT') {
           message.rentalsiteBuildingUnitIds = this.finalBuildingUnitIds;
         }
-        if (this.composeForm.value.type === 'TENANT') {
+        if (this.composeForm.value.type === 'RESIDENT') {
           message.rentalsiteBuildingIds = [Number (this.composeForm.value.buildingIdforTenantUnit)];
           message.tenantIds = this.composeForm.value.tenantIds;
         }

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HtmlToPlainPipe } from '../../../pipes/html-to-plain.pipe';
 import { FilterUnitsPipe } from '../../../pipes/filter-units.pipe';
 import { MessageService } from '../../../services/message.service';
-import { Message } from '../../../models/message';
+import { Inquiry } from '../../../models/inquiry';
 import { ComposeComponent } from '../../../components/compose/compose.component';
 import { CheckboxModule } from 'primeng/primeng';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +16,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class InboxComponent implements OnInit {
   pageName = 'Received';
 
-  inquiries: Array<Message>;
+  inquiries: Array<Inquiry>;
   itemsPerPage1: number;      // The number of emails per page.
   totalItems1: number;
   page1: number;
@@ -79,10 +79,10 @@ export class InboxComponent implements OnInit {
 
   // For sort event./
   onSorted($event) {
-    this.inquiries = this.messageService.sortMessages(this.inquiries, $event);
+    this.inquiries = this.messageService.sortInquiries(this.inquiries, $event);
   }
 
-  openInquiry(inq) {
+  openInquiry(inq: number) {
     this.router.navigate(['/messages/inquiry', inq]);
   }
 
