@@ -182,7 +182,6 @@ export class ComposeComponent implements OnInit {
         const message = new Message();
 
         message.type = this.composeForm.value.type;
-
         if (this.composeForm.value.type === 'SITE') {
           message.rentalsitesId = this.currentSite.id;
         }

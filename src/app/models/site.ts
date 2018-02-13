@@ -4,12 +4,16 @@ export class Site {
     address2: string;
     city: string;
     contactEmail: string;
+    createDate: Date;
+    fax: string;
     name: string;
+    phone: string;
     propertyCode: string;
     siteStatus: number;
+    state: string;
+    updateDate: Date;
     userid: number;
     zip: string;
-    state: string;
     rentalSitesBrandings: SiteBranding;
 }
 

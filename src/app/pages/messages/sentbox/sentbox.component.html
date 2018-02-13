@@ -2,7 +2,7 @@
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
-<section class="inbox" *ngIf="!loading">
+<section class="inbox" *ngIf="!loading && loading1">
 	<div class="table">
 	 	<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 			<thead class="thead-light">

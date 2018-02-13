@@ -15,6 +15,7 @@ import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { MessageComponent } from './pages/messages/message/message.component';
+import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
 import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
 
 const routes: Routes = [
@@ -31,10 +32,10 @@ const routes: Routes = [
     // TODO create a page/component for each children
     children: [
       { path: '', redirectTo: 'sent', pathMatch: 'full' },
-      { path: 'view/:id', component: MessageComponent },
       { path: 'sent', component: SentboxComponent },
       { path: 'inbox', component: InboxComponent },
-      { path: 'notifications', component: MessagesComponent }
+      { path: 'view/:id', component: MessageComponent },
+      { path: 'inquiry/:inq', component: InquiryComponent }
     ]
   },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },

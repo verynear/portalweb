@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Applicant } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
 import { DatatableComponent } from '../../components/datatable/datatable.component';
-import { SessionService } from '../../services/session.service';
+import { SiteService } from '../../services/site.service';
 import { Site } from '../../models/site';
 
 @Component({
@@ -12,16 +12,16 @@ import { Site } from '../../models/site';
 })
 export class ApplicantsComponent implements OnInit {
 
-  site: Site;
+  currentSite: Site;
 
-  constructor(private session: SessionService) {
+  constructor(private siteService: SiteService) {
 
   }
 
   ngOnInit() {
-    this.session.getObservable('currentSite').subscribe(user => {
-      this.site = user;
-    });
+    this.siteService.getCurrentSite().subscribe(site => {
+          this.currentSite = site;
+        });
 
   }
 

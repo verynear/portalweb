@@ -61,6 +61,7 @@ import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
 import { FilterUnitsPipe } from './pipes/filter-units.pipe';
+import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
 import { RentalService } from './services/rental.service';
 import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
 
@@ -115,6 +116,7 @@ import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.comp
     HtmlToPlainPipe,
     ReplacePipe,
     FilterUnitsPipe,
+    InquiryComponent,
   ],
   providers: [
       {
