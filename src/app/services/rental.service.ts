@@ -11,15 +11,16 @@ export class RentalService {
   constructor(private http: HttpClient,
               private config: ConfigService) {
 
-    this.url = config.get().api.resnet;
-    this.subdomain = config.get().customer.subdomain; }
+    this.url = config.get().api.baseURL;
+    this.subdomain = config.get().customer.subdomain;
+  }
 
   getBrandingCssUrl(): string {
     return `${this.url}/rental/branding/css?domain=${this.subdomain}`;
   }
 
   getBrandingData(): Promise<RentalSite> {
-    return this.http.get<RentalSite>(`${this.url}/rental/branding/data?domain=${this.subdomain}`)
+    return this.http.get<RentalSite>(`${this.url}/rental/company/validate?domain=${this.subdomain}`)
       .toPromise();
   }
 
