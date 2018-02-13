@@ -14,6 +14,8 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./inbox.component.scss']
 })
 export class InboxComponent implements OnInit {
+  pageName = 'Received';
+
   inquiries: Array<Message>;
   itemsPerPage1: number;      // The number of emails per page.
   totalItems1: number;
@@ -51,6 +53,7 @@ export class InboxComponent implements OnInit {
         console.log(this.loading1);
       },
       error => {
+        this.loading1 = false;
         console.log('Error: getInquiries(): InboxComponent()');
       });
   }

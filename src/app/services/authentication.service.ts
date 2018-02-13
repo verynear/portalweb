@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/map';
 import {User} from '../models/user';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import { ConfigService } from './config.service';
+import {ConfigService} from './config.service';
+import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class AuthenticationService {

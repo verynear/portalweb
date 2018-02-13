@@ -82,10 +82,10 @@ export class SiteService {
 
     const primary = site.rentalSitesBrandings[0].bgColor;
 
-    const str = '.btn {background-color: ' + primary + ' !important} ' +
+    const str = '.btn-primary {background-color: ' + primary + ' !important} ' +
     '.primary.active {background-color: ' + primary + ' !important}' +
     '.primary:hover {background-color: ' + primary + ' !important}' +
-    '.image {background-color: ' + primary + ' !important}';
+    'h1 {color: ' + primary + ' !important}';
 
     const node = document.createElement('style');
     node.innerHTML = str;

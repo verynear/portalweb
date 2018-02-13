@@ -115,6 +115,11 @@ a:hover.btn.btn-default,
   background-color: #123475;
 }
 
+.btn-default:hover, .btn-default:focus {
+  background-color: #626262 !important; 
+}
+
+
 .btn.btn-primary[disabled] {
   cursor: not-allowed;
 }
@@ -534,7 +539,7 @@ footer {
 }
 
 .icon-box > .icon > .image {
-  background-color: #123475;
+  background-color: #909090;
 }
 
 .dropdown-menu.dropdown-md {
@@ -637,5 +642,20 @@ footer {
 
 .w-65 {
   width: 65%;
+}
+
+.imgLogo {
+  max-width: 150px;
+}
+
+.spinner{
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  background-size: 100%;
 }
 
