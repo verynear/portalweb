@@ -51,6 +51,7 @@ export class InboxComponent implements OnInit {
         console.log(this.loading1);
       },
       error => {
+        this.loading1 = false;
         console.log('Error: getInquiries(): InboxComponent()');
       });
   }
