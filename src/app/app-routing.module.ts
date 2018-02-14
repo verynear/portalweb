@@ -15,7 +15,8 @@ import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { MessageComponent } from './pages/messages/message/message.component';
-import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
+import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
+import { ReportComponent } from './pages/messages/report/report.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'notifications', component: MessagesComponent }
     ]
   },
+  { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'invalid-domain', component: InvalidDomainComponent },
   { path: 'status', component: StatusComponent },
