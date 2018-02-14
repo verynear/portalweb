@@ -45,6 +45,8 @@ export class AppComponent implements OnInit {
   private validateDomain(): void {
     this.rentalService.checkSubdomain()
       .then((isValidDomain: boolean) => {
+        console.log('IS VALID DOMAIN?:');
+        console.log(isValidDomain);
         if (!isValidDomain) {
           this.sessionService.set('invalidDomain', true);
           this.router.navigate(['invalid-domain']);
