@@ -9,11 +9,11 @@ def notifySlack(String buildStatus = 'STARTED') {
     if (buildStatus == 'STARTED') {
         color = '#D4DADF'
     } else if (buildStatus == 'SUCCESS') {
-        color = '#BDFFC3'
+        color = 'good'
     } else if (buildStatus == 'UNSTABLE') {
-        color = '#FFFE89'
+        color = 'warning'
     } else {
-        color = '#FF9FA1'
+        color = 'danger'
     }
 
     def msg = "${buildStatus}: Job ${env.JOB_NAME} [<${env.BUILD_URL}|${env.BUILD_NUMBER}>]"
