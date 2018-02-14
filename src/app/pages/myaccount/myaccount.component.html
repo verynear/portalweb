@@ -1,0 +1,29 @@
+<div id="main">
+	<!-- Main Content Area -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<h1>Account</h1>
+			<h5>ABC Management</h5>
+			<h6>{{currentSite?.name}}<br><small>{{currentSite?.address1}}, {{currentSite?.city}}, {{currentSite?.state}} {{currentSite?.zip}}<br>PH: {{currentSite?.phone}} / FX: {{currentSite?.fax}}</small></h6>
+			<h3>Account Info</h3>
+			<form>
+				<div class="form-group row">
+					<div class="col-sm-4">
+						<label for="UserEmail" class="col-form-label">Email</label>
+						<input type="UserEmail" class="form-control" id="UserEmail" placeholder="jo@mail.com" value="jo@mail.com">
+					</div>
+					<div class="col-sm-4">
+						<label for="inputPassword" class="col-form-label">Password</label>
+						<input type="password" class="form-control" id="inputPassword" placeholder="Password" value="Password">
+					</div>
+				</div>
+				<hr>
+				<input type="submit" class="btn btn-primary" value="Submit">
+			</form>
+		</div>
+	</div>
+	
+	<footer>
+		<small>&copy; 2018 BetterLeasing</small>
+	</footer>
+</div>

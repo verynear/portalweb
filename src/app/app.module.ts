@@ -64,6 +64,7 @@ import { FilterUnitsPipe } from './pipes/filter-units.pipe';
 import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
 import { RentalService } from './services/rental.service';
 import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
+import { MyaccountComponent } from './pages/myaccount/myaccount.component';
 
 @NgModule({
   imports: [
@@ -117,6 +118,7 @@ import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.comp
     ReplacePipe,
     FilterUnitsPipe,
     InquiryComponent,
+    MyaccountComponent,
   ],
   providers: [
       {

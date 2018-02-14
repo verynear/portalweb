@@ -15,6 +15,7 @@ import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { MessageComponent } from './pages/messages/message/message.component';
+import { MyAccountComponent } from './pages/myaccount/myaccount.component';
 import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
 import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
 
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: 'inquiry/:id', component: InquiryComponent }
     ]
   },
+  { path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'invalid-domain', component: InvalidDomainComponent },
   { path: 'status', component: StatusComponent },
