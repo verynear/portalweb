@@ -6,19 +6,34 @@
 			<h5>ABC Management</h5>
 			<h6>{{currentSite?.name}}<br><small>{{currentSite?.address1}}, {{currentSite?.city}}, {{currentSite?.state}} {{currentSite?.zip}}<br>PH: {{currentSite?.phone}} / FX: {{currentSite?.fax}}</small></h6>
 			<h3>Account Info</h3>
-			<form>
-				<div class="form-group row">
-					<div class="col-sm-4">
-						<label for="UserEmail" class="col-form-label">Email</label>
-						<input type="UserEmail" class="form-control" id="UserEmail" placeholder="jo@mail.com" value="jo@mail.com">
-					</div>
-					<div class="col-sm-4">
-						<label for="inputPassword" class="col-form-label">Password</label>
-						<input type="password" class="form-control" id="inputPassword" placeholder="Password" value="Password">
+			<form novalidate (ngSubmit)="update(accountForm)" [formGroup]="accountForm">
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" class="form-control" formControlName="email" placeholder={{currentUser.username}}>
+					<div class="form-text error"
+					  *ngIf="accountForm.get('email').hasError('minlength') && accountForm.get('email').touched">
+					  Minimum of 6 characters
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="password">Password:</label>
+					<input type="password" class="form-control" formControlName="password">
+					<div
+					  class="form-text error"
+					  *ngIf="accountForm.get('password').hasError('minlength') && accountForm.get('password').touched">
+					  Minimum of 6 characters
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="verify">Confirm Password:</label>
+					<input type="password" class="form-control" formControlName="verify">
+					  <div *ngIf="accountForm.get('verify').touched" class="text-danger">
+						<div *ngIf="accountForm.get('password').value !== accountForm.get('verify').value">Password Mismatch.</div>
+					  </div>
+
+				</div>
 				<hr>
-				<input type="submit" class="btn btn-primary" value="Submit">
+				<button type="submit" class="btn btn-primary" [disabled]="accountForm.invalid">Update</button>
 			</form>
 		</div>
 	</div>

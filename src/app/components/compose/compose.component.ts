@@ -29,12 +29,7 @@ export class ComposeComponent implements OnInit {
   selectedTenants: Tenant[];
   fetchedTenants: Tenant[];
   loading = false;
-  recips = [
-    {type: 'SITE', name: 'Community'},
-    {type: 'BUILDING', name: 'Building(s)'},
-    {type: 'UNIT', name: 'Unit(s)'},
-    {type: 'RESIDENT', name: 'Resident(s)'}
-  ];
+  recips: any[];
   checkedList: any[];
   indi: {};
   composeForm: FormGroup;
@@ -59,7 +54,12 @@ export class ComposeComponent implements OnInit {
         this.siteService.getCurrentSite().subscribe(site => {
           this.currentSite = site;
         });
-
+        this.recips = [
+          {type: 'SITE', name: 'Community', community: this.currentSite.name},
+          {type: 'BUILDING', name: 'Building(s)'},
+          {type: 'UNIT', name: 'Unit(s)'},
+          {type: 'RESIDENT', name: 'Resident(s)'}
+        ];
         this.finalBuildingUnitIds = [];
         this.getSiteBuildings();
         this.createFormControls();

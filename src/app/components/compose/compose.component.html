@@ -43,7 +43,7 @@
 						<select class="form-control" formControlName="type">
 							<option value="">Select Recipient Type:</option>
 							<option *ngFor="let recip of recips" [value]="recip.type">
-								{{recip.name}}
+								{{recip.name}}<span style="font-size: small;" *ngIf="recip.community"> - {{recip.community}}</span>
                             </option>
 						</select>
 					</div>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteService } from '../../services/site.service';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { AlertService } from '../../services/alert.service';
 import { SessionService } from '../../services/session.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/user';
 import { Site } from '../../models/site';
 
@@ -17,11 +19,14 @@ export class MyAccountComponent implements OnInit {
   public sites: any = [];
   public site: Site;
   accountForm: FormGroup;
-  email: FormControl;
-  password: FormControl;
-  passwordConfirm: FormControl;
 
-  constructor(private siteService: SiteService, private userService: UserService, private session: SessionService) { }
+  constructor(private siteService: SiteService, private userService: UserService, private session: SessionService, private alertService: AlertService, private router: Router, public fb: FormBuilder) { 
+     this.accountForm = this.fb.group({
+        email: ['', [Validators.email, Validators.minLength(6)]],
+        password: ['', [Validators.minLength(6), Validators.maxLength(30)]],
+        verify: ['', Validators.minLength(6)],
+      });
+  }
 
   ngOnInit() {
   	this.siteService.getCurrentSite().subscribe(site => {
@@ -31,44 +36,25 @@ export class MyAccountComponent implements OnInit {
     this.session.getObservable('currentUser').subscribe(user => {
       this.currentUser = user;
     });
+    this.accountForm.patchValue({
+      email: this.currentUser.username
+    });
   }
 
-  createFormControls() {
+  update() {
+      const user = this.currentUser;
 
-  	 this.password = new FormControl('', Validators.minLength(6));
-    this.passwordConfirm = new FormControl('', Validators.minLength(6)),
-        this.type = new FormControl('', Validators.required);
-        this.rentalsiteBuildingIds = new FormControl('');
-        this.rentalsiteBuildingUnitIds = new FormControl('');
-        this.buildingIdforUnit = new FormControl('');
-        this.buildingIdforTenantUnit = new FormControl('');
-        this.tenantIds = new FormControl('');
-        this.messageType = new FormControl('', Validators.required);
-        this.subject = new FormControl('', Validators.required);
-        this.message = new FormControl('', Validators.required);
-    }
+      user.username = this.accountForm.value.email;
+      user.password = this.accountForm.value.password;
 
-    createForm() {
-    	this.heroForm = new FormGroup({
-    	    'email': new FormControl(this.hero.name, [
-    	      Validators.required,
-    	      Validators.minLength(4),
-    	      forbiddenNameValidator(/bob/i) // <-- Here's how you pass in the custom validator.
-    	    ]),
-    	    'alterEgo': new FormControl(this.hero.alterEgo),
-    	    'power': new FormControl(this.hero.power, Validators.required)
-    	  });
-        this.accountForm = new FormGroup({
-            'email': this.type,
-            rentalsiteBuildingIds: this.rentalsiteBuildingIds,
-            rentalsiteBuildingUnitIds: this.rentalsiteBuildingUnitIds,
-            buildingIdforUnit: this.buildingIdforUnit,
-            buildingIdforTenantUnit: this.buildingIdforTenantUnit,
-            tenantIds: this.tenantIds,
-            messageType: this.messageType,
-            subject: this.subject,
-            message: this.message
-        });
-    }
+      this.userService.update(user).subscribe(
+          data => {
+              this.alertService.success('Update successful', true);
+              this.router.navigate(['/dashboard']);
+          },
+          error => {
+              this.alertService.error(error);
+          });
+  }
 
 }
