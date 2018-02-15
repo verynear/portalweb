@@ -1,1 +1,1 @@
-<ngb-alert *ngIf="message && !closed1" [type]="type" (close)="closed1 = true">{{message.text}}</ngb-alert>
+<ngb-alert *ngIf="message && !closed1" [type]="message.type" (close)="closed1 = true">{{message.text}}</ngb-alert>
