@@ -18,11 +18,11 @@ export class UserService {
   }
 
   getAll() {
-    return this.http.get<User[]>(this.baseURL + '/users');
+    return this.http.get<User[]>(this.baseURL + '/user');
   }
 
   getById(id: number) {
-    return this.http.get(this.baseURL + '/users/' + id)
+    return this.http.get(this.baseURL + '/user/' + id)
       .map((response: Response) => response.json());
   }
 
@@ -36,12 +36,12 @@ export class UserService {
   }
 
   update(user: User) {
-    return this.http.put(this.baseURL + '/users/' + user.id, user)
+    return this.http.put(this.baseURL + '/user/' + user.id, user)
       .map((response: Response) => response.json());
   }
 
   delete(id: number) {
-    return this.http.delete(this.baseURL + '/users/' + id)
+    return this.http.delete(this.baseURL + '/user/' + id)
       .map((response: Response) => response.json());
   }
 }

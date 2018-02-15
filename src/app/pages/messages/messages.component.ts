@@ -30,7 +30,7 @@ export class MessagesComponent implements OnInit {
     this.currentUser = this.sessionService.get('currentUser');
   }
 
-  viewingMessage() {
+  viewingSent() {
     if (this.router.url.includes('messages/view')) {
       return true;
     }
@@ -38,8 +38,8 @@ export class MessagesComponent implements OnInit {
     return false;
   }
 
-  viewingInquiry() {
-    if (this.router.url.includes('messages/inquiry')) {
+  viewingReceived() {
+    if (this.router.url.includes('messages/received')) {
       return true;
     }
 

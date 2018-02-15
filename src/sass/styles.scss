@@ -280,6 +280,7 @@ a:hover.btn.btn-primary {
     color: #3d9241;
 }
 .alert-success {
+    color: #3d9241;
     border-color: #3d9241;
 }
 .alert-success .btn-success,
@@ -307,10 +308,7 @@ a:hover.btn.btn-primary {
 .alert-info a:active.btn-info {
   background-color: #1766ab;
 }
-.alert {
-  background-color: transparent;
-  color: #555;
-}
+
 .alert hr {
   border-top-color: #ddd;
 }
@@ -650,12 +648,9 @@ footer {
 
 .spinner{
   position: absolute;
-  height: 100px;
-  width: 100px;
-  top: 50%;
+  top: 80%;
   left: 50%;
   margin-left: -50px;
   margin-top: -50px;
-  background-size: 100%;
 }
 

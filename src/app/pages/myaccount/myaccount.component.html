@@ -1,0 +1,44 @@
+<div id="main">
+	<!-- Main Content Area -->
+	<div class="main-content">
+		<div class="container-fluid">
+			<h1>Account</h1>
+			<h5>ABC Management</h5>
+			<h6>{{currentSite?.name}}<br><small>{{currentSite?.address1}}, {{currentSite?.city}}, {{currentSite?.state}} {{currentSite?.zip}}<br>PH: {{currentSite?.phone}} / FX: {{currentSite?.fax}}</small></h6>
+			<h3>Account Info</h3>
+			<form novalidate (ngSubmit)="update(accountForm)" [formGroup]="accountForm">
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" class="form-control" formControlName="email" placeholder={{currentUser.username}}>
+					<div class="form-text error"
+					  *ngIf="accountForm.get('email').hasError('minlength') && accountForm.get('email').touched">
+					  Minimum of 6 characters
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password">Password:</label>
+					<input type="password" class="form-control" formControlName="password">
+					<div
+					  class="form-text error"
+					  *ngIf="accountForm.get('password').hasError('minlength') && accountForm.get('password').touched">
+					  Minimum of 6 characters
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="verify">Confirm Password:</label>
+					<input type="password" class="form-control" formControlName="verify">
+					  <div *ngIf="accountForm.get('verify').touched" class="text-danger">
+						<div *ngIf="accountForm.get('password').value !== accountForm.get('verify').value">Password Mismatch.</div>
+					  </div>
+
+				</div>
+				<hr>
+				<button type="submit" class="btn btn-primary" [disabled]="accountForm.invalid">Update</button>
+			</form>
+		</div>
+	</div>
+	
+	<footer>
+		<small>&copy; 2018 BetterLeasing</small>
+	</footer>
+</div>

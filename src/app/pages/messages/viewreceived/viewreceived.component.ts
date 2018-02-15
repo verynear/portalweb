@@ -5,11 +5,11 @@ import { Inquiry } from '../../../models/inquiry';
 import { SafeHtmlPipe } from '../../../pipes/safe-html.pipe';
 
 @Component({
-  selector: 'app-inquiry',
-  templateUrl: './inquiry.component.html',
-  styleUrls: ['./inquiry.component.scss']
+  selector: 'app-viewreceived',
+  templateUrl: './viewreceived.component.html',
+  styleUrls: ['./viewreceived.component.scss']
 })
-export class InquiryComponent implements OnInit {
+export class ViewReceivedComponent implements OnInit {
 
   id: number;
   private sub: any;
