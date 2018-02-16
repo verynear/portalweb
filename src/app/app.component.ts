@@ -32,7 +32,15 @@ export class AppComponent implements OnInit {
     this.addLoginListener();
     this.validateDomain();
 
+    console.log("About to get Branding CSS");
     this.brandingCSS = this.sanitizer.bypassSecurityTrustResourceUrl(this.rentalService.getBrandingCssUrl());
+
+    this.rentalService.getBrandingData().then(data => {
+      console.log("The data is... ... ");
+      console.log(data);
+    })
+    
+    console.log(this.brandingCSS);
   }
 
   private addLoginListener(): void {
@@ -45,6 +53,8 @@ export class AppComponent implements OnInit {
   private validateDomain(): void {
     this.rentalService.checkSubdomain()
       .then((isValidDomain: boolean) => {
+        console.log('IS VALID DOMAIN?:');
+        console.log(isValidDomain);
         if (!isValidDomain) {
           this.sessionService.set('invalidDomain', true);
           this.router.navigate(['invalid-domain']);

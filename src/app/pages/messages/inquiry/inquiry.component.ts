@@ -1,42 +1,42 @@
 import { Component, OnInit, Input, Output, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../../services/message.service';
-import { Message } from '../../../models/message';
+import { Inquiry } from '../../../models/inquiry';
 import { SafeHtmlPipe } from '../../../pipes/safe-html.pipe';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss']
+  selector: 'app-inquiry',
+  templateUrl: './inquiry.component.html',
+  styleUrls: ['./inquiry.component.scss']
 })
-export class MessageComponent implements OnInit {
+export class InquiryComponent implements OnInit {
 
   id: number;
   private sub: any;
-  message: any;
+  inquiry: any;
   loading: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute, public messageService: MessageService) {
-    this.route.params.subscribe(params => {
-          this.id = Number (params.id);
-    });
-      this.getMessage(this.id);
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+          this.id = Number (params.id);
+    });
+      this.getInquiry(this.id);
   }
 
   // ngOnDestroy() {
-  //   this.sub.unsubscribe();
+  //   this.route.unsubscribe();
   // }
 
-  getMessage(id) {
-    this.messageService.get(id).subscribe(
+  getInquiry(id) {
+    this.messageService.getInquiry(id).subscribe(
       data => {
         this.loading = false;
-        this.message = data;
-        console.log('FETCHED MESSAGE');
-        console.log(this.message);
+        this.inquiry = data;
+        console.log('FETCHED INQUIRY');
+        console.log(this.inquiry);
       },
       error => {
         console.log('Error');

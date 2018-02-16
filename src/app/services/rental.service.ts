@@ -13,6 +13,11 @@ export class RentalService {
 
     this.url = config.get().api.baseURL;
     this.subdomain = config.get().customer.subdomain;
+    console.log('RENTAL SERVICE');
+    console.log('subdomain');
+    console.log(this.subdomain);
+    console.log('base URL');
+    console.log(this.url);
   }
 
   getBrandingCssUrl(): string {

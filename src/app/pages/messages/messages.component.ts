@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from '../../services/message.service';
 import { Message } from '../../models/message';
+import { Inquiry } from '../../models/inquiry';
 import { ComposeComponent } from '../../components/compose/compose.component';
 import { UserService } from '../../services/user.service';
 import { SiteService } from '../../services/site.service';
@@ -27,6 +28,22 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.sessionService.get('currentUser');
+  }
+
+  viewingMessage() {
+    if (this.router.url.includes('messages/view')) {
+      return true;
+    }
+
+    return false;
+  }
+
+  viewingInquiry() {
+    if (this.router.url.includes('messages/inquiry')) {
+      return true;
+    }
+
+    return false;
   }
 
   compose() {

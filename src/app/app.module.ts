@@ -61,9 +61,10 @@ import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
 import { FilterUnitsPipe } from './pipes/filter-units.pipe';
+import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
 import { RentalService } from './services/rental.service';
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
-import { ReportComponent } from './pages/messages/report/report.component';
+import { ReportComponent } from './pages/report/report.component';
 
 @NgModule({
   imports: [
@@ -117,6 +118,7 @@ import { ReportComponent } from './pages/messages/report/report.component';
     ReplacePipe,
     FilterUnitsPipe,
     ReportComponent,
+    InquiryComponent,
   ],
   providers: [
       {

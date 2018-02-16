@@ -13,6 +13,13 @@ import { EditorModule, ProgressSpinnerModule } from 'primeng/primeng';
 
 import { ReplacePipe } from '../../pipes/replace.pipe';
 
+import { SiteService } from '../../services/site.service'; 
+import { Site } from '../../models/site';
+
+import { User } from '../../models/User';
+import { UserService }  from '../../services/user.service';
+import { SessionService } from '../../services/session.service';
+
 @Component({
   selector: 'app-announcementcompose',
   templateUrl: './announcementcompose.component.html',
@@ -25,17 +32,27 @@ export class AnnouncementcomposeComponent implements OnInit {
   rentalsitesId: number;
   subject: FormControl;
   message: FormControl;
+  currentSite: Site;
+  currentUser: User;
 
   constructor(private router: Router, public activeModal: NgbActiveModal,
-    public announcementService: AnnouncementService) {}
+    public announcementService: AnnouncementService, private siteService: SiteService, private sessionService: SessionService) {}
 
     ngOnInit() {
         this.createFormControls();
         this.createForm();
+
+        this.siteService.getCurrentSite().subscribe(site => {
+            this.currentSite = site;
+        });
+
+        this.sessionService.getObservable('currentUser').subscribe(user => {
+            this.currentUser = user;
+        });
     }
 
     createFormControls() {
-        this.subject = new FormControl('');
+        this.subject = new FormControl('', Validators.required);
         this.message = new FormControl('', Validators.required);
     }
 
@@ -46,10 +63,13 @@ export class AnnouncementcomposeComponent implements OnInit {
         });
     }
 
-    send() {
-        this.loading = true;
-        const message = new Announcement();
+    getAnnouncement() {
 
+
+    }
+
+    send() {
+        const message = new Announcement();
         message.type = 'SITE';
         message.rentalsitesId = 1;
         message.message = this.announcementForm.value.message;
@@ -69,4 +89,13 @@ export class AnnouncementcomposeComponent implements OnInit {
         });
 
     }
+
+
+    edit(announcement: Announcement) {
+
+
+
+    }
+
+
 }

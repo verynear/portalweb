@@ -53,6 +53,9 @@
                                         </div>
 
                                         <div ngbDropdown class="dropdown">
+                                            <a *ngIf="viewingMessage()" routerLink="/messages/sent" routerLinkActive="active" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i> Back</a>
+                                            <a *ngIf="viewingInquiry()" routerLink="/messages/inbox" routerLinkActive="active" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i> Back</a>
+
                                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true"
                                                 aria-expanded="false">
                                                 Filter
@@ -98,7 +101,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- Where the inbox should go -->
                             <router-outlet></router-outlet>
 

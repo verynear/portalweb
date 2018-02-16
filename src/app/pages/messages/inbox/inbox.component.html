@@ -1,6 +1,6 @@
 <div id="marginFix">
 
-<ngb-pagination *ngIf="!loading1" [collectionSize]="totalItems1" [pageSize]="itemsPerPage1" [(page)]="page1" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+<ngb-pagination *ngIf="!loading1" [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
 <section class="inbox" *ngIf="!loading1">
 	<div class="table">
@@ -8,7 +8,7 @@
 			<thead class="thead-light">
 					 <th class="width-25"> 
 						<app-th disable="true">
-							<p-checkbox name="groupname" value="val2" [(ngModel)]="checkAll1" binary="true" (click)="selectAllInquiries(checkAll1)"></p-checkbox>
+							<p-checkbox name="groupname" value="val2" [(ngModel)]="checkAll" binary="true" (click)="selectAllInquiries(checkAll)"></p-checkbox>
 						</app-th>
 					</th>
 					 <th class="width-150">
@@ -49,7 +49,7 @@
 	</div>
 </section>     
 
-<ngb-pagination [collectionSize]="totalItems1" [pageSize]="itemsPerPage1" [(page)]="page1" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+<ngb-pagination *ngIf="!loading1" [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
               
 <p-progressSpinner class="spinner1" id="inbox" *ngIf="loading1" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
 

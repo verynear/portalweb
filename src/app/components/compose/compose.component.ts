@@ -110,7 +110,7 @@ export class ComposeComponent implements OnInit {
         this.subject = new FormControl('', Validators.required);
         this.message = new FormControl('', Validators.required);
     }
-
+    
     createForm() {
         this.composeForm = new FormGroup({
             type: this.type,
@@ -182,7 +182,6 @@ export class ComposeComponent implements OnInit {
         const message = new Message();
 
         message.type = this.composeForm.value.type;
-
         if (this.composeForm.value.type === 'SITE') {
           message.rentalsitesId = this.currentSite.id;
         }
