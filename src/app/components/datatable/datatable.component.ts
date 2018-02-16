@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Applicant } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
 import { DataTableModule } from 'primeng/primeng';
+import { AlertService } from '../../services/alert.service';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
@@ -16,10 +17,8 @@ export class DatatableComponent implements OnInit {
     selectedApplicant: Applicant;
     newApplicant: boolean;
     applicants: Applicant[];
-    message: string;
-    errorMessage: string;
 
-    constructor(private applicantService: ApplicantService) { }
+    constructor(private applicantService: ApplicantService, private alertService: AlertService) { }
 
     ngOnInit() {
         this.getApplicants();
@@ -50,28 +49,28 @@ export class DatatableComponent implements OnInit {
             this.applicantService.create(this.applicant)
               .subscribe(
                 data => {
-                  this.message = 'Applicant Created';
+                  this.alertService.success('Applicant Created');
                   this.applicantService.approve(data['id'])
                       .subscribe(
                          data1 => {
-                           this.message = 'Applicant Approved';
+                           this.alertService.success('Applicant Approved');
                        },
                          (res: HttpErrorResponse) => {
-                            this.errorMessage = 'Unable to approve applicant';
+                           this.alertService.error('Unable to approve applicant');
                        });
                        },
                           (res: HttpErrorResponse) => {
-                             this.errorMessage = 'Unable to create new applicant';
+                            this.alertService.error('Unable to create new applicant');
                        });
          } else {
             this.applicantService.approve(this.applicant.id)
                 .subscribe(
                     data => {
-                      this.message = 'Applicant Approved';
+                      this.alertService.success('Applicant Approved');
                       this.getApplicants();
                 },
                 (res: HttpErrorResponse) => {
-                  this.errorMessage = 'Unable to create new applicant';
+                  this.alertService.error('Unable to create new applicant');
                 });
          }
         this.displayDialog = false;
@@ -84,11 +83,11 @@ export class DatatableComponent implements OnInit {
             this.applicantService.create(this.applicant)
                .subscribe(
                   data => {
-                     this.message = 'Applicant Created';
+                     this.alertService.success('Applicant Created');
                      this.getApplicants();
         },
         (res: HttpErrorResponse) => {
-          this.errorMessage = 'Unable to create new applicant';
+          this.alertService.error('Unable to create new applicant');
         });
         } else {
             applicants[this.findSelectedApplicantIndex()] = this.applicant;

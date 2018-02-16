@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../../services/session.service';
 import { SiteService } from '../../services/site.service';
 import { Site } from '../../models/site';
 import { AsyncPipe } from '@angular/common';
@@ -14,7 +13,7 @@ export class NavigationComponent implements OnInit {
     public isCollapsed = true;
     public currentSite: Site;
 
-    constructor(private sessionService: SessionService, private siteService: SiteService) {
+    constructor(private siteService: SiteService) {
     }
 
     ngOnInit() {

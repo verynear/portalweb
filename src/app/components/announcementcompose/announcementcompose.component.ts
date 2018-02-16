@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { MessageService } from '../../services/message.service';
 import { AnnouncementService } from '../../services/announcement.service';
+import { AlertService } from '../../services/alert.service';
 
 import { Announcement } from '../../models/announcement';
 
@@ -27,7 +28,7 @@ export class AnnouncementcomposeComponent implements OnInit {
   message: FormControl;
 
   constructor(private router: Router, public activeModal: NgbActiveModal,
-    public announcementService: AnnouncementService) {}
+    public announcementService: AnnouncementService, private alertService: AlertService) {}
 
     ngOnInit() {
         this.createFormControls();
@@ -61,10 +62,12 @@ export class AnnouncementcomposeComponent implements OnInit {
         this.announcementService.postAnnouncement(message).subscribe(
             data => {
                 this.activeModal.close('success');
+                this.alertService.success('Announcement Sent');
                 this.loading = false;
             },
             error => {
                 this.activeModal.close('failure');
+                this.alertService.error('Unable to send announcement');
                 this.loading = false;
         });
 

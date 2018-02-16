@@ -32,13 +32,14 @@ export class ApproveformComponent implements OnInit {
           console.log('new applicant id');
           console.log(data['id']);
           this.approve(data['id']);
-          this.loading = true;
           this.alertService.success('Applicant Created');
           form.resetForm();
+          console.log('end of create loading:');
+          console.log(this.loading);
         },
         (res: HttpErrorResponse) => {
           this.alertService.error('Unable to create new applicant');
-          this.loading = true;
+          this.loading = false;
         });
   }
 
@@ -48,6 +49,8 @@ export class ApproveformComponent implements OnInit {
       data => {
         this.loading = false;
         this.alertService.success('Applicant Approved');
+        console.log('end of approve loading:');
+          console.log(this.loading);
         // this.applicant = {};
         },
         (res: HttpErrorResponse) => {

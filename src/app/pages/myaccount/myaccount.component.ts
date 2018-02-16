@@ -49,7 +49,7 @@ export class MyAccountComponent implements OnInit {
 
       this.userService.update(user).subscribe(
           data => {
-              this.alertService.success('Update successful', true);
+              this.alertService.success('Update successful');
               this.router.navigate(['/dashboard']);
           },
           error => {
