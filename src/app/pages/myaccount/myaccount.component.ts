@@ -20,7 +20,8 @@ export class MyAccountComponent implements OnInit {
   public site: Site;
   accountForm: FormGroup;
 
-  constructor(private siteService: SiteService, private userService: UserService, private session: SessionService, private alertService: AlertService, private router: Router, public fb: FormBuilder) { 
+  constructor(private siteService: SiteService, private userService: UserService,
+    private session: SessionService, private alertService: AlertService, private router: Router, public fb: FormBuilder) {
      this.accountForm = this.fb.group({
         email: ['', [Validators.email, Validators.minLength(6)]],
         password: ['', [Validators.minLength(6), Validators.maxLength(30)]],
@@ -29,7 +30,7 @@ export class MyAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.siteService.getCurrentSite().subscribe(site => {
+    this.siteService.getCurrentSite().subscribe(site => {
       this.currentSite = site;
     });
 
