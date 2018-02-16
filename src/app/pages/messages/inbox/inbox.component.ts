@@ -41,7 +41,7 @@ export class InboxComponent implements OnInit {
   }
 
   getInquiries(page, itemsPerPage) {
-    console.log('getSentMessages: SentBox');
+    console.log('getReceivedMessages: InBox');
     this.loading1 = true;
     this.messageService.getInquiries(page, itemsPerPage).subscribe(
       data => {

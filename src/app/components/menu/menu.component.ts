@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Site } from '../../models/site';
 import { User } from '../../models/user';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../../services/user.service';
 import { SiteService } from '../../services/site.service';
-import { AlertService } from '../../services/alert.service';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -18,11 +16,9 @@ export class MenuComponent implements OnInit {
   public multiSite: boolean;
   private currentSite: Site;
 
-  constructor(private userService: UserService,
-              private session: SessionService,
+  constructor(private session: SessionService,
               private route: ActivatedRoute,
               private router: Router,
-              private alertService: AlertService,
               private siteService: SiteService) {
               }
 

@@ -73,6 +73,7 @@ export class ComposeComponent implements OnInit {
         this.buildings = data;
       },
       error => {
+        this.alertService.error(error);
         console.log('Error');
       });
     }
@@ -208,7 +209,7 @@ export class ComposeComponent implements OnInit {
         this.messageService.sendMessage(message).subscribe(
             data => {
                 console.log('sent');
-                this.alertService.success('Message Sent', true);
+                this.alertService.success('Message Sent');
                 this.messageService.onSent();
             },
             error => {

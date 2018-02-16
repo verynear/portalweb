@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AlertService } from '../../services/alert.service';
-import {Subject} from 'rxjs/Subject';
-import {debounceTime} from 'rxjs/operator/debounceTime';
+import { Alert, AlertType } from '../../models/alert';
 
 @Component({
     moduleId: module.id.toString(),
@@ -11,17 +10,48 @@ import {debounceTime} from 'rxjs/operator/debounceTime';
 })
 
 export class AlertComponent implements OnInit {
-    message: any;
-    type: any;
-    closed1 = false;
+  alerts: Alert[] = [];
+  constructor(private alertService: AlertService) { }
 
-    constructor(private alertService: AlertService) { }
+  ngOnInit() {
+      this.alertService.getAlert().subscribe((alert: Alert) => {
+          if (!alert) {
+              // clear alerts when an empty alert is received
+              this.alerts = [];
+              return;
+          }
 
-    ngOnInit() {
-        this.alertService.getMessage().subscribe(message => this.message = message,
-        	type => this.type = type);
-        // setTimeout(() => this.closed1 = true, 20000);
-        console.log(this.message);
-        console.log(this.type);
-    }
+          // add alert to array
+          this.alerts.push(alert);
+
+          // remove alert after 5 seconds
+          setTimeout(() => this.removeAlert(alert), 5000);
+      });
+  }
+
+  removeAlert(alert: Alert) {
+      this.alerts = this.alerts.filter(x => x.message !== alert.message);
+      console.log('removealert');
+      console.log(alert);
+      console.log('Array');
+      console.log(this.alerts);
+  }
+
+  cssClass(alert: Alert) {
+      if (!alert) {
+          return;
+      }
+
+      // return css class based on alert type
+      switch (alert.type) {
+          case AlertType.Success:
+              return 'alert alert-success';
+          case AlertType.Error:
+              return 'alert alert-danger';
+          case AlertType.Info:
+              return 'alert alert-info';
+          case AlertType.Warning:
+              return 'alert alert-warning';
+      }
+  }
 }
