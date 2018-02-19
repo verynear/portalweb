@@ -21,7 +21,7 @@ export class ConfigService {
         subdomain: site,
         host
       },
-      environments: ['devdemo', 'stage', 'api']
+      environments: ['devdemo', 'stage', 'api', 'localhost']
     };
   }
 

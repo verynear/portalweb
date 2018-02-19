@@ -27,9 +27,7 @@ export class AuthGuard implements CanActivate {
 
         // if server rejects the request
         .catch(() => {
-          if (this.session.get('invalidDomain')) {
-            return false;
-          }
+          console.log('Auth Guard...');
 
           // not logged in so redirect to login page with the return url
           this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
