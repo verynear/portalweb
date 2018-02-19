@@ -15,9 +15,15 @@ export class ConfigService {
     if (parts[0] === 'localhost') {
       site = parts.shift();
     } else {
-      parts.shift();  // remove axiom/1500 etc
       site = parts[1];
+      parts.shift();  // remove axiom/1500 etc
     }
+
+    console.log("site is");
+    console.log(site);
+
+    console.log("parts are:");
+    console.log(parts);
 
     const host = parts.join('.') || 'devdemo.betterleasing.com';
 
