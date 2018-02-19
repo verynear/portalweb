@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Hi from App Component");
+    console.log('Hi from App Component');
 
     this.addLoginListener();
     this.validateDomain();
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
   }
 
   private validateDomain(): void {
-    
+
 
 
     this.rentalService.checkSubdomain()
