@@ -19,10 +19,10 @@ export class ConfigService {
       parts.shift();  // remove axiom/1500 etc
     }
 
-    console.log("site is");
+    console.log('site is');
     console.log(site);
 
-    console.log("parts are:");
+    console.log('parts are:');
     console.log(parts);
 
     const host = parts.join('.') || 'devdemo.betterleasing.com';
