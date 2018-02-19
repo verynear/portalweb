@@ -52,6 +52,11 @@ p {
     color: black;
 } 
 
+::ng-deep .pagination {
+    margin-bottom: 0px;
+}
+
+
 .noPaddingRight {
     padding-right: 0px;
 }

@@ -2,7 +2,7 @@
 		<div class="container">
 			<form [formGroup]="announcementForm" (ngSubmit)="send()" novalidate>
 				<div class="modal-header">
-					<h5 class="modal-title" id="composeMailModalLabel"><i class="fa fa-edit"></i> Create Announcement</h5>
+					<h5 class="modal-title">{{currentSite?.name}}</h5>
 					<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -10,8 +10,8 @@
 
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="fromEmail">From:</label>
-						<input type="text" readonly class="form-control-plaintext" id="fromEmail" value="info@treetopvillage.com">
+						<label for="fromEmail">From: </label>
+						<span class="form-control-plain-text">{{currentUser.username}}</span>
 					</div>
 					<div class="form-group">
 						<label for="subject">Subject:</label>
@@ -29,18 +29,13 @@
 					          <button class="ql-bold" aria-label="Bold"></button>
 					          <button class="ql-italic" aria-label="Italic"></button>
 					          <button class="ql-underline" aria-label="Underline"></button>
-					          <!-- <select class="ql-color">
-					      	  </select> -->
-					          <!-- <button class="ql-link" aria-label="Link"></button>
-					          <button class="ql-image" aria-label="Image"></button>
-					          <button class="ql-clean" aria-label="Clean"></button> -->
 					      </span>
 					  </p-header>
 					</p-editor>
 				</div>
 				
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" (click)="send()">Send</button>
+					<button [disabled]="announcementForm.invalid" type="button" class="btn btn-primary" (click)="send()">Send</button>
 					<button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
 				</div>
 			</form>

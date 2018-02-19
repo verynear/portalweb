@@ -63,9 +63,9 @@ import {RecentActivityComponent} from './pages/recent-activity/recent-activity.c
 import { FilterUnitsPipe } from './pipes/filter-units.pipe';
 import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
 import { RentalService } from './services/rental.service';
-import {InvalidDomainComponent} from './pages/invalid-domain/invalid-domain.component';
+import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
+import { ReportComponent } from './pages/report/report.component';
 import { MyAccountComponent } from './pages/myaccount/myaccount.component';
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -117,6 +117,7 @@ import { MyAccountComponent } from './pages/myaccount/myaccount.component';
     HtmlToPlainPipe,
     ReplacePipe,
     FilterUnitsPipe,
+    ReportComponent,
     ViewReceivedComponent,
     MyAccountComponent,
   ],

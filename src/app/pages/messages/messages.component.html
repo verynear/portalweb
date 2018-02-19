@@ -23,9 +23,9 @@
 
                             <section>
 
-                                <button type="button" class="btn btn-primary btn-block text-left" (click)="compose()">
-                                    <i class="fa fa-edit fa-lg"></i> Create New</button>
-
+                                <button type="button" class="mb-3 btn btn-primary btn-block text-left" (click)="compose()">
+                                <i class="fa fa-edit fa-lg"></i> Create New</button>
+                                
                                 <div class="btn-group-vertical btn-block mail-nav">
                                     <a [routerLink]="['','messages', 'inbox']" class="btn btn-default">
                                         <span class="badge badge-info">{{totalItems}}</span>
@@ -101,8 +101,9 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- Where the inbox should go -->
                             <router-outlet></router-outlet>
+
                         </div> 
                     </div>
                 </form>

@@ -5,6 +5,7 @@ import { ConfigService } from './config.service';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class AnnouncementService {
@@ -30,9 +31,7 @@ export class AnnouncementService {
 
   deleteAnnouncement(id: number): Observable<Announcement> {
     return this.http.delete(this.baseURL + '/announcements/' + id)
-    .catch((error: any) => {
-      return Observable.throw(this.errorHandler(error));
-    });
+    .catch((error: any) => Observable.throw(error));
   }
 
   errorHandler(error: any): void {

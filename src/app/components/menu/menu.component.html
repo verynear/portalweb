@@ -26,10 +26,8 @@
 				</div>
 			</li>
 
-			<li class="nav-item dropdown btn pt-2" >
-				<a [queryParams]="{out: '1'}" routerLink="/login">
-					<i class="fa fa-power-off"></i> Logout
-				</a>
+			<li [queryParams]="{out: '1'}" routerLink="/login" class="nav-item dropdown btn btn-primary pt-2 pointer white">
+				<i class="fa fa-power-off"></i> Logout
 			</li>
 		</ul>
     </div>

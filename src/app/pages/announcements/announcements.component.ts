@@ -31,36 +31,31 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   nextPage(page, itemsPerPage) {
-    console.log('nextPage: InBox');
     this.loading = true;
     this.announcementService.getSentAnnouncements(page, itemsPerPage).subscribe(
       data => {
         this.loading = false;
         this.announcements = data['content'];
-        this.totalItems = data['totalPages'] * data['numberOfElements'];
-      },
-      error => {
-        console.log('Error: getInquiries(): InboxComponent()');
       });
   }
 
   getSentAnnouncements(page, itemsPerPage) {
+    this.loading = true;
     this.announcementService.getSentAnnouncements(page, itemsPerPage).subscribe(
       data => {
         this.loading = false;
         this.announcements = data['content'];
         this.totalItems = data['totalPages'] * data['numberOfElements'];
-      },
-      error => {
-        console.log('Error');
       });
   }
 
   deleteAnnouncement(id: number) {
-    this.loading = true;
     this.announcementService.deleteAnnouncement(id).subscribe(
-      data => {
+      result => {
         this.getSentAnnouncements(this.page, this.itemsPerPage);
+      },
+      error => {
+        console.log('Hello');
       });
   }
 
