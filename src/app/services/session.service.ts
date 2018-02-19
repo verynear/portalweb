@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class SessionService {
@@ -21,6 +21,10 @@ export class SessionService {
 
   get(key: string): any {
     return this.session[key];
+  }
+
+  delete(key: string): void {
+    this.session[key] = null;
   }
 
   getObservable(key: string): any {
