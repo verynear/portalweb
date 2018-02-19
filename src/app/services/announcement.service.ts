@@ -31,7 +31,7 @@ export class AnnouncementService {
 
   deleteAnnouncement(id: number): Observable<Announcement> {
     return this.http.delete(this.baseURL + '/announcements/' + id)
-    .catch((error:any) => Observable.throw(error)); 
+    .catch((error: any) => Observable.throw(error));
   }
 
   errorHandler(error: any): void {

@@ -54,9 +54,8 @@ export class AnnouncementsComponent implements OnInit {
       result => {
         this.getSentAnnouncements(this.page, this.itemsPerPage);
       },
-      error => 
-      {
-        console.log("Hello");
+      error => {
+        console.log('Hello');
       });
   }
 
