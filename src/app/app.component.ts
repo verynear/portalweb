@@ -62,10 +62,10 @@ export class AppComponent implements OnInit {
       .then((isValidDomain: boolean) => {
 
         if (!isValidDomain) {
-          // this.sessionService.set('invalidDomain', true);
+          this.sessionService.set('invalidDomain', true);
           this.router.navigate(['invalid-domain']);
         } else {
-          // this.sessionService.set('invalidDomain', false);
+          this.sessionService.set('invalidDomain', false);
         }
       });
   }

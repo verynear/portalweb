@@ -29,8 +29,13 @@ export class AuthGuard implements CanActivate {
         .catch(() => {
           console.log('Auth Guard...');
 
+          if (this.session.get('invalidDomain')) {
+            this.session.delete('invalidDomain');
+            return false;
+          }
           // not logged in so redirect to login page with the return url
           this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
+
           return false;
         });
     }
