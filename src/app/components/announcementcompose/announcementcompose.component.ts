@@ -17,7 +17,7 @@ import { ReplacePipe } from '../../pipes/replace.pipe';
 import { SiteService } from '../../services/site.service';
 import { Site } from '../../models/site';
 
-import { User } from '../../models/User';
+import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { SessionService } from '../../services/session.service';
 
