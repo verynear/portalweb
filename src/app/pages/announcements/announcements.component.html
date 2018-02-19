@@ -23,7 +23,7 @@
 						</div>
 					</div>
 
-					<div class="row mt-4">
+					<div class="row mt-4 mb-0">
 						<div class="col-md-12">
 							<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right" ></ngb-pagination>	
 						</div>
@@ -46,8 +46,7 @@
 							<button (click)="deleteAnnouncement(announcement.id)" class="btn btn-sm btn-primary btn-default float-right mr-2">Delete</button>	
 						</div>
 						
-						<br>
-						
+				
 					</div>
 				</div>
 				
