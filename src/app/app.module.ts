@@ -55,17 +55,17 @@ import { SortableColumnComponent } from './components/sortable-table/sortable-co
 import { SortableTableDirective } from './components/sortable-table/sortable-table.directive';
 import { SortService } from './components/sortable-table/sort.service';
 import { AnnouncementcomposeComponent } from './components/announcementcompose/announcementcompose.component';
-import { MessageComponent } from './pages/messages/message/message.component';
+import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
 import { FilterUnitsPipe } from './pipes/filter-units.pipe';
-import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
+import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
 import { RentalService } from './services/rental.service';
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
 import { ReportComponent } from './pages/report/report.component';
-
+import { MyAccountComponent } from './pages/myaccount/myaccount.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -111,14 +111,15 @@ import { ReportComponent } from './pages/report/report.component';
     SortableTableDirective,
     AnnouncementcomposeComponent,
     RecentActivityComponent,
-    MessageComponent,
+    ViewSentComponent,
     InvalidDomainComponent,
     SafeHtmlPipe,
     HtmlToPlainPipe,
     ReplacePipe,
     FilterUnitsPipe,
     ReportComponent,
-    InquiryComponent,
+    ViewReceivedComponent,
+    MyAccountComponent,
   ],
   providers: [
       {

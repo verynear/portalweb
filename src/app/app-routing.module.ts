@@ -14,10 +14,11 @@ import { DatatableComponent } from './components/datatable/datatable.component';
 import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
-import { MessageComponent } from './pages/messages/message/message.component';
-import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
 import { ReportComponent } from './pages/report/report.component';
-import { InquiryComponent } from './pages/messages/inquiry/inquiry.component';
+import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component';
+import { MyAccountComponent } from './pages/myaccount/myaccount.component';
+import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
+import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -35,11 +36,12 @@ const routes: Routes = [
       { path: '', redirectTo: 'sent', pathMatch: 'full' },
       { path: 'sent', component: SentboxComponent },
       { path: 'inbox', component: InboxComponent },
-      { path: 'view/:id', component: MessageComponent },
-      { path: 'inquiry/:id', component: InquiryComponent }
+      { path: 'view/:id', component: ViewSentComponent },
+      { path: 'received/:id', component: ViewReceivedComponent }
     ]
   },
   { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
+  { path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'invalid-domain', component: InvalidDomainComponent },
   { path: 'status', component: StatusComponent },

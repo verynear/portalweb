@@ -32,14 +32,14 @@ export class AppComponent implements OnInit {
     this.addLoginListener();
     this.validateDomain();
 
-    console.log("About to get Branding CSS");
+    console.log('About to get Branding CSS');
     this.brandingCSS = this.sanitizer.bypassSecurityTrustResourceUrl(this.rentalService.getBrandingCssUrl());
 
     this.rentalService.getBrandingData().then(data => {
-      console.log("The data is... ... ");
+      console.log('The data is... ... ');
       console.log(data);
-    })
-    
+    });
+
     console.log(this.brandingCSS);
   }
 

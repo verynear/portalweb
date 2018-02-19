@@ -41,7 +41,7 @@ export class InboxComponent implements OnInit {
   }
 
   getInquiries(page, itemsPerPage) {
-    console.log('getSentMessages: SentBox');
+    console.log('getReceivedMessages: InBox');
     this.loading1 = true;
     this.messageService.getInquiries(page, itemsPerPage).subscribe(
       data => {
@@ -81,7 +81,7 @@ export class InboxComponent implements OnInit {
   }
 
   openInquiry(id: number) {
-    this.router.navigate(['/messages/inquiry', id]);
+    this.router.navigate(['/messages/received', id]);
   }
 
 }

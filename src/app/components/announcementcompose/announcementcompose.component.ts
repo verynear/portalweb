@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { MessageService } from '../../services/message.service';
 import { AnnouncementService } from '../../services/announcement.service';
+import { AlertService } from '../../services/alert.service';
 
 import { Announcement } from '../../models/announcement';
 
@@ -13,11 +14,11 @@ import { EditorModule, ProgressSpinnerModule } from 'primeng/primeng';
 
 import { ReplacePipe } from '../../pipes/replace.pipe';
 
-import { SiteService } from '../../services/site.service'; 
+import { SiteService } from '../../services/site.service';
 import { Site } from '../../models/site';
 
 import { User } from '../../models/User';
-import { UserService }  from '../../services/user.service';
+import { UserService } from '../../services/user.service';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -64,7 +65,6 @@ export class AnnouncementcomposeComponent implements OnInit {
     }
 
     getAnnouncement() {
-
 
     }
 

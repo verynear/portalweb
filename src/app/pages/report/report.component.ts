@@ -10,7 +10,7 @@ export class ReportComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
 }

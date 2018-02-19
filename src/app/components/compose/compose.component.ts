@@ -29,12 +29,7 @@ export class ComposeComponent implements OnInit {
   selectedTenants: Tenant[];
   fetchedTenants: Tenant[];
   loading = false;
-  recips = [
-    {type: 'SITE', name: 'Community'},
-    {type: 'BUILDING', name: 'Building(s)'},
-    {type: 'UNIT', name: 'Unit(s)'},
-    {type: 'RESIDENT', name: 'Resident(s)'}
-  ];
+  recips: any[];
   checkedList: any[];
   indi: {};
   composeForm: FormGroup;
@@ -59,7 +54,12 @@ export class ComposeComponent implements OnInit {
         this.siteService.getCurrentSite().subscribe(site => {
           this.currentSite = site;
         });
-
+        this.recips = [
+          {type: 'SITE', name: 'Community', community: this.currentSite.name},
+          {type: 'BUILDING', name: 'Building(s)'},
+          {type: 'UNIT', name: 'Unit(s)'},
+          {type: 'RESIDENT', name: 'Resident(s)'}
+        ];
         this.finalBuildingUnitIds = [];
         this.getSiteBuildings();
         this.createFormControls();
@@ -73,6 +73,7 @@ export class ComposeComponent implements OnInit {
         this.buildings = data;
       },
       error => {
+        this.alertService.error(error);
         console.log('Error');
       });
     }
@@ -110,7 +111,7 @@ export class ComposeComponent implements OnInit {
         this.subject = new FormControl('', Validators.required);
         this.message = new FormControl('', Validators.required);
     }
-    
+
     createForm() {
         this.composeForm = new FormGroup({
             type: this.type,
@@ -208,7 +209,7 @@ export class ComposeComponent implements OnInit {
         this.messageService.sendMessage(message).subscribe(
             data => {
                 console.log('sent');
-                this.alertService.success('Message Sent', true);
+                this.alertService.success('Message Sent');
                 this.messageService.onSent();
             },
             error => {

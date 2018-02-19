@@ -50,7 +50,7 @@
 </section>     
 
 <ngb-pagination *ngIf="!loading1" [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
-              
-<p-progressSpinner class="spinner1" id="inbox" *ngIf="loading1" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner>
+<i class="fa fa-spinner fa-pulse fa-5x spinner" *ngIf="loading1"></i>              
+<!-- <p-progressSpinner class="spinner1" id="inbox" *ngIf="loading1" [style]="{width: '75px', height: '75px'}" strokeWidth="8" animationDuration="1s" mode="indeterminate"></p-progressSpinner> -->
 
 </div>

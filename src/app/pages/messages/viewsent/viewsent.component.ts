@@ -5,11 +5,11 @@ import { Message } from '../../../models/message';
 import { SafeHtmlPipe } from '../../../pipes/safe-html.pipe';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss']
+  selector: 'app-viewsent',
+  templateUrl: './viewsent.component.html',
+  styleUrls: ['./viewsent.component.scss']
 })
-export class MessageComponent implements OnInit {
+export class ViewSentComponent implements OnInit {
 
   id: number;
   private sub: any;
