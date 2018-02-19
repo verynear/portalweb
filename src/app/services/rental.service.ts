@@ -7,17 +7,14 @@ import {RentalSite} from '../models/rental-site';
 export class RentalService {
   private url: string;
   private subdomain: string;
+  private host: string;
 
   constructor(private http: HttpClient,
               private config: ConfigService) {
 
     this.url = config.get().api.baseURL;
     this.subdomain = config.get().customer.subdomain;
-    console.log('RENTAL SERVICE');
-    console.log('subdomain');
-    console.log(this.subdomain);
-    console.log('base URL');
-    console.log(this.url);
+    this.host = config.get().customer.host;
   }
 
   getBrandingCssUrl(): string {
@@ -30,15 +27,10 @@ export class RentalService {
   }
 
   checkSubdomain(): Promise<boolean> {
+    console.log('The host is: ');
+    console.log(this.host);
 
-    console.log('checkSubdomain');
-
-    console.log('this.config.get().environments');
-    console.log(this.config.get().environments);
-    console.log(this.config.get().environments.includes(this.subdomain));
-
-
-    if (!this.config.get().environments.includes(this.subdomain)) {
+    if (!this.config.get().environments.includes(this.host)) {
       return Promise.resolve(false);
     }
 
