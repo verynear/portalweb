@@ -9,26 +9,11 @@ export class ConfigService {
     // customer.stage.betterleasing.com
     // customer.devdemo.betterleasing.com
     // localhost
+
     const parts = location.hostname.split('.');
-
-    let site = '';
-    if (parts[0] === 'localhost') {
-      site = parts.shift();
-    } else {
-      site = parts[1];
-      parts.shift();  // remove axiom/1500 etc
-    }
-
-    console.log('site is');
-    console.log(site);
-
-    console.log('parts are:');
-    console.log(parts);
-
+    const site = parts.shift();
     const host = parts.join('.') || 'devdemo.betterleasing.com';
-
-    console.log('Host..');
-    console.log(host);
+    const branch = host.split('.')[0];
 
     this.data = {
       api: {
@@ -36,29 +21,15 @@ export class ConfigService {
       },
       customer: {
         subdomain: site,
-        host
+        host: branch
       },
       environments: ['devdemo', 'stage', 'api', 'localhost']
     };
   }
 
   get(): any {
-    // const parts = location.hostname.split('.'),
-    //   site = parts.shift(),
-    //   host = parts.join('.') || 'devdemo.betterleasing.com';
-
-    // console.log('Parts');
-    // console.log(parts);
-
-    // console.log('Site');
-    // console.log(site);
-
-    // console.log('Host');
-    // console.log(host);
-
-
-
-    // console.log('Returning from Config Service');
+    console.log("About to return: Config Service");
+    console.log(this.data);
     return this.data;
   }
 
