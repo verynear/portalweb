@@ -27,9 +27,9 @@ export class RentalService {
   }
 
   checkSubdomain(): Promise<boolean> {
-    console.log("The host is: ");
+    console.log('The host is: ');
     console.log(this.host);
-    
+
     if (!this.config.get().environments.includes(this.host)) {
       return Promise.resolve(false);
     }

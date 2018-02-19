@@ -28,7 +28,7 @@ export class ConfigService {
   }
 
   get(): any {
-    console.log("About to return: Config Service");
+    console.log('About to return: Config Service');
     console.log(this.data);
     return this.data;
   }
