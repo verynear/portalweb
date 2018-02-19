@@ -31,12 +31,12 @@ export class RentalService {
 
   checkSubdomain(): Promise<boolean> {
 
-    console.log("checkSubdomain");
+    console.log('checkSubdomain');
 
-    console.log("this.config.get().environments");
+    console.log('this.config.get().environments');
     console.log(this.config.get().environments);
     console.log(this.config.get().environments.includes(this.subdomain));
-    
+
 
     if (!this.config.get().environments.includes(this.subdomain)) {
       return Promise.resolve(false);
