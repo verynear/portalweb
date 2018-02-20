@@ -45,4 +45,6 @@ export class DashboardComponent implements OnInit {
  composeAnnouncement() {
     const options: NgbModalOptions = {backdrop: 'static', size: 'lg'};
     const modalRef = this.modalService.open(AnnouncementcomposeComponent, options);
+  }
 }
+
