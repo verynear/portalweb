@@ -40,7 +40,6 @@ import { SessionService } from './services/session.service';
 import { ConfigService } from './services/config.service';
 import { SiteService } from './services/site.service';
 
-import { ProgressSpinnerModule } from 'primeng/primeng';
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApplicantService } from './services/applicant.service';
@@ -81,7 +80,6 @@ import { MyAccountComponent } from './pages/myaccount/myaccount.component';
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ProgressSpinnerModule,
     AppRoutingModule,
     ButtonModule,
     CheckboxModule,

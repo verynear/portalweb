@@ -46,7 +46,7 @@
 
             <div class="form-group pull-left">
                 <button [disabled]="loading || !registerForm.valid" class="btn btn-primary">Submit</button>
-                <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+                <img *ngIf="loading" src="./assets/Spinner-small.gif" />
             </div> 
 
             </form>

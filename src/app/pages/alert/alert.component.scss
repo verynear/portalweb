@@ -1,0 +1,14 @@
+:host-context(.login) {
+  width: inherit;
+}
+
+:host-context(.dashboard) {
+  width: 50% !important;
+  float: right !important;
+}
+
+:host-context(.applicant) {
+  float: left !important;
+  display: block !important;
+  width: inherit;
+}

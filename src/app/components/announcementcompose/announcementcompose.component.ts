@@ -11,7 +11,7 @@ import { Announcement } from '../../models/announcement';
 
 
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditorModule, ProgressSpinnerModule } from 'primeng/primeng';
+import { EditorModule } from 'primeng/primeng';
 
 import { ReplacePipe } from '../../pipes/replace.pipe';
 

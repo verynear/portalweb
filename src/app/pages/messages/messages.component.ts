@@ -6,7 +6,6 @@ import { Inquiry } from '../../models/inquiry';
 import { ComposeComponent } from '../../components/compose/compose.component';
 import { UserService } from '../../services/user.service';
 import { SiteService } from '../../services/site.service';
-import { AlertService } from '../../services/alert.service';
 import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SessionService } from '../../services/session.service';
 import { Site } from '../../models/site';
@@ -21,7 +20,6 @@ export class MessagesComponent implements OnInit {
   public currentUser: User;
 
   constructor( private userService: UserService,
-               private alertService: AlertService,
                private modalService: NgbModal,
                private sessionService: SessionService,
                private router: Router) { }

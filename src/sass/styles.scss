@@ -216,7 +216,7 @@ a:hover.btn.btn-primary {
     color: #777;
 }
 .alert-primary {
-    border-color: #a1afb6;
+    border-style: none;
 }
 .alert-primary .btn-primary,
 .badge-primary {
@@ -231,7 +231,7 @@ a:hover.btn.btn-primary {
     color: #546e7a;
 }
 .alert-secondary {
-    border-color: #546e7a;
+    border-style: none;
 }
 .alert-secondary .btn-secondary,
 .badge-secondary {
@@ -247,7 +247,7 @@ a:hover.btn.btn-primary {
     color: #d13431;
 }
 .alert-danger {
-    border-color: #d13431;
+    border-style: none;
 }
 .alert-danger .btn-danger,
 .badge-danger {
@@ -263,7 +263,7 @@ a:hover.btn.btn-primary {
     color: #ce7300;
 }
 .alert-warning {
-    border-color: #ce7300;
+    border-style: none;
 }
 .alert-warning .btn-warning,
 .badge-warning {
@@ -281,7 +281,7 @@ a:hover.btn.btn-primary {
 }
 .alert-success {
     color: #3d9241;
-    border-color: #3d9241;
+    border-style: none;
 }
 .alert-success .btn-success,
 .badge-success {
@@ -297,7 +297,7 @@ a:hover.btn.btn-primary {
     color: #1970bc;
 }
 .alert-info {
-    border-color: #1970bc;
+    border-style: none;
 }
 .alert-info .btn-info,
 .badge-info {
@@ -307,12 +307,6 @@ a:hover.btn.btn-primary {
 .alert-info a:focus.btn-info,
 .alert-info a:active.btn-info {
   background-color: #1766ab;
-}
-
-.alert-dismissable {
-  width: 50%;
-  border-style: none;
-  float: right;
 }
 
 .alert hr {

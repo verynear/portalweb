@@ -23,7 +23,7 @@ export class MyAccountComponent implements OnInit {
   constructor(private siteService: SiteService, private userService: UserService,
     private session: SessionService, private alertService: AlertService, private router: Router, public fb: FormBuilder) {
      this.accountForm = this.fb.group({
-        email: ['', [Validators.email, Validators.minLength(6)]],
+        email: new FormControl({value: null, disabled: true}, Validators.required),
         password: ['', [Validators.minLength(6), Validators.maxLength(30)]],
         verify: ['', Validators.minLength(6)],
       });
@@ -54,7 +54,7 @@ export class MyAccountComponent implements OnInit {
               this.router.navigate(['/dashboard']);
           },
           error => {
-              this.alertService.error(error);
+              this.alertService.error('Unable to Update User');
           });
   }
 

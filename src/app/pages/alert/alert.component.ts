@@ -6,7 +6,8 @@ import { Alert, AlertType } from '../../models/alert';
 @Component({
     moduleId: module.id.toString(),
     selector: 'app-alert',
-    templateUrl: 'alert.component.html'
+    templateUrl: 'alert.component.html',
+    styleUrls: ['./alert.component.scss']
 })
 
 export class AlertComponent implements OnInit {
@@ -24,8 +25,8 @@ export class AlertComponent implements OnInit {
           // add alert to array
           this.alerts.push(alert);
 
-          // remove alert after 5 seconds
-          setTimeout(() => this.removeAlert(alert), 5000);
+          // remove alert after 6 seconds
+          setTimeout(() => this.removeAlert(alert), 6000);
       });
   }
 
