@@ -5,7 +5,11 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Injectable, ValueProvider} from '@angular/core';
+import {Injectable} from '@angular/core';
+
+const NO_TOKEN_REQUIRED = [
+  '/rental/company/validate'
+];
 
 @Injectable()
 export class AuthHeaderInterceptor implements HttpInterceptor {
@@ -25,17 +29,20 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const clonedRequest = req.clone({headers: req.headers.set('Authorization', this.token)});
-
-    return next.handle(this.token ? clonedRequest : req);
+    return next.handle(this.createNewRequest(req));
   }
 
   setToken(token: string) {
     this.token = token;
   }
-}
 
-export const AUTH_HEADER_INTERCEPTOR_PROVIDER: ValueProvider = {
-  provide: AuthHeaderInterceptor,
-  useValue: AuthHeaderInterceptor.getInstance(),
-};
+  private createNewRequest(req: HttpRequest<any>): HttpRequest<any> {
+    const skipToken = !!NO_TOKEN_REQUIRED.find(url => req.url.includes(url));
+
+    if (!this.token || skipToken) {
+      return req;
+    }
+
+    return req.clone({headers: req.headers.set('Authorization', this.token)});
+  }
+}

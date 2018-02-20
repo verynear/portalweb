@@ -18,23 +18,21 @@ export class RentalService {
   }
 
   getBrandingCssUrl(): string {
-    return `${this.url}/rental/branding/css?domain=${this.subdomain}`;
+    return `${this.url}/company/branding/css?domain=${this.subdomain}`;
   }
 
   getBrandingData(): Promise<RentalSite> {
-    return this.http.get<RentalSite>(`${this.url}/rental/company/validate?domain=${this.subdomain}`)
+    return this.http.get<RentalSite>(`${this.url}/company/branding/data?domain=${this.subdomain}`)
       .toPromise();
   }
 
   checkSubdomain(): Promise<boolean> {
-    console.log('The host is: ');
-    console.log(this.host);
-
     if (!this.config.get().environments.includes(this.host)) {
       return Promise.resolve(false);
     }
 
-    return this.getBrandingData()
+    return this.http.get(`${this.url}/rental/company/validate?domain=${this.subdomain}`)
+      .toPromise()
       .then(() => true)
       .catch(() => false);
   }
