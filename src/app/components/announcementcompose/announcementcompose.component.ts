@@ -9,6 +9,7 @@ import { AlertService } from '../../services/alert.service';
 
 import { Announcement } from '../../models/announcement';
 
+
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule, ProgressSpinnerModule } from 'primeng/primeng';
 
@@ -37,7 +38,7 @@ export class AnnouncementcomposeComponent implements OnInit {
   currentUser: User;
 
   constructor(private router: Router, public activeModal: NgbActiveModal,
-    public announcementService: AnnouncementService, private siteService: SiteService, private sessionService: SessionService) {}
+    public announcementService: AnnouncementService, private siteService: SiteService, private sessionService: SessionService, private alertService: AlertService) {}
 
     ngOnInit() {
         this.createFormControls();
@@ -81,10 +82,12 @@ export class AnnouncementcomposeComponent implements OnInit {
         this.announcementService.postAnnouncement(message).subscribe(
             data => {
                 this.activeModal.close('success');
+                this.alertService.success('Announcement Sent');
                 this.loading = false;
             },
             error => {
                 this.activeModal.close('failure');
+                this.alertService.error('Announcement Failed to Send');
                 this.loading = false;
         });
 
