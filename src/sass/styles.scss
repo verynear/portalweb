@@ -309,6 +309,12 @@ a:hover.btn.btn-primary {
   background-color: #1766ab;
 }
 
+.alert-dismissable {
+  width: 50%;
+  border-style: none;
+  float: right;
+}
+
 .alert hr {
   border-top-color: #ddd;
 }

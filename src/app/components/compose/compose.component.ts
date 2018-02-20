@@ -213,7 +213,7 @@ export class ComposeComponent implements OnInit {
                 this.messageService.onSent();
             },
             error => {
-                this.alertService.error(error);
+                this.alertService.error('Message Failed to Send');
                 this.loading = false;
             });
     }
