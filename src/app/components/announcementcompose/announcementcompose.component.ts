@@ -38,7 +38,8 @@ export class AnnouncementcomposeComponent implements OnInit {
   currentUser: User;
 
   constructor(private router: Router, public activeModal: NgbActiveModal,
-    public announcementService: AnnouncementService, private siteService: SiteService, private sessionService: SessionService, private alertService: AlertService) {}
+    public announcementService: AnnouncementService, private siteService: SiteService
+    , private sessionService: SessionService, private alertService: AlertService) {}
 
     ngOnInit() {
         this.createFormControls();
