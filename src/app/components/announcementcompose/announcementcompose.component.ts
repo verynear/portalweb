@@ -1,26 +1,19 @@
 import { Input, Output, Component, OnInit, EventEmitter } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { MessageService } from '../../services/message.service';
-import { AnnouncementService } from '../../services/announcement.service';
-import { AlertService } from '../../services/alert.service';
-
-import { Announcement } from '../../models/announcement';
-
-
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditorModule } from 'primeng/primeng';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ReplacePipe } from '../../pipes/replace.pipe';
-
-import { SiteService } from '../../services/site.service';
 import { Site } from '../../models/site';
-
 import { User } from '../../models/user';
+import { Announcement } from '../../models/announcement';
 import { UserService } from '../../services/user.service';
 import { SessionService } from '../../services/session.service';
+import { SiteService } from '../../services/site.service';
+import { AlertService } from '../../services/alert.service';
+import { AnnouncementService } from '../../services/announcement.service';
+import { MessageService } from '../../services/message.service';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditorModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-announcementcompose',
@@ -71,16 +64,17 @@ export class AnnouncementcomposeComponent implements OnInit {
     }
 
     send() {
-        const message = new Announcement();
-        message.type = 'SITE';
-        message.rentalsitesId = 1;
-        message.message = this.announcementForm.value.message;
-        message.subject = this.announcementForm.value.subject;
-        message.messageType = 'Announcement';
+        const announcement = new Announcement();
 
-        message.message = new ReplacePipe().transform(message.message, '<br>'); // Remove all occurences of <br>
+        announcement.type = 'SITE';
+        announcement.rentalsitesId = this.currentSite.id;
+        announcement.message = this.announcementForm.value.message;
+        announcement.subject = this.announcementForm.value.subject;
+        announcement.messageType = 'Announcement';
 
-        this.announcementService.postAnnouncement(message).subscribe(
+        announcement.message = new ReplacePipe().transform(announcement.message, '<br>'); // Remove all occurences of <br>
+
+        this.announcementService.postAnnouncement(announcement).subscribe(
             data => {
                 this.activeModal.close('success');
                 this.alertService.success('Announcement Sent');
@@ -91,10 +85,12 @@ export class AnnouncementcomposeComponent implements OnInit {
                 this.alertService.error('Announcement Failed to Send');
                 this.loading = false;
         });
-
     }
 
 
+    /*
+        TODO: Edit an Announcement.
+    */
     edit(announcement: Announcement) {
 
 
