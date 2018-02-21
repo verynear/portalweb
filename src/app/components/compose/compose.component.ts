@@ -209,7 +209,7 @@ export class ComposeComponent implements OnInit {
         this.messageService.sendMessage(message).subscribe(
             data => {
                 console.log('sent');
-                this.alertService.success('Message Sent');
+                this.alertService.success('Your message has been sent');
                 this.messageService.onSent();
             },
             error => {

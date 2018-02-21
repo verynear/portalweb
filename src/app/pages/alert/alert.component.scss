@@ -12,3 +12,12 @@
   display: block !important;
   width: inherit;
 }
+
+:host-context(.messages) {
+  position: absolute !important;
+  display: inline-block !important;
+  left: 35% !important;
+  top: 2.5rem !important;
+  text-align: center !important;
+  width: 50% !important;
+}
