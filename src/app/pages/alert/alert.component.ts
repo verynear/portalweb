@@ -1,3 +1,13 @@
+/* Alerts can accept an optional link
+
+Simple alert:
+this.alertService.error('Message Failed to Send');
+
+Alert with Link:
+this.alertService.success('Your message has been sent', this.link, true, false);
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 import { AlertService } from '../../services/alert.service';
@@ -30,15 +40,15 @@ export class AlertComponent implements OnInit {
             this.alertLink = true;
           }
 
-          console.log('ALERT');
-          console.log(alert);
           // remove alert after 6 seconds
-          // setTimeout(() => this.removeAlert(alert), 6000);
+          setTimeout(() => this.removeAlert(alert), 5500);
       });
   }
 
   removeAlert(alert: Alert) {
       this.alerts = this.alerts.filter(x => x.message !== alert.message);
+      // reset link to false
+      this.alertLink = false;
   }
 
   cssClass(alert: Alert) {

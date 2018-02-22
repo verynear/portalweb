@@ -1,6 +1,6 @@
 <!-- <div class="modal-dialog" role="document"> -->
 		<div class="container">
-			<form [formGroup]="announcementForm" (ngSubmit)="send()" novalidate>
+			<form [formGroup]="announcementForm" (ngSubmit)="build()" novalidate>
 				<div class="modal-header">
 					<h5 class="modal-title">{{currentSite?.name}}</h5>
 					<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -35,7 +35,7 @@
 				</div>
 				
 				<div class="modal-footer">
-					<button [disabled]="announcementForm.invalid" type="button" class="btn btn-primary" (click)="send()">Send</button>
+					<button [disabled]="announcementForm.invalid" type="button" class="btn btn-primary" (click)="build()">Send</button>
 					<button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
 				</div>
 			</form>

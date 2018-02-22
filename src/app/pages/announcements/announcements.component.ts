@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { AnnouncementService } from '../../services/announcement.service';
 import { Message } from '../../models/message';
+import { AlertService } from '../../services/alert.service';
 import { AnnouncementcomposeComponent } from '../../components/announcementcompose/announcementcompose.component';
 import { NgbDropdownConfig, NgbModalOptions, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -18,7 +19,7 @@ export class AnnouncementsComponent implements OnInit {
   checkAll: boolean;
   loading: boolean;
 
-  constructor(private modalService: NgbModal, public announcementService: AnnouncementService) { }
+  constructor(private modalService: NgbModal, public announcementService: AnnouncementService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.itemsPerPage = 5;

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../../services/message.service';
 import { Message } from '../../../models/message';
 import { SafeHtmlPipe } from '../../../pipes/safe-html.pipe';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-viewsent',
@@ -16,7 +17,8 @@ export class ViewSentComponent implements OnInit {
   message: any;
   loading: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute, public messageService: MessageService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+    public messageService: MessageService, private alertService: AlertService) {
     this.route.params.subscribe(params => {
           this.id = Number (params.id);
     });
@@ -39,7 +41,8 @@ export class ViewSentComponent implements OnInit {
         console.log(this.message);
       },
       error => {
-        console.log('Error');
+        this.loading = false;
+        this.alertService.error('Unable to retrieve message');
       });
   }
 
