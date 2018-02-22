@@ -216,7 +216,7 @@ export class ComposeComponent implements OnInit {
                         this.newMessageId = data1['messages'][0]['id'];
                         this.lastLink = '/messages/view/' + this.newMessageId;
                         this.alertService.success('Your message has been sent', this.lastLink, true, false);
-                      };
+                      });
                 this.messageService.onSent();
             },
             error => {
