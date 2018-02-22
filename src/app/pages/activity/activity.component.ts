@@ -28,15 +28,12 @@ export class ActivityComponent implements OnInit {
     this.loading = true;
     this.activityService.get().subscribe(
       data => {
-        console.log('The Data Is: ');
-        console.log(data);
-
         this.loading = false;
         this.activities = data;
       },
       error => {
         this.loading = false;
-        console.log('Error');
+        console.log('Error: getRecentActivity: ActivityComponent');
       });
   }
 
