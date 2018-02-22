@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    Recent Activity
+  </div>
+
+  <div class="card-body">
+      
+    <div *ngFor="let activity of activities.messages | slice:0:pageSize; let i = index">
+      <h6><i class="fa fa-comments float-right"></i>Messages<br>
+        <small>{{activity.createDate | date}}</small>
+      </h6>
+      <div class="card-text" [innerHTML]="activity.message | shorten: maxSize: '...'"></div>
+
+      <div class="text-right" *ngIf="activity.message.length > maxSize">
+       
+        <small><a [routerLink]="['/messages/view', activity.id]" routerLinkActive="active">Read More</a></small>
+      </div>
+      <hr>
+    </div>
+
+    <div *ngFor="let activity of activities.announcements | slice:0:pageSize; let i = index">
+      <h6><i class="fa fa fa-bullhorn float-right"></i>Announcement<br>
+        <small>{{activity.createDate | date}}</small>
+      </h6>
+      <div class="card-text" [innerHTML]="activity.message | shorten: maxSize: '...'"></div>
+ 
+      <div class="text-right" *ngIf="activity.message.length > maxSize">
+        <small><a routerLink="/announcements" routerLinkActive="active">Read More</a></small>
+      </div>
+      <hr>
+    </div>
+
+  </div>
+
+</div>
