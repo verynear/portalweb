@@ -8,7 +8,6 @@ import { Building } from '../models/building';
 import { ConfigService } from './config.service';
 import { AlertService } from './alert.service';
 import { SessionService} from '../services/session.service';
-
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
@@ -32,16 +31,23 @@ export class SiteService {
     this.setDefaultSite();
   }
 
-  getRentalSites() {
-    return this.http.get(`${this.url}/sites/`);
+  getRentalSites(): Observable<Site[]> {
+    return this.http.get(`${this.url}/sites/`)
+    .catch((error: any) => {
+      return Observable.throw(this.errorHandler(error));
+    });
   }
 
+  // TODO: Update other API's to match the style of this one ^
   getRentalSite(id: number) {
     return this.http.get(`${this.url}/sites/${id}`);
   }
 
-  getBuildings(id: number) {
-     return this.http.get<Building[]>(`${this.url}/sites/${id}/buildings/`);
+  getBuildings(id: number): Observable<Building[]> {
+     return this.http.get<Building[]>(`${this.url}/sites/${id}/buildings/`)
+     .catch((error: any) => {
+      return Observable.throw(this.errorHandler(error));
+    });
   }
 
   getUnitsByBuildingId(id: number) {
@@ -91,6 +97,12 @@ export class SiteService {
     node.innerHTML = str;
     document.body.appendChild(node);
   }
+
+  errorHandler(error: any): void {
+    console.log('Error: SiteService');
+    console.log(error);
+  }
+
 }
 
 

@@ -21,11 +21,13 @@
             <!-- Side Nav for Mailbox -->
             <section>
               <div class="btn-group-vertical btn-block nav-filter">
+
                 <a href="#" class="btn btn-primary"><span class="badge badge-warning">999</span><i class="fa fa-group"></i> Community</a>
-                <a href="#" class="btn btn-default"><span class="badge badge-info">3</span><i class="fa fa-building"></i> Building 1</a>
-                <a href="#" class="btn btn-default"><span class="badge badge-info">1</span><i class="fa fa-building"></i> Building 2</a>
-                <a href="#" class="btn btn-default"><span class="badge badge-info">1</span><i class="fa fa-building"></i> Building 3</a>
-                <a href="#" class="btn btn-default"><span class="badge badge-info">2</span><i class="fa fa-building"></i> Building 4</a>
+
+                <a *ngFor="let building of buildings" href="#" class="btn btn-default">
+                    <i class="fa fa-group"></i> {{building.address1}}
+                </a>
+
               </div>
             </section>
           </div>
@@ -38,251 +40,33 @@
                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Filter
                     </button>
-                    <div class="dropdown-menu dropdown-md p-3" aria-labelledby="dropdownFilter">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="dropdown-item">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input">
-                              <span class="custom-control-indicator"></span>
-                              <span class="custom-control-description">Read</span>
-                            </label>
-                          </div>
-                          <div class="dropdown-item">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input">
-                              <span class="custom-control-indicator"></span>
-                              <span class="custom-control-description">Sent</span>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="dropdown-item">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input">
-                              <span class="custom-control-indicator"></span>
-                              <span class="custom-control-description">Unread</span>
-                            </label>
-                          </div>
-                          <div class="dropdown-item">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input">
-                              <span class="custom-control-indicator"></span>
-                              <span class="custom-control-description">Starred</span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>												
-                    </div>
                   </div>
                 </div>
+
                 <div class="ml-auto">
                   <!--paging-->
-                  <div class="page-container">
-                    <div class="pagination">
-                      <ul>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li class="active"><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
+                </div>
+              </div>
+
+
+              <br> 
+
+              <ul class="list-group">
+                  <li *ngFor="let message of messages">
+                    Message: "{{message.subject}}" Id: "{{message.id}}"
+                      <ul *ngFor="let rec of message.messageRecipients; let i=index" class="list-group">
+                        <li class="text-indent: 5px" *ngIf="i<3">
+                          <small>  {{rec.emailAddress}} Read? </small> 
+                          
+                          <small class="text-warning" *ngIf="rec.isRead===0"> No </small> 
+                          <small class="text-success" *ngIf="rec.isRead===1"> Yes </small>
+                        </li>
                       </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  </li>
+              </ul>
+
             </section>
-            
-            <section class="message-report">
-              <div class="table-responsive">
-                <table class="table table table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>Location</th>
-                      <th>Resident</th>
-                      <th>Messages</th>
-                      <th>Sent Date</th>
-                      <th>Read Receipt</th>
-                    </tr>
-                  </thead>
-                  <thead class="thead-light">
-                    <tr><th colspan="5">Bulding 1</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td rowspan="2">Unit 201</td>
-                      <td>John Smith</td>
-                      <td>
-                        <ul class="list-unstyled">
-                          <li><a href="message-stat.html">Pool Closed for the Winter</a></li>
-                          <li><a href="#">Water Shutdown Nov 20, 2-4pm</a></li>
-                          <li><a href="#">Late Rent Notification!</a></li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li>12/12/17 8:00am</li>
-                          <li>10/01/17 10:00am</li>
-                          <li>09/12/17 9:30am</li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li class="text-muted"><span class="fa fa-check"></span>12/12/17 8:00am</li>
-                          <li><span class="fa fa-check"></span>10/01/17 10:30am</li>
-                          <li><span class="fa fa-check"></span>09/12/17 9:40am</li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Jane Smith</td>
-                      <td>
-                        <ul class="list-unstyled">
-                          <li><a href="#">Pool Closed for the Winter</a></li>
-                          <li><a href="#">Water Shutdown Nov 20, 2-4pm</a></li>
-                          <li><a href="#">Late Rent Notification!</a></li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li>12/12/17 8:00am</li>
-                          <li>10/01/17 10:00am</li>
-                          <li>09/12/17 9:30am</li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li><span class="fa fa-check"></span>12/12/17 8:00am</li>
-                          <li><span class="fa fa-check"></span>10/01/17 10:00am</li>
-                          <li><span class="fa fa-check"></span>09/12/17 9:30am</li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Unit 202</td>
-                      <td>Prince</td>
-                      <td>
-                        <ul>
-                          <li><a href="#">Pool Closed for the Winter</a></li>
-                          <li><a href="#">Water Shutdown Nov 20, 2-4pm</a></li>
-                          <li><a href="#">Late Rent Notification!</a></li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li>12/12/17 8:00am</li>
-                          <li>10/01/17 10:00am</li>
-                          <li>09/12/17 9:30am</li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li class="text-muted"><span class="fa fa-check unread"></span>12/12/17 8:00am</li>
-                          <li><span class="fa fa-check"></span>10/01/17 10:30am</li>
-                          <li><span class="fa fa-check"></span>09/12/17 9:40am</li>
-                        </ul>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <thead class="thead-light">
-                    <tr><th colspan="5">Bulding 2</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Unit 101</td>
-                      <td>Michael Jackson</td>
-                      <td>
-                        <ul class="list-unstyled">
-                          <li><a href="#">Pool Closed for the Winter</a></li>
-                          <li><a href="#">Water Shutdown Nov 20, 2-4pm</a></li>
-                          <li><a href="#">Late Rent Notification!</a></li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li>12/12/17 8:00am</li>
-                          <li>10/01/17 10:00am</li>
-                          <li>09/12/17 9:30am</li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li class="text-muted"><span class="fa fa-check unread"></span>12/12/17 8:00am</li>
-                          <li><span class="fa fa-check"></span>10/01/17 10:30am</li>
-                          <li><span class="fa fa-check"></span>09/12/17 9:40am</li>
-                        </ul>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Unit 102</td>
-                      <td>Whitney Houston</td>
-                      <td>
-                        <ul>
-                          <li><a href="#">Pool Closed for the Winter</a></li>
-                          <li><a href="#">Water Shutdown Nov 20, 2-4pm</a></li>
-                          <li><a href="#">Late Rent Notification!</a></li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li>12/12/17 8:00am</li>
-                          <li>10/01/17 10:00am</li>
-                          <li>09/12/17 9:30am</li>
-                        </ul>
-                      </td>
-                      <td>
-                        <ul>
-                          <li class="text-muted"><span class="fa fa-check unread"></span>12/12/17 8:00am</li>
-                          <li><span class="fa fa-check"></span>10/01/17 10:30am</li>
-                          <li><span class="fa fa-check"></span>09/12/17 9:40am</li>
-                        </ul>
-                      </td>
-                    </tr>
-                  </tbody>
-                  
-                </table>
-              </div>
-              <div class="d-flex justify-content-end">
-                <!--paging-->
-                <div class="page-container">
-                  <div class="pagination">
-                    <ul>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li class="active"><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                      <li><a href="#"></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </section>
+        
           </div>
         </div>
 
