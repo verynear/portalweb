@@ -39,6 +39,7 @@ import { AuthHeaderInterceptor } from './auth-header.interceptor';
 import { SessionService } from './services/session.service';
 import { ConfigService } from './services/config.service';
 import { SiteService } from './services/site.service';
+import { ActivityService } from './services/activity.service';
 
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
@@ -55,16 +56,23 @@ import { SortableTableDirective } from './components/sortable-table/sortable-tab
 import { SortService } from './components/sortable-table/sort.service';
 import { AnnouncementcomposeComponent } from './components/announcementcompose/announcementcompose.component';
 import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component';
-import { SafeHtmlPipe } from './pipes/safe-html.pipe';
-import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
-import { ReplacePipe } from './pipes/replace.pipe';
+
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
-import { FilterUnitsPipe } from './pipes/filter-units.pipe';
+
 import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
 import { RentalService } from './services/rental.service';
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
 import { ReportComponent } from './pages/report/report.component';
 import { MyAccountComponent } from './pages/myaccount/myaccount.component';
+import { ActivityComponent } from './pages/activity/activity.component';
+
+// Pipes
+import { FilterUnitsPipe } from './pipes/filter-units.pipe';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
+import { ReplacePipe } from './pipes/replace.pipe';
+import { ShortenPipe } from './pipes/shorten.pipe';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -118,6 +126,8 @@ import { MyAccountComponent } from './pages/myaccount/myaccount.component';
     ReportComponent,
     ViewReceivedComponent,
     MyAccountComponent,
+    ActivityComponent,
+    ShortenPipe,
   ],
   providers: [
       {
@@ -127,6 +137,7 @@ import { MyAccountComponent } from './pages/myaccount/myaccount.component';
       },
       AuthGuard,
       AlertService,
+      ActivityService,
       ApplicantService,
       AuthenticationService,
       UserService,

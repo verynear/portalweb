@@ -19,6 +19,7 @@ import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component'
 import { MyAccountComponent } from './pages/myaccount/myaccount.component';
 import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
+import { ActivityComponent } from './pages/activity/activity.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
   { path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
+  { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
   { path: 'invalid-domain', component: InvalidDomainComponent },
   { path: 'status', component: StatusComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
