@@ -1,3 +1,13 @@
+/* Alerts can accept an optional link
+
+Simple alert:
+this.alertService.error('Message Failed to Send');
+
+Alert with Link:
+this.alertService.success('Your message has been sent', this.link, true, false);
+
+*/
+
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs/Observable';

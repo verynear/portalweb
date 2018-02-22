@@ -45,8 +45,8 @@
 						<span *ngIf="message.type === 'UNIT'">
 							{{message.messageRecipients[0]?.rentalSiteBuilding}}:
 							Units -
-							<span *ngFor='let message of message.messageRecipients | filterUnits'>
-							    {{message}}
+							<span *ngFor='let isLast=last; let message of message.messageRecipients | filterUnits'>
+							    {{message}}{{isLast ? '' : ', '}}
 						    </span>
 						</span>
 

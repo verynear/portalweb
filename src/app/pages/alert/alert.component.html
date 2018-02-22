@@ -1,3 +1,3 @@
 <div *ngFor="let alert of alerts" class="{{ cssClass(alert) }} alert-dismissable">
-     {{alert.message}} <a *ngIf="alertLink" routerLink="{{alert.link}}" routerLinkActive="active">View Message</a>
+     {{alert.message}} <a class="alertlink" *ngIf="alertLink" routerLink="{{alert.link}}" routerLinkActive="active">View Message</a>
 </div>

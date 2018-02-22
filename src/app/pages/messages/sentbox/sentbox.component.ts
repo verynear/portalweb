@@ -71,6 +71,7 @@ export class SentboxComponent implements OnInit {
         this.messages = data['messages'];
       },
       error => {
+        this.loading = false;
         console.log('Error: nextPage(): SentboxComponent()');
       });
   }
@@ -92,6 +93,7 @@ export class SentboxComponent implements OnInit {
   }
 
   openMessage(id: number) {
+    this.loading = true;
     this.router.navigate(['/messages/view', id]);
     console.log('OPEN MESSAGE');
     console.log(id);

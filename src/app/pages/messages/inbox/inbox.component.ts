@@ -90,6 +90,7 @@ export class InboxComponent implements OnInit {
   }
 
   openInquiry(id: number) {
+    this.loading1 = true;
     this.router.navigate(['/messages/received', id]);
   }
 
