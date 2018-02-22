@@ -12,6 +12,7 @@ import { Alert, AlertType } from '../../models/alert';
 
 export class AlertComponent implements OnInit {
   alerts: Alert[] = [];
+  public alertLink = false;
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
@@ -24,18 +25,20 @@ export class AlertComponent implements OnInit {
 
           // add alert to array
           this.alerts.push(alert);
+          // show link in alert
+          if (alert.alertLink === true ) {
+            this.alertLink = true;
+          }
 
+          console.log('ALERT');
+          console.log(alert);
           // remove alert after 6 seconds
-          setTimeout(() => this.removeAlert(alert), 6000);
+          // setTimeout(() => this.removeAlert(alert), 6000);
       });
   }
 
   removeAlert(alert: Alert) {
       this.alerts = this.alerts.filter(x => x.message !== alert.message);
-      console.log('removealert');
-      console.log(alert);
-      console.log('Array');
-      console.log(this.alerts);
   }
 
   cssClass(alert: Alert) {

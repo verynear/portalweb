@@ -139,6 +139,11 @@ a:hover.btn.btn-primary {
   background-color: #999;
   color: #fff;
 }
+
+.btn.btn-default.active, {
+  background-color: #575e6b !important;
+}
+
 .btn,
 .btn-group > .btn {
     text-transform: uppercase;
@@ -649,8 +654,8 @@ footer {
 .spinner{
   position: absolute;
   top: 80%;
-  left: 50%;
-  margin-left: -50px;
+  left: 45%;
+  margin-left: -45px;
   margin-top: -50px;
 }
 
