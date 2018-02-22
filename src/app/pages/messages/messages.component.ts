@@ -22,6 +22,7 @@ export class MessagesComponent implements OnInit {
 
   constructor( private userService: UserService,
                private modalService: NgbModal,
+               private messageService: MessageService,
                private sessionService: SessionService,
                private alertService: AlertService,
                private router: Router) { }
@@ -44,6 +45,30 @@ export class MessagesComponent implements OnInit {
     }
 
     return false;
+  }
+
+  onSentBox() {
+    if (this.router.url.includes('messages/sent')) {
+      return true;
+    }
+
+    return false;
+  }
+
+  onInbox() {
+    if (this.router.url.includes('messages/inbox')) {
+      return true;
+    }
+
+    return false;
+  }
+
+  refreshSent() {
+     this.messageService.onSent();
+  }
+
+  refreshInbox() {
+      this.messageService.onRefresh();
   }
 
   compose() {

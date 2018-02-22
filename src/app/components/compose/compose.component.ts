@@ -43,6 +43,8 @@ export class ComposeComponent implements OnInit {
   filtered = [];
   finalBuildingIds = [];
   finalBuildingUnitIds = [];
+  newMessageId: number;
+  lastLink: any;
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
@@ -209,9 +211,12 @@ export class ComposeComponent implements OnInit {
         this.messageService.sendMessage(message).subscribe(
             data => {
                 console.log('sent');
-                console.log('MESSAGE ID');
-                console.log(message.id);
-                this.alertService.success('Your message has been sent', '/messages/received/${message.id}', true, false);
+                this.messageService.getSent(0, 1).subscribe(
+                      data1 => {
+                        this.newMessageId = data1['messages'][0]['id'];
+                        this.lastLink = '/messages/view/' + this.newMessageId;
+                        this.alertService.success('Your message has been sent', this.lastLink, true, false);
+                      };
                 this.messageService.onSent();
             },
             error => {

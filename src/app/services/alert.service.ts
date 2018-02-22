@@ -34,15 +34,15 @@ export class AlertService {
     }
 
     error(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
-        this.alert(AlertType.Success, message, link, alertLink, keepAfterRouteChange);
+        this.alert(AlertType.Error, message, link, alertLink, keepAfterRouteChange);
     }
 
     info(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
-        this.alert(AlertType.Success, message, link, alertLink, keepAfterRouteChange);
+        this.alert(AlertType.Info, message, link, alertLink, keepAfterRouteChange);
     }
 
     warn(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
-        this.alert(AlertType.Success, message, link, alertLink, keepAfterRouteChange);
+        this.alert(AlertType.Warning, message, link, alertLink, keepAfterRouteChange);
     }
 
     alert(type: AlertType, message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {

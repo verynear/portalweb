@@ -28,11 +28,11 @@
                                 <i class="fa fa-edit fa-lg"></i> Create New</button>
                                 
                                 <div class="btn-group-vertical btn-block mail-nav">
-                                    <a [routerLink]="['','messages', 'inbox']" class="btn btn-default">
+                                    <a [routerLink]="['','messages', 'inbox']" class="btn btn-default" [ngClass]="{'active': onInbox()}">
                                         <span class="badge badge-info">{{totalItems}}</span>
                                         <i class="fa fa-inbox"></i> Received</a>
 
-                                    <a [routerLink]="['','messages', 'sent']" class="btn btn-default">
+                                    <a [routerLink]="['','messages', 'sent']" class="btn btn-default" [ngClass]="{'active': onSentBox()}">
                                         <span class="badge badge-info">{{totalItems}}</span>
                                         <i class="fa fa-send"></i> Sent</a>
 
@@ -100,6 +100,8 @@
                                             <i class="fa fa-trash fa-lg"></i>
                                         </button>
                                     </div>
+                                    <a *ngIf="onSentBox()" class="btn btn-default btn-sm" (click)="refreshSent()"><i class="fa fa-refresh"></i></a>
+                                    <a *ngIf="onInbox()" class="btn btn-default btn-sm" (click)="refreshInbox()"><i class="fa fa-refresh"></i></a>
                                 </div>
 
                             </div>

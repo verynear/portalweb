@@ -24,7 +24,11 @@ export class InboxComponent implements OnInit {
   loading1: boolean;
   unitReciptients: string[];
 
-  constructor(private router: Router, public messageService: MessageService) {}
+  constructor(private router: Router, public messageService: MessageService) {
+    messageService.onRefresh$.subscribe(sent => {
+      this.onRefresh();
+    });
+  }
 
   ngOnInit() {
     console.log('ngOnInit: InBox');
@@ -73,6 +77,11 @@ export class InboxComponent implements OnInit {
     for (const inquiry of this.inquiries) {
       inquiry.selected = checkAll;
     }
+  }
+
+  onRefresh() {
+    this.page = 0;
+    this.getInquiries(this.page, this.itemsPerPage);
   }
 
   // For sort event./

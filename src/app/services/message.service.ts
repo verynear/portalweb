@@ -17,8 +17,13 @@ export class MessageService {
   messages: Array<Message>;
   private _listeners = new Subject<any>();
   onSent$ = this._listeners.asObservable();
+  onRefresh$ = this._listeners.asObservable();
 
   onSent() {
+    this._listeners.next();
+  }
+
+  onRefresh() {
     this._listeners.next();
   }
 
