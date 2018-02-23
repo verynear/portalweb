@@ -4,7 +4,7 @@
 
         <div class="container-fluid">
             <app-alert class='messages'></app-alert>
-            <h1 class="boxheader">Messages </h1><h3 *ngIf="onInbox()" class="boxheader">  - Received</h3><h3 *ngIf="onSentBox()" class="boxheader">  - Sent</h3>
+            <h1 class="boxheader">Messages<small *ngIf="onInbox()" class="boxheader">  Received</small><small *ngIf="onSentBox()" class="boxheader">  Sent</small></h1>
             
             <section class="top">
                 <form>
@@ -39,7 +39,7 @@
                                 </div>
 
                             </section>
-                        </div> 
+                        </div>
 
                         <div class="col-md-10">
                             <div class="d-flex">

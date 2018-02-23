@@ -75,4 +75,12 @@ export class MessagesComponent implements OnInit {
     const modalRef = this.modalService.open(ComposeComponent, { size: 'lg' });
   }
 
+  isInbox() {
+    return this.router.url === '/messages/inbox';
+  }
+
+  isSentBox() {
+    return this.router.url === '/messages/sent';
+  }
+
 }
