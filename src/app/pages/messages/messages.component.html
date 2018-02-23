@@ -1,16 +1,10 @@
 <div id="main">
     <!-- Main Content Area -->
     <div class="main-content">
-<<<<<<< HEAD
-=======
-        <div class="container-fluid">
-
-            <h1>Messages</h1>
->>>>>>> 4ca348764aae093161de252eae36a0f3791e551e
 
         <div class="container-fluid">
             <app-alert class='messages'></app-alert>
-            <h1 class="boxheader">Messages </h1><h3 *ngIf="onInbox()" class="boxheader">  - Received</h3><h3 *ngIf="onSentBox()" class="boxheader">  - Sent</h3>
+            <h1 class="boxheader">Messages<small *ngIf="onInbox()" class="boxheader">  Received</small><small *ngIf="onSentBox()" class="boxheader">  Sent</small></h1>
             
             <section class="top">
                 <form>

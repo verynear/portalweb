@@ -227,12 +227,9 @@ export class ComposeComponent implements OnInit {
         this.messageService.sendMessage(message).subscribe(
             data => {
                 console.log('sent');
-                this.messageService.getSent(0, 1).subscribe(
-                      data1 => {
-                        this.newMessageId = data1['messages'][0]['id'];
-                        this.lastLink = '/messages/view/' + this.newMessageId;
-                        this.alertService.success('Your message has been sent', this.lastLink, true, false);
-                      });
+                this.newMessageId = data['id'];
+                this.lastLink = '/messages/view/' + this.newMessageId;
+                this.alertService.success('Your message has been sent', this.lastLink, true, false);
                 // this.messageService.onSent(); if enabled - refesh sentBox after message sent
             },
             error => {
