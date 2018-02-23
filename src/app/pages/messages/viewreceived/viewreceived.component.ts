@@ -17,7 +17,8 @@ export class ViewReceivedComponent implements OnInit {
   inquiry: any;
   loading: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute, public messageService: MessageService, private alertService: AlertService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+    public messageService: MessageService, private alertService: AlertService) {
   }
 
   ngOnInit() {
