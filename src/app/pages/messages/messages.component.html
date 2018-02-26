@@ -24,16 +24,15 @@
 
                             <section>
 
-                                <button type="button" class="mb-3 btn btn-primary btn-block text-left" (click)="compose()">
+                                <button type="button" class="mb-3 btn btn-default btn-block text-left" (click)="compose()">
                                 <i class="fa fa-edit fa-lg"></i> Create New</button>
                                 
                                 <div class="btn-group-vertical btn-block mail-nav">
                                     <a [routerLink]="['','messages', 'inbox']" class="btn btn-default" [ngClass]="{'active': onInbox()}">
-                                        <span class="badge badge-info">{{totalItems}}</span>
+                                        <span class="badge badge-warning">3</span>
                                         <i class="fa fa-inbox"></i> Received</a>
 
                                     <a [routerLink]="['','messages', 'sent']" class="btn btn-default" [ngClass]="{'active': onSentBox()}">
-                                        <span class="badge badge-info">{{totalItems}}</span>
                                         <i class="fa fa-send"></i> Sent</a>
 
                                 </div>
@@ -116,6 +115,6 @@
     </div>
 
     <footer>
-        <small>&copy; 2018 BetterLeasing</small>
+        <small>&copy; 2018 BetterLeasing. All Rights Reserved. </small>
     </footer>
 </div>

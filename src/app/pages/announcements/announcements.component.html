@@ -43,8 +43,14 @@
 						<div class="w-75" [innerHTML]="announcement.message | safeHtml"> </div>
 						
 						<div class="clearfix">
-							<button class="btn btn-sm btn-primary float-right ">Edit</button>
-							<button (click)="deleteAnnouncement(announcement.id)" class="btn btn-sm btn-primary btn-default float-right mr-2">Delete</button>	
+							<a href="" class="float-right">
+								<i class="fa fa-edit"></i> Edit 
+							</a>
+				
+							<a href="" (click)="deleteAnnouncement(announcement.id)" class="float-right mr-2">
+								<i class="fa fa-trash"></i> Delete
+							</a>	
+							
 						</div>
 						
 				
