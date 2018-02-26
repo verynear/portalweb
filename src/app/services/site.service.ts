@@ -91,7 +91,8 @@ export class SiteService {
     const str = '.btn-primary {background-color: ' + primary + ' !important} ' +
     '.primary.active {background-color: ' + primary + ' !important}' +
     '.primary:hover {background-color: ' + primary + ' !important}' +
-    'h1 {color: ' + primary + ' !important}';
+    'h1 {color: ' + primary + ' !important}' +
+    'a.btn.btn-default.active {background-color: ' + primary + ' !important}';
 
     const node = document.createElement('style');
     node.innerHTML = str;
