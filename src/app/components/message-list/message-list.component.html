@@ -2,7 +2,7 @@
     <a class="nav-item nav-link" id="mail-alert" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle><i class="fa fa-comments"></i> <sup><span class="badge badge-info">{{inquiries?.length}}</span></sup>
     </a>
     <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="mail-alert">
-        <a [routerLink]="['/messages/received', inquiry.id]" routerLinkActive="active" *ngFor="let inquiry of inquiries" class="dropdown-item">
+        <a *ngFor="let inquiry of inquiries" (click)="openInquiry(inquiry.id)" class="dropdown-item">
           <strong class="text-success">{{inquiry.tenant.firstname}} {{inquiry.tenant.lastname}} &nbsp;
             <small>{{ inquiry.createDate | date: 'MMM d' }}</small>
           </strong>

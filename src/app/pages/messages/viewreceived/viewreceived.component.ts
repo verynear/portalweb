@@ -24,8 +24,8 @@ export class ViewReceivedComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
           this.id = Number (params.id);
+          this.getInquiry(this.id);
     });
-      this.getInquiry(this.id);
   }
 
   // ngOnDestroy() {

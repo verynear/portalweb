@@ -108,6 +108,11 @@ tr {
   opacity: .5;
 }
 
+.report {
+  background-color: #6c757d;
+  opacity: .5;
+}
+
 .BUILDING {
   background-color: #ce7300;
   opacity: .5;
@@ -129,9 +134,17 @@ td, th {
   overflow-x: hidden;
 }
 
+.text-right {
+    text-align: right !important;
+    width: 200px !important;
+}
+
 // Various classes for fixed width table.  TODO: Make Global
 .width-25 {
   width: 25px;
+}
+.width-50 {
+  width: 50px;
 }
 .width-100 {
   width: 100px;
