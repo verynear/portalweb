@@ -8,7 +8,7 @@ import { Message } from '../../models/message';
   templateUrl: './mostrecent.component.html',
   styleUrls: ['./mostrecent.component.scss']
 })
-export class MostrecentComponent implements OnInit {
+export class MostRecentComponent implements OnInit {
   message: Message;
   readPercent: number;
   pendingPercent: number;

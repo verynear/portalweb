@@ -73,7 +73,7 @@ import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { MessageListComponent } from './components/message-list/message-list.component';
-import { MostrecentComponent } from './components/mostrecent/mostrecent.component';
+import { MostRecentComponent } from './components/mostrecent/mostrecent.component';
 
 @NgModule({
   imports: [
@@ -131,7 +131,7 @@ import { MostrecentComponent } from './components/mostrecent/mostrecent.componen
     ActivityComponent,
     ShortenPipe,
     MessageListComponent,
-    MostrecentComponent,
+    MostRecentComponent,
   ],
   providers: [
       {

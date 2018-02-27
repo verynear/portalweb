@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MostrecentComponent } from './mostrecent.component';
+import { MostRecentComponent } from './mostrecent.component';
 
-describe('MostrecentComponent', () => {
-  let component: MostrecentComponent;
-  let fixture: ComponentFixture<MostrecentComponent>;
+describe('MostRecentComponent', () => {
+  let component: MostRecentComponent;
+  let fixture: ComponentFixture<MostRecentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MostrecentComponent ]
+      declarations: [ MostRecentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MostrecentComponent);
+    fixture = TestBed.createComponent(MostRecentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
