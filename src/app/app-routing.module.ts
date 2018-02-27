@@ -41,7 +41,7 @@ const routes: Routes = [
       { path: 'received/:id', component: ViewReceivedComponent }
     ]
   },
-  { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
+  { path: 'report/:id', component: ReportComponent, canActivate: [AuthGuard] },
   { path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
