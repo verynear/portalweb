@@ -33,7 +33,7 @@ export class MessageService {
   }
 
   get(id) {
-    return this.http.get<Message[]>(this.baseURL + '/messages/' + id);
+    return this.http.get<Message>(this.baseURL + '/messages/' + id);
   }
 
   getInquiry(id) {
@@ -52,6 +52,16 @@ export class MessageService {
     return this.http.get<Message[]>(this.baseURL + '/announcements');
   }
 
+  getReport(messageId) {
+    return this.http.get<Message[]>(this.baseURL + '/messages/' + messageId + '/receipts/');
+  }
+
+  sendMessage (message: Message) {
+    return this.http.post(this.baseURL + '/messages', message);
+  }
+
+
+
   sortMessages (messages, criteria: MessageSearchCriteria): Message[] {
      return messages.sort((a, b) => {
       return this.sortService.sortHelper(a, b, criteria);
@@ -64,9 +74,7 @@ export class MessageService {
     });
   }
 
-  sendMessage (message: Message) {
-    return this.http.post(this.baseURL + '/messages', message);
-  }
+
 
 }
 

@@ -28,17 +28,11 @@ export class ViewSentComponent implements OnInit {
   ngOnInit() {
   }
 
-  // ngOnDestroy() {
-  //   this.sub.unsubscribe();
-  // }
-
   getMessage(id) {
     this.messageService.get(id).subscribe(
       data => {
         this.loading = false;
         this.message = data;
-        console.log('FETCHED MESSAGE');
-        console.log(this.message);
       },
       error => {
         this.loading = false;

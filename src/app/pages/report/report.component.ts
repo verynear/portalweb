@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteService } from '../../services/site.service';
 import { MessageService } from '../../services/message.service';
-
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../models/user';
 import { Site } from '../../models/site';
 import { Building } from '../../models/building';
 import { Message } from '../../models/message';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-report',
@@ -18,17 +19,30 @@ export class ReportComponent implements OnInit {
   public sites: Site[];
   public buildings: Building[];
   public messages: Message[];
+  public message: Message;
 
-  constructor(private siteService: SiteService, private messageService: MessageService) {
+  public id: Number;
+  public reportExists: boolean;
+  public loading: boolean;
+  public report: any[]; // TODO: Create Report Model.
 
+
+  constructor(private siteService: SiteService, private messageService: MessageService,
+    private router: Router, private route: ActivatedRoute, private alertService: AlertService) {
+
+      this.route.params.subscribe(params => {
+       this.id = params.id;
+      });
   }
 
   ngOnInit() {
     this.siteService.getCurrentSite().subscribe(site => {
       this.currentSite = site;
-      this.getRentalBuildings(site.id);
 
-      this.getMessages();
+      this.getRentalBuildings(site.id);
+      this.getMessageReport(this.id);
+      this.getMessage(this.id);
+
     });
   }
 
@@ -44,16 +58,31 @@ export class ReportComponent implements OnInit {
     });
   }
 
-  getMessages() {
-    const page = 1;
-    const size = 10;
+  getMessage(id) {
+    this.loading = true;
+    this.messageService.get(id).subscribe(
+      data => {
+        this.loading = false;
+        this.message = data;
+      },
+      error => {
+        this.loading = false;
+        this.alertService.error('Error Getting Message');
+      });
+  }
 
-    this.messageService.getSent(page, size).subscribe(messages => {
-      console.log('Messages...');
-      this.messages = messages['messages'];
-      console.log(this.messages);
-    });
-
+  getMessageReport(id) {
+    this.loading = true;
+    this.messageService.getReport(id).subscribe(
+      data => {
+        this.loading = false;
+        this.reportExists = true;
+        this.report = data;
+      },
+      error => {
+        this.loading = false;
+        this.alertService.error('Error Getting Report');
+      });
   }
 
 }
