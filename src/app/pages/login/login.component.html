@@ -1,9 +1,10 @@
 <div class="container">
-  <div class="col-md-6 offset-md-3">
-      <div class="card">
-        <h5 class="card-header"> Manager: Sign In </h5>
-          <div class="card-body">
-          <form  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+		<div id="login">
+			<div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="./assets/logo-demo.png" />
+        
+				<h4 class="text-center mt-3">Login to Your Account</h4>
+        <form  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
             <div class="form-group">
               <label> Email: </label>
                 <input type="text" class="form-control" name="emailAddress" [ngClass]="{ 'is-invalid': !emailAddress.valid && f.submitted }" [(ngModel)]="model.emailAddress" #emailAddress="ngModel" required/>
@@ -23,12 +24,11 @@
             </div>
           </form>
           <app-alert class='login'></app-alert>
-        </div>
-      </div> 
-
-      <button class="btn btn-link pull-right" [routerLink]="['/register']">Create an Account</button>
-      <div class="float-left">
-        <span> Version {{version}}</span>
-      </div>
-  </div>
+				<small>
+					<a href="#" class="float-right">Create an Account</a>
+					<a href="#">Forgot password?</a>
+				</small>
+			</div><!-- /card-container -->
+			<small>Version 18.2.19</small>
+		</div>
 </div>
