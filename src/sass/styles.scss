@@ -385,6 +385,44 @@ textarea {
   display: inline-block;
 }
 
+.navbar {
+  background-color: #ddd;
+  height: 2.188rem;
+  padding-right: 0;
+}
+.navbar .nav-item h6 {
+  margin: 0;
+  line-height: 0.875rem;
+  display: inline-block;
+  font-size: 0.875rem;
+}
+.navbar .nav-item h6 small {
+  color: #777;
+  font-size: 0.6875rem;
+}
+.navbar ul {
+  margin: 0;
+}
+
+.nav-item {
+  font-size: 12px;
+  text-transform: uppercase;
+  height: 2.188rem;
+}
+.nav-item:last-child a {
+  color: #fff;
+}
+.nav-item .btn {
+  padding: inherit;
+}
+.nav-item .dropdown-item {
+  font-size: 0.6875rem;
+}
+.nav-item .dropdown-menu {
+  top: 100% !important;
+    left: auto !important;
+}
+
 .nav-side-menu {
   overflow-y: auto;
   font-weight: 200;
@@ -659,3 +697,31 @@ footer {
   margin-top: -50px;
 }
 
+.communityButton {
+  padding-left: 10px !important; 
+  padding-right: 10px !important;
+  color: white !important;
+
+} 
+
+.dropdown-item {
+  cursor: pointer !important;
+}
+
+.white {
+  color: white;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.vertSpan {
+  display: inline-block; 
+  vertical-align: middle; 
+  height: 100%;
+}
+
+.inline {
+  display: inline;
+}
