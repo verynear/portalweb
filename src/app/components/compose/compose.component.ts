@@ -140,19 +140,15 @@ export class ComposeComponent implements OnInit {
         this.filtered = [];
         for (let i = 0; i < units.length; i++) {
             const unit = units[i];
-            this.siteService.getTenantsByUnitId(unit.id).subscribe(
-            data => {
+            if (unit.hasTenant) {
               if (unit.unitNumber.toLowerCase().indexOf(query.toLowerCase()) === 0) {
                   this.filtered.push(unit);
                   console.log('filtered units');
                   console.log(this.filtered);
               }
-            },
-            error => {
-              this.unitError = true;
-              this.unitErrorNumber = unit.unitNumber;
+            } else {
               console.log('error');
-            });
+            }
         }
         return this.filtered;
     }
@@ -178,6 +174,8 @@ export class ComposeComponent implements OnInit {
       },
       error => {
         this.tenants = [{label: 'no matching residents - send to selected unit', value: null }];
+        this.unitError = true;
+        this.unitErrorNumber = value.unitNumber;
         console.log(error);
       });
     }

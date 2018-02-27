@@ -3,4 +3,5 @@ export interface Unit {
     address1: string;
     unitCode: string;
     unitNumber: string;
+    hasTenant: boolean;
 }
