@@ -3,7 +3,7 @@
 			<div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="./assets/logo-demo.png" />
         
-				<h4 class="text-center mt-3">Login to Your Account</h4>
+				<h4 class="text-center mt-3 loginText">Login to Your Account</h4>
         <form  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
             <div class="form-group">
               <label> Email: </label>
@@ -16,10 +16,10 @@
                 <input type="password" class="form-control" name="password" [ngClass]="{ 'is-invalid': !password.valid && f.submitted }" [(ngModel)]="model.password" #password="ngModel" required/>
                 <div *ngIf="f.submitted && !password.valid" class="invalid-feedback"> Password is required</div>
               </div>
-              <a href="#">Forgot Password</a>
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary" [disabled]="loading">Login</button>
+     
+            <div class="form-group mt-4">
+                <button class="btn btn-block btn-primary" [disabled]="loading">Login</button>
                 <img *ngIf="loading" src="./assets/Spinner-small.gif" />
             </div>
           </form>
