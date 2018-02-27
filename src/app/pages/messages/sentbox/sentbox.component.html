@@ -14,7 +14,7 @@
 					 <th class="width-250">
 						<app-th columnName="id" displayName="Recipient"></app-th>
 					</th> 
-					<th class="width-150">
+					<th class="width-100">
 					</th>
 					<th class="min-width-100">
 						<app-th columnName="message" displayName="Subject"></app-th>
@@ -73,9 +73,12 @@
 		
 						<span class="previewTitle"> {{message.subject}} -</span> 
 						<span [innerHTML]="message.message | htmlToPlain"> </span> 
-					</td> 
-
+					</td>
 					<td class="text-right" style="padding-left: 50px">
+						<button class="btn sentType report" (click)="openReport(message.id)">
+					       <i class="fa fa-tasks"></i>
+					    </button>
+					    <i style="color: #fff" class="fa fa-minus"></i>
 						<span>{{message.createDate | date:'mediumDate' }} </span>
 					</td>
 				</tr>				               
