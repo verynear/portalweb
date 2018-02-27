@@ -2,13 +2,9 @@
   opacity: 0.5;
 }
 
-.user-logo {
-  height: 100px;
-}
-
 .imgLogo {
   vertical-align: middle;
-  max-height: 50px;
+  max-height: 100px;
 }
 
 .vertSpan {
@@ -19,4 +15,12 @@
 
 .inline {
   display: inline;
+}
+
+.navbar-brand {
+  margin: 0;
+}
+.navbar-brand img {
+  max-height: 4.063rem;
+  display: inline-block;
 }

@@ -72,6 +72,7 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
+import { MessageListComponent } from './components/message-list/message-list.component';
 
 @NgModule({
   imports: [
@@ -128,6 +129,7 @@ import { ShortenPipe } from './pipes/shorten.pipe';
     MyAccountComponent,
     ActivityComponent,
     ShortenPipe,
+    MessageListComponent,
   ],
   providers: [
       {
