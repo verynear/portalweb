@@ -60,9 +60,9 @@
 					
 
 					<div class="form-group" [style.display]="(composeForm.value.type === 'UNIT') ? 'block' : 'none' ">
-						<label for="toEmail">To: </label><small class="composeerror" *ngIf="unitError"> {{unitErrorNumber}} is empty - please select at least one valid unit </small>
+						<label for="toEmail">To: </label>
 						<div class="ui-fluid">
-							<p-autoComplete formControlName="rentalsiteBuildingUnitIds" [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)" (onSelect)="addUnit($event)" (onBlur)="resetUnit()" [immutable]=false [minLength]="1"  placeholder="Enter Units" field="unitNumber" [multiple]="true">
+							<p-autoComplete formControlName="rentalsiteBuildingUnitIds" [suggestions]="selectedUnits" (completeMethod)="getUnitsForBuilding($event)" (onSelect)="addUnit($event)" [immutable]=false [minLength]="1"  placeholder="Enter Units" field="unitNumber" [multiple]="true">
 								</p-autoComplete>
 						</div>
 					</div>
@@ -80,7 +80,7 @@
 					 <div class="form-group" [style.display]="(composeForm.value.type === 'RESIDENT') ? 'block' : 'none' ">
 						<label> Enter Unit: </label><small class="composeerror" *ngIf="unitError"> {{unitErrorNumber}} is empty - please select at least one valid unit </small>
 						<div class="ui-fluid">
-							<p-autoComplete [suggestions]="selectedTenantUnits" (completeMethod)="getUnitsForBuildingTenant($event)" (onSelect)="setUnit($event)" (onBlur)="resetUnit()" [minLength]="1" [forceSelection]="true" placeholder="Enter Unit" field="unitNumber" [multiple]="false">
+							<p-autoComplete [suggestions]="selectedTenantUnits" (completeMethod)="getUnitsForBuildingTenant($event)" (onSelect)="setUnit($event)" [minLength]="1" [forceSelection]="true" placeholder="Enter Unit" field="unitNumber" [multiple]="false">
 							</p-autoComplete>
 						</div>
 					</div> 
