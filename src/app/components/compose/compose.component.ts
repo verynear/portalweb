@@ -141,6 +141,7 @@ export class ComposeComponent implements OnInit {
         for (let i = 0; i < units.length; i++) {
             const unit = units[i];
             if (unit.hasTenant) {
+              // accepts the query as user types and returns matching results as suggestions
               if (unit.unitNumber.toLowerCase().indexOf(query.toLowerCase()) === 0) {
                   this.filtered.push(unit);
                   console.log('filtered units');
