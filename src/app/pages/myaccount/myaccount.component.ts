@@ -24,8 +24,8 @@ export class MyAccountComponent implements OnInit {
     private session: SessionService, private alertService: AlertService, private router: Router, public fb: FormBuilder) {
      this.accountForm = this.fb.group({
         email: new FormControl({value: null, disabled: true}, Validators.required),
-        password: ['', [Validators.minLength(6), Validators.maxLength(30)]],
-        verify: ['', Validators.minLength(6)],
+        password: ['', [Validators.minLength(6), Validators.maxLength(30), Validators.required]],
+        verify: ['', [Validators.minLength(6), Validators.required]],
       });
   }
 
@@ -42,10 +42,15 @@ export class MyAccountComponent implements OnInit {
     });
   }
 
+  passwordMatch() {
+    if (this.accountForm.get('password').value !== this.accountForm.get('verify').value) {
+      return true;
+    }
+  }
+
   update() {
       const user = this.currentUser;
 
-      user.username = this.accountForm.value.email;
       user.password = this.accountForm.value.password;
 
       this.userService.update(user).subscribe(

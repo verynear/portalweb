@@ -23,6 +23,7 @@ import { Alert, AlertType } from '../../models/alert';
 export class AlertComponent implements OnInit {
   alerts: Alert[] = [];
   public alertLink = false;
+  public isFound = false;
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
@@ -32,9 +33,12 @@ export class AlertComponent implements OnInit {
               this.alerts = [];
               return;
           }
-
-          // add alert to array
-          this.alerts.push(alert);
+          // add alert to array only if no duplicate
+          if (!this.alerts.some(function (el) {return el.message === alert.message; })) {
+             this.alerts.push(alert);
+          } else {
+            return;
+          }
           // show link in alert
           if (alert.alertLink === true ) {
             this.alertLink = true;
