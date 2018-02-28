@@ -16,7 +16,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 /*
   This service is responsible for handling branding & themes at a Site (Management) level.
-*/ 
+*/
 
 @Injectable()
 export class SiteService {
