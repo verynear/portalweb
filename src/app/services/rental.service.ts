@@ -1,7 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConfigService} from './config.service';
 import {RentalSite} from '../models/rental-site';
+import {Observable} from 'rxjs/Observable';
+
+/*
+  This service is responsible for handling branding & themes at a Rental Site (Community) level.
+*/ 
 
 @Injectable()
 export class RentalService {
@@ -21,11 +26,15 @@ export class RentalService {
     return `${this.url}/company/branding/css?domain=${this.subdomain}`;
   }
 
-  getBrandingData(): Promise<RentalSite> {
-    return this.http.get<RentalSite>(`${this.url}/company/branding/data?domain=${this.subdomain}`)
-      .toPromise();
+  getBrandingData(): Observable<RentalSite> {
+      return this.http.get<RentalSite>(`${this.url}/company/branding/data?domain=${this.subdomain}`)
+      .catch((error: any) => {
+        return Observable.throw(this.errorHandler(error));
+      });
+
   }
 
+  // TODO: Return Observable, not Promise.
   checkSubdomain(): Promise<boolean> {
     if (!this.config.get().environments.includes(this.host)) {
       return Promise.resolve(false);
@@ -35,6 +44,11 @@ export class RentalService {
       .toPromise()
       .then(() => true)
       .catch(() => false);
+  }
+
+  errorHandler(error: any): void {
+    console.log('Error: RentalService');
+    console.log(error);
   }
 
 }

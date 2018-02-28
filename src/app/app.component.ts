@@ -29,35 +29,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Hi from App Component');
-
     this.addLoginListener();
     this.validateDomain();
-
-    console.log('About to get Branding CSS');
-    this.brandingCSS = this.sanitizer.bypassSecurityTrustResourceUrl(this.rentalService.getBrandingCssUrl());
-
-    this.rentalService.getBrandingData().then(data => {
-      console.log('The data is... ... ');
-      console.log(data);
-    });
-
-    console.log(this.brandingCSS);
-
-
   }
 
   private addLoginListener(): void {
     this.loginService.onLogin.subscribe((user: User | boolean) => {
-      this.siteService.init();
+      this.siteService.init(); 
       this.hasAuth = !!user;
     });
   }
 
   private validateDomain(): void {
-
-
-
     this.rentalService.checkSubdomain()
       .then((isValidDomain: boolean) => {
 
