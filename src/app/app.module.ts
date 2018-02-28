@@ -60,7 +60,7 @@ import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component'
 import {RecentActivityComponent} from './pages/recent-activity/recent-activity.component';
 
 import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
-import { RentalService } from './services/rental.service';
+import { CompanyService } from './services/company.service';
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
 import { ReportComponent } from './pages/report/report.component';
 import { MyAccountComponent } from './pages/myaccount/myaccount.component';
@@ -148,7 +148,7 @@ import { MostRecentComponent } from './components/mostrecent/mostrecent.componen
       ConfigService,
       SiteService,
       StatusService,
-      RentalService,
+      CompanyService,
       fakeBackendProvider,
       MockBackend,
       BaseRequestOptions,
