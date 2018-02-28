@@ -6,7 +6,7 @@ import { LoginService } from '../../services/login.service';
 import { SiteService } from '../../services/site.service';
 import { CompanyService } from '../../services/company.service';
 import { SiteBranding } from '../../models/site';
-import { Company } from '../../models/Company';
+import { Company } from '../../models/company';
 import { environment } from '../../../environments/environment';
 
 
