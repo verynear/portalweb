@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 
   private addLoginListener(): void {
     this.loginService.onLogin.subscribe((user: User | boolean) => {
-      this.siteService.init(); 
+      this.siteService.init();
       this.hasAuth = !!user;
     });
   }

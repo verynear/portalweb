@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Observable';
 
 /*
   This service is responsible for handling branding & themes at a Rental Site (Community) level.
-*/ 
+*/
 
 @Injectable()
 export class RentalService {

@@ -23,8 +23,7 @@ export class LoginService {
     private router: Router,
     private config: ConfigService
 
-  )
-  {
+  ) {
     this.subdomain = config.get().customer.subdomain;
     this.host = config.get().customer.host;
   }
