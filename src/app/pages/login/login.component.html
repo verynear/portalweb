@@ -1,7 +1,7 @@
 <div class="container">
 		<div id="login">
 			<div class="card card-container">
-        <img id="profile-img" class="profile-img-card" [src]="siteBranding?.logoUrl"/>
+        <img id="profile-img" class="profile-img-card" [src]="company?.logoUrl"/>
         
 				<h4 class="text-center mt-3 loginText">Login to Your Account</h4>
         <form  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>

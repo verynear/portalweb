@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConfigService} from './config.service';
-import {RentalSite} from '../models/rental-site';
+import {Company} from '../models/company';
 import {Observable} from 'rxjs/Observable';
 
 /*
-  This service is responsible for handling branding & themes at a Rental Site (Community) level.
+  This service is responsible for handling branding & domain check at a Company level.
+  subdomain.betterleasing.com, where subdomain === the company.
 */
 
 @Injectable()
-export class RentalService {
+export class CompanyService {
   private url: string;
   private subdomain: string;
   private host: string;
@@ -26,12 +27,12 @@ export class RentalService {
     return `${this.url}/company/branding/css?domain=${this.subdomain}`;
   }
 
-  getBrandingData(): Observable<RentalSite> {
-      return this.http.get<RentalSite>(`${this.url}/company/branding/data?domain=${this.subdomain}`)
+  // Get Branding At Management (Company) Level
+  getBrandingData(): Observable<Company> {
+      return this.http.get<Company>(`${this.url}/company/branding/data?domain=${this.subdomain}`)
       .catch((error: any) => {
         return Observable.throw(this.errorHandler(error));
       });
-
   }
 
   // TODO: Return Observable, not Promise.
@@ -47,8 +48,7 @@ export class RentalService {
   }
 
   errorHandler(error: any): void {
-    console.log('Error: RentalService');
+    console.log('Error: CompanyService');
     console.log(error);
   }
-
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteService } from '../../services/site.service';
-import { Site } from '../../models/site';
+import { Site, SiteBranding } from '../../models/site';
 import { AsyncPipe } from '@angular/common';
-import { RentalSite } from '../../models/rental-site';
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +12,7 @@ export class NavigationComponent implements OnInit {
     public logoUrl: string;
     public isCollapsed = true;
     public currentSite: Site;
-    public rentalSiteBrandings: RentalSite;
+    public rentalSiteBrandings: SiteBranding;
 
     constructor(private siteService: SiteService) {
     }

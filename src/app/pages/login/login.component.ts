@@ -4,8 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
 import { LoginService } from '../../services/login.service';
 import { SiteService } from '../../services/site.service';
-import { environment } from '../../../environments/environment';
+import { CompanyService } from '../../services/company.service';
 import { SiteBranding } from '../../models/site';
+import { Company } from '../../models/Company';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -20,14 +22,14 @@ export class LoginComponent implements OnInit {
     public version: string;
     public logoUrl: string;
     public loading = false;
-    public siteBranding: SiteBranding;
+    public company: Company;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private loginService: LoginService,
         private alertService: AlertService,
-        private siteService: SiteService) { }
+        private companyService: CompanyService) { }
 
     ngOnInit() {
         // this.loginService.logout();
@@ -39,7 +41,6 @@ export class LoginComponent implements OnInit {
       if (this.route.snapshot.queryParams['out']) {
         this.loginService.logout();
       }
-
     }
 
     login() {
@@ -56,8 +57,8 @@ export class LoginComponent implements OnInit {
         Set the Logo for the Login Page.
     */
     getLoginLogo() {
-        this.siteService.getSiteBranding().subscribe((data) =>  {
-            this.siteBranding = data;
+        this.companyService.getBrandingData().subscribe((data) =>  {
+            this.company = data;
         });
     }
 }
