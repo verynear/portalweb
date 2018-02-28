@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Unit } from '../models/unit';
 import { Tenant } from '../models/tenant';
-import { Site } from '../models/site';
+import { Site, SiteBranding } from '../models/site';
 import { Building } from '../models/building';
 import { ConfigService } from './config.service';
 import { AlertService } from './alert.service';
@@ -13,9 +13,16 @@ import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+
+/*
+  This service is responsible for handling branding & themes at a Site (Management) level.
+*/ 
+
 @Injectable()
 export class SiteService {
   private url: string;
+  private subdomain: string;
+  private host: string;
   private currentSite: BehaviorSubject<Site>;
 
   constructor(private http: HttpClient,
@@ -23,8 +30,12 @@ export class SiteService {
               private alertService: AlertService,
               private sessionService: SessionService) {
 
-    this.url = config.get().api.baseURL;
+
     this.currentSite = new BehaviorSubject<Site>(new Site);
+
+    this.url = config.get().api.baseURL;
+    this.subdomain = config.get().customer.subdomain;
+    this.host = config.get().customer.host;
   }
 
   init() {
@@ -38,9 +49,12 @@ export class SiteService {
     });
   }
 
-  // TODO: Update other API's to match the style of this one ^
-  getRentalSite(id: number) {
-    return this.http.get(`${this.url}/sites/${id}`);
+  // Returns the Branding for a Management Company.
+  getSiteBranding(): Observable<SiteBranding> {
+    return this.http.get<Building[]>(`${this.url}/rental/branding/data?domain=${this.subdomain}`)
+    .catch((error: any) => {
+     return Observable.throw(this.errorHandler(error));
+   });
   }
 
   getBuildings(id: number): Observable<Building[]> {
@@ -48,6 +62,11 @@ export class SiteService {
      .catch((error: any) => {
       return Observable.throw(this.errorHandler(error));
     });
+  }
+
+  // TODO: Update other API's to match the style of this one ^
+  getRentalSite(id: number) {
+    return this.http.get(`${this.url}/sites/${id}`);
   }
 
   getUnitsByBuildingId(id: number) {
@@ -66,6 +85,7 @@ export class SiteService {
   getCurrentSite(): Observable<Site> {
     return this.currentSite.asObservable();
   }
+
 
   setDefaultSite() {
     this.getRentalSites().subscribe((sites: Site[]) => {
