@@ -31,7 +31,7 @@ export class ApproveformComponent implements OnInit {
           this.applicant = data;
           console.log('new applicant id');
           console.log(data['id']);
-          this.approve(data['id']);
+          this.approval(data['id']);
           this.alertService.success('Applicant Created');
           form.resetForm();
           console.log('end of create loading:');
@@ -43,7 +43,7 @@ export class ApproveformComponent implements OnInit {
         });
   }
 
-  approve(id: number) {
+  approval(id: number) {
     this.service.approve(id)
       .subscribe(
       data => {
