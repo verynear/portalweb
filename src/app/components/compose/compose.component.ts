@@ -22,27 +22,32 @@ export class ComposeComponent implements OnInit {
   @Output() onSent = new EventEmitter();
   public currentSite: Site;
   buildings: Building[];
-  units: Unit[];
   selectedUnits: Unit[];
   selectedTenantUnits: Unit[];
   tenants: SelectItem[];
-  selectedTenants: Tenant[];
   fetchedTenants: Tenant[];
+
   loading = false;
+  unitError = false;
+  lastLink: any;
   recips: any[];
   checkedList: any[];
+  filtered = [];
+  finalBuildingIds = [];
+  finalBuildingUnitIds = [];
   indi: {};
+
+  unitErrorNumber: string;
+  unitIdForTenant: number;
+  newMessageId: number;
+
   composeForm: FormGroup;
   type: FormControl;
   buildingIdforUnit: FormControl;
   buildingIdforTenantUnit: FormControl;
   rentalsiteBuildingIds: FormControl;
   rentalsiteBuildingUnitIds: FormControl;
-  unitIdForTenant: number;
   tenantIds: FormControl;
-  filtered = [];
-  finalBuildingIds = [];
-  finalBuildingUnitIds = [];
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
@@ -54,6 +59,7 @@ export class ComposeComponent implements OnInit {
         this.siteService.getCurrentSite().subscribe(site => {
           this.currentSite = site;
         });
+        this.unitError = false;
         this.recips = [
           {type: 'SITE', name: 'Community', community: this.currentSite.name},
           {type: 'BUILDING', name: 'Building(s)'},
@@ -66,38 +72,19 @@ export class ComposeComponent implements OnInit {
         this.createForm();
         this.setDefaultValues();
     }
-
+    // Retrieves Site Buildings to populate first dropdown
     getSiteBuildings() {
     this.siteService.getBuildings(this.currentSite.id).subscribe(
       data => {
         this.buildings = data;
       },
       error => {
-        this.alertService.error(error);
-        console.log('Error');
+        this.alertService.error('error retrieving site buildings');
       });
     }
-
-    getUnitsForBuilding(event) {
-      const query = event.query;
-      this.siteService.getUnitsByBuildingId(this.composeForm.value.buildingIdforUnit).then(units => {
-       this.selectedUnits = this.filterUnit(query, units);
-       });
-      console.log('selected units');
-      console.log(this.selectedUnits);
-      console.log('just units');
-      console.log(this.units);
-    }
-
-    getUnitsForBuildingTenant(event) {
-      const query = event.query;
-      this.siteService.getUnitsByBuildingId(this.composeForm.value.buildingIdforTenantUnit).then(units => {
-       this.selectedTenantUnits = this.filterUnit(query, units);
-       });
-      console.log('selected tenant units');
-      console.log(this.selectedTenantUnits);
-      console.log('just units');
-      console.log(this.units);
+    // sets radio button
+    setDefaultValues() {
+       this.composeForm.patchValue({messageType: 'STANDARD'});
     }
 
     createFormControls() {
@@ -125,6 +112,20 @@ export class ComposeComponent implements OnInit {
             message: this.message
         });
     }
+    // for sending to units
+    getUnitsForBuilding(event) {
+      const query = event.query;
+      this.siteService.getUnitsByBuildingId(this.composeForm.value.buildingIdforUnit).then(units => {
+       this.selectedUnits = this.filterUnit(query, units);
+       });
+    }
+    // for sending to resident
+    getUnitsForBuildingTenant(event) {
+      const query = event.query;
+      this.siteService.getUnitsByBuildingId(this.composeForm.value.buildingIdforTenantUnit).then(units => {
+       this.selectedTenantUnits = this.filterUnit(query, units);
+       });
+    }
 
     shareCheckedList(item: any[]) {
         this.checkedList = item;
@@ -134,35 +135,36 @@ export class ComposeComponent implements OnInit {
         this.indi = item;
         console.log(item);
     }
-
-    setDefaultValues() {
-       this.composeForm.patchValue({messageType: 'STANDARD'});
-    }
-
+    // autocomplete filtering
     filterUnit(query, units: any[]): any[] {
         this.filtered = [];
         for (let i = 0; i < units.length; i++) {
             const unit = units[i];
-            if (unit.unitNumber.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                this.filtered.push(unit);
-                console.log('filtered');
-                console.log(this.filtered);
+            if (unit.hasTenant) {
+              // accepts the query as user types and returns matching results as suggestions
+              if (unit.unitNumber.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                  this.filtered.push(unit);
+                  console.log('filtered units');
+                  console.log(this.filtered);
+              }
+            } else {
+              console.log('error');
             }
         }
         return this.filtered;
     }
 
-
+    // for sending to units
     addUnit(value) {
-      console.log('selected');
-      console.log(value);
       this.finalBuildingUnitIds.push(value.id);
     }
-
+    // reset form error label
+    resetUnit() {
+      this.unitError = false;
+    }
+    // for sending to residents
     setUnit(value) {
       this.unitIdForTenant = value.id;
-      console.log('unitIdforTenant');
-      console.log(this.unitIdForTenant);
       this.siteService.getTenantsByUnitId(this.unitIdForTenant).subscribe(
       data => {
         this.fetchedTenants = data;
@@ -170,15 +172,16 @@ export class ComposeComponent implements OnInit {
         for (const tenant of this.fetchedTenants) {
             this.tenants.push({label: tenant.firstname + ' ' + tenant.lastname, value: tenant.id});
         }
-        console.log('selectItem formatted tenants');
-        console.log(this.tenants);
       },
       error => {
-        console.log('Error');
+        this.tenants = [{label: 'no matching residents - send to selected unit', value: null }];
+        this.unitError = true;
+        this.unitErrorNumber = value.unitNumber;
+        console.log(error);
       });
     }
 
-    send() {
+    build() {
         this.loading = true;
         const message = new Message();
 
@@ -199,18 +202,34 @@ export class ComposeComponent implements OnInit {
           message.rentalsiteBuildingIds = [Number (this.composeForm.value.buildingIdforTenantUnit)];
           message.tenantIds = this.composeForm.value.tenantIds;
         }
+        if (message.tenantIds && message.tenantIds.length === 1 && message.tenantIds.pop() === null) {
+          this.composeForm.value.type = 'UNIT';
+          message.type = 'UNIT';
+          message.rentalsiteBuildingUnitIds = [Number (this.unitIdForTenant)];
+        }
+        if (message.type === 'RESIDENT' && message.tenantIds && message.tenantIds.length === 0) {
+          this.composeForm.value.type = 'UNIT';
+          message.type = 'UNIT';
+          message.rentalsiteBuildingUnitIds = [Number (this.unitIdForTenant)];
+        }
         message.messageType = this.composeForm.value.messageType;
         message.message = this.composeForm.value.message;
         message.subject = this.composeForm.value.subject;
+
         console.log(message);
 
         message.message = new ReplacePipe().transform(message.message, '<br>'); // Remove all occurences of <br>
+        this.send(message);
 
+      }
+    send(message) {
         this.messageService.sendMessage(message).subscribe(
             data => {
                 console.log('sent');
-                this.alertService.success('Message Sent');
-                this.messageService.onSent();
+                this.newMessageId = data['id'];
+                this.lastLink = '/messages/view/' + this.newMessageId;
+                this.alertService.success('Your message has been sent', this.lastLink, true, false);
+                // this.messageService.onSent(); if enabled - refesh sentBox after message sent
             },
             error => {
                 this.alertService.error('Message Failed to Send');

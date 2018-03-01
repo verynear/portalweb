@@ -3,12 +3,29 @@
 }
 
 :host-context(.dashboard) {
-  width: 50% !important;
-  float: right !important;
+  position: absolute !important;
+  display: inline-block !important;
+  left: 40% !important;
+  top: 2.5rem !important;
+  text-align: center !important;
+  width: 35% !important;
 }
 
 :host-context(.applicant) {
   float: left !important;
   display: block !important;
   width: inherit;
+}
+
+:host-context(.messages) {
+  position: absolute !important;
+  display: inline-block !important;
+  left: 45% !important;
+  top: 2.5rem !important;
+  text-align: center !important;
+  width: 40% !important;
+}
+
+.alertlink {
+  text-decoration: underline !important;
 }

@@ -12,7 +12,7 @@ import { SessionService } from '../../services/session.service';
 })
 export class MenuComponent implements OnInit {
   public currentUser: User;
-  public sites: any = [];
+  public sites: Site[];
   public multiSite: boolean;
   private currentSite: Site;
 

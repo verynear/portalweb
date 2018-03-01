@@ -1,23 +1,6 @@
 /* Message Center Custom Styles
 -------------------------------------------------- */
-/* Mailbox */
-.mail-nav.btn-group-vertical {
-  margin-top: 1px;
-}
-.mail-nav.btn-group-vertical .btn {
-  text-align: left;
-}
-.mail-nav.btn-group-vertical span.badge {
-  float: right;
-  margin-top: 4px;
-}
-.mail-nav.btn-group-vertical i {
-  float: left;
-  margin-top: 4px;
-  margin-right: 5px;
-  width: 20px;
-}
-.inbox {
+.sentbox {
   margin-top: 17px;
 }
 
@@ -125,6 +108,11 @@ tr {
   opacity: .5;
 }
 
+.report {
+  background-color: #6c757d;
+  opacity: .5;
+}
+
 .BUILDING {
   background-color: #ce7300;
   opacity: .5;
@@ -146,9 +134,17 @@ td, th {
   overflow-x: hidden;
 }
 
+.text-right {
+    text-align: right !important;
+    width: 200px !important;
+}
+
 // Various classes for fixed width table.  TODO: Make Global
 .width-25 {
   width: 25px;
+}
+.width-50 {
+  width: 50px;
 }
 .width-100 {
   width: 100px;

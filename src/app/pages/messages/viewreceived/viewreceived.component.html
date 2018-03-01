@@ -1,6 +1,6 @@
 <div class="marginTop"></div>
 
-<div class="table-responsive">
+<div *ngIf="!loading" class="table-responsive">
     <table class="table table table-striped table-bordered table-hover">
       <tbody>
         <tr>
@@ -18,3 +18,4 @@
       </tbody>
     </table>
   </div>
+  <img *ngIf="loading" class="spinner" src="./assets/Spinner-100px.gif" />

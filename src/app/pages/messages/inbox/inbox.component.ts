@@ -24,7 +24,11 @@ export class InboxComponent implements OnInit {
   loading1: boolean;
   unitReciptients: string[];
 
-  constructor(private router: Router, public messageService: MessageService) {}
+  constructor(private router: Router, public messageService: MessageService) {
+    messageService.onRefresh$.subscribe(sent => {
+      this.onRefresh();
+    });
+  }
 
   ngOnInit() {
     console.log('ngOnInit: InBox');
@@ -75,12 +79,18 @@ export class InboxComponent implements OnInit {
     }
   }
 
+  onRefresh() {
+    this.page = 0;
+    this.getInquiries(this.page, this.itemsPerPage);
+  }
+
   // For sort event./
   onSorted($event) {
     this.inquiries = this.messageService.sortInquiries(this.inquiries, $event);
   }
 
   openInquiry(id: number) {
+    this.loading1 = true;
     this.router.navigate(['/messages/received', id]);
   }
 

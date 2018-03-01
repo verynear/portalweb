@@ -2,11 +2,12 @@
 	<!-- Main Content Area -->
 	<div class="main-content">
 		<div class="container-fluid">
+			<app-alert class='dashboard'></app-alert>
 			<h1>Account</h1>
 			<h5>ABC Management</h5>
 			<h6>{{currentSite?.name}}<br><small>{{currentSite?.address1}}, {{currentSite?.city}}, {{currentSite?.state}} {{currentSite?.zip}}<br>PH: {{currentSite?.phone}} / FX: {{currentSite?.fax}}</small></h6>
 			<h3>Account Info</h3>
-			<form novalidate (ngSubmit)="update(accountForm)" [formGroup]="accountForm">
+			<form novalidate (ngSubmit)="update()" [formGroup]="accountForm">
 				<div class="form-group row">
 					<div class="col-sm-4">
 						<label for="email">Email:</label>
@@ -29,17 +30,17 @@
 						<label for="verify">Confirm Password:</label>
 						<input type="password" class="form-control" formControlName="verify">
 						  <div *ngIf="accountForm.get('verify').touched" class="text-danger">
-							<div *ngIf="accountForm.get('password').value !== accountForm.get('verify').value">Password Mismatch.</div>
+							<div *ngIf="passwordMatch()">Password Mismatch.</div>
 						</div>
 				    </div>
 				</div>
 				<hr>
-				<button type="submit" class="btn btn-primary" [disabled]="accountForm.invalid">Update</button>
+				<button type="submit" class="btn btn-primary" [disabled]="accountForm.invalid || passwordMatch()">Update</button>
 			</form>
 		</div>
 	</div>
 	
 	<footer>
-		<small>&copy; 2018 BetterLeasing</small>
+		<small>&copy; 2018 BetterLeasing. All Rights Reserved.</small>
 	</footer>
 </div>

@@ -1,3 +1,13 @@
+/* Alerts can accept an optional link
+
+Simple alert:
+this.alertService.error('Message Failed to Send');
+
+Alert with Link:
+this.alertService.success('Your message has been sent', this.link, true, false);
+
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 import { AlertService } from '../../services/alert.service';
@@ -12,6 +22,8 @@ import { Alert, AlertType } from '../../models/alert';
 
 export class AlertComponent implements OnInit {
   alerts: Alert[] = [];
+  public alertLink = false;
+  public isFound = false;
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
@@ -21,21 +33,26 @@ export class AlertComponent implements OnInit {
               this.alerts = [];
               return;
           }
-
-          // add alert to array
-          this.alerts.push(alert);
+          // add alert to array only if no duplicate
+          if (!this.alerts.some(function (el) {return el.message === alert.message; })) {
+             this.alerts.push(alert);
+          } else {
+            return;
+          }
+          // show link in alert
+          if (alert.alertLink === true ) {
+            this.alertLink = true;
+          }
 
           // remove alert after 6 seconds
-          setTimeout(() => this.removeAlert(alert), 6000);
+          setTimeout(() => this.removeAlert(alert), 5500);
       });
   }
 
   removeAlert(alert: Alert) {
       this.alerts = this.alerts.filter(x => x.message !== alert.message);
-      console.log('removealert');
-      console.log(alert);
-      console.log('Array');
-      console.log(this.alerts);
+      // reset link to false
+      this.alertLink = false;
   }
 
   cssClass(alert: Alert) {

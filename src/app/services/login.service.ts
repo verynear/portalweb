@@ -6,10 +6,13 @@ import {Site} from '../models/site';
 import {SessionService} from './session.service';
 import {AlertService} from './alert.service';
 import {AuthHeaderInterceptor} from '../auth-header.interceptor';
+import {ConfigService} from './config.service';
 
 @Injectable()
 export class LoginService {
   public onLogin = new EventEmitter<User | boolean>();
+  private subdomain: string;
+  private host: string;
 
   constructor(
     private authService: AuthenticationService,
@@ -17,11 +20,12 @@ export class LoginService {
     private alertService: AlertService,
     private authInterceptor: AuthHeaderInterceptor,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private config: ConfigService
 
   ) {
-    console.log('LoginService:  Constructor');
-
+    this.subdomain = config.get().customer.subdomain;
+    this.host = config.get().customer.host;
   }
 
   login(username: string, password: string): Promise<User> {

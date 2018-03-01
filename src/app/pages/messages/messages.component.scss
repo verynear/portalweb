@@ -26,6 +26,10 @@
     min-height: 768px;
 }
 
+#compose {
+  background-color: #626262 !important;
+}
+
 tr {
     cursor: pointer;
 }
@@ -36,4 +40,10 @@ tr {
 
 section {
 	margin-bottom: 20px;
+}
+
+.boxheader {
+	width: auto !important;
+	display: inline-block !important;
+	padding-left: 10px !important;
 }

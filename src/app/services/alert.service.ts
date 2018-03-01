@@ -1,3 +1,13 @@
+/* Alerts can accept an optional link
+
+Simple alert:
+this.alertService.error('Message Failed to Send');
+
+Alert with Link:
+this.alertService.success('Your message has been sent', this.link, true, false);
+
+*/
+
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -29,25 +39,25 @@ export class AlertService {
         return this.subject.asObservable();
     }
 
-    success(message: string, keepAfterRouteChange = false) {
-        this.alert(AlertType.Success, message, keepAfterRouteChange);
+    success(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
+        this.alert(AlertType.Success, message, link, alertLink, keepAfterRouteChange);
     }
 
-    error(message: string, keepAfterRouteChange = false) {
-        this.alert(AlertType.Error, message, keepAfterRouteChange);
+    error(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
+        this.alert(AlertType.Error, message, link, alertLink, keepAfterRouteChange);
     }
 
-    info(message: string, keepAfterRouteChange = false) {
-        this.alert(AlertType.Info, message, keepAfterRouteChange);
+    info(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
+        this.alert(AlertType.Info, message, link, alertLink, keepAfterRouteChange);
     }
 
-    warn(message: string, keepAfterRouteChange = false) {
-        this.alert(AlertType.Warning, message, keepAfterRouteChange);
+    warn(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
+        this.alert(AlertType.Warning, message, link, alertLink, keepAfterRouteChange);
     }
 
-    alert(type: AlertType, message: string, keepAfterRouteChange = false) {
+    alert(type: AlertType, message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
         this.keepAfterRouteChange = keepAfterRouteChange;
-        this.subject.next(<Alert>{ type: type, message: message });
+        this.subject.next(<Alert>{ type: type, message: message, link: link, alertLink });
     }
 
     clear() {

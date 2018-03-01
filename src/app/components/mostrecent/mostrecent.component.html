@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-6">
+    <h5 class="card-title"><small>Sent: {{message?.createDate | date:'MMM d, y, h:mm a' }}</small><br>{{message?.subject}}</h5>
+    <p [innerHTML]="message?.message | htmlToPlain"> </p>
+    <a (click)="openReport()" class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="messages" class="btn btn-default btn-sm">View All Messages</a>
+  </div>
+  <div class="col-md-5 offset-md-1">
+     <ul class="list-inline">
+      <li class="list-inline-item">
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading mb-0">{{readPercent | percent}}<br><small>Read</small></h4>
+        </div>
+      </li>
+      <li class="list-inline-item">
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading mb-0">{{pendingPercent | percent}}<br><small>Pending</small></h4>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

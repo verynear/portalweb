@@ -1,10 +1,11 @@
 <div id="main">
     <!-- Main Content Area -->
     <div class="main-content">
+
         <div class="container-fluid">
-
-            <h1>Messages</h1>
-
+            <app-alert class='messages'></app-alert>
+            <h1 class="boxheader">Messages<small *ngIf="onInbox()" class="boxheader">  Received</small><small *ngIf="onSentBox()" class="boxheader">  Sent</small></h1>
+            
             <section class="top">
                 <form>
                     <div class="row">
@@ -23,16 +24,14 @@
 
                             <section>
 
-                                <button type="button" class="mb-3 btn btn-primary btn-block text-left" (click)="compose()">
+                                <button type="button" id="compose" class="mb-3 btn btn-default btn-block text-left" (click)="compose()">
                                 <i class="fa fa-edit fa-lg"></i> Create New</button>
                                 
                                 <div class="btn-group-vertical btn-block mail-nav">
-                                    <a [routerLink]="['','messages', 'inbox']" class="btn btn-default">
-                                        <span class="badge badge-info"><!--{{totalItems}}--></span>
+                                    <a [routerLink]="['','messages', 'inbox']" class="btn btn-default" [ngClass]="{'active': onInbox()}">
                                         <i class="fa fa-inbox"></i> Received</a>
 
-                                    <a [routerLink]="['','messages', 'sent']" class="btn btn-default">
-                                        <span class="badge badge-info"><!--{{totalItems}}--></span>
+                                    <a [routerLink]="['','messages', 'sent']" class="btn btn-default" [ngClass]="{'active': onSentBox()}">
                                         <i class="fa fa-send"></i> Sent</a>
 
                                 </div>
@@ -99,7 +98,10 @@
                                             <i class="fa fa-trash fa-lg"></i>
                                         </button>
                                     </div>
+                                    <a *ngIf="onSentBox()" class="btn btn-default btn-sm" (click)="refreshSent()"><i class="fa fa-refresh"></i></a>
+                                    <a *ngIf="onInbox()" class="btn btn-default btn-sm" (click)="refreshInbox()"><i class="fa fa-refresh"></i></a>
                                 </div>
+
                             </div>
                             <!-- Where the inbox should go -->
                             <router-outlet></router-outlet>
@@ -112,6 +114,6 @@
     </div>
 
     <footer>
-        <small>&copy; 2018 BetterLeasing</small>
+        <small>&copy; 2018 BetterLeasing. All Rights Reserved. </small>
     </footer>
 </div>

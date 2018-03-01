@@ -4,7 +4,7 @@ import {User} from './models/user';
 import {SessionService} from './services/session.service';
 import {SiteService} from './services/site.service';
 import {DomSanitizer, SafeValue} from '@angular/platform-browser';
-import {RentalService} from './services/rental.service';
+import {CompanyService} from './services/company.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     private loginService: LoginService,
     private sessionService: SessionService,
     private siteService: SiteService,
-    private rentalService: RentalService,
+    private companyService: CompanyService,
     private router: Router,
     private sanitizer: DomSanitizer
   ) {
@@ -29,22 +29,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Hi from App Component');
-
     this.addLoginListener();
     this.validateDomain();
-
-    console.log('About to get Branding CSS');
-    this.brandingCSS = this.sanitizer.bypassSecurityTrustResourceUrl(this.rentalService.getBrandingCssUrl());
-
-    this.rentalService.getBrandingData().then(data => {
-      console.log('The data is... ... ');
-      console.log(data);
-    });
-
-    console.log(this.brandingCSS);
-
-
   }
 
   private addLoginListener(): void {
@@ -55,10 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   private validateDomain(): void {
-
-
-
-    this.rentalService.checkSubdomain()
+    this.companyService.checkSubdomain()
       .then((isValidDomain: boolean) => {
 
         if (!isValidDomain) {

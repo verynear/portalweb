@@ -1,28 +1,20 @@
 	<div class="fixed-top navbar navbar-expand flex-column flex-md-row bd-navbar">
 		<ul class="navbar-nav flex-row ml-md-auto d-md-flex">
-			<li ngbDropdown class="nav-item dropdown">
-				<a class="nav-item nav-link" id="mail-alert" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle><i class="fa fa-comment"></i> <sup><span class="badge badge-primary">3</span></sup></a>
-				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="mail-alert">
-					<a class="dropdown-item" href="#"><strong>John Smith &nbsp;<small>just now</small></strong><br>Lorem ipsum dolor noretek imit set...</a>
-					<a class="dropdown-item" href="#"><strong>Alex T. &nbsp;<small>15 mins ago</small></strong><br>Lorem ipsum dolor noretek imit set...</a>
-					<a class="dropdown-item" href="#"><strong>Jane Smith &nbsp;<small>25 mins ago</small></strong><br>Lorem ipsum dolor noretek imit set...</a>
-					<a class="dropdown-item" href="#"><strong>John Wilson &nbsp;<small>Dec 12, 2017</small></strong><br>Lorem ipsum dolor noretek imit set...</a>
-				</div>
-			</li>
-			<li ngbDropdown class="nav-item dropdown">
+			<app-message-list></app-message-list>
+			<!-- <li ngbDropdown class="nav-item dropdown">
 				<a class="nav-item nav-link" id="notifications-alert" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle><i class="fa fa-bell"></i> <sup><span class="badge badge-danger">2</span></sup></a>
 				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="notifications-alert">
 					<a class="dropdown-item" href="#"><strong class="text-danger"><i class="fa fa-exclamation-circle"></i> Payment Due</strong><br>Lorem ipsum dolor noretek imit set...</a>
 					<a class="dropdown-item" href="#"><strong class="text-warning"><i class="fa fa-wrench"></i> Maintenance Request</strong><br>Lorem ipsum dolor noretek imit set...</a>
 				</div>
-			</li>
+			</li> -->
 
 			<li ngbDropdown class="nav-item dropdown">
-				<a ngbDropdownToggle class='communityButton nav-item nav-link dropdown-toggle btn-secondary pt-2'  id=“community-switch” data-toggle=“dropdown” aria-haspopup=“true” aria-expanded=“false”>
-					<i class='fa fa-building'></i> Community
+				<a ngbDropdownToggle class='communityButton nav-item nav-link dropdown-toggle btn-secondary pt-2 pointer'  id=“community-switch” data-toggle=“dropdown” aria-haspopup=“true” aria-expanded=“false”>
+					<i class='fa fa-building'></i> Community 
 				</a>
 				<div ngbDropdownMenu class='dropdown-menu dropdown-menu-right' aria-labelledby='community-switch'>
-						<a class='dropdown-item' *ngFor="let site of sites" class="dropdown-item" (click)="switchSite(site)">{{site.name}}</a>
+						<a class='dropdown-item' *ngFor="let site of sites" class="dropdown-item" (click)="switchSite(site)"><strong>{{site.name}}</strong></a>
 				</div>
 			</li>
 

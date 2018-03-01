@@ -15,7 +15,7 @@
                         <div class="icon-box">
                           <div class="icon">
                             <div class="image">
-                              <span class="badge badge-info">2</span>
+                              <!-- <span class="badge badge-info">2</span> -->
                               <i class="fa fa-comments fa-2x"></i>
                             </div>
                             <div class="card">
@@ -23,7 +23,7 @@
                                 <h5 class="card-title">Communications</h5>
                                 <small class="text-muted">11/01/2017 - 12/01/2017</small>
                                 <h5 class="mb-0"><span class="text-info">2</span> <small>New Messages</small></h5>
-                                <a href="messages" class="btn btn-primary btn-sm mr-1">View</a>
+                                <a href="messages" class="btn btn-default btn-sm mr-1">View</a>
                                 <a (click)="compose()" class="btn btn-primary btn-sm mr-1">Create</a>           
                               </div>
                             </div>
@@ -42,7 +42,7 @@
                                 <h5 class="card-title">Announcements</h5>
                                 <small class="text-muted">11/01/2017 - 12/01/2017</small>
                                 <h5 class="mb-0"><span class="text-info">2</span> <small>Announcements Created</small></h5>
-                                <a href="announcements" class="btn btn-primary btn-sm mr-1">View</a>
+                                <a href="announcements" class="btn btn-default btn-sm mr-1">View</a>
                                 <a (click)="composeAnnouncement()" class="btn btn-primary btn-sm mr-1">Create</a>           
                               </div>
                             </div>
@@ -58,27 +58,7 @@
                         <i class="fa fa-paper-plane"></i> Most Recent Message Sent
                       </div>
                       <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <h5 class="card-title"><small>Sent: 12/17/2017</small><br>Maintenance Update to Fitness Facility</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-                            <a href="message-report" class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="messages" class="btn btn-default btn-sm">View All Messages</a>
-                          </div>
-                          <div class="col-md-5 offset-md-1">
-                             <ul class="list-inline">
-                              <li class="list-inline-item">
-                                <div class="alert alert-success" role="alert">
-                                  <h4 class="alert-heading mb-0">75%<br><small>Read</small></h4>
-                                </div>
-                              </li>
-                              <li class="list-inline-item">
-                                <div class="alert alert-warning" role="alert">
-                                  <h4 class="alert-heading mb-0">25%<br><small>Pending</small></h4>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                        <app-mostrecent></app-mostrecent>
                       </div>
                     </div>
                   </section>
@@ -101,6 +81,11 @@
                       <li class="list-group-item"><a href="#" class="btn btn-default btn-sm">View More</a></li>
                     </ul>
                   </div>
+
+
+                  <!-- TODO: This will be uncommented when the API is updated -->
+                  <!-- <app-activity [pageSize]="2" [maxSize]="200"></app-activity> -->
+                  <!-- <a routerLink="/activity" routerLinkActive="active" class="btn btn-primary btn-sm btn-block">View More</a> -->
                 </div>
               
               
@@ -116,6 +101,6 @@
     </div>
     
     <footer>
-      <small>&copy; 2018 BetterLeasing</small>
+      <small>&copy; 2018 BetterLeasing.  All Rights Reserved. </small>
     </footer>
   </div>

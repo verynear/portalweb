@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../../services/message.service';
 import { Inquiry } from '../../../models/inquiry';
 import { SafeHtmlPipe } from '../../../pipes/safe-html.pipe';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-viewreceived',
@@ -16,14 +17,15 @@ export class ViewReceivedComponent implements OnInit {
   inquiry: any;
   loading: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute, public messageService: MessageService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+    public messageService: MessageService, private alertService: AlertService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
           this.id = Number (params.id);
+          this.getInquiry(this.id);
     });
-      this.getInquiry(this.id);
   }
 
   // ngOnDestroy() {
@@ -39,7 +41,8 @@ export class ViewReceivedComponent implements OnInit {
         console.log(this.inquiry);
       },
       error => {
-        console.log('Error');
+        this.loading = false;
+        this.alertService.error('Unable to retrieve inquiry');
       });
   }
 

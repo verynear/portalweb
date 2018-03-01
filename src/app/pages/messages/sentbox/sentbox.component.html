@@ -2,7 +2,7 @@
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
-<section class="inbox" *ngIf="!loading">
+<section class="sentbox" *ngIf="!loading">
 	<div class="table">
 	 	<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 			<thead class="thead-light">
@@ -14,7 +14,7 @@
 					 <th class="width-250">
 						<app-th columnName="id" displayName="Recipient"></app-th>
 					</th> 
-					<th class="width-150">
+					<th class="width-100">
 					</th>
 					<th class="min-width-100">
 						<app-th columnName="message" displayName="Subject"></app-th>
@@ -45,8 +45,8 @@
 						<span *ngIf="message.type === 'UNIT'">
 							{{message.messageRecipients[0]?.rentalSiteBuilding}}:
 							Units -
-							<span *ngFor='let message of message.messageRecipients | filterUnits'>
-							    {{message}}
+							<span *ngFor='let isLast=last; let message of message.messageRecipients | filterUnits'>
+							    {{message}}{{isLast ? '' : ', '}}
 						    </span>
 						</span>
 
@@ -73,9 +73,12 @@
 		
 						<span class="previewTitle"> {{message.subject}} -</span> 
 						<span [innerHTML]="message.message | htmlToPlain"> </span> 
-					</td> 
-
+					</td>
 					<td class="text-right" style="padding-left: 50px">
+						<button class="btn sentType report" (click)="openReport(message.id)">
+					       <i class="fa fa-tasks"></i>
+					    </button>
+					    <i style="color: #fff" class="fa fa-minus"></i>
 						<span>{{message.createDate | date:'mediumDate' }} </span>
 					</td>
 				</tr>				               

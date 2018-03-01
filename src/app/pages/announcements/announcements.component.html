@@ -3,6 +3,7 @@
 	<div class="main-content">
 		<form>
 			<div class="container-fluid">
+				<app-alert class='messages'></app-alert>
 				<h1>Manage Announcements</h1>
 				
 					<div class="row">
@@ -42,8 +43,14 @@
 						<div class="w-75" [innerHTML]="announcement.message | safeHtml"> </div>
 						
 						<div class="clearfix">
-							<button class="btn btn-sm btn-primary float-right ">Edit</button>
-							<button (click)="deleteAnnouncement(announcement.id)" class="btn btn-sm btn-primary btn-default float-right mr-2">Delete</button>	
+							<a href="" class="float-right">
+								<i class="fa fa-edit"></i> Edit 
+							</a>
+				
+							<a href="" (click)="deleteAnnouncement(announcement.id)" class="float-right mr-2">
+								<i class="fa fa-trash"></i> Delete
+							</a>	
+							
 						</div>
 						
 				
@@ -51,7 +58,7 @@
 				</div>
 				
 				<hr>
-				<img *ngIf="loading" src="./assets/Spinner-large.gif" />
+				<img *ngIf="loading" class="spinner" src="./assets/Spinner-100px.gif" /> 
 
 				<div class="row">
 					<div class="col-md-12">

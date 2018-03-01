@@ -63,7 +63,7 @@ export class AnnouncementcomposeComponent implements OnInit {
 
     }
 
-    send() {
+    build() {
         const announcement = new Announcement();
 
         announcement.type = 'SITE';
@@ -73,7 +73,9 @@ export class AnnouncementcomposeComponent implements OnInit {
         announcement.messageType = 'Announcement';
 
         announcement.message = new ReplacePipe().transform(announcement.message, '<br>'); // Remove all occurences of <br>
-
+        this.send(announcement);
+    }
+    send(announcement) {
         this.announcementService.postAnnouncement(announcement).subscribe(
             data => {
                 this.activeModal.close('success');

@@ -139,6 +139,11 @@ a:hover.btn.btn-primary {
   background-color: #999;
   color: #fff;
 }
+
+.btn.btn-default.active, {
+  background-color: #123475 !important;
+}
+
 .btn,
 .btn-group > .btn {
     text-transform: uppercase;
@@ -378,6 +383,44 @@ textarea {
 .navbar-brand img {
   max-height: 4.063rem;
   display: inline-block;
+}
+
+.navbar {
+  background-color: #ddd;
+  height: 2.188rem;
+  padding-right: 0;
+}
+.navbar .nav-item h6 {
+  margin: 0;
+  line-height: 0.875rem;
+  display: inline-block;
+  font-size: 0.875rem;
+}
+.navbar .nav-item h6 small {
+  color: #777;
+  font-size: 0.6875rem;
+}
+.navbar ul {
+  margin: 0;
+}
+
+.nav-item {
+  font-size: 12px;
+  text-transform: uppercase;
+  height: 2.188rem;
+}
+.nav-item:last-child a {
+  color: #fff;
+}
+.nav-item .btn {
+  padding: inherit;
+}
+.nav-item .dropdown-item {
+  font-size: 0.6875rem;
+}
+.nav-item .dropdown-menu {
+  top: 100% !important;
+    left: auto !important;
 }
 
 .nav-side-menu {
@@ -643,14 +686,43 @@ footer {
 }
 
 .imgLogo {
-  max-width: 150px;
+  max-width: 150px; 
+  max-height: 5.00rem;
 }
 
 .spinner{
   position: absolute;
   top: 80%;
-  left: 50%;
-  margin-left: -50px;
+  left: 45%;
+  margin-left: -45px;
   margin-top: -50px;
 }
 
+.communityButton {
+  padding-left: 10px !important; 
+  padding-right: 10px !important;
+  color: white !important;
+
+} 
+
+.dropdown-item {
+  cursor: pointer !important;
+}
+
+.white {
+  color: white;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.vertSpan {
+  display: inline-block; 
+  vertical-align: middle; 
+  height: 100%;
+}
+
+.inline {
+  display: inline;
+}
