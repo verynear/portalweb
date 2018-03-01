@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Applicant } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
-import { DataTableModule } from 'primeng/primeng';
+import { TableModule } from 'primeng/components/table/table';
 import { AlertService } from '../../services/alert.service';
 import {HttpErrorResponse} from '@angular/common/http';
 
@@ -17,17 +17,28 @@ export class DatatableComponent implements OnInit {
     selectedApplicant: Applicant;
     newApplicant: boolean;
     applicants: Applicant[];
+    cols: any[];
 
     constructor(private applicantService: ApplicantService, private alertService: AlertService) { }
 
     ngOnInit() {
         this.getApplicants();
+
+        this.cols = [
+            { field: 'emailAddress', header: 'Email' },
+            { field: 'firstname', header: 'First' },
+            { field: 'lastname', header: 'Last' },
+            { field: 'phone', header: 'Phone' },
+            { field: 'role', header: 'Status' },
+            { field: 'applicantPropertyName', header: 'Property' },
+            { field: 'applicantUnit', header: 'Unit' }
+        ];
     }
 
     getApplicants() {
       this.applicantService.get().subscribe(
       data => {
-        console.log('Youve received messages');
+        console.log('Applicants Loaded');
         this.applicants = data;
         console.log(data[0].lastname);
       },
