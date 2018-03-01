@@ -24,14 +24,9 @@ export class AlertService {
         // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
         router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
-                if (this.keepAfterRouteChange) {
-                    // only keep for a single route change
-                    this.keepAfterRouteChange = false;
-                } else {
                     // clear alert messages
                     this.clear();
                 }
-            }
         });
     }
 
@@ -39,24 +34,23 @@ export class AlertService {
         return this.subject.asObservable();
     }
 
-    success(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
-        this.alert(AlertType.Success, message, link, alertLink, keepAfterRouteChange);
+    success(message: string, link?: string, alertLink = false) {
+        this.alert(AlertType.Success, message, link, alertLink);
     }
 
-    error(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
-        this.alert(AlertType.Error, message, link, alertLink, keepAfterRouteChange);
+    error(message: string, link?: string, alertLink = false) {
+        this.alert(AlertType.Error, message, link, alertLink);
     }
 
-    info(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
-        this.alert(AlertType.Info, message, link, alertLink, keepAfterRouteChange);
+    info(message: string, link?: string, alertLink = false) {
+        this.alert(AlertType.Info, message, link, alertLink);
     }
 
-    warn(message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
-        this.alert(AlertType.Warning, message, link, alertLink, keepAfterRouteChange);
+    warn(message: string, link?: string, alertLink = false) {
+        this.alert(AlertType.Warning, message, link, alertLink);
     }
 
-    alert(type: AlertType, message: string, link?: string, alertLink = false, keepAfterRouteChange = false) {
-        this.keepAfterRouteChange = keepAfterRouteChange;
+    alert(type: AlertType, message: string, link?: string, alertLink = false) {
         this.subject.next(<Alert>{ type: type, message: message, link: link, alertLink });
     }
 

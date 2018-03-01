@@ -3,12 +3,11 @@
   <div class="main-content">
 
     <div class="container">
-      <h2>New Applicant</h2>
-      <p>
-        Register and Approve
-      </p>
-
       <app-alert class='applicant'></app-alert>
+      <h2>Register and Approve</h2>
+      <p>
+        Add Applicant and Instantly Approve as Resident
+      </p>
       
       <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && create(f)" novalidate>
         <div class="form-group" [ngClass]="{ 'is-invalid': f.submitted && !firstname.valid }">
@@ -42,7 +41,7 @@
         </div>
         <hr>
         <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">Approve</button>
+          <button [disabled]="loading" class="btn btn-primary">Add & Approve</button>
           <img *ngIf="loading" src="./assets/Spinner-small.gif" />
         </div>
       </form>
