@@ -75,6 +75,8 @@ import { ReplacePipe } from './pipes/replace.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { MessageListComponent } from './components/message-list/message-list.component';
 import { MostRecentComponent } from './components/mostrecent/mostrecent.component';
+import { UploadFileService } from './services/upload-file.service';
+import { FormUploadComponent } from './components/form-upload/form-upload.component';
 
 @NgModule({
   imports: [
@@ -133,6 +135,7 @@ import { MostRecentComponent } from './components/mostrecent/mostrecent.componen
     ShortenPipe,
     MessageListComponent,
     MostRecentComponent,
+    FormUploadComponent,
   ],
   providers: [
       {
@@ -149,6 +152,7 @@ import { MostRecentComponent } from './components/mostrecent/mostrecent.componen
       ConfigService,
       SiteService,
       StatusService,
+      UploadFileService,
       CompanyService,
       fakeBackendProvider,
       MockBackend,

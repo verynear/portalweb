@@ -7,6 +7,7 @@ import { Building } from '../../models/building';
 import { Unit } from '../../models/unit';
 import { Site } from '../../models/site';
 import { Tenant } from '../../models/tenant';
+import { FormUploadComponent } from '../form-upload/form-upload.component';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
