@@ -1,0 +1,150 @@
+<div id="main">
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <div class="container-fluid">
+      
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Message Sent</h1>
+        </div>
+      </div>
+  
+      <form>				
+        
+        <div class="row">
+          <div class="col-md-3">
+            <section>
+              <div class="form-group">
+                <label class="sr-only" for="inlineFormInputGroup">Search</label>
+                  <div class="input-group">
+                  <input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
+                  <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="btn-group-vertical btn-block nav-filter">
+                <a href="#" class="btn btn-primary"><i class="fa fa-group"></i> Community</a>
+                <a (click)="openBuildingReport(building.id)" *ngFor="let building of buildings" class="btn btn-default">
+                  <i class="fa fa-building"></i> 
+                  {{building.address1}} 
+                </a>
+              </div>
+            </section>
+          </div> 
+
+          <div class="col-md-9">
+            <div class="d-flex">
+              <div class="mr-1">
+                <!--Filter dropdown - multi-select-->
+                <div class="dropdown">
+                  <div class="dropdown-menu dropdown-md p-3" aria-labelledby="dropdownFilter">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="dropdown-item">
+                          <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Read</span>
+                          </label>
+                        </div>
+                        <div class="dropdown-item">
+                          <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Sent</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="dropdown-item">
+                          <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Unread</span>
+                          </label>
+                        </div>
+                        <div class="dropdown-item">
+                          <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">Starred</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>												
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <section class="message-report">        
+              <table class="table table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Location</th>
+                      <th>Resident</th>
+                      <th>Messages</th>
+                      <th>Sent Date</th>
+                      <th>Read Receipt</th>
+                    </tr>
+                  </thead>
+                  <thead class="thead-light">
+                      <tr> 
+                          <th colspan="5">{{buildingReport.address1}}</th> 
+                      </tr>
+                  </thead>
+                  
+                  <tbody *ngFor="let unit of buildingReport.buildingUnit">                    
+                    <tr *ngFor="let tenant of unit.tenants">
+                      <td> {{unit.unitNumber}}  </td>
+                      <td>  {{tenant.firstname}} {{tenant.lastname}}</td>
+                      <td>  
+                        <ul class="list-unstyled">
+                          <li *ngFor="let message of tenant.messages; let i=index">
+                            <div *ngIf="i<3">
+                              <a class="pointer" click="openMessageReport(message.id)"> {{message.subject}} </a>
+                            </div>
+                          </li>
+                        </ul> 
+                      </td>
+                      <td>
+                        <ul class="list-unstyled">
+                          <li *ngFor="let message of tenant.messages; let i=index">
+                            <div *ngIf="i<3">
+                              <span class="fa fa-check isRead"></span>
+                              {{message.createDate | date:'short'}}
+                            </div>
+                          </li>
+                        </ul> 
+                      </td>
+                      <td>
+                        <ul class="list-unstyled">
+                          <li *ngFor="let message of tenant.messages; let i=index">
+                            <div *ngIf="i<3">
+                              <div class="text-muted" *ngIf="!message.updateDate">Not Read</div>
+                              <div *ngIf="message.updateDate">
+                                <span class="fa fa-check isRead"></span>
+                                {{message.updateDate | date:'short'}}
+                              </div>
+
+                            </div>
+                          </li>
+                        </ul> 
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </section>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <footer>
+    <small>&copy; 2018 BetterLeasing</small>
+  </footer>
+</div>
