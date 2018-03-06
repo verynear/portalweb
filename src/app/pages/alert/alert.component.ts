@@ -23,7 +23,6 @@ import { Alert, AlertType } from '../../models/alert';
 export class AlertComponent implements OnInit {
   alerts: Alert[] = [];
   public alertLink = false;
-  public isFound = false;
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
@@ -44,7 +43,7 @@ export class AlertComponent implements OnInit {
             this.alertLink = true;
           }
 
-          // remove alert after 6 seconds
+          // remove alert after 5.5 seconds
           setTimeout(() => this.removeAlert(alert), 5500);
       });
   }

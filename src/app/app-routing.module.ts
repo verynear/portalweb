@@ -28,7 +28,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'applicants', component: ApplicantsComponent, canActivate: [AuthGuard] },
-  { path: 'applicantlist', component: DatatableComponent, canActivate: [AuthGuard] },
   {
     path: 'messages',
     component: MessagesComponent,
