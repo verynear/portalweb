@@ -42,8 +42,8 @@ const routes: Routes = [
     ]
   },
   { path: 'report/:id', component: MessageReportComponent, canActivate: [AuthGuard] },
-  { path: 'building-report/:id', component: BuildingReportComponent, canActivate: [AuthGuard] },
-  { path: 'building-report', component: BuildingReportComponent, canActivate: [AuthGuard] },
+  { path: 'building-report', component: BuildingReportComponent, canActivate: [AuthGuard]},
+  { path: 'building-report/:id', component: BuildingReportComponent, canActivate: [AuthGuard]},
   { path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },

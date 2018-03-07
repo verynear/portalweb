@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SiteService } from '../../../services/site.service';
 import { ReportService } from '../../../services/report.service';
 import { Building } from '../../../models/building';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-building-report',
@@ -14,10 +14,11 @@ export class BuildingReportComponent implements OnInit {
   public buildings: Building[];
   public siteReport: any[];
   public buildingReport: any[];
-  loading: boolean;
+  public loading: boolean;
   public currentProperty: Building;
 
-  constructor(private siteService: SiteService, private router: Router, private reportService: ReportService) { }
+  constructor(private siteService: SiteService, private router: Router,
+    private reportService: ReportService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.siteService.getCurrentSite().subscribe(site => {
@@ -40,7 +41,6 @@ export class BuildingReportComponent implements OnInit {
   }
 
   openBuildingReport(buildingId: number) {
-    this.router.navigate(['/building-report', buildingId]);
     this.getBuildingReport(buildingId);
   }
 
@@ -66,6 +66,7 @@ export class BuildingReportComponent implements OnInit {
       data => {
         this.loading = false;
         this.buildingReport = data;
+
       },
       error => {
         this.loading = false;
