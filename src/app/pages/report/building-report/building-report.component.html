@@ -1,11 +1,14 @@
 <div id="main">
   <!-- Main Content Area -->
   <div class="main-content">
+    
+    <app-loading *ngIf="loading" message="Loading Report..." ></app-loading>
+
     <div class="container-fluid">
       
       <div class="row">
         <div class="col-md-12">
-          <h1>Message Sent <small>{{buildingReport.address1}}</small> </h1>
+          <h1>Message Sent <small>{{buildingReport?.address1}}</small> </h1>
         </div>
       </div>
   
@@ -95,13 +98,16 @@
                   </thead>
                   <thead class="thead-light">
                       <tr> 
-                          <th colspan="5">{{buildingReport.address1}}</th> 
+                          <th colspan="5">{{buildingReport?.address1}}</th> 
                       </tr>
                   </thead>
                   
-                  <tbody *ngFor="let unit of buildingReport.buildingUnit; let p = index">                    
+                  <tbody *ngFor="let unit of buildingReport?.buildingUnit; let p = index">                    
                     <tr *ngFor="let tenant of unit.tenants; let i = index">
-                      <td> <p *ngIf="i==0">{{unit.unitNumber}} </p></td>
+                      <td *ngIf="i==0" attr.rowspan="{{unit.tenants.length}}">
+                        <!-- <td> -->
+                        <p> {{unit.unitNumber}} </p>
+                      </td>
                       <td> {{tenant.firstname}} {{tenant.lastname}}</td>
                       <td>  
                         <ul class="list-unstyled">
