@@ -87,6 +87,7 @@ import { BuildingReportComponent } from './pages/report/building-report/building
     AutoCompleteModule,
     InputTextModule,
     ButtonModule,
+    TableModule,
     DialogModule,
     SharedModule,
     TableModule,
