@@ -5,12 +5,11 @@
       
       <div class="row">
         <div class="col-md-12">
-          <h1>Message Sent</h1>
+          <h1>Message Sent <small>{{buildingReport.address1}}</small> </h1>
         </div>
       </div>
   
       <form>				
-        
         <div class="row">
           <div class="col-md-3">
             <section>
@@ -25,11 +24,15 @@
 
             <section>
               <div class="btn-group-vertical btn-block nav-filter">
-                <a href="#" class="btn btn-primary"><i class="fa fa-group"></i> Community</a>
-                <a (click)="openBuildingReport(building.id)" *ngFor="let building of buildings" class="btn btn-default">
+                <a routerLink="/building-report/community/" routerLinkActive="active" class="btn btn-default">
+                  <i class="fa fa-group"></i> Community
+                </a>
+               
+                <a routerLink="/building-report/{{building.id}}" routerLinkActive="active" (click)="openBuildingReport(building.id)" *ngFor="let building of buildings" class="btn btn-default">
                   <i class="fa fa-building"></i> 
                   {{building.address1}} 
                 </a>
+              
               </div>
             </section>
           </div> 
@@ -85,9 +88,9 @@
                     <tr>
                       <th>Location</th>
                       <th>Resident</th>
-                      <th>Messages</th>
-                      <th>Sent Date</th>
-                      <th>Read Receipt</th>
+                      <th>Recent Messages</th>
+                      <th style="text-align: right">Sent Date</th>
+                      <th class="faMargin text-right">Read Receipt</th>
                     </tr>
                   </thead>
                   <thead class="thead-light">
@@ -96,37 +99,41 @@
                       </tr>
                   </thead>
                   
-                  <tbody *ngFor="let unit of buildingReport.buildingUnit">                    
-                    <tr *ngFor="let tenant of unit.tenants">
-                      <td> {{unit.unitNumber}}  </td>
-                      <td>  {{tenant.firstname}} {{tenant.lastname}}</td>
+                  <tbody *ngFor="let unit of buildingReport.buildingUnit; let p = index">                    
+                    <tr *ngFor="let tenant of unit.tenants; let i = index">
+                      <td> <p *ngIf="i==0">{{unit.unitNumber}} </p></td>
+                      <td> {{tenant.firstname}} {{tenant.lastname}}</td>
                       <td>  
                         <ul class="list-unstyled">
                           <li *ngFor="let message of tenant.messages; let i=index">
                             <div *ngIf="i<3">
-                              <a class="pointer" click="openMessageReport(message.id)"> {{message.subject}} </a>
+                              <a [routerLink]="" class="pointer" (click)="openMessageReport(message.id)"> {{message.subject}} </a>
                             </div>
                           </li>
                         </ul> 
                       </td>
-                      <td>
+                      <td class="text-right"> 
                         <ul class="list-unstyled">
                           <li *ngFor="let message of tenant.messages; let i=index">
                             <div *ngIf="i<3">
-                              <span class="fa fa-check isRead"></span>
+                              <!-- <span class="fa fa-check isRead"></span> -->
                               {{message.createDate | date:'short'}}
                             </div>
                           </li>
                         </ul> 
                       </td>
-                      <td>
+                      <td class="text-right">
                         <ul class="list-unstyled">
                           <li *ngFor="let message of tenant.messages; let i=index">
                             <div *ngIf="i<3">
-                              <div class="text-muted" *ngIf="!message.updateDate">Not Read</div>
+                              
+                              <div class="text-muted faMargin" *ngIf="!message.updateDate">Not Read
+                                  <!-- <span class="fa fa-check isRead"></span> -->
+                                  <span class="fa fa-times notRead"></span>
+                              </div>
+
                               <div *ngIf="message.updateDate">
-                                <span class="fa fa-check isRead"></span>
-                                {{message.updateDate | date:'short'}}
+                                <span class="fa fa-check isRead"></span> {{message.updateDate | date:'short'}}
                               </div>
 
                             </div>
