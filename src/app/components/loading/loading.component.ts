@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
   Basic Loading Component, fixed to display at top of screen.
 
   @Param message -- You can set a custom message.
-*/  
+*/
 
 @Component({
   selector: 'app-loading',
@@ -13,9 +13,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoadingComponent implements OnInit {
 
-  @Input('message') 
-  public message: string = "Loading...";
-  
+  @Input('message')
+  public message = 'Loading...';
+
   constructor() { }
 
   ngOnInit() {
