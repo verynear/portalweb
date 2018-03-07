@@ -17,7 +17,8 @@ export class BuildingReportComponent implements OnInit {
   public loading: boolean;
   public currentProperty: Building;
 
-  constructor(private siteService: SiteService, private router: Router, private reportService: ReportService, private route: ActivatedRoute) { }
+  constructor(private siteService: SiteService, private router: Router,
+    private reportService: ReportService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.siteService.getCurrentSite().subscribe(site => {
@@ -65,7 +66,7 @@ export class BuildingReportComponent implements OnInit {
       data => {
         this.loading = false;
         this.buildingReport = data;
-        
+
       },
       error => {
         this.loading = false;

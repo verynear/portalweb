@@ -42,5 +42,5 @@ export class NavigationComponent implements OnInit {
     goToReport() {
         this.router.navigate(['/building-report', this.initReportId]);
     }
-  
+
 }
