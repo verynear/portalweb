@@ -1,0 +1,12 @@
+.isRead {
+    color: #3d9241;
+    margin-left: 3px;
+}
+
+.notRead {
+    margin-left: 3px;
+}
+
+.table tbody+tbody {
+    border-top: 1px solid #e9ecef; 
+}

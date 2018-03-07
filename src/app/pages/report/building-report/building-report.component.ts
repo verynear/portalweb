@@ -14,7 +14,8 @@ export class BuildingReportComponent implements OnInit {
   public buildings: Building[];
   public siteReport: any[];
   public buildingReport: any[];
-  public loading: boolean;
+  loading: boolean;
+  public currentProperty: Building;
 
   constructor(private siteService: SiteService, private router: Router, private reportService: ReportService) { }
 

@@ -1,3 +1,5 @@
+<app-loading message="Loading..." *ngIf="loading"></app-loading>
+
 <div id="marginFix">
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
@@ -88,6 +90,5 @@
 </section>     
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
-<img *ngIf="loading" class="spinner" src="./assets/Spinner-100px.gif" />
 
 </div>

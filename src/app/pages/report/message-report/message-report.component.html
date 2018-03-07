@@ -1,9 +1,12 @@
 <div id="main">
   <!-- Main Content Area -->
   <div class="main-content">
+    
+    <app-loading *ngIf="loading" message="Loading Report..."></app-loading>
+
     <div class="container-fluid">
       
-      <div class="row">
+      <div *ngIf="!loading" class="row">
         <div class="col-md-9">
           <h1>Message Sent</h1>
           <h5>{{message?.subject}}<br><small>{{message?.createDate | date }}</small></h5>
@@ -21,33 +24,33 @@
         </div>
 
         <div *ngIf="reportExists && !loading" class="row">
-          <!-- Code for Buildings, to be added in future. -->
-          <!-- 
-              <div class="col-md-3">
-            <section>
-              <div class="form-group">
-                <label class="sr-only" for="inlineFormInputGroup">Search</label>
-                  <div class="input-group">
-                  <input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
-                  <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+          <!-- Code for Buildings, refactor into component in future. -->
+          <!-- <div class="col-md-3">
+              <section>
+                <div class="form-group">
+                  <label class="sr-only" for="inlineFormInputGroup">Search</label>
+                    <div class="input-group">
+                    <input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
+  
+              <section>
+                <div class="btn-group-vertical btn-block nav-filter">
+                  <a routerLink="/building-report/community/" routerLinkActive="active" class="btn btn-default">
+                    <i class="fa fa-group"></i> Community
+                  </a>
+                  <a routerLink="/building-report/{{building.id}}" routerLinkActive="active" *ngFor="let building of buildings" class="btn btn-default">
+                    <i class="fa fa-building"></i> 
+                    {{building.address1}} 
+                  </a>
+                </div>
+              </section>
+            </div>  -->
 
-   
-            <section>
-              <div class="btn-group-vertical btn-block nav-filter">
-                <a href="#" class="btn btn-primary"><span class="badge badge-warning">999</span><i class="fa fa-group"></i> Community</a>
-                
-                <a *ngFor="let building of buildings" href="#" class="btn btn-default">
-                  <i class="fa fa-building"></i> 
-                  {{building.address1}}
-                </a>
-              </div>
-            </section>
-          </div> -->
-          <div  class="col-md-9">
-
+          <div class="col-md-9">
               <div class="d-flex">
                 <div class="mr-1">
                   <!--Filter dropdown - multi-select-->
@@ -93,23 +96,21 @@
                     </div>
                   </div>
                 </div>
-
               </div>
         
-
             <section class="message-report">
 								<table class="table table table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>Location</th>
 												<th>Resident</th>
-												<th>Sent Date</th>
-												<th>Read Receipt</th>
+												<th class="text-right">Sent Date</th>
+												<th class="text-right">Read Receipt</th>
 											</tr>
 										</thead>
 										<thead class="thead-light">
                       <tr>
-                        <th colspan="5">Building: {{message?.messageRecipients[0].rentalSiteBuilding}}</th> 
+                        <!-- <th colspan="5">Building: {{message?.messageRecipients[0].rentalSiteBuilding}}</th>  -->
                         <!-- TODO: Building, if applicable, belongs to entire message. -->
                       </tr>
 										</thead>
@@ -122,28 +123,24 @@
                         <td>{{res.firstname}} {{res.lastname}}</td>
                         
                          <!-- Sent Date -->
-                        <td>
+                        <td class="text-right">
 													<ul>
-                            <li class="text-muted"><span class="fa fa-check"></span>
+                            <li class="text-muted"><span class="fa fa-check isRead"></span> 
                               {{message?.createDate | date:'short' }}
                             </li>
 													</ul>
                         </td>
                         
                         <!-- Read Receipt -->
-												<td>
+												<td class="text-right">
 													<ul>
                             <li class="text-muted" *ngIf="res.isRead===1">
-                              <span class="fa fa-check isRead"></span>
-                                {{res.updateDate | date:'short' }}
+                              <span class="fa fa-check isRead"></span>{{res.updateDate | date:'short' }}
                             </li>
-                            
+                          
                             <li *ngIf="res.isRead===0" class="text-muted">
-                                <span class="fa fa-times"></span>
-                                  <!-- {{message?.createDate | date:'short' }} -->
-                                  Not Read
+                                <span class="fa fa-times notRead"></span> Not Read
                             </li>
-
 													</ul>
                         </td>
 											</tr>

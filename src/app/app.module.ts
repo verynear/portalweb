@@ -66,6 +66,7 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 // Pipes
 import { FilterUnitsPipe } from './pipes/filter-units.pipe';
@@ -74,6 +75,7 @@ import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { BuildingReportComponent } from './pages/report/building-report/building-report.component';
+
 
 @NgModule({
   imports: [
@@ -133,6 +135,7 @@ import { BuildingReportComponent } from './pages/report/building-report/building
     MessageListComponent,
     MostRecentComponent,
     BuildingReportComponent,
+    LoadingComponent,
   ],
   providers: [
       {
