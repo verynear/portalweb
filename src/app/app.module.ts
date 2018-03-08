@@ -11,7 +11,7 @@ import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { InputTextModule, ButtonModule, DialogModule, SharedModule, CheckboxModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, FileUploadModule, DialogModule, SharedModule, CheckboxModule } from 'primeng/primeng';
 import { TableModule } from 'primeng/components/table/table';
 
 import { AppComponent } from './app.component';
@@ -74,6 +74,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
+import { UploadFileService } from './services/upload-file.service';
+import { FormUploadComponent } from './components/form-upload/form-upload.component';
 import { BuildingReportComponent } from './pages/report/building-report/building-report.component';
 
 
@@ -90,6 +92,8 @@ import { BuildingReportComponent } from './pages/report/building-report/building
     TableModule,
     DialogModule,
     SharedModule,
+    FileUploadModule,
+    TableModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -134,6 +138,7 @@ import { BuildingReportComponent } from './pages/report/building-report/building
     ShortenPipe,
     MessageListComponent,
     MostRecentComponent,
+    FormUploadComponent,
     BuildingReportComponent,
     LoadingComponent,
   ],
@@ -152,6 +157,7 @@ import { BuildingReportComponent } from './pages/report/building-report/building
       ConfigService,
       SiteService,
       StatusService,
+      UploadFileService,
       CompanyService,
       fakeBackendProvider,
       MockBackend,
