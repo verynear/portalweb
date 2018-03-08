@@ -13,6 +13,12 @@
             <p>
               <span [innerHTML]="message?.message | safeHtml"></span>
             </p>
+            <p>
+              <strong *ngIf="message?.messageAttachments.length"><i class="fa fa-paperclip"></i><br>
+                <small *ngFor='let attachment of message?.messageAttachments'>
+                  <img class="attach" [src]="attachment?.url" alt="File" onError="this.src='./assets/FilePDF.png';"><i class="fa fa-chevron-right"></i>{{attachment?.fileName}} -- {{attachment?.fileType}}</small>
+              </strong>
+            </p>
           </td>
         </tr>
       </tbody>

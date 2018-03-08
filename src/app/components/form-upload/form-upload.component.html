@@ -1,5 +1,11 @@
-<label class="btn btn-default">
-  <input type="file" (change)="selectFile($event)">
-</label>
- 
-<button type='button' class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+<p-fileUpload name="demo[]" (uploadHandler)="onUpload($event)"
+		        multiple="multiple" accept="image/*,.pdf" customUpload="true" maxFileSize="1000000">
+	<ng-template pTemplate="content">
+	    <ul *ngIf="uploadedFiles.length">
+	        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+	    </ul>
+	    <ul *ngIf="filesDone">
+	        <li>Files Uploaded Successfully</li>
+	    </ul>
+	</ng-template>        
+</p-fileUpload>

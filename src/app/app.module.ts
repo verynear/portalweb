@@ -11,7 +11,7 @@ import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { InputTextModule, ButtonModule, DialogModule, SharedModule, CheckboxModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, FileUploadModule, DialogModule, SharedModule, CheckboxModule } from 'primeng/primeng';
 import { TableModule } from 'primeng/components/table/table';
 
 import { AppComponent } from './app.component';
@@ -90,6 +90,7 @@ import { BuildingReportComponent } from './pages/report/building-report/building
     TableModule,
     DialogModule,
     SharedModule,
+    FileUploadModule,
     TableModule,
     ReactiveFormsModule,
     HttpClientModule,

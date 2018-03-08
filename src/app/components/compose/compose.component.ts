@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
 import { SiteService } from '../../services/site.service';
@@ -6,6 +6,7 @@ import { Message } from '../../models/message';
 import { Building } from '../../models/building';
 import { Unit } from '../../models/unit';
 import { Site } from '../../models/site';
+import { Attachment } from '../../models/attachment';
 import { Tenant } from '../../models/tenant';
 import { FormUploadComponent } from '../form-upload/form-upload.component';
 import { Router } from '@angular/router';
@@ -20,13 +21,13 @@ import { ReplacePipe } from '../../pipes/replace.pipe';
   styleUrls: ['./compose.component.scss']
 })
 export class ComposeComponent implements OnInit {
-  @Output() onSent = new EventEmitter();
   public currentSite: Site;
   buildings: Building[];
   selectedUnits: Unit[];
   selectedTenantUnits: Unit[];
   tenants: SelectItem[];
   fetchedTenants: Tenant[];
+  attachments: Attachment[];
 
   loading = false;
   unitError = false;
@@ -57,8 +58,12 @@ export class ComposeComponent implements OnInit {
       MessageService, private alertService: AlertService, private siteService: SiteService) {}
 
     ngOnInit() {
+        this.attachments = [];
         this.siteService.getCurrentSite().subscribe(site => {
           this.currentSite = site;
+        });
+        this.messageService.getAttachment().subscribe((attachment) => {
+               this.attachments.push(attachment);
         });
         this.unitError = false;
         this.recips = [
@@ -229,8 +234,14 @@ export class ComposeComponent implements OnInit {
                 console.log('sent');
                 this.newMessageId = data['id'];
                 this.lastLink = '/messages/view/' + this.newMessageId;
+                this.messageService.postAttachments(this.newMessageId, this.attachments).subscribe(
+                    data1 => {
+                        console.log('Attachments Posted');
+                    },
+                    error1 => {
+                        console.log('Failed to post Attachments');
+                    });
                 this.alertService.success('Your message has been sent', this.lastLink, true);
-                // this.messageService.onSent(); if enabled - refesh sentBox after message sent
             },
             error => {
                 this.alertService.error('Message Failed to Send');
