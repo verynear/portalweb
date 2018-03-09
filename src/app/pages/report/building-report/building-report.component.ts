@@ -12,13 +12,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class BuildingReportComponent implements OnInit {
 
   public buildings: Building[];
+  public currentProperty: Building;
+
   public siteReport: any[];
   public buildingReport: any[];
   public loading: boolean;
-  public currentProperty: Building;
 
   constructor(private siteService: SiteService, private router: Router,
-    private reportService: ReportService, private route: ActivatedRoute) { }
+    private reportService: ReportService, private route: ActivatedRoute) {
+
+      this.router.events.subscribe((event) => {
+        console.log(event);
+      });
+    }
 
   ngOnInit() {
     this.siteService.getCurrentSite().subscribe(site => {
@@ -41,6 +47,8 @@ export class BuildingReportComponent implements OnInit {
   }
 
   openBuildingReport(buildingId: number) {
+    console.log('B Report');
+    console.log(buildingId);
     this.getBuildingReport(buildingId);
   }
 
@@ -66,7 +74,6 @@ export class BuildingReportComponent implements OnInit {
       data => {
         this.loading = false;
         this.buildingReport = data;
-
       },
       error => {
         this.loading = false;

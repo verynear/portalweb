@@ -8,11 +8,12 @@
       
       <div class="row">
         <div class="col-md-12">
-          <h1>Message Sent <small>{{buildingReport?.address1}}</small> </h1>
+          <h1>Building Report <small>{{buildingReport?.address1}}</small> </h1>
         </div>
       </div>
   
-      <form>				
+      <form>		
+
         <div class="row">
           <div class="col-md-3">
             <section>
@@ -25,19 +26,7 @@
               </div>
             </section>
 
-            <section>
-              <div class="btn-group-vertical btn-block nav-filter">
-                <a routerLink="/building-report/community/" routerLinkActive="active" class="btn btn-default">
-                  <i class="fa fa-group"></i> Community
-                </a>
-               
-                <a routerLink="/building-report/{{building.id}}" routerLinkActive="active" (click)="openBuildingReport(building.id)" *ngFor="let building of buildings" class="btn btn-default">
-                  <i class="fa fa-building"></i> 
-                  {{building.address1}} 
-                </a>
-              
-              </div>
-            </section>
+            <app-report-nav (navEvent)="openBuildingReport($event)"></app-report-nav>
           </div> 
 
           <div class="col-md-9">
@@ -93,7 +82,7 @@
                       <th>Resident</th>
                       <th>Recent Messages</th>
                       <th style="text-align: right">Sent Date</th>
-                      <th class="faMargin text-right">Read Receipt</th>
+                      <th class="faMargin text-right">Receipt</th>
                     </tr>
                   </thead>
                   <thead class="thead-light">
@@ -149,6 +138,8 @@
                     </tr>
                   </tbody>
                 </table>
+
+
             </section>
           </div>
 

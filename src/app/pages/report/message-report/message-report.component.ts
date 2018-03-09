@@ -85,8 +85,10 @@ export class MessageReportComponent implements OnInit {
       });
   }
 
-
-
+  openBuildingReport(id) {
+    console.log('Test');
+    console.log(id);
+  }
 }
 
 

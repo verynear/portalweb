@@ -77,6 +77,7 @@ import { ShortenPipe } from './pipes/shorten.pipe';
 import { UploadFileService } from './services/upload-file.service';
 import { FormUploadComponent } from './components/form-upload/form-upload.component';
 import { BuildingReportComponent } from './pages/report/building-report/building-report.component';
+import { ReportNavComponent } from './pages/report/report-nav/report-nav.component';
 
 
 @NgModule({
@@ -141,6 +142,7 @@ import { BuildingReportComponent } from './pages/report/building-report/building
     FormUploadComponent,
     BuildingReportComponent,
     LoadingComponent,
+    ReportNavComponent,
   ],
   providers: [
       {
