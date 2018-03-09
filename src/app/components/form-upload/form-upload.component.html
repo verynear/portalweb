@@ -1,11 +1,20 @@
 <p-fileUpload name="demo[]" (uploadHandler)="onUpload($event)"
-		        multiple="multiple" accept="image/*,.pdf" customUpload="true" maxFileSize="1000000">
+		        multiple="multiple" auto="auto" showUploadButton="false" showCancelButton="false" accept="image/*,.pdf" customUpload="true" maxFileSize="1000000">
 	<ng-template pTemplate="content">
-	    <ul *ngIf="uploadedFiles.length">
-	        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+		<ul *ngIf="uploadedFiles.length">
+			<li *ngFor="let file of uploadedFiles; let i = index;">
+		        <div><img [src]="file.objectURL" *ngIf="file.isImage" [width]=50 [height]=50/>
+		        {{file.name}} --
+		        {{formatSize(file.size)}}
+		        <button type="button" icon="fa-close" pButton (click)="remove(i)"></button></div>
+		        <br>
+		    </li>
+		</ul>
+	    <ul *ngIf="uploadReady">
+	        <li><i class="fa fa-paperclip fa-lg"><i style="color: #fff" class="fa fa-minus"></i></i>Attachments Loaded - Ready to Send</li>
 	    </ul>
-	    <ul *ngIf="filesDone">
-	        <li>Files Uploaded Successfully</li>
+	    <ul *ngIf="!uploadReady && currentUpload">
+	        <img src="./assets/Spinner-small.gif" />
 	    </ul>
 	</ng-template>        
 </p-fileUpload>
