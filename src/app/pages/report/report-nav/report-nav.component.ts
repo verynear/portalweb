@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SiteService } from '../../../services/site.service';
 import { Building } from '../../../models/building';
-import { Site } from '../../../models/Site';
+import { Site } from '../../../models/site';
 
 @Component({
   selector: 'app-report-nav',

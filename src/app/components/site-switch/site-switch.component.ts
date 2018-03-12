@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteService } from '../../services/site.service';
-import { Site } from '../../models/site';
-import { User } from '../../models/User';
 import { SessionService } from '../../services/session.service';
+import { Site } from '../../models/site';
+import { User } from '../../models/user';
 import { Router } from '@angular/router';
 
 @Component({
