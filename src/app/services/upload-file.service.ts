@@ -1,39 +1,24 @@
 import { Injectable } from '@angular/core';
+import { Attachment } from '../models/attachment';
+import { Observable } from 'rxjs/Observable';
+import { ConfigService } from './config.service';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Subject } from 'rxjs/Subject';
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 
 @Injectable()
 export class UploadFileService {
+  private subject = new Subject<Attachment>();
+  private baseURL: string;
 
-FOLDER = 'noi-s3/';
+  constructor(private http: HttpClient, private config: ConfigService) {
+   console.log('attachment service: constructor');
+   this.baseURL = config.get().api.baseURL;
+  }
 
-  constructor() { }
-
-  uploadfile(file) {
-
-    const bucket = new S3(
-      {
-        accessKeyId: 'AKIAI6JR7BFD4VQVVDKA',
-        secretAccessKey: '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',
-        region: 'us-east-2'
-      }
-    );
-
-    const params = {
-      Bucket: 'noi-angular5-bucket',
-      Key: this.FOLDER + file.name,
-      Body: file
-    };
-
-    bucket.upload(params, function (err, data) {
-      if (err) {
-        console.log('There was an error uploading your file: ', err);
-        return false;
-      }
-
-      console.log('Successfully uploaded file.', data);
-      return true;
-    });
+  postAttachments(id, attachments) {
+    return this.http.post(this.baseURL + '/messages/' + id + '/attachments', attachments);
   }
 
 }

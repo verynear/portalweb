@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, NgZone } from '@angular/core';
 import { UploadFileService } from '../../services/upload-file.service';
 import { Observable } from 'rxjs/Observable';
-import { MessageService } from '../../services/message.service';
+import { Attachment } from '../../models/attachment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlertService } from '../../services/alert.service';
 import { FileUploadModule } from 'primeng/primeng';
@@ -17,6 +17,8 @@ import * as S3 from 'aws-sdk/clients/s3';
 })
 export class FormUploadComponent implements OnInit {
   @ViewChild(FileUpload) pFileUpload: FileUpload;
+  @Output() uploadForm = new EventEmitter();
+
   FOLDER = 'noi-s3/';
   msg: string;
   dataLocation: string;
@@ -26,18 +28,11 @@ export class FormUploadComponent implements OnInit {
   attachments: any[] = [];
   uploadedFiles: any[] = [];
 
-  constructor(private uploadService: UploadFileService, private messageService: MessageService,
-    private alertService: AlertService, private sanitizer: DomSanitizer) { }
+  constructor(private uploadService: UploadFileService,
+    private alertService: AlertService, private sanitizer: DomSanitizer, private zone: NgZone ) { }
 
   ngOnInit() {
     this.uploadedFiles = [];
-  }
-
-  pushAttachments(attachArray) {
-    attachArray.forEach((m) => {
-      const values = Object.keys(m).map(key => m[key]);
-      this.messageService.loadAttachment(values[0], values[1], values[2], values[3]);
-    });
   }
 
   formatSize(bytes) {
@@ -57,48 +52,46 @@ export class FormUploadComponent implements OnInit {
   }
 
   onUpload(event) {
-    this.attachments = [];
-    this.uploadReady = false;
-    this.currentUpload = true;
-    const self = this;
-    const bucket = new S3(
-      {
-        accessKeyId: 'AKIAI6JR7BFD4VQVVDKA',
-        secretAccessKey: '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',
-        region: 'us-east-2'
-      }
-    );
+      const attachments = [];
+      this.uploadReady = false;
+      this.currentUpload = true;
+      const self = this;
+      const bucket = new S3(
+        {
+          accessKeyId: 'AKIAI6JR7BFD4VQVVDKA',
+          secretAccessKey: '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',
+          region: 'us-east-2'
+        }
+      );
 
-    for (const file of event.files) {
-          file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
-          file.isImage = /^image\//.test(file.type);
-          this.uploadedFiles.push(file);
-          const params = {
-            Bucket: 'noi-angular5-bucket',
-            Key: this.FOLDER + file.name,
-            Body: file
-          };
-          const putObjectPromise = bucket.upload(params).promise();
-          putObjectPromise.then(function(data) {
-            // self.messageService.loadAttachment(url: self.dataLocation, fileName: file.name, fileSizeKB: file.size, fileType: file.type);
-            self.dataLocation = data.Location;
-            console.log('Successfully uploaded file.', data);
-          }).catch(function(err) {
-            console.log('There was an error uploading your file: ', err);
-          });
-          setTimeout(() => {
-              const newAttachment = { url: self.dataLocation, fileName: file.name, fileSizeKB: file.size, fileType: 'pdf' };
-              this.attachments.push(newAttachment);
-              }, 3500);
-      }
-    setTimeout(() => {
-        console.log('this attachments');
-        console.log(this.attachments);
-        this.pushAttachments(this.attachments);
-        this.uploadReady = true;
-        this.currentUpload = false;
-        }, 5000);
+      for (const file of event.files) {
+            file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
+            file.isImage = /^image\//.test(file.type);
+            this.uploadedFiles.push(file);
+            const params = {
+              Bucket: 'noi-angular5-bucket',
+              Key: this.FOLDER + file.name,
+              Body: file
+            };
+            const putObjectPromise = bucket.upload(params).promise();
+            putObjectPromise.then(function(data) {
+              self.dataLocation = data.Location;
+              console.log('Successfully uploaded file.', data);
+              const url = self.dataLocation;
+              const fileName = file.name;
+              const fileSizeKB = file.size;
+              const fileType = 'pdf';
+              const newAttachment = { url, fileName, fileSizeKB, fileType };
+              self.zone.run(() => {
+                    self.uploadForm.emit(newAttachment);
+                    self.uploadReady = true;
+                    self.currentUpload = false;
+              });
+            }).catch(function(err) {
+              console.log('There was an error uploading your file: ', err);
+            });
+        }
 
-    this.pFileUpload.files = [];
-  }
+      this.pFileUpload.files = [];
+    }
 }
