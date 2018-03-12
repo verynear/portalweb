@@ -1,0 +1,10 @@
+<div class="btn-group-vertical btn-block nav-filter">
+  <a routerLink="/report/community-report/{{currentSite.id}}" routerLinkActive="active" class="btn btn-default">
+    <i class="fa fa-group"></i> Community
+  </a>
+  
+  <a routerLink="/report/building-report/{{building.id}}" routerLinkActive="active" *ngFor="let building of buildings" class="btn btn-default">
+    <i class="fa fa-building"></i> 
+    {{building.address1}} 
+  </a>
+</div>

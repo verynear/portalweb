@@ -5,9 +5,16 @@
     <app-loading *ngIf="loading" message="Loading Report..."></app-loading>
 
     <div class="container-fluid">
-      
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a routerLink="" (click)="goToCommunityReport()"><i class="fa fa-long-arrow-left"></i> Message Report</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Message</li>
+        </ol>
+      </nav>
+        
       <div *ngIf="!loading" class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
           <h1>Message Sent</h1>
           <h5>{{message?.subject}}<br><small>{{message?.createDate | date }}</small></h5>
           <span [innerHTML]="message?.message | safeHtml"></span>
@@ -26,80 +33,13 @@
         <div *ngIf="reportExists && !loading" class="row">
 
           <!-- Code for Buildings, refactor into component in future. -->
-          <!-- <div class="col-md-3">
-              <section>
-                <div class="form-group">
-                  <label class="sr-only" for="inlineFormInputGroup">Search</label>
-                    <div class="input-group">
-                    <input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </section>
-  
-              <section>
-                <div class="btn-group-vertical btn-block nav-filter">
-                  <a routerLink="/building-report/community/" routerLinkActive="active" class="btn btn-default">
-                    <i class="fa fa-group"></i> Community
-                  </a>
-                  <a routerLink="/building-report/{{building.id}}" routerLinkActive="active" *ngFor="let building of buildings" class="btn btn-default">
-                    <i class="fa fa-building"></i> 
-                    {{building.address1}} 
-                  </a>
-                </div>
-              </section>
-            </div>  -->
+          <div class="col-md-3">
+            <app-report-nav></app-report-nav>
+          </div>
 
           <div class="col-md-9">
-              <div class="d-flex">
-                <div class="mr-1">
-                  <!--Filter dropdown - multi-select-->
-                  <div class="dropdown">
-                    <!-- <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Filter
-                    </button> -->
-                    <div class="dropdown-menu dropdown-md p-3" aria-labelledby="dropdownFilter">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="dropdown-item">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input">
-                              <span class="custom-control-indicator"></span>
-                              <span class="custom-control-description">Read</span>
-                            </label>
-                          </div>
-                          <div class="dropdown-item">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input">
-                              <span class="custom-control-indicator"></span>
-                              <span class="custom-control-description">Sent</span>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="dropdown-item">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input">
-                              <span class="custom-control-indicator"></span>
-                              <span class="custom-control-description">Unread</span>
-                            </label>
-                          </div>
-                          <div class="dropdown-item">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input">
-                              <span class="custom-control-indicator"></span>
-                              <span class="custom-control-description">Starred</span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>												
-                    </div>
-                  </div>
-                </div>
-              </div>
-        
             <section class="message-report">
-								<table class="table table table-bordered table-hover">
+								<table *ngIf="!loading" class="table table table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>Location</th>
@@ -125,7 +65,7 @@
                          <!-- Sent Date -->
                         <td class="text-right">
 													<ul>
-                            <li class="text-muted"><span class="fa fa-check isRead"></span> 
+                            <li class="text-muted">
                               {{message?.createDate | date:'short' }}
                             </li>
 													</ul>
@@ -148,16 +88,8 @@
 									</table>
             </section>
           </div>
-
-          <div class="col-md-3">
-          </div>
         </div>
-
       </form>
     </div>
   </div>
-  
-  <footer>
-    <small>&copy; 2018 BetterLeasing</small>
-  </footer>
 </div>

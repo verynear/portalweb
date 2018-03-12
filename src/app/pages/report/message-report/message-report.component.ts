@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SiteService } from '../../../services/site.service';
 import { MessageService } from '../../../services/message.service';
 import { ReportService } from '../../../services/report.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from '../../../services/alert.service';
+
 import { User } from '../../../models/user';
 import { Site } from '../../../models/site';
 import { Building } from '../../../models/building';
 import { Message } from '../../../models/message';
-import { AlertService } from '../../../services/alert.service';
+import { Report } from '../../../models/report';
 
 @Component({
   selector: 'app-report',
@@ -15,18 +17,16 @@ import { AlertService } from '../../../services/alert.service';
   styleUrls: ['./message-report.component.scss']
 })
 export class MessageReportComponent implements OnInit {
-
   public currentSite: Site;
   public sites: Site[];
   public buildings: Building[];
   public messages: Message[];
   public message: Message;
+  public report: Report[];
 
-  public id: Number;
+  public id: number;
   public reportExists: boolean;
   public loading: boolean;
-  public report: any[]; // TODO: Create Report Model.
-
 
   constructor(private siteService: SiteService, private messageService: MessageService,
     private router: Router, private route: ActivatedRoute, private alertService: AlertService, private reportService: ReportService) {
@@ -85,8 +85,9 @@ export class MessageReportComponent implements OnInit {
       });
   }
 
-
-
+  goToCommunityReport() {
+    this.router.navigate(['/report/community-report', this.currentSite.id]);
+  }
 }
 
 

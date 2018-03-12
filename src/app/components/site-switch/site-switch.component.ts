@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./site-switch.component.scss']
 })
 export class SiteSwitchComponent implements OnInit {
-
   public sites: Site[];
   public currentUser: User;
   public currentSite: Site;
@@ -21,11 +20,11 @@ export class SiteSwitchComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.session.get('currentUser');
-    
+
     this.siteService.getCurrentSite().subscribe(site => {
       this.currentSite = site;
     });
-    
+
     this.getSites();
   }
 
@@ -37,10 +36,10 @@ export class SiteSwitchComponent implements OnInit {
 
   switchSite(site: Site) {
     this.loading = true;
-    this.siteService.getRentalSite(site.id).subscribe(site => {
-      this.siteService.setCurrentSite(site);
+    this.siteService.getRentalSite(site.id).subscribe(data => {
+      this.siteService.setCurrentSite(data);
       this.router.navigate(['dashboard']);
       this.loading = false;
     });
-  }  
+  }
 }

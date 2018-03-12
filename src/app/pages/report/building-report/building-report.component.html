@@ -8,11 +8,11 @@
       
       <div class="row">
         <div class="col-md-12">
-          <h1>Message Sent <small>{{buildingReport?.address1}}</small> </h1>
+          <h1>Building Report <small>{{buildingReport?.address1}}</small> </h1>
         </div>
       </div>
   
-      <form>				
+      <form>		
         <div class="row">
           <div class="col-md-3">
             <section>
@@ -24,76 +24,20 @@
                 </div>
               </div>
             </section>
-
-            <section>
-              <div class="btn-group-vertical btn-block nav-filter">
-                <a routerLink="/building-report/community/" routerLinkActive="active" class="btn btn-default">
-                  <i class="fa fa-group"></i> Community
-                </a>
-               
-                <a routerLink="/building-report/{{building.id}}" routerLinkActive="active" (click)="openBuildingReport(building.id)" *ngFor="let building of buildings" class="btn btn-default">
-                  <i class="fa fa-building"></i> 
-                  {{building.address1}} 
-                </a>
-              
-              </div>
-            </section>
+            <app-report-nav></app-report-nav>
           </div> 
 
           <div class="col-md-9">
-            <div class="d-flex">
-              <div class="mr-1">
-                <!--Filter dropdown - multi-select-->
-                <div class="dropdown">
-                  <div class="dropdown-menu dropdown-md p-3" aria-labelledby="dropdownFilter">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="dropdown-item">
-                          <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Read</span>
-                          </label>
-                        </div>
-                        <div class="dropdown-item">
-                          <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Sent</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="dropdown-item">
-                          <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Unread</span>
-                          </label>
-                        </div>
-                        <div class="dropdown-item">
-                          <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">Starred</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>												
-                  </div>
-                </div>
-              </div>
-            </div>
-        
+
             <section class="message-report">        
-              <table class="table table table-bordered table-hover">
+              <table *ngIf="!loading" class="table table table-bordered table-hover">
                   <thead>
                     <tr>
                       <th>Location</th>
                       <th>Resident</th>
                       <th>Recent Messages</th>
-                      <th style="text-align: right">Sent Date</th>
-                      <th class="faMargin text-right">Read Receipt</th>
+                      <th class="text-right">Sent Date</th>
+                      <th class="faMargin text-right">Receipt</th>
                     </tr>
                   </thead>
                   <thead class="thead-light">
@@ -141,7 +85,6 @@
                               <div *ngIf="message.updateDate">
                                 <span class="fa fa-check isRead"></span> {{message.updateDate | date:'short'}}
                               </div>
-
                             </div>
                           </li>
                         </ul> 
@@ -151,13 +94,8 @@
                 </table>
             </section>
           </div>
-
         </div>
       </form>
     </div>
   </div>
-  
-  <footer>
-    <small>&copy; 2018 BetterLeasing</small>
-  </footer>
 </div>

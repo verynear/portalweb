@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SiteService } from '../../../services/site.service';
 import { ReportService } from '../../../services/report.service';
 import { Building } from '../../../models/building';
+import { Report } from '../../../models/report';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,54 +11,26 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./building-report.component.scss']
 })
 export class BuildingReportComponent implements OnInit {
-
   public buildings: Building[];
-  public siteReport: any[];
-  public buildingReport: any[];
-  public loading: boolean;
   public currentProperty: Building;
+  public buildingReport: Report[];
+
+  public loading: boolean;
 
   constructor(private siteService: SiteService, private router: Router,
-    private reportService: ReportService, private route: ActivatedRoute) { }
+    private reportService: ReportService, private route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
-    this.siteService.getCurrentSite().subscribe(site => {
-      this.default(site.id);
+    this.route.params.subscribe(params => { // On init, get the correct building report by URL id.
+      const buildingId = params.id;
+      this.getBuildingReport(buildingId);
     });
-  }
-
-  // Init the report for first building by default.  Eventually, this will be refactored in Community.
-  default(siteId: number) {
-    this.siteService.getBuildings(siteId).subscribe(buildings => {
-      this.buildings = buildings;
-      this.openBuildingReport(buildings[0].id);
-    });
-  }
-
-  getRentalBuildings(siteId: number) {
-    this.siteService.getBuildings(siteId).subscribe(buildings => {
-      this.buildings = buildings;
-    });
-  }
-
-  openBuildingReport(buildingId: number) {
-    this.getBuildingReport(buildingId);
   }
 
   openMessageReport(messageId: number) {
-    this.router.navigate(['/report', messageId]);
-  }
-
-  getSiteReport(siteId: number) {
-    this.loading = true;
-    this.reportService.siteReport(siteId).subscribe(
-      data => {
-        this.loading = false;
-        this.siteReport = data;
-      },
-      error => {
-        this.loading = false;
-      });
+    this.router.navigate(['/report/message-report', messageId]);
   }
 
   getBuildingReport(buildingId: number) {
@@ -66,11 +39,9 @@ export class BuildingReportComponent implements OnInit {
       data => {
         this.loading = false;
         this.buildingReport = data;
-
       },
       error => {
         this.loading = false;
       });
   }
-
 }

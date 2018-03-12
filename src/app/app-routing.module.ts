@@ -21,6 +21,8 @@ import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceive
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 import { BuildingReportComponent } from './pages/report/building-report/building-report.component';
+import { CommunityReportComponent } from './pages/report/community-report/community-report.component';
+import { ReportNavComponent } from './pages/report/report-nav/report-nav.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -41,9 +43,9 @@ const routes: Routes = [
       { path: 'received/:id', component: ViewReceivedComponent }
     ]
   },
-  { path: 'report/:id', component: MessageReportComponent, canActivate: [AuthGuard] },
-  { path: 'building-report', component: BuildingReportComponent, canActivate: [AuthGuard]},
-  { path: 'building-report/:id', component: BuildingReportComponent, canActivate: [AuthGuard]},
+  { path: 'report/message-report/:id', component: MessageReportComponent, canActivate: [AuthGuard] },
+  { path: 'report/building-report/:id', component: BuildingReportComponent, canActivate: [AuthGuard]},
+  { path: 'report/community-report/:id', component: CommunityReportComponent, canActivate: [AuthGuard]},
   { path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
