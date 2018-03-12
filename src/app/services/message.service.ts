@@ -4,7 +4,6 @@ import { Message } from '../models/message';
 import { Inquiry } from '../models/inquiry';
 import { Building } from '../models/building';
 import { Tenant } from '../models/tenant';
-import { Attachment } from '../models/attachment';
 import { Unit } from '../models/unit';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -16,7 +15,6 @@ import { SortService } from '../components/sortable-table/sort.service';
 export class MessageService {
   private baseURL: string;
   messages: Array<Message>;
-  private subject = new Subject<Attachment>();
   private _listeners = new Subject<any>();
   onSent$ = this._listeners.asObservable();
   onRefresh$ = this._listeners.asObservable();
@@ -52,27 +50,6 @@ export class MessageService {
 
   getSentAnnouncements() {
     return this.http.get<Message[]>(this.baseURL + '/announcements');
-  }
-
-  loadAttachment(url: string, fileName: string, fileSizeKB: number, fileType: string) {
-    this.attachment(url, fileName, fileSizeKB, fileType);
-  }
-
-  attachment(url: string, fileName: string, fileSizeKB: number, fileType: string) {
-      this.subject.next(<Attachment>{ url: url, fileName: fileName, fileSizeKB: fileSizeKB, fileType: fileType });
-  }
-
-  getAttachment(): Observable<any> {
-        return this.subject.asObservable();
-  }
-
-  clearAttachment() {
-    // clear attachments
-    this.subject.next();
-  }
-
-  postAttachments(id, attachments) {
-    return this.http.post(this.baseURL + '/messages/' + id + '/attachments', attachments);
   }
 
   sendMessage (message: Message) {

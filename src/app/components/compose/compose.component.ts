@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
+import { UploadFileService } from '../../services/upload-file.service';
 import { SiteService } from '../../services/site.service';
 import { Message } from '../../models/message';
 import { Building } from '../../models/building';
@@ -53,17 +54,23 @@ export class ComposeComponent implements OnInit {
   messageType: FormControl;
   subject: FormControl;
   message: FormControl;
+  public getDataFromChild(event: Attachment) {
+    if (event) {
+      this.attachments.push(event);
+      console.log('COMPOSE HI');
+      console.log('ATTACHMENT ADDED');
+      console.log(event);
+    }
+  }
 
-    constructor(private router: Router, public activeModal: NgbActiveModal, private messageService:
-      MessageService, private alertService: AlertService, private siteService: SiteService) {}
+    constructor(private router: Router, public activeModal: NgbActiveModal, private messageService: MessageService,
+      private uploadService: UploadFileService, private alertService: AlertService, private siteService: SiteService) {
+    }
 
     ngOnInit() {
         this.attachments = [];
         this.siteService.getCurrentSite().subscribe(site => {
           this.currentSite = site;
-        });
-        this.messageService.getAttachment().subscribe((attachment) => {
-               this.attachments.push(attachment);
         });
         this.unitError = false;
         this.recips = [
@@ -234,7 +241,7 @@ export class ComposeComponent implements OnInit {
                 console.log('sent');
                 this.newMessageId = data['id'];
                 this.lastLink = '/messages/view/' + this.newMessageId;
-                this.messageService.postAttachments(this.newMessageId, this.attachments).subscribe(
+                this.uploadService.postAttachments(this.newMessageId, this.attachments).subscribe(
                     data1 => {
                         console.log('Attachments Posted');
                         console.log(this.attachments);
