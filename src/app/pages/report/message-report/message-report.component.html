@@ -8,7 +8,7 @@
 
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item"><a routerLink="/building-report/" routerLinkActive="active"><i class="fa fa-long-arrow-left"></i> Message Report</a></li>
+          <li class="breadcrumb-item"><a routerLink="" (click)="goToCommunityReport()"><i class="fa fa-long-arrow-left"></i> Message Report</a></li>
           <li class="breadcrumb-item active" aria-current="page">Message</li>
         </ol>
       </nav>
@@ -34,12 +34,12 @@
 
           <!-- Code for Buildings, refactor into component in future. -->
           <div class="col-md-3">
-            <app-report-nav (navEvent)="openBuildingReport($event)"></app-report-nav>
+            <app-report-nav></app-report-nav>
           </div>
 
           <div class="col-md-9">
             <section class="message-report">
-								<table class="table table table-bordered table-hover">
+								<table *ngIf="!loading" class="table table table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>Location</th>
@@ -92,8 +92,4 @@
       </form>
     </div>
   </div>
-  
-  <footer>
-    <small>&copy; 2018 BetterLeasing</small>
-  </footer>
 </div>

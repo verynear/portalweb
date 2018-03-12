@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UploadFileService } from '../../services/upload-file.service';
 import { Observable } from 'rxjs/Observable';
 import { MessageService } from '../../services/message.service';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AlertService } from '../../services/alert.service';
 import { FileUploadModule } from 'primeng/primeng';
 import { FileUpload } from 'primeng/components/fileupload/fileupload';
@@ -19,15 +20,17 @@ export class FormUploadComponent implements OnInit {
   FOLDER = 'noi-s3/';
   msg: string;
   dataLocation: string;
-  public filesDone = false;
+  uploadReady = false;
+  currentUpload = false;
 
   attachments: any[] = [];
   uploadedFiles: any[] = [];
 
-  constructor(private uploadService: UploadFileService, private messageService: MessageService, private alertService: AlertService) { }
+  constructor(private uploadService: UploadFileService, private messageService: MessageService,
+    private alertService: AlertService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.filesDone = false;
+    this.uploadedFiles = [];
   }
 
   pushAttachments(attachArray) {
@@ -37,7 +40,26 @@ export class FormUploadComponent implements OnInit {
     });
   }
 
+  formatSize(bytes) {
+      if (bytes === 0) {
+          return '0 B';
+      }
+      const k = 1000,
+      dm = 1,
+      sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+      i = Math.floor(Math.log(bytes) / Math.log(k));
+
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
+
+  remove(index) {
+      this.uploadedFiles.splice(index, 1);
+  }
+
   onUpload(event) {
+    this.attachments = [];
+    this.uploadReady = false;
+    this.currentUpload = true;
     const self = this;
     const bucket = new S3(
       {
@@ -48,6 +70,8 @@ export class FormUploadComponent implements OnInit {
     );
 
     for (const file of event.files) {
+          file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
+          file.isImage = /^image\//.test(file.type);
           this.uploadedFiles.push(file);
           const params = {
             Bucket: 'noi-angular5-bucket',
@@ -71,10 +95,10 @@ export class FormUploadComponent implements OnInit {
         console.log('this attachments');
         console.log(this.attachments);
         this.pushAttachments(this.attachments);
+        this.uploadReady = true;
+        this.currentUpload = false;
         }, 5000);
 
     this.pFileUpload.files = [];
-    this.uploadedFiles = [];
-    this.filesDone = true;
   }
 }

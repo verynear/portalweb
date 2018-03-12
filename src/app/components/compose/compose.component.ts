@@ -237,6 +237,7 @@ export class ComposeComponent implements OnInit {
                 this.messageService.postAttachments(this.newMessageId, this.attachments).subscribe(
                     data1 => {
                         console.log('Attachments Posted');
+                        console.log(this.attachments);
                     },
                     error1 => {
                         console.log('Failed to post Attachments');

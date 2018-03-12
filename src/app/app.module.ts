@@ -78,6 +78,8 @@ import { UploadFileService } from './services/upload-file.service';
 import { FormUploadComponent } from './components/form-upload/form-upload.component';
 import { BuildingReportComponent } from './pages/report/building-report/building-report.component';
 import { ReportNavComponent } from './pages/report/report-nav/report-nav.component';
+import { SiteSwitchComponent } from './components/site-switch/site-switch.component';
+import { CommunityReportComponent } from './pages/report/community-report/community-report.component';
 
 
 @NgModule({
@@ -143,6 +145,8 @@ import { ReportNavComponent } from './pages/report/report-nav/report-nav.compone
     BuildingReportComponent,
     LoadingComponent,
     ReportNavComponent,
+    SiteSwitchComponent,
+    CommunityReportComponent,
   ],
   providers: [
       {
