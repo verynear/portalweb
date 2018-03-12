@@ -57,9 +57,11 @@ export class SiteService {
     });
   }
 
-  // TODO: Update other API's to match the style of this one ^
-  getRentalSite(id: number) {
-    return this.http.get(`${this.url}/sites/${id}`);
+  getRentalSite(id: number): Observable<Site> {
+    return this.http.get(`${this.url}/sites/${id}`)
+    .catch((error: any) => {
+     return Observable.throw(this.errorHandler(error));
+   });
   }
 
   getUnitsByBuildingId(id: number) {
