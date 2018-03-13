@@ -61,6 +61,14 @@ export class ComposeComponent implements OnInit {
       console.log(event);
     }
   }
+  public removeAttachment(event) {
+    if (event) {
+      const index = this.attachments.findIndex(d => d.fileSizeKB === event.size);
+      this.attachments.splice(index, 1);
+      console.log('REMOVED:');
+      console.log(event.name);
+    }
+  }
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService: MessageService,
       private uploadService: UploadFileService, private alertService: AlertService, private siteService: SiteService) {

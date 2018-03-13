@@ -118,7 +118,7 @@
 					</p-editor>
 					<div class="form-group">
 						 <label>Attachments:</label>
-				         <app-form-upload (uploadForm)="getDataFromChild($event)"></app-form-upload>
+				         <app-form-upload (uploadForm)="getDataFromChild($event)" (removeFile)="removeAttachment($event)"></app-form-upload>
 			        </div>
 				</div>
 				
