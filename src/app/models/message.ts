@@ -14,6 +14,7 @@ export class Message {
   rentalsiteBuildingIds: Array<any>;
   rentalsiteBuildingUnitIds: Array<any>;
   tenantIds: Array<any>;
+  messageAttachments: MessageAttachments[];
 }
 
 export class MessageRecipients {
@@ -27,4 +28,11 @@ export class MessageRecipients {
   rentalSite: string;
   rentalSiteBuilding: string;
   rentalSiteBuildingUnit: string;
+}
+
+export class MessageAttachments {
+  url: string;
+  fileName: string;
+  fileSizeKB: number;
+  fileType: string;
 }

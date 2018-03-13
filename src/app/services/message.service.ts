@@ -52,15 +52,9 @@ export class MessageService {
     return this.http.get<Message[]>(this.baseURL + '/announcements');
   }
 
-  getReport(messageId) {
-    return this.http.get<Message[]>(this.baseURL + '/messages/' + messageId + '/receipts/');
-  }
-
   sendMessage (message: Message) {
     return this.http.post(this.baseURL + '/messages', message);
   }
-
-
 
   sortMessages (messages, criteria: MessageSearchCriteria): Message[] {
      return messages.sort((a, b) => {
@@ -73,9 +67,6 @@ export class MessageService {
       return this.sortService.sortHelper(a, b, criteria);
     });
   }
-
-
-
 }
 
 class MessageSearchCriteria {

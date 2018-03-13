@@ -13,6 +13,16 @@
             <p>
               <span [innerHTML]="message?.message | safeHtml"></span>
             </p>
+            <p>
+              <small *ngIf="message?.messageAttachments.length"><i class="fa fa-paperclip">{{message?.messageAttachments.length}} Attachments</i></small>
+            </p>
+            <section class="attachSection" *ngIf="message?.messageAttachments.length">
+              <span class="attachSpan" *ngFor='let attachment of message?.messageAttachments'>
+                <a href="{{attachment.url}}" download>
+                  <img class="attach" [src]="attachment.url" alt="File" onError="this.src='./assets/FilePDF.png';">
+                </a>
+              </span>
+            </section>
           </td>
         </tr>
       </tbody>

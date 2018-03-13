@@ -1,34 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { SiteService } from '../../services/site.service';
-import { MessageService } from '../../services/message.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '../../models/user';
-import { Site } from '../../models/site';
-import { Building } from '../../models/building';
-import { Message } from '../../models/message';
-import { AlertService } from '../../services/alert.service';
+import { SiteService } from '../../../services/site.service';
+import { MessageService } from '../../../services/message.service';
+import { ReportService } from '../../../services/report.service';
+import { AlertService } from '../../../services/alert.service';
+
+import { User } from '../../../models/user';
+import { Site } from '../../../models/site';
+import { Building } from '../../../models/building';
+import { Message } from '../../../models/message';
+import { Report } from '../../../models/report';
 
 @Component({
   selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.scss']
+  templateUrl: './message-report.component.html',
+  styleUrls: ['./message-report.component.scss']
 })
-export class ReportComponent implements OnInit {
-
+export class MessageReportComponent implements OnInit {
   public currentSite: Site;
   public sites: Site[];
   public buildings: Building[];
   public messages: Message[];
   public message: Message;
+  public report: Report[];
 
-  public id: Number;
+  public id: number;
   public reportExists: boolean;
   public loading: boolean;
-  public report: any[]; // TODO: Create Report Model.
-
 
   constructor(private siteService: SiteService, private messageService: MessageService,
-    private router: Router, private route: ActivatedRoute, private alertService: AlertService) {
+    private router: Router, private route: ActivatedRoute, private alertService: AlertService, private reportService: ReportService) {
 
       this.route.params.subscribe(params => {
        this.id = params.id;
@@ -42,7 +43,6 @@ export class ReportComponent implements OnInit {
       this.getRentalBuildings(site.id);
       this.getMessageReport(this.id);
       this.getMessage(this.id);
-
     });
   }
 
@@ -73,7 +73,7 @@ export class ReportComponent implements OnInit {
 
   getMessageReport(id) {
     this.loading = true;
-    this.messageService.getReport(id).subscribe(
+    this.reportService.messageReport(id).subscribe(
       data => {
         this.loading = false;
         this.reportExists = true;
@@ -85,6 +85,9 @@ export class ReportComponent implements OnInit {
       });
   }
 
+  goToCommunityReport() {
+    this.router.navigate(['/report/community-report', this.currentSite.id]);
+  }
 }
 
 

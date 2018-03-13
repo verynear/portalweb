@@ -57,9 +57,11 @@ export class SiteService {
     });
   }
 
-  // TODO: Update other API's to match the style of this one ^
-  getRentalSite(id: number) {
-    return this.http.get(`${this.url}/sites/${id}`);
+  getRentalSite(id: number): Observable<Site> {
+    return this.http.get(`${this.url}/sites/${id}`)
+    .catch((error: any) => {
+     return Observable.throw(this.errorHandler(error));
+   });
   }
 
   getUnitsByBuildingId(id: number) {
@@ -112,7 +114,9 @@ export class SiteService {
     '.primary.active {background-color: ' + primary + ' !important}' +
     '.primary:hover {background-color: ' + primary + ' !important}' +
     'h1 {color: ' + primary + ' !important}' +
-    'a.btn.btn-default.active {background-color: ' + primary + ' !important}';
+    'a.btn.btn-default.active {background-color: ' + primary + ' !important}' +
+    '.ui-fileupload-choose {background-color: ' + primary + ' !important}' +
+    '.rematt {background-color: ' + primary + ' !important}';
 
     const node = document.createElement('style');
     node.innerHTML = str;

@@ -101,7 +101,7 @@ export class SentboxComponent implements OnInit {
 
   openReport(id: number) {
     this.loading = true;
-    this.router.navigate(['/report', id]);
+    this.router.navigate(['/report/message-report', id]);
     console.log('OPEN REPORT');
     console.log(id);
   }

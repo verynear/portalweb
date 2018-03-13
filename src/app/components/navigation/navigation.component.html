@@ -12,21 +12,20 @@
     </div>
 
     <div class="menu-list">
-      <ul id="menu-content" class="menu-content collapse out">
+      <ul id="menu-content" class="menu-content collapse out" [ngbCollapse]="isCollapsed">
         <li class="primary" routerLink="/dashboard" routerLinkActive="active">
           <a><i class="fa fa-dashboard"></i> Dashboard </a>
         </li>
         <li class="primary" routerLink="/applicants" routerLinkActive="active">
           <a><i class="fa fa-user"></i> Applicants</a>
         </li>
-        <li class="primary" routerLink="/messages" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="products">
+        <li class="primary" routerLink="/messages" 
+           aria-controls="products">
           <a><i class="fa fa-comments"></i> Communications <span class="arrow"></span></a>
         </li>
-        <ul class="sub-menu collapse" id="products" routerLinkActive="show" [ngbCollapse]="isCollapsed">
+        <ul class="sub-menu collapse" id="products" routerLinkActive="show" [ngbCollapse]="isCollapsed" [routerLinkActiveOptions]="{exact: false}">
           <li class="primary" routerLink="/messages" routerLinkActive="active"><a><i class="fa fa-comment"></i> Messages</a></li>
-          <!-- <li class="primary" routerLink="/report" routerLinkActive="active"><a><i class="fa fa-paper-plane"></i> Message Report</a></li> -->
-          <!-- TODO: Add back in when it makes sense -->
+          <li class="primary" (click)="goToReport()" routerLink="report" routerLinkActive="active"><a><i class="fa fa-paper-plane"></i> Message Report</a></li> 
           <li class="primary" routerLink="/announcements" routerLinkActive="active"><a><i class="fa fa-bullhorn"></i> Announcements</a></li>
         </ul>
         <li class="primary" routerLink="/my-account" routerLinkActive="active">

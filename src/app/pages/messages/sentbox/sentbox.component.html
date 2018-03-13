@@ -1,3 +1,5 @@
+<app-loading message="Loading..." *ngIf="loading"></app-loading>
+
 <div id="marginFix">
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
@@ -72,14 +74,15 @@
 					<td class="min-width-100" style="padding-right: 20px">
 		
 						<span class="previewTitle"> {{message.subject}} -</span> 
-						<span [innerHTML]="message.message | htmlToPlain"> </span> 
+						<span class="previewSubject" [innerHTML]="message.message | htmlToPlain"> </span> 
 					</td>
 					<td class="text-right" style="padding-left: 50px">
+						<i *ngIf="message.messageAttachments.length" class="fa fa-paperclip fa-lg"></i>
 						<button class="btn sentType report" (click)="openReport(message.id)">
 					       <i class="fa fa-tasks"></i>
 					    </button>
 					    <i style="color: #fff" class="fa fa-minus"></i>
-						<span>{{message.createDate | date:'mediumDate' }} </span>
+						<span>{{message.createDate | date: 'MMM dd, y' }} </span>
 					</td>
 				</tr>				               
 			</tbody>
@@ -88,6 +91,5 @@
 </section>     
 
 <ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
-<img *ngIf="loading" class="spinner" src="./assets/Spinner-100px.gif" />
 
 </div>

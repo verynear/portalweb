@@ -47,7 +47,9 @@ tr {
 
 .previewTitle {
   font-style: bold;
-  overflow: hidden;
+}
+
+.previewSubject {
 }
 
 .mailHeader {
@@ -158,6 +160,10 @@ td, th {
 
 .min-width-100 {
   min-width: 100px;
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: nowrap;
 }
 .min-width-150 {
   min-width: 150px;

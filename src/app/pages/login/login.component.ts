@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         this.loginService.login(this.model.emailAddress, this.model.password)
             .then(() => this.router.navigate([this.returnUrl]))
             .catch((error: any) => {
-                this.alertService.error(error.error.message);
+                this.alertService.error('Invalid email or password');
                 this.loading = false;
             });
     }

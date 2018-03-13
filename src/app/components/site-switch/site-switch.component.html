@@ -1,0 +1,10 @@
+<li ngbDropdown class="nav-item dropdown">
+  <a ngbDropdownToggle class='communityButton nav-item nav-link dropdown-toggle btn-secondary pt-2 pointer'  id=“community-switch” data-toggle=“dropdown” aria-haspopup=“true” aria-expanded=“false”>
+    <i class='fa fa-building'></i> Community 
+  </a>
+  <div ngbDropdownMenu class='dropdown-menu dropdown-menu-right' aria-labelledby='community-switch'>
+      <a class='dropdown-item' *ngFor="let site of sites" class="dropdown-item" (click)="switchSite(site)"><strong>{{site.name}}</strong></a>
+  </div>
+</li>
+
+<app-loading *ngIf="loading" message="Loading Community"></app-loading>

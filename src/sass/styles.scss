@@ -389,6 +389,7 @@ textarea {
   background-color: #ddd;
   height: 2.188rem;
   padding-right: 0;
+  z-index:1;
 }
 .navbar .nav-item h6 {
   margin: 0;
@@ -690,6 +691,24 @@ footer {
   max-height: 5.00rem;
 }
 
+.attach {
+  max-width: 180px; 
+  max-height: 120px;
+}
+
+.attachSpan {
+  display: inline;
+  float: auto;
+  margin-left: 20px;
+}
+
+.attachSection {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .spinner{
   position: absolute;
   top: 80%;
@@ -716,6 +735,22 @@ footer {
 .pointer {
   cursor: pointer;
 }
+
+.ui-fileupload-choose {
+    border: 0px !important;
+}
+
+.rematt {
+  border-radius: 5px !important;
+  font-size: 10px !important;
+  vertical-align: middle !important;
+  border: 0px !important;
+}
+
+.nobullet li {
+  list-style: none !important;
+}
+
 
 .vertSpan {
   display: inline-block; 

@@ -1,0 +1,101 @@
+<div id="main">
+  <!-- Main Content Area -->
+  <div class="main-content">
+    
+    <app-loading *ngIf="loading" message="Loading Report..." ></app-loading>
+
+    <div class="container-fluid">
+      
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Building Report <small>{{buildingReport?.address1}}</small> </h1>
+        </div>
+      </div>
+  
+      <form>		
+        <div class="row">
+          <div class="col-md-3">
+            <section>
+              <div class="form-group">
+                <label class="sr-only" for="inlineFormInputGroup">Search</label>
+                  <div class="input-group">
+                  <input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
+                  <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                </div>
+              </div>
+            </section>
+            <app-report-nav></app-report-nav>
+          </div> 
+
+          <div class="col-md-9">
+
+            <section class="message-report">        
+              <table *ngIf="!loading" class="table table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Location</th>
+                      <th>Resident</th>
+                      <th>Recent Messages</th>
+                      <th class="text-right">Sent Date</th>
+                      <th class="faMargin text-right">Receipt</th>
+                    </tr>
+                  </thead>
+                  <thead class="thead-light">
+                      <tr> 
+                          <th colspan="5">{{buildingReport?.address1}}</th> 
+                      </tr>
+                  </thead>
+                  
+                  <tbody *ngFor="let unit of buildingReport?.buildingUnit; let p = index">                    
+                    <tr *ngFor="let tenant of unit.tenants; let i = index">
+                      <td *ngIf="i==0" attr.rowspan="{{unit.tenants.length}}">
+                        <!-- <td> -->
+                        <p> {{unit.unitNumber}} </p>
+                      </td>
+                      <td> {{tenant.firstname}} {{tenant.lastname}}</td>
+                      <td>  
+                        <ul class="list-unstyled">
+                          <li *ngFor="let message of tenant.messages; let i=index">
+                            <div *ngIf="i<3">
+                              <a [routerLink]="" class="pointer" (click)="openMessageReport(message.id)"> {{message.subject}} </a>
+                            </div>
+                          </li>
+                        </ul> 
+                      </td>
+                      <td class="text-right"> 
+                        <ul class="list-unstyled">
+                          <li *ngFor="let message of tenant.messages; let i=index">
+                            <div *ngIf="i<3">
+                              <!-- <span class="fa fa-check isRead"></span> -->
+                              {{message.createDate | date:'short'}}
+                            </div>
+                          </li>
+                        </ul> 
+                      </td>
+                      <td class="text-right">
+                        <ul class="list-unstyled">
+                          <li *ngFor="let message of tenant.messages; let i=index">
+                            <div *ngIf="i<3">
+                              
+                              <div class="text-muted faMargin" *ngIf="!message.updateDate">Not Read
+                                  <!-- <span class="fa fa-check isRead"></span> -->
+                                  <span class="fa fa-times notRead"></span>
+                              </div>
+
+                              <div *ngIf="message.updateDate">
+                                <span class="fa fa-check isRead"></span> {{message.updateDate | date:'short'}}
+                              </div>
+                            </div>
+                          </li>
+                        </ul> 
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </section>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

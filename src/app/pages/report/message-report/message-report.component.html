@@ -1,0 +1,95 @@
+<div id="main">
+  <!-- Main Content Area -->
+  <div class="main-content">
+    
+    <app-loading *ngIf="loading" message="Loading Report..."></app-loading>
+
+    <div class="container-fluid">
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a routerLink="" (click)="goToCommunityReport()"><i class="fa fa-long-arrow-left"></i> Message Report</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Message</li>
+        </ol>
+      </nav>
+        
+      <div *ngIf="!loading" class="row">
+        <div class="col-md-12">
+          <h1>Message Sent</h1>
+          <h5>{{message?.subject}}<br><small>{{message?.createDate | date }}</small></h5>
+          <span [innerHTML]="message?.message | safeHtml"></span>
+          <hr>
+        </div>
+      </div>
+      
+      <form>				
+        
+        <div *ngIf="!reportExists && !loading" class="row">
+          <div class="col-md-12">
+            <h2> There is no report for this message, or the message does not exist. </h2> 
+          </div>
+        </div>
+
+        <div *ngIf="reportExists && !loading" class="row">
+
+          <!-- Code for Buildings, refactor into component in future. -->
+          <div class="col-md-3">
+            <app-report-nav></app-report-nav>
+          </div>
+
+          <div class="col-md-9">
+            <section class="message-report">
+								<table *ngIf="!loading" class="table table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>Location</th>
+												<th>Resident</th>
+												<th class="text-right">Sent Date</th>
+												<th class="text-right">Read Receipt</th>
+											</tr>
+										</thead>
+										<thead class="thead-light">
+                      <tr>
+                        <!-- <th colspan="5">Building: {{message?.messageRecipients[0].rentalSiteBuilding}}</th>  -->
+                        <!-- TODO: Building, if applicable, belongs to entire message. -->
+                      </tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let res of message.messageRecipients">
+                        <!-- Location -->
+                        <td rowspan="1">{{res.rentalSiteBuildingUnit}}</td>
+                        
+                         <!-- Resident -->
+                        <td>{{res.firstname}} {{res.lastname}}</td>
+                        
+                         <!-- Sent Date -->
+                        <td class="text-right">
+													<ul>
+                            <li class="text-muted">
+                              {{message?.createDate | date:'short' }}
+                            </li>
+													</ul>
+                        </td>
+                        
+                        <!-- Read Receipt -->
+												<td class="text-right">
+													<ul>
+                            <li class="text-muted" *ngIf="res.isRead===1">
+                              <span class="fa fa-check isRead"></span>{{res.updateDate | date:'short' }}
+                            </li>
+                          
+                            <li *ngIf="res.isRead===0" class="text-muted">
+                                <span class="fa fa-times notRead"></span> Not Read
+                            </li>
+													</ul>
+                        </td>
+											</tr>
+										</tbody>
+									</table>
+            </section>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
