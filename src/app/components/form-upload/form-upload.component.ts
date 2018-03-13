@@ -49,6 +49,9 @@ export class FormUploadComponent implements OnInit {
 
   remove(index) {
       this.uploadedFiles.splice(index, 1);
+      if (this.uploadedFiles.length === 0) {
+        this.uploadReady = false;
+      }
   }
 
   onUpload(event) {
