@@ -57,7 +57,6 @@ export class ComposeComponent implements OnInit {
   public getDataFromChild(event: Attachment) {
     if (event) {
       this.attachments.push(event);
-      console.log('COMPOSE HI');
       console.log('ATTACHMENT ADDED');
       console.log(event);
     }
