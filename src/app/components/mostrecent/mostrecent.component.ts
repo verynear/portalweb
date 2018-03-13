@@ -34,7 +34,7 @@ export class MostRecentComponent implements OnInit {
   openReport() {
     console.log('The message is: ');
     console.log(this.message);
-    this.router.navigate(['/report', this.message.id]);
+    this.router.navigate(['/report/message-report', this.message.id]);
 
 
   }
