@@ -6,7 +6,7 @@
 		        <div><img [src]="file.objectURL" *ngIf="file.isImage" [width]=50 [height]=50/>
 		        {{file.name}} --
 		        {{formatSize(file.size)}}
-		        <button type="button" icon="fa-close" pButton (click)="remove(i)"></button></div>
+		        <button type="button" class="btn-primary" icon="fa-close" pButton (click)="remove(i)"></button></div>
 		        <br>
 		    </li>
 		</ul>

@@ -79,8 +79,8 @@ export class FormUploadComponent implements OnInit {
               console.log('Successfully uploaded file.', data);
               const url = self.dataLocation;
               const fileName = file.name;
-              const fileSizeKB = file.size;
-              const fileType = 'pdf';
+              const fileSizeKB = (file.size / 1000);
+              const fileType = (/\/(.*)/).exec(file.type)[1];
               const newAttachment = { url, fileName, fileSizeKB, fileType };
               self.zone.run(() => {
                     self.uploadForm.emit(newAttachment);
