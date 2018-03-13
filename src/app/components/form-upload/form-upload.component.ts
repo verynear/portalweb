@@ -18,13 +18,15 @@ import * as S3 from 'aws-sdk/clients/s3';
 export class FormUploadComponent implements OnInit {
   @ViewChild(FileUpload) pFileUpload: FileUpload;
   @Output() uploadForm = new EventEmitter();
+  @Output() removeFile = new EventEmitter();
 
   FOLDER = 'noi-s3/';
   msg: string;
   dataLocation: string;
   uploadReady = false;
   currentUpload = false;
-
+  removedFileName: string;
+  removedFileSize: number;
   attachments: any[] = [];
   uploadedFiles: any[] = [];
 
@@ -48,10 +50,16 @@ export class FormUploadComponent implements OnInit {
   }
 
   remove(index) {
+      this.removedFileName = this.uploadedFiles[index].name;
+      this.removedFileSize = (this.uploadedFiles[index].size / 1000);
+      console.log('REMOVED FILE');
+      console.log(this.removedFileName);
+      console.log(this.removedFileSize);
       this.uploadedFiles.splice(index, 1);
       if (this.uploadedFiles.length === 0) {
         this.uploadReady = false;
       }
+      this.removeFile.emit({name: this.removedFileName, size: this.removedFileSize});
   }
 
   onUpload(event) {
