@@ -52,9 +52,6 @@ export class FormUploadComponent implements OnInit {
   remove(index) {
       this.removedFileName = this.uploadedFiles[index].name;
       this.removedFileSize = (this.uploadedFiles[index].size / 1000);
-      console.log('REMOVED FILE');
-      console.log(this.removedFileName);
-      console.log(this.removedFileSize);
       this.uploadedFiles.splice(index, 1);
       if (this.uploadedFiles.length === 0) {
         this.uploadReady = false;
