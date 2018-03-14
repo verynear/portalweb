@@ -23,6 +23,13 @@ export class ApplicantService {
     return this.http.get<Applicant[]>(this.baseURL + '/applicants');
       }
 
+    getTestData() {
+    return this.http.get<any>('assets/applicant-test.json')
+          .toPromise()
+          .then(res => <Applicant[]>res.data)
+          .then(data => data );
+    }
+
     create(applicant: Applicant) {
     return this.http.post(this.baseURL + '/tenant/', applicant);
       }
