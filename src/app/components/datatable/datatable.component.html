@@ -2,7 +2,7 @@
         <!-- Main Content Area -->
         <div class="main-content">
             <div class="container-fluid">
-                                <p-table #dt [columns]="cols" [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" exportFilename="applicants" (onRowSelect)="onRowSelect($event)"  [rows]="15" [paginator]="true" [rowsPerPageOptions]="[15,30,50]" [responsive]="true" [resizableColumns]="true">
+                <p-table #dt [columns]="cols" [value]="applicants" selectionMode="single" [(selection)]="selectedApplicant" exportFilename="applicants" (onRowSelect)="onRowSelect($event)"  [rows]="15" [paginator]="true" [rowsPerPageOptions]="[15,30,50]" [responsive]="true" [resizableColumns]="true">
                     <ng-template pTemplate="caption">Pending Applicants</ng-template>
                     <ng-template pTemplate="header" let-columns>
                             <tr>
@@ -21,7 +21,7 @@
                                     {{rowData[col.field]}}
                                 </td>
                                 <td>
-                                  {{ applicant.createDate | date: 'short' }}
+                                  {{ applicant.applicationDate | date: 'short' }}
                                 </td>
                             </tr>
                         </ng-template>
