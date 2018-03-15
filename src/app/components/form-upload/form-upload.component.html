@@ -6,12 +6,12 @@
 		        <div><img [src]="file.objectURL" *ngIf="file.isImage" [width]=50 [height]=50/>
 		        {{file.name}} --
 		        {{formatSize(file.size)}}
-		        <button type="button" class="rematt" icon="fa-close" pButton (click)="remove(i)"></button></div>
+		        <button type="button" class="rematt btn btn-primary" icon="fa-close" pButton (click)="remove(i)"></button></div>
 		        <br>
 		    </li>
 		</ul>
 	    <ul class="nobullet" *ngIf="uploadReady">
-	        <li><i class="fa fa-check"><i style="color: #fff;font-size: 9px" class="fa fa-minus"></i></i>Attachments Loaded - Ready to Send</li>
+	        <li><i class="fa fa-check"><i class="fa fa-minus"></i></i>Attachments Loaded - Ready to Send</li>
 	    </ul>
 	    <ul *ngIf="!uploadReady && currentUpload">
 	        <img src="./assets/Spinner-small.gif" />

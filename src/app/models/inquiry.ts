@@ -6,6 +6,8 @@ export class Inquiry {
   subject: string;
   selected: boolean;
   tenant: Tenant1;
+  attachmentSize: number;
+  generalInquiryAttachments: GeneralInquiryAttachments[];
 }
 
 export class Tenant1 {
@@ -13,4 +15,11 @@ export class Tenant1 {
   firstname: string;
   lastname: string;
   phone: string;
+}
+
+export class GeneralInquiryAttachments {
+  url: string;
+  fileName: string;
+  fileSizeKB: number;
+  fileType: string;
 }

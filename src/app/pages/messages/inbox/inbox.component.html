@@ -43,7 +43,9 @@
 					</td> 
 
 					<td class="text-right1" style="padding-left: 50px;">
-						<span>{{inquiry.createDate | date:'mediumDate' }} </span>
+						<i *ngIf="inquiry.generalInquiryAttachments.length" class="fa fa-paperclip fa-lg"></i>
+					    <i style="color: #fff" class="fa fa-angle-right"></i>
+						<span>{{inquiry.createDate | date: 'MMM dd, y' }} </span>
 					</td>
 				</tr>				               
 			</tbody>
