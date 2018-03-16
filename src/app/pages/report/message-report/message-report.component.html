@@ -45,12 +45,12 @@
 												<th>Location</th>
 												<th>Resident</th>
 												<th class="text-right">Sent Date</th>
-												<th class="text-right">Read Receipt</th>
+                        <th class="text-right">Read Receipt</th>
+                        <th class="text-right">Attachment Receipt</th>
 											</tr>
 										</thead>
 										<thead class="thead-light">
                       <tr>
-                        <!-- <th colspan="5">Building: {{message?.messageRecipients[0].rentalSiteBuilding}}</th>  -->
                         <!-- TODO: Building, if applicable, belongs to entire message. -->
                       </tr>
 										</thead>
@@ -65,16 +65,16 @@
                          <!-- Sent Date -->
                         <td class="text-right">
 													<ul>
-                            <li class="text-muted">
+
                               {{message?.createDate | date:'short' }}
-                            </li>
+
 													</ul>
                         </td>
                         
                         <!-- Read Receipt -->
 												<td class="text-right">
 													<ul>
-                            <li class="text-muted" *ngIf="res.isRead===1">
+                            <li  *ngIf="res.isRead===1">
                               <span class="fa fa-check isRead"></span>{{res.updateDate | date:'short' }}
                             </li>
                           
@@ -83,6 +83,29 @@
                             </li>
 													</ul>
                         </td>
+
+                        <td>
+                          <li class="text-right" *ngIf="res.isRead!=0" style="list-style-type: none;"> 
+                              Lease A..pdf <span class="text-bold">{{res.updateDate | date:'short'}} </span> <span class="fa fa-check isRead"></span>
+                          </li>
+                          <li class="text-right" *ngIf="res.isRead!=0" style="list-style-type: none;"> 
+                              SomeOth.pdf <span class="text-bold">{{res.updateDate | date:'short'}} </span> <span class="fa fa-check isRead"></span>
+                          </li>
+                          <li class="text-right" *ngIf="res.isRead!=0" style="list-style-type: none;"> 
+                              WHOA.pdf <span class="text-bold">{{res.updateDate | date:'short'}} </span> <span class="fa fa-check isRead"></span>
+                          </li>
+                          <li class="text-right" *ngIf="res.isRead!=0" style="list-style-type: none;"> 
+                              <span class="text-muted"> Blank...pdf Not Opened </span><span class="fa fa-times notRead"></span>
+                          </li>
+                          <li class="text-right" *ngIf="res.isRead===0" style="list-style-type: none;">
+                              <span class="text-muted"> Lease Ag...pdf  Not Opened </span><span class="fa fa-times notRead"></span>
+                          </li>
+
+                          <li class="text-right" *ngIf="res.isRead===0" style="list-style-type: none;">
+                            <a href="#">1/10 See More...</a>
+                          </li>
+                        </td>
+
 											</tr>
 										</tbody>
 									</table>

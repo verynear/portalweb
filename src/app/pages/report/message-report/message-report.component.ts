@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { SiteService } from '../../../services/site.service';
 import { MessageService } from '../../../services/message.service';
 import { ReportService } from '../../../services/report.service';
@@ -18,8 +19,6 @@ import { Report } from '../../../models/report';
 })
 export class MessageReportComponent implements OnInit {
   public currentSite: Site;
-  public sites: Site[];
-  public buildings: Building[];
   public messages: Message[];
   public message: Message;
   public report: Report[];
@@ -40,21 +39,8 @@ export class MessageReportComponent implements OnInit {
     this.siteService.getCurrentSite().subscribe(site => {
       this.currentSite = site;
 
-      this.getRentalBuildings(site.id);
       this.getMessageReport(this.id);
       this.getMessage(this.id);
-    });
-  }
-
-  getRentalSites() {
-    this.siteService.getRentalSites().subscribe(sites => {
-      this.sites = sites;
-    });
-  }
-
-  getRentalBuildings(currSiteId: number) {
-    this.siteService.getBuildings(currSiteId).subscribe(buildings => {
-      this.buildings = buildings;
     });
   }
 
@@ -67,7 +53,6 @@ export class MessageReportComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        this.alertService.error('Error Getting Message');
       });
   }
 
@@ -81,7 +66,6 @@ export class MessageReportComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        this.alertService.error('Error Getting Report');
       });
   }
 
