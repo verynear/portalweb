@@ -1,5 +1,5 @@
 <p-fileUpload styleClass="myupload" name="demo[]" (uploadHandler)="onUpload($event)"
-		        multiple="multiple" auto="auto" showUploadButton="false" showCancelButton="false" accept="image/*,.pdf" customUpload="true" maxFileSize="1000000">
+		        multiple="multiple" auto="auto" showUploadButton="false" showCancelButton="false" accept="image/*,.pdf" customUpload="true" maxFileSize="26000000">
 	<ng-template pTemplate="content">
 		<ul *ngIf="uploadedFiles.length">
 			<li *ngFor="let file of uploadedFiles; let i = index;">
@@ -16,5 +16,6 @@
 	    <ul *ngIf="!uploadReady && currentUpload">
 	        <img src="./assets/Spinner-small.gif" />
 	    </ul>
+	    <small class="ital">Total Size: {{totalAttachSize | number:'1.0-2'}} MB</small>
 	</ng-template>        
 </p-fileUpload>

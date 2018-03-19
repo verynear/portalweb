@@ -25,10 +25,16 @@ export class FormUploadComponent implements OnInit {
   dataLocation: string;
   uploadReady = false;
   currentUpload = false;
+  nameError = false;
+  sizeError = false;
   removedFileName: string;
   removedFileSize: number;
-  attachments: any[] = [];
+  totalAttachSize = 0;
   uploadedFiles: any[] = [];
+  fileNameTooLongMessageSummary = '{0}: Attachment file name too long, ';
+  fileNameTooLongMessageDetail = 'maxumum length: 46 charachters';
+  filesTooLargeMessageSummary = 'attachments exceed size limit';
+  filesTooLargeMessageDetail = 'please remove one or more attachments';
 
   constructor(private uploadService: UploadFileService,
     private alertService: AlertService, private sanitizer: DomSanitizer, private zone: NgZone ) { }
@@ -60,7 +66,6 @@ export class FormUploadComponent implements OnInit {
   }
 
   onUpload(event) {
-      const attachments = [];
       this.uploadReady = false;
       this.currentUpload = true;
       const self = this;
@@ -76,6 +81,32 @@ export class FormUploadComponent implements OnInit {
             file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
             file.isImage = /^image\//.test(file.type);
             this.uploadedFiles.push(file);
+            this.totalAttachSize += (file.size / 1000000);
+            if (this.totalAttachSize > 26) {
+              this.pFileUpload.msgs.push({
+                  severity: 'error',
+                  summary: this.filesTooLargeMessageSummary,
+                  detail: this.filesTooLargeMessageDetail
+              });
+              this.totalAttachSize -= (file.size / 1000000);
+              const index = this.uploadedFiles.indexOf(file);
+              this.remove(index);
+              this.uploadReady = false;
+              this.currentUpload = false;
+              break;
+            }
+            if (file.name.length > 50 ) {
+              this.pFileUpload.msgs.push({
+                  severity: 'error',
+                  summary: this.fileNameTooLongMessageSummary.replace('{0}', file.name),
+                  detail: this.fileNameTooLongMessageDetail
+              });
+              const index = this.uploadedFiles.indexOf(file);
+              this.remove(index);
+              this.uploadReady = false;
+              this.currentUpload = false;
+              break;
+            }
             const params = {
               Bucket: 'noi-angular5-bucket',
               Key: this.FOLDER + file.name,
