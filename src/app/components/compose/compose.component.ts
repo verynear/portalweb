@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Output, ElementRef, Renderer2 } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from '../../services/message.service';
 import { UploadFileService } from '../../services/upload-file.service';
@@ -21,7 +21,7 @@ import { ReplacePipe } from '../../pipes/replace.pipe';
   templateUrl: './compose.component.html',
   styleUrls: ['./compose.component.scss']
 })
-export class ComposeComponent implements OnInit {
+export class ComposeComponent implements OnInit, AfterViewInit {
   public currentSite: Site;
   buildings: Building[];
   selectedUnits: Unit[];
@@ -43,6 +43,7 @@ export class ComposeComponent implements OnInit {
   unitErrorNumber: string;
   unitIdForTenant: number;
   newMessageId: number;
+  public nativeElement: any;
 
   composeForm: FormGroup;
   type: FormControl;
@@ -71,7 +72,8 @@ export class ComposeComponent implements OnInit {
   }
 
     constructor(private router: Router, public activeModal: NgbActiveModal, private messageService: MessageService,
-      private uploadService: UploadFileService, private alertService: AlertService, private siteService: SiteService) {
+      private uploadService: UploadFileService, private alertService: AlertService,
+      private siteService: SiteService, private rd: Renderer2) {
     }
 
     ngOnInit() {
@@ -91,6 +93,11 @@ export class ComposeComponent implements OnInit {
         this.createFormControls();
         this.createForm();
         this.setDefaultValues();
+    }
+
+    ngAfterViewInit() {
+          const element = this.rd.selectRootElement('.ql-picker-label');
+          this.rd.setAttribute(element, 'tabindex', '-1');
     }
     // Retrieves Site Buildings to populate first dropdown
     getSiteBuildings() {
