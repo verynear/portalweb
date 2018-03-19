@@ -4,4 +4,5 @@ export class Report {
     address2: string;
     buildingNumber: number;
     buildingUnit: any;
+    attachment: any[];
 }

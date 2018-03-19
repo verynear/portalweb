@@ -80,6 +80,7 @@ import { BuildingReportComponent } from './pages/report/building-report/building
 import { ReportNavComponent } from './pages/report/report-nav/report-nav.component';
 import { SiteSwitchComponent } from './components/site-switch/site-switch.component';
 import { CommunityReportComponent } from './pages/report/community-report/community-report.component';
+import { AttachmentListComponent } from './pages/report/attachment-list/attachment-list.component';
 
 
 @NgModule({
@@ -147,6 +148,7 @@ import { CommunityReportComponent } from './pages/report/community-report/commun
     ReportNavComponent,
     SiteSwitchComponent,
     CommunityReportComponent,
+    AttachmentListComponent,
   ],
   providers: [
       {

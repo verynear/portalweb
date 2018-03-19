@@ -56,6 +56,18 @@
                             <li *ngFor="let message of tenant.messages; let i=index">
                               <div *ngIf="i<3">
                                 <a [routerLink]="" class="pointer" (click)="openMessageReport(message.id)"> {{message.subject}} </a>
+                                
+                                <!-- Message Attachment Report -->
+                                <!-- <ul class="list-unstyled attachmentFile">
+                                  <li *ngFor="let attachment of message.attachment; let last=last">
+                                      <i class="fa fa-paperclip"></i> {{attachment.fileName}} 
+                                      <span *ngIf="last" class="viewAll"> 
+                                        <a href="#"> 3/10 View All</a> 
+                                      </span>
+                                  </li>
+                                </ul> -->
+
+                                <app-attachment-list [attachments]="message.attachment"></app-attachment-list>
                               </div>
                             </li>
                           </ul> 
@@ -63,11 +75,17 @@
                         <td> 
                           <ul class="list-unstyled">
                             <li *ngFor="let message of tenant.messages; let i=index">
-                              <div *ngIf="i<3">
-                                <div class="text-left">
-                                  <span class="sentGray">{{message.createDate | date:'short'}}</span>  
-                                </div>
-                                <span class="fa fa-check isRead"></span>
+                              <div *ngIf="i<3" class="sentGray">
+
+                                {{message.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+
+                                <!-- Message Attachment Report -->
+                                <ul class="list-unstyled attachmentDate">
+                                  <li *ngFor="let attachment of message.attachment">
+                                      {{ attachment.createDate | date:'short' }} <span class="fa fa-check isRead"></span>
+                                  </li>
+                                </ul>
+
                               </div>
                             </li>
                           </ul> 
@@ -82,17 +100,23 @@
                                 </div>
   
                                 <div *ngIf="message.updateDate">
-                                  <span class="fa fa-check isRead"></span> {{message.updateDate | date:'short'}}
+                                   {{message.updateDate | date:'short'}} <span class="fa fa-check isRead"></span>
                                 </div>
-                              </div>
 
+                                <!-- Message Attachment Report -->
+                                <ul class="list-unstyled attachmentDate">
+                                  <li *ngFor="let attachment of message.attachment">
+                                    {{ attachment.updateDate | date:'short' }} <span class="fa fa-check isRead"></span>
+                                  </li>
+                                </ul>
+                                
+                              </div>
                             </li>
                           </ul> 
                         </td>
                       </tr>
                     </tbody>
                     </ng-container>
-
                   </table>
               </section>
             </div>

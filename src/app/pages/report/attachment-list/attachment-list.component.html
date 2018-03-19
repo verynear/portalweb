@@ -1,0 +1,8 @@
+<ul class="list-unstyled attachmentFile">
+  <li *ngFor="let attachment of attachments; let last=last">
+      <i class="fa fa-paperclip"></i> {{attachment.fileName}} 
+      <span *ngIf="last" class="viewAll"> 
+        <a href="#"> 3/10 View More</a> 
+      </span>
+  </li>
+</ul>

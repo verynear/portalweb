@@ -43,10 +43,11 @@
 										<thead>
 											<tr>
 												<th>Location</th>
-												<th>Resident</th>
-												<th class="text-right">Sent Date</th>
-                        <th class="text-right">Read Receipt</th>
-                        <th class="text-right">Attachment Receipt</th>
+                        <th>Resident</th>
+                        <th>Message</th>
+												<th>Sent Date</th>
+                        <th>Read Receipt</th>
+                        <!-- <th class="text-right">Attachment Receipt</th> -->
 											</tr>
 										</thead>
 										<thead class="thead-light">
@@ -55,24 +56,33 @@
                       </tr>
 										</thead>
 										<tbody>
-											<tr *ngFor="let res of message.messageRecipients">
+											<tr *ngFor="let res of report?.messageRecipients">
                         <!-- Location -->
                         <td rowspan="1">{{res.rentalSiteBuildingUnit}}</td>
                         
                          <!-- Resident -->
                         <td>{{res.firstname}} {{res.lastname}}</td>
+
+                        <td> {{message.subject}} 
+                          <app-attachment-list [attachments]="res.attachment"></app-attachment-list> 
+               
+                          <!-- {{res.attachment[0]?.url}} -->
+                        </td>
                         
                          <!-- Sent Date -->
-                        <td class="text-right">
+                        <td>
 													<ul>
+                              {{message?.createDate | date:'short' }} <span class="fa fa-check isRead"></span>
 
-                              {{message?.createDate | date:'short' }}
-
+                              <!-- Sent Column for Attachments -->
+                              <li *ngFor="let attachment of res.attachment">
+                                {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+                              </li>
 													</ul>
                         </td>
                         
                         <!-- Read Receipt -->
-												<td class="text-right">
+												<td>
 													<ul>
                             <li  *ngIf="res.isRead===1">
                               <span class="fa fa-check isRead"></span>{{res.updateDate | date:'short' }}
@@ -81,31 +91,15 @@
                             <li *ngIf="res.isRead===0" class="text-muted">
                                 <span class="fa fa-times notRead"></span> Not Read
                             </li>
-													</ul>
+                          </ul>
+
+                          <!-- Opened Column for Attachments -->
+                          <ul>
+                            <li *ngFor="let attachment of res.attachment">
+                                {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+                            </li>
+                          </ul>
                         </td>
-
-                        <td>
-                          <li class="text-right" *ngIf="res.isRead!=0" style="list-style-type: none;"> 
-                              Lease A..pdf <span class="text-bold">{{res.updateDate | date:'short'}} </span> <span class="fa fa-check isRead"></span>
-                          </li>
-                          <li class="text-right" *ngIf="res.isRead!=0" style="list-style-type: none;"> 
-                              SomeOth.pdf <span class="text-bold">{{res.updateDate | date:'short'}} </span> <span class="fa fa-check isRead"></span>
-                          </li>
-                          <li class="text-right" *ngIf="res.isRead!=0" style="list-style-type: none;"> 
-                              WHOA.pdf <span class="text-bold">{{res.updateDate | date:'short'}} </span> <span class="fa fa-check isRead"></span>
-                          </li>
-                          <li class="text-right" *ngIf="res.isRead!=0" style="list-style-type: none;"> 
-                              <span class="text-muted"> Blank...pdf Not Opened </span><span class="fa fa-times notRead"></span>
-                          </li>
-                          <li class="text-right" *ngIf="res.isRead===0" style="list-style-type: none;">
-                              <span class="text-muted"> Lease Ag...pdf  Not Opened </span><span class="fa fa-times notRead"></span>
-                          </li>
-
-                          <li class="text-right" *ngIf="res.isRead===0" style="list-style-type: none;">
-                            <a href="#">1/10 See More...</a>
-                          </li>
-                        </td>
-
 											</tr>
 										</tbody>
 									</table>

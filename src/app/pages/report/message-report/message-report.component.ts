@@ -11,6 +11,8 @@ import { Site } from '../../../models/site';
 import { Building } from '../../../models/building';
 import { Message } from '../../../models/message';
 import { Report } from '../../../models/report';
+import { Attachment } from '../../../models/attachment';
+import { Receipt } from '../../../models/receipt';
 
 @Component({
   selector: 'app-report',
@@ -21,7 +23,7 @@ export class MessageReportComponent implements OnInit {
   public currentSite: Site;
   public messages: Message[];
   public message: Message;
-  public report: Report[];
+  public report: Receipt;
 
   public id: number;
   public reportExists: boolean;
@@ -33,6 +35,7 @@ export class MessageReportComponent implements OnInit {
       this.route.params.subscribe(params => {
        this.id = params.id;
       });
+
   }
 
   ngOnInit() {
@@ -63,6 +66,9 @@ export class MessageReportComponent implements OnInit {
         this.loading = false;
         this.reportExists = true;
         this.report = data;
+        this.testData();  // TEST DATA FOR TESTING.
+        console.log('Report');
+        console.log(this.report);
       },
       error => {
         this.loading = false;
@@ -71,6 +77,31 @@ export class MessageReportComponent implements OnInit {
 
   goToCommunityReport() {
     this.router.navigate(['/report/community-report', this.currentSite.id]);
+  }
+
+  testData() {
+      console.log('Hi');
+      const message = this.report.messageRecipients;
+
+      message[0].attachment = new Array();
+      message[0].attachment[0] = new Attachment();
+      message[0].attachment[1] = new Attachment();
+      message[0].attachment[2] = new Attachment();
+
+      message[0].attachment[0].fileName = 'myNewAwesomeFile.png';
+      message[0].attachment[0].url = 'http://www.google.com/';
+      message[0].attachment[0].createDate = '3/19/18, 1:02 PM';
+      message[0].attachment[0].updateDate = '3/19/18, 1:02 PM';
+
+      message[0].attachment[1].fileName = 'someOtherFile.png';
+      message[0].attachment[1].url = 'http://www.google.com/';
+      message[0].attachment[1].createDate = '3/19/18, 1:02 PM';
+      message[0].attachment[1].updateDate = '3/19/18, 1:02 PM';
+
+      message[0].attachment[2].fileName = 'andAnotherFile.png';
+      message[0].attachment[2].url = 'http://www.google.com/';
+      message[0].attachment[2].createDate = '3/19/18, 1:02 PM';
+      message[0].attachment[2].updateDate = '3/19/18, 1:02 PM';
   }
 }
 
