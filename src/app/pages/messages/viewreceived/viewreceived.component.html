@@ -13,6 +13,16 @@
             <p>
               <span [innerHTML]="inquiry?.message | safeHtml"></span>
             </p>
+            <p>
+              <small *ngIf="inquiry?.generalInquiryAttachments.length"><i class="fa fa-paperclip">{{inquiry?.generalInquiryAttachments.length}} Attachments</i></small>
+            </p>
+            <section class="attachSection" *ngIf="inquiry?.generalInquiryAttachments.length">
+              <span class="attachSpan" *ngFor='let attachment of inquiry?.generalInquiryAttachments'>
+                <a href="{{attachment.url}}" download>
+                  <img class="attach" [src]="attachment.url" alt="File" onError="this.src='./assets/FilePDF.png';">
+                </a>
+              </span>
+            </section>
           </td>
         </tr>
       </tbody>

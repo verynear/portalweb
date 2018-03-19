@@ -221,16 +221,11 @@ export class ComposeComponent implements OnInit {
         if (this.composeForm.value.type === 'RESIDENT') {
           message.rentalsiteBuildingIds = [Number (this.composeForm.value.buildingIdforTenantUnit)];
           message.tenantIds = this.composeForm.value.tenantIds;
-        }
-        if (message.tenantIds && message.tenantIds.length === 1 && message.tenantIds.pop() === null) {
-          this.composeForm.value.type = 'UNIT';
-          message.type = 'UNIT';
-          message.rentalsiteBuildingUnitIds = [Number (this.unitIdForTenant)];
-        }
-        if (message.type === 'RESIDENT' && message.tenantIds && message.tenantIds.length === 0) {
-          this.composeForm.value.type = 'UNIT';
-          message.type = 'UNIT';
-          message.rentalsiteBuildingUnitIds = [Number (this.unitIdForTenant)];
+          if (message.tenantIds && message.tenantIds.length === 0) {
+            this.composeForm.value.type = 'UNIT';
+            message.type = 'UNIT';
+            message.rentalsiteBuildingUnitIds = [Number (this.unitIdForTenant)];
+          }
         }
         message.messageType = this.composeForm.value.messageType;
         message.message = this.composeForm.value.message;
@@ -248,14 +243,16 @@ export class ComposeComponent implements OnInit {
                 console.log('sent');
                 this.newMessageId = data['id'];
                 this.lastLink = '/messages/view/' + this.newMessageId;
-                this.uploadService.postAttachments(this.newMessageId, this.attachments).subscribe(
-                    data1 => {
-                        console.log('Attachments Posted');
-                        console.log(this.attachments);
-                    },
-                    error1 => {
-                        console.log('Failed to post Attachments');
-                    });
+                if (this.attachments.length) {
+                  this.uploadService.postAttachments(this.newMessageId, this.attachments).subscribe(
+                      data1 => {
+                          console.log('Attachments Posted');
+                          console.log(this.attachments);
+                      },
+                      error1 => {
+                          console.log('Failed to post Attachments');
+                      });
+                }
                 this.alertService.success('Your message has been sent', this.lastLink, true);
             },
             error => {

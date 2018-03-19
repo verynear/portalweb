@@ -8,4 +8,6 @@ export class Applicant {
     rentalSiteId: number;
     applicantPropertyName: string;
     applicantUnit: string;
+    moveinDate: Date;
+    applicationDate: Date;
 }

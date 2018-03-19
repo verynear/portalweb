@@ -17,7 +17,7 @@
 						<app-th columnName="tenant" displayName="Tenant"></app-th>
 					</th> 
 					<th class="min-width-100">
-						<app-th columnName="inquiry" displayName="Subject"></app-th>
+						<app-th columnName="inquiry" displayName="Message"></app-th>
 					</th>
 					<th class="text-right1" style="padding-left:50px;">
 						<app-th columnName="createDate" displayName="Date"></app-th>
@@ -43,7 +43,9 @@
 					</td> 
 
 					<td class="text-right1" style="padding-left: 50px;">
-						<span>{{inquiry.createDate | date:'mediumDate' }} </span>
+						<i *ngIf="inquiry.generalInquiryAttachments.length" class="fa fa-paperclip fa-lg"></i>
+					    <i style="color: #fff" class="fa fa-angle-right"></i>
+						<span>{{inquiry.createDate | date: 'MMM dd, y' }} </span>
 					</td>
 				</tr>				               
 			</tbody>

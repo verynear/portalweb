@@ -99,17 +99,17 @@
 						<input type="email" class="form-control" formControlName="subject" placeholder="Subject">
 					</div>
 					<p-editor formControlName="message" [style]="{'height':'280px'}">
-					  <p-header>
-					      <span class="ql-formats">
-					      	  <select class="ql-size">
-					      	    <option value="small"></option>
-					      	    <option selected></option>
-					      	    <option value="large"></option>
-					      	    <option value="huge"></option>
+					  <p-header tabindex="-1">
+					      <span class="ql-formats" tabindex="-1">
+					      	  <select class="ql-size" tabindex="-1">
+					      	    <option value="small" tabindex="-1"></option>
+					      	    <option selected tabindex="-1"></option>
+					      	    <option value="large" tabindex="-1"></option>
+					      	    <option value="huge" tabindex="-1"></option>
 					      	  </select>
-					          <button class="ql-bold" aria-label="Bold"></button>
-					          <button class="ql-italic" aria-label="Italic"></button>
-					          <button class="ql-underline" aria-label="Underline"></button>
+					          <button class="ql-bold" aria-label="Bold" tabindex="-1"></button>
+					          <button class="ql-italic" aria-label="Italic" tabindex="-1"></button>
+					          <button class="ql-underline" aria-label="Underline" tabindex="-1"></button>
 					          <!-- <select class="ql-color">
 					      	  </select> -->
 					          <!-- <button class="ql-image" aria-label="Image"></button> -->
@@ -118,6 +118,7 @@
 					</p-editor>
 					<div class="form-group">
 						 <label>Attachments:</label>
+						 <small class="sizeGuide">Maximum size: 25 MB (combined)</small>
 				         <app-form-upload (uploadForm)="getDataFromChild($event)" (removeFile)="removeAttachment($event)"></app-form-upload>
 			        </div>
 				</div>
