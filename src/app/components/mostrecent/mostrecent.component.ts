@@ -13,6 +13,8 @@ export class MostRecentComponent implements OnInit {
   message: Message;
   readPercent: number;
   pendingPercent: number;
+  buildingImgSrc: string;
+  buildingImgPath = './assets/building-graphs/';
 
   constructor(public messageService: MessageService, private router: Router, private route: ActivatedRoute) { }
 
@@ -32,16 +34,30 @@ export class MostRecentComponent implements OnInit {
   }
 
   openReport() {
-    console.log('The message is: ');
-    console.log(this.message);
     this.router.navigate(['/report/message-report', this.message.id]);
-
-
   }
 
   calcPercents(message: Message) {
     this.readPercent = (message.readReceipts / message.totalReceipts);
     this.pendingPercent = (message.unreadReceipts / message.totalReceipts);
+    this.buildingImgSrc = this.getBuildingImage(this.readPercent);
   }
 
+  getBuildingImage(readPercent) {
+    if (readPercent <= .20) {
+      return this.buildingImgPath + 'building-0.png';
+
+    } else if (readPercent <= .40 && readPercent > .20) {
+      return this.buildingImgPath + 'building-25.png';
+
+    } else if (readPercent <= .60 && readPercent > .40)  {
+      return this.buildingImgPath + 'building-50.png';
+
+    } else if (readPercent <= .80 && readPercent > .60) {
+      return this.buildingImgPath + 'building-75.png';
+
+    } else if (readPercent <= .100) {
+      return this.buildingImgPath + 'building-100.png';
+    }
+  }
 }
