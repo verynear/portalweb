@@ -43,7 +43,6 @@ export class ComposeComponent implements OnInit, AfterViewInit {
   unitErrorNumber: string;
   unitIdForTenant: number;
   newMessageId: number;
-  public nativeElement: any;
 
   composeForm: FormGroup;
   type: FormControl;
