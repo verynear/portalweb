@@ -1,8 +1,13 @@
 .isRead {
     color: #3d9241;
     margin-left: 3px;
+    float: right;
 }
 
 .notRead {
     margin-left: 3px;
+}
+
+.noStyle {
+    list-style-type: none;
 }

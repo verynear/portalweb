@@ -36,8 +36,8 @@
                       <th>Location</th>
                       <th>Resident</th>
                       <th>Recent Messages</th>
-                      <th class="text-right">Sent Date</th>
-                      <th class="faMargin text-right">Receipt</th>
+                      <th>Sent Date</th>
+                      <th class="faMargin">Receipt</th>
                     </tr>
                   </thead>
                   <thead class="thead-light">
@@ -62,17 +62,16 @@
                           </li>
                         </ul> 
                       </td>
-                      <td class="text-right"> 
+                      <td> 
                         <ul class="list-unstyled">
                           <li *ngFor="let message of tenant.messages; let i=index">
-                            <div *ngIf="i<3">
-                              <!-- <span class="fa fa-check isRead"></span> -->
-                              {{message.createDate | date:'short'}}
+                            <div *ngIf="i<3" class="sentGray">
+                               {{message.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
                             </div>
                           </li>
                         </ul> 
                       </td>
-                      <td class="text-right">
+                      <td>
                         <ul class="list-unstyled">
                           <li *ngFor="let message of tenant.messages; let i=index">
                             <div *ngIf="i<3">

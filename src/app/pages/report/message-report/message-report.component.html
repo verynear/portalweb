@@ -43,45 +43,65 @@
 										<thead>
 											<tr>
 												<th>Location</th>
-												<th>Resident</th>
-												<th class="text-right">Sent Date</th>
-												<th class="text-right">Read Receipt</th>
+                        <th>Resident</th>
+                        <th>Message</th>
+												<th>Sent Date</th>
+                        <th>Read Receipt</th>
+                        <!-- <th class="text-right">Attachment Receipt</th> -->
 											</tr>
 										</thead>
 										<thead class="thead-light">
                       <tr>
-                        <!-- <th colspan="5">Building: {{message?.messageRecipients[0].rentalSiteBuilding}}</th>  -->
                         <!-- TODO: Building, if applicable, belongs to entire message. -->
                       </tr>
 										</thead>
 										<tbody>
-											<tr *ngFor="let res of message.messageRecipients">
+											<tr *ngFor="let res of report?.messageRecipients">
                         <!-- Location -->
                         <td rowspan="1">{{res.rentalSiteBuildingUnit}}</td>
                         
                          <!-- Resident -->
                         <td>{{res.firstname}} {{res.lastname}}</td>
+
+                        <td> {{message.subject}} 
+                          <app-attachment-list (currSize)="rowSize($event, res)" [attachments]="res.attachment"></app-attachment-list> 
+               
+                        </td>
                         
                          <!-- Sent Date -->
-                        <td class="text-right">
+                        <td>
 													<ul>
-                            <li class="text-muted">
-                              {{message?.createDate | date:'short' }}
-                            </li>
+                              {{message?.createDate | date:'short' }} <span class="fa fa-check isRead"></span>
+
+                              <!-- Sent Column for Attachments -->
+                              <li *ngFor="let attachment of res.attachment; let i = index">
+                                <div *ngIf="i < res.rowSize">
+                                  {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+                                </div>
+                              </li>
 													</ul>
                         </td>
                         
                         <!-- Read Receipt -->
-												<td class="text-right">
+												<td>
 													<ul>
-                            <li class="text-muted" *ngIf="res.isRead===1">
+                            <li *ngIf="res.isRead===1">
                               <span class="fa fa-check isRead"></span>{{res.updateDate | date:'short' }}
                             </li>
                           
                             <li *ngIf="res.isRead===0" class="text-muted">
                                 <span class="fa fa-times notRead"></span> Not Read
                             </li>
-													</ul>
+                          </ul>
+
+                          <!-- Opened Column for Attachments -->
+                          <ul>
+                            <li *ngFor="let attachment of res.attachment; let i = index">
+                                <div *ngIf="i < res.rowSize">
+                                  {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+                                </div>
+                            </li>
+                          </ul>
                         </td>
 											</tr>
 										</tbody>

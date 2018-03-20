@@ -33,8 +33,8 @@
                         <th>Location</th>
                         <th>Resident</th>
                         <th>Recent Messages</th>
-                        <th class="text-right">Sent Date</th>
-                        <th class="faMargin text-right">Receipt</th>
+                        <th>Sent Date</th>
+                        <th class="faMargin">Receipt</th>
                       </tr>
                     </thead>
 
@@ -56,33 +56,54 @@
                             <li *ngFor="let message of tenant.messages; let i=index">
                               <div *ngIf="i<3">
                                 <a [routerLink]="" class="pointer" (click)="openMessageReport(message.id)"> {{message.subject}} </a>
+                              
+                                <app-attachment-list (currSize)="rowSize($event, message)" [attachments]="message.attachment"></app-attachment-list>
                               </div>
                             </li>
                           </ul> 
                         </td>
-                        <td class="text-right"> 
+                        <td> 
                           <ul class="list-unstyled">
                             <li *ngFor="let message of tenant.messages; let i=index">
-                              <div *ngIf="i<3">
-                                <!-- <span class="fa fa-check isRead"></span> -->
-                                {{message.createDate | date:'short'}}
+                              <div *ngIf="i<3" class="sentGray">
+
+                                {{message.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+
+                                <!-- Message Attachment Report -->
+                                <ul class="list-unstyled attachmentDate">
+                                  <li *ngFor="let attachment of message.attachment; let i = index">
+                                    <div *ngIf="i < message.rowSize">
+                                      {{ attachment.createDate | date:'short' }} <span class="fa fa-check isRead"></span>
+                                    </div>
+                                  </li>
+                                </ul>
+
                               </div>
                             </li>
                           </ul> 
                         </td>
-                        <td class="text-right">
+                        <td>
                           <ul class="list-unstyled">
                             <li *ngFor="let message of tenant.messages; let i=index">
                               <div *ngIf="i<3">
                                 
-                                <div class="text-muted faMargin" *ngIf="!message.updateDate">Not Read
-                                    <!-- <span class="fa fa-check isRead"></span> -->
-                                    <span class="fa fa-times notRead"></span>
+                                <div *ngIf="!message.updateDate" class="text-muted">
+                                  Not Read <span class="fa fa-times text-right notRead"></span>
                                 </div>
   
                                 <div *ngIf="message.updateDate">
-                                  <span class="fa fa-check isRead"></span> {{message.updateDate | date:'short'}}
+                                   {{message.updateDate | date:'short'}} <span class="fa fa-check isRead"></span>
                                 </div>
+
+                                <!-- Message Attachment Report -->
+                                <ul class="list-unstyled attachmentDate">
+                                    <li *ngFor="let attachment of message.attachment; let i = index">
+                                      <div *ngIf="i < message.rowSize">
+                                        {{ attachment.updateDate | date:'short' }} <span class="fa fa-check isRead"></span>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                
                               </div>
                             </li>
                           </ul> 
@@ -90,7 +111,6 @@
                       </tr>
                     </tbody>
                     </ng-container>
-
                   </table>
               </section>
             </div>
