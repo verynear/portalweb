@@ -64,9 +64,8 @@
                         <td>{{res.firstname}} {{res.lastname}}</td>
 
                         <td> {{message.subject}} 
-                          <app-attachment-list [attachments]="res.attachment"></app-attachment-list> 
+                          <app-attachment-list (currSize)="rowSize($event, res)" [attachments]="res.attachment"></app-attachment-list> 
                
-                          <!-- {{res.attachment[0]?.url}} -->
                         </td>
                         
                          <!-- Sent Date -->
@@ -75,8 +74,10 @@
                               {{message?.createDate | date:'short' }} <span class="fa fa-check isRead"></span>
 
                               <!-- Sent Column for Attachments -->
-                              <li *ngFor="let attachment of res.attachment">
-                                {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+                              <li *ngFor="let attachment of res.attachment; let i = index">
+                                <div *ngIf="i < res.rowSize">
+                                  {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+                                </div>
                               </li>
 													</ul>
                         </td>
@@ -84,7 +85,7 @@
                         <!-- Read Receipt -->
 												<td>
 													<ul>
-                            <li  *ngIf="res.isRead===1">
+                            <li *ngIf="res.isRead===1">
                               <span class="fa fa-check isRead"></span>{{res.updateDate | date:'short' }}
                             </li>
                           
@@ -95,8 +96,10 @@
 
                           <!-- Opened Column for Attachments -->
                           <ul>
-                            <li *ngFor="let attachment of res.attachment">
-                                {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+                            <li *ngFor="let attachment of res.attachment; let i = index">
+                                <div *ngIf="i < res.rowSize">
+                                  {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+                                </div>
                             </li>
                           </ul>
                         </td>
