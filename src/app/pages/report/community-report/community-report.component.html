@@ -65,7 +65,7 @@
                         <td> 
                           <ul class="list-unstyled">
                             <li *ngFor="let message of tenant.messages; let i=index">
-                              <div *ngIf="i<3" class="sentGray">
+                              <div *ngIf="i<3">
 
                                 {{message.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
 
