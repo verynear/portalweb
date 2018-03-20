@@ -56,9 +56,11 @@ export class SentboxComponent implements OnInit {
         this.loading = false;
         this.messages = data['messages'];
         this.totalItems = data['totalPages'] * data['numberOfElements'];
+        console.log('messageLenght');
       },
       error => {
         console.log('Error: getSentMessages(): SentboxComponent()');
+        this.loading = false;
       });
   }
 

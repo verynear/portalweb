@@ -22,7 +22,7 @@
 					<th class="text-right1" style="padding-left:50px;">
 						<app-th columnName="createDate" displayName="Date"></app-th>
 					</th> 
-			<tbody> 
+			<tbody *ngIf="inquiries?.length; else no_data_templ1"> 
 				<tr *ngFor='let inquiry of inquiries' (click)="openInquiry(inquiry.id)">
 					<td>
 						<ul class="list-inline m-0">
@@ -56,3 +56,31 @@
 <ngb-pagination *ngIf="!loading1" [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
 </div>
+
+<ng-template #no_data_templ1><tbody>
+	        <tbody>
+				<tr>
+					<td>
+						<ul class="list-inline m-0">
+						  <li class="list-inline-item">
+							<p-checkbox name="groupname1" value="val2" binary="true"></p-checkbox>
+						  </li>
+						</ul>
+					</td>
+
+					<td class="width-150">
+						    Doe, John
+					</td>
+
+					<td class="min-width-100" style="padding-right: 20px;">
+		
+						<span class="previewTitle"> No Messages -</span> 
+						<span class="previewTitle1"> Empty Message</span> 
+					</td> 
+
+					<td class="text-right1" style="padding-left: 50px;">
+						<span>Aug 10, 1984 </span>
+					</td>
+				</tr>			
+			</tbody>			               
+</ng-template>

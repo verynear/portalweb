@@ -26,10 +26,14 @@ export class MostRecentComponent implements OnInit {
     this.messageService.getSent(0, 1).subscribe(
       data => {
         this.message = data['messages'][0];
+        console.log('MESSAGE');
+        console.log(this.message);
         this.calcPercents(this.message);
       },
       error => {
         console.log('Error: getMostRecent(): MostRecent()');
+        this.readPercent = 0;
+        this.pendingPercent = 1;
       });
   }
 
