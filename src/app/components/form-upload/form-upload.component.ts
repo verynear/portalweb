@@ -57,7 +57,8 @@ export class FormUploadComponent implements OnInit {
 
   remove(index) {
       this.removedFileName = this.uploadedFiles[index].name;
-      this.removedFileSize = (this.uploadedFiles[index].size / 1000);
+      this.removedFileSize = (this.uploadedFiles[index].size / 1000000);
+      this.totalAttachSize -= this.removedFileSize;
       this.uploadedFiles.splice(index, 1);
       if (this.uploadedFiles.length === 0) {
         this.uploadReady = false;
@@ -101,6 +102,7 @@ export class FormUploadComponent implements OnInit {
                   summary: this.fileNameTooLongMessageSummary.replace('{0}', file.name),
                   detail: this.fileNameTooLongMessageDetail
               });
+              this.totalAttachSize -= (file.size / 1000000);
               const index = this.uploadedFiles.indexOf(file);
               this.remove(index);
               this.uploadReady = false;

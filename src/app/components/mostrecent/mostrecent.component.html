@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6" *ngIf="message; else no_data_templ">
     <h5 class="card-title"><small>Sent: {{message?.createDate | date:'MMM d, y, h:mm a' }}</small><br>{{message?.subject}}</h5>
     <p [innerHTML]="message?.message | htmlToPlain"> </p>
     <a (click)="openReport()" class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="messages" class="btn btn-default btn-sm">View All Messages</a>
   </div>
   <div class="col-md-6 flex">
-      <img class="buildingImg padding-15" [src]="buildingImgSrc">
+      <img class="buildingImg padding-15" [src]="buildingImgSrc" alt="BetterLeasing" onError="this.src='./assets/building-graphs/building-0.png';">
 
       <ul class="list-unstyled mt-5">
         <li>
@@ -23,3 +23,10 @@
   </div> 
 </div>
 
+<ng-template #no_data_templ>
+  <div class="col-md-6">
+     <h5 class="card-title"><small>Sent: {{ whatTime | async | date:'MMM d, y, h:mm a' }}</small><br>No Messages</h5>
+         <p>Empty Message</p>
+         <a (click)="openReport()" disabled class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="messages" class="btn btn-default btn-sm">View All Messages</a>
+  </div>
+</ng-template>
