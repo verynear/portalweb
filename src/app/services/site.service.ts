@@ -92,11 +92,13 @@ export class SiteService {
   setDefaultSite() {
     this.getRentalSites().subscribe((sites: Site[]) => {
       const user = this.sessionService.get('currentUser');
-      this.currentSite.next(sites[0]); // Default Site is at 0th index.
 
       for (const site of sites) {
         if (site.id === user.defaultRentalSiteId) {
           this.currentSite.next(site); // Set Default Site by User Specification.
+        } else {
+          this.currentSite.next(sites[0]); // Default Site is at 0th index.
+
         }
       }
     });

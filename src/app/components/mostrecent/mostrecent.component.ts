@@ -19,6 +19,7 @@ export class MostRecentComponent implements OnInit {
   constructor(public messageService: MessageService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.buildingImgSrc = './assets/building-graphs/building-0.png';
     this.getMostRecent();
   }
 
@@ -26,8 +27,6 @@ export class MostRecentComponent implements OnInit {
     this.messageService.getSent(0, 1).subscribe(
       data => {
         this.message = data['messages'][0];
-        console.log('MESSAGE');
-        console.log(this.message);
         this.calcPercents(this.message);
       },
       error => {
