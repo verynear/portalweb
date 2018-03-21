@@ -23,6 +23,8 @@ import { ActivityComponent } from './pages/activity/activity.component';
 import { BuildingReportComponent } from './pages/report/building-report/building-report.component';
 import { CommunityReportComponent } from './pages/report/community-report/community-report.component';
 import { ReportNavComponent } from './pages/report/report-nav/report-nav.component';
+import { LeasingComponent } from './pages/leasing/leasing.component';
+import { LeaseFormComponent } from './components/lease-form/lease-form.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -30,6 +32,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'applicants', component: ApplicantsComponent, canActivate: [AuthGuard] },
+  { path: 'leasing', component: LeasingComponent, canActivate: [AuthGuard]},
   {
     path: 'messages',
     component: MessagesComponent,

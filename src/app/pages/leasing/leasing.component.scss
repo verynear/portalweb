@@ -1,0 +1,31 @@
+/* Default Reset
+-------------------------------------------------- */
+.leads table a {
+  text-decoration: none;
+  display: block;
+}
+.leads table th:nth-child(5), 
+.leads table td:nth-child(5) {
+  background-color: #c3d1d7;
+}
+.leads table tr th,
+.leads table tr td {
+  vertical-align: middle;
+  font-size: 14px;
+
+}
+.leads table tr th sup .btn.btn-sm {
+  padding: 0;
+}
+.leads table tr td {
+  padding: 6px 8px;
+}
+.leads table .btn.btn-sm {
+  padding: 4px 6px;
+}
+.leads table thead > tr > th > svg,
+.leads table thead > tr > th > i {
+  float: right;
+  color: #aaa;
+  margin-top: 5px;
+}
