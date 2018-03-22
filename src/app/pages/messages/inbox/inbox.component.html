@@ -1,10 +1,17 @@
 <app-loading message="Loading..." *ngIf="loading"></app-loading>
 
-<div id="marginFix">
+<ngb-pagination [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
-<ngb-pagination *ngIf="!loading1" [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+<!-- Tool Kit For Inbox -->
+<div class="d-flex">
+	<div class="btn-toolbar">
+		<app-message-filter class="mr-1"></app-message-filter>
+		<button type="button" class="btn btn-default btn-sm mr-1"> <i class="fa fa-trash fa-lg"></i></button>
+		<a (click)="refresh()" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
+	</div>
+</div>
 
-<section class="inbox" *ngIf="!loading1">
+<section class="inbox">
 	<div class="table">
 	 	<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 			<thead class="thead-light">
@@ -22,7 +29,7 @@
 					<th class="text-right1" style="padding-left:50px;">
 						<app-th columnName="createDate" displayName="Date"></app-th>
 					</th> 
-			<tbody *ngIf="inquiries?.length; else no_data_templ1"> 
+			<tbody *ngIf="inquiries?.length; else no_data_templ"> 
 				<tr *ngFor='let inquiry of inquiries' (click)="openInquiry(inquiry.id)">
 					<td>
 						<ul class="list-inline m-0">
@@ -53,34 +60,27 @@
 	</div>
 </section>     
 
-<ngb-pagination *ngIf="!loading1" [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+<ngb-pagination [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
-</div>
+<!-- if no messages are loaded, use this placeholder -->
+<ng-template #no_data_templ>
+	<tbody *ngIf="!loading">
+		<tr>
+			<td>
+				
+			</td>
 
-<ng-template #no_data_templ1>
-	        <tbody>
-				<tr>
-					<td>
-						<ul class="list-inline m-0">
-						  <li class="list-inline-item">
-							<p-checkbox name="groupname1" value="val2" binary="true"></p-checkbox>
-						  </li>
-						</ul>
-					</td>
+			<td>
+				User
+			</td>
 
-					<td class="width-150">
-						    Doe, John
-					</td>
+			<td>
+				<span class="previewTitle"> You have not received any messages </span> 
+			</td>
 
-					<td class="min-width-100" style="padding-right: 20px;">
-		
-						<span class="previewTitle"> No Messages -</span> 
-						<span class="previewTitle1"> Empty Message</span> 
-					</td> 
-
-					<td class="text-right1" style="padding-left: 50px;">
-						<span>Aug 10, 1984 </span>
-					</td>
-				</tr>			
-			</tbody>			               
+			<td class="text-right">
+				Aug 10, 1984
+			</td>
+		</tr>			
+	</tbody>			               
 </ng-template>
