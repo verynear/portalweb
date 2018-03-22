@@ -1,31 +1,39 @@
-<div class="marginTop"></div>
+<app-loading message="Loading..." *ngIf="loading"></app-loading>
 
-<div *ngIf="!loading" class="table-responsive">
-    <table class="table table table-striped table-bordered table-hover">
-      <tbody>
-        <tr>
-          <td>
-            <p>  
-              <strong>{{message?.subject}}<br>
-                <small>{{message?.createDate | date}}</small>
-              </strong>
-            </p>
-            <p>
-              <span [innerHTML]="message?.message | safeHtml"></span>
-            </p>
-            <p>
-              <small *ngIf="message?.messageAttachments.length"><i class="fa fa-paperclip">{{message?.messageAttachments.length}} Attachments</i></small>
-            </p>
-            <section class="attachSection" *ngIf="message?.messageAttachments.length">
-              <span class="attachSpan" *ngFor='let attachment of message?.messageAttachments'>
-                <a href="{{attachment.url}}" download>
-                  <img class="attach" [src]="attachment.url" alt="File" onError="this.src='./assets/FilePDF.png';">
-                </a>
-              </span>
-            </section>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <img *ngIf="loading" class="spinner" src="./assets/Spinner-100px.gif" />
+<div class="d-flex">
+    <div class="btn-toolbar">
+      <a routerLink="/messages/sent" class="btn btn-default btn-sm mr-1"><i class="fa fa-long-arrow-left"></i> Back</a>
+      <button type="button" class="btn btn-default btn-sm mr-1"> <i class="fa fa-trash fa-lg"></i></button>
+    </div>
+</div>
+
+<section class="viewMessage">
+  <div *ngIf="!loading" class="table-responsive">
+      <table class="table table table-striped table-bordered table-hover">
+        <tbody>
+          <tr>
+            <td>
+              <p>  
+                <strong>{{message?.subject}}<br>
+                  <small>{{message?.createDate | date}}</small>
+                </strong>
+              </p>
+              <p>
+                <span [innerHTML]="message?.message | safeHtml"></span>
+              </p>
+              <p>
+                <small *ngIf="message?.messageAttachments.length"><i class="fa fa-paperclip">{{message?.messageAttachments.length}} Attachments</i></small>
+              </p>
+              <section class="attachSection" *ngIf="message?.messageAttachments.length">
+                <span class="attachSpan" *ngFor='let attachment of message?.messageAttachments'>
+                  <a href="{{attachment.url}}" download>
+                    <img class="attach" [src]="attachment.url" alt="File" onError="this.src='./assets/FilePDF.png';">
+                  </a>
+                </span>
+              </section>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</section>

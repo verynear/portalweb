@@ -14,27 +14,19 @@ import { NgbDropdownConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./sentbox.component.scss']
 })
 export class SentboxComponent implements OnInit {
-  pageName = 'Sent';
-
   messages: Array<Message>;
   itemsPerPage: number;      // The number of emails per page.
   totalItems: number;
   page: number;
   checkAll: boolean;
   loading: boolean;
-  unitReciptients: string[];
-
 
   constructor(private router: Router, public messageService: MessageService, config: NgbDropdownConfig) {
-    // Default values for dropdowns.
     config.autoClose = 'outside';
-    messageService.onSent$.subscribe(sent => {
-      this.onModalSend();
-    });
+
   }
 
   ngOnInit() {
-    console.log('ngOnInit: SentBox');
     this.loading = true;
     this.itemsPerPage = 25;   // Number of Mail Items per page.
     this.page = 1;            // Starting Page
@@ -42,21 +34,18 @@ export class SentboxComponent implements OnInit {
     this.getSentMessages(this.page - 1, this.itemsPerPage);
   }
 
-  /* Event Callback from NgBootstrap Pagination */
   pageChange() {  // TODO: Why is this called on init?
-    console.log('pageChange: SentBox');
     this.nextPage(this.page - 1, this.itemsPerPage); // page-1 because NgBootstrap starts at page=1
   }
 
   getSentMessages(page, itemsPerPage) {
-    console.log('getSentMessages: SentBox');
     this.loading = true;
     this.messageService.getSent(page, itemsPerPage).subscribe(
       data => {
         this.loading = false;
+        
         this.messages = data['messages'];
         this.totalItems = data['totalPages'] * data['numberOfElements'];
-        console.log('messageLenght');
       },
       error => {
         console.log('Error: getSentMessages(): SentboxComponent()');
@@ -65,7 +54,6 @@ export class SentboxComponent implements OnInit {
   }
 
   nextPage(page, itemsPerPage) {
-    console.log('nextPage: SentBox');
     this.loading = true;
     this.messageService.getSent(page, itemsPerPage).subscribe(
       data => {
@@ -84,28 +72,23 @@ export class SentboxComponent implements OnInit {
     }
   }
 
-  // For sort event./
-  onSorted($event) {
-    this.messages = this.messageService.sortMessages(this.messages, $event);
-  }
-
-  onModalSend() {
-    this.page = 0;
-    this.getSentMessages(this.page, this.itemsPerPage);
+  refresh() {
+    this.getSentMessages(0, this.itemsPerPage);
   }
 
   openMessage(id: number) {
     this.loading = true;
-    this.router.navigate(['/messages/view', id]);
-    console.log('OPEN MESSAGE');
-    console.log(id);
+    this.router.navigate(['/messages/sent', id]);
   }
 
   openReport(id: number) {
     this.loading = true;
     this.router.navigate(['/report/message-report', id]);
-    console.log('OPEN REPORT');
-    console.log(id);
+  }
+
+  // For sort event./
+  onSorted($event) {
+    this.messages = this.messageService.sortMessages(this.messages, $event);
   }
 
 }

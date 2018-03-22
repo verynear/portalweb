@@ -1,6 +1,14 @@
-<div class="marginTop"></div>
+<app-loading message="Loading..." *ngIf="loading"></app-loading>
 
-<div *ngIf="!loading" class="table-responsive">
+<div class="d-flex">
+    <div class="btn-toolbar">
+      <a routerLink="/messages/inbox" class="btn btn-default btn-sm mr-1"><i class="fa fa-long-arrow-left"></i> Back</a>
+      <button type="button" class="btn btn-default btn-sm mr-1"> <i class="fa fa-trash fa-lg"></i></button>
+    </div>
+</div>
+
+<section class="viewMessage">
+  <div *ngIf="!loading" class="table-responsive">
     <table class="table table table-striped table-bordered table-hover">
       <tbody>
         <tr>
@@ -28,4 +36,4 @@
       </tbody>
     </table>
   </div>
-  <img *ngIf="loading" class="spinner" src="./assets/Spinner-100px.gif" />
+</section>

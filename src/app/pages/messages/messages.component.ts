@@ -32,7 +32,7 @@ export class MessagesComponent implements OnInit {
   }
 
   viewingSent() {
-    if (this.router.url.includes('messages/view')) {
+    if (this.router.url.includes('messages/sent/')) {
       return true;
     }
 
@@ -40,7 +40,7 @@ export class MessagesComponent implements OnInit {
   }
 
   viewingReceived() {
-    if (this.router.url.includes('messages/received')) {
+    if (this.router.url.includes('messages/inbox/')) {
       return true;
     }
 
