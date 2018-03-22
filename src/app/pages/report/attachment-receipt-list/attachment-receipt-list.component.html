@@ -1,0 +1,14 @@
+<ul class="list-unstyled attachmentDate">
+  <li *ngFor="let attachment of attachments; let i = index">
+    <div *ngIf="i < rowSize">
+
+      <div *ngIf="attachment.updateDate">
+          {{ attachment.updateDate | date:'short' }} <span class="fa fa-check isRead"></span>
+      </div>
+
+      <div *ngIf="!attachment.updateDate" class="text-muted">
+          {{ notification }} <span class="fa fa-times"></span>
+      </div>
+    </div>
+  </li>
+</ul>
