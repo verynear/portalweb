@@ -57,7 +57,6 @@ export class InboxComponent implements OnInit {
       data => {
         this.loading = false;
         this.inquiries = data['generalInquiries'];
-        this.inquiries = [];
       },
       error => {
         this.loading = false;
