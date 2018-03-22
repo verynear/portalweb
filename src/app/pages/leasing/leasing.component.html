@@ -23,9 +23,10 @@
 								</div>
 								<div class="mr-1">
 									<!--Filter dropdown - multi-select-->
-									<div class="dropdown">
-										<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter</button>
-										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<div ngbDropdown class="dropdown">
+										<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true"
+                                                aria-expanded="false">Filter</button>
+										<div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownFilter">
 											<a class="dropdown-item" href="#"><i class="fa fa-times"></i> Clear Filter</a>
 											<a class="dropdown-item" href="#">New Applicant</a>
 											<a class="dropdown-item" href="#">Pending Application</a>
@@ -61,11 +62,11 @@
 								<th><i class="fa fa-angle-down"></i>Building</th>
 								<th><i class="fa fa-angle-down"></i>Unit</th>
 								<th><i class="fa fa-angle-down"></i>Applicant</th>
-								<th><i class="fa fa-angle-down"></i>Date <sup><button type="button" class="btn btn-link btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="Application Date"><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
-								<th><i class="fa fa-angle-down"></i>Status <sup><button type="button" class="btn btn-link btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="Application Status. Click on the View button to view the status and progress of an application."><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
+								<th><i class="fa fa-angle-down"></i>Date <sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Application Date"><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
+								<th><i class="fa fa-angle-down"></i>Status <sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Application Status. Click on the View button to view the status and progress of an application."><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
 								<th><i class="fa fa-angle-down"></i>Move-In Date</th>
-								<th><i class="fa fa-angle-down"></i><img src="images/icon-sr.png" height="21" class="float-left mr-2" alt=""> Screening</th>
-								<th><i class="fa fa-angle-down"></i>Pre-Lease <sup><button type="button" class="btn btn-link btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="Pre-Lease Form"><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
+								<th><i class="fa fa-angle-down"></i><img src="assets/icon-sr.png" height="21" class="float-left mr-2" alt=""> Screening</th>
+								<th><i class="fa fa-angle-down"></i>Pre-Lease <sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Pre-Lease Form"><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
 								<th><i class="fa fa-angle-down"></i>Lease</th>
 							</tr>
 						</thead>
