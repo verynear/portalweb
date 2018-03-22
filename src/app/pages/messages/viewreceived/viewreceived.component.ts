@@ -13,8 +13,7 @@ import { AlertService } from '../../../services/alert.service';
 export class ViewReceivedComponent implements OnInit {
 
   id: number;
-  private sub: any;
-  inquiry: any;
+  inquiry: Inquiry;
   loading: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute,
@@ -28,22 +27,16 @@ export class ViewReceivedComponent implements OnInit {
     });
   }
 
-  // ngOnDestroy() {
-  //   this.route.unsubscribe();
-  // }
-
-  getInquiry(id) {
+  getInquiry(id: number) {
+    this.loading = true;
     this.messageService.getInquiry(id).subscribe(
       data => {
         this.loading = false;
         this.inquiry = data;
-        console.log('FETCHED INQUIRY');
-        console.log(this.inquiry);
       },
       error => {
         this.loading = false;
-        this.alertService.error('Unable to retrieve inquiry');
+        console.log("Error: getInquery(): ViewReceived");
       });
   }
-
 }

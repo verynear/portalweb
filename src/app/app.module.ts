@@ -84,6 +84,8 @@ import { AttachmentListComponent } from './pages/report/attachment-list/attachme
 import { LeasingComponent } from './pages/leasing/leasing.component';
 import { LeaseFormComponent } from './components/lease-form/lease-form.component';
 import { SrNotesComponent } from './pages/leasing/sr-notes/sr-notes.component';
+import { MessageFilterComponent } from './pages/messages/message-filter/message-filter.component';
+
 
 
 @NgModule({
@@ -155,6 +157,7 @@ import { SrNotesComponent } from './pages/leasing/sr-notes/sr-notes.component';
     LeasingComponent,
     LeaseFormComponent,
     SrNotesComponent,
+    MessageFilterComponent,
   ],
   providers: [
       {

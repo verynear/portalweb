@@ -41,9 +41,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'sent', pathMatch: 'full' },
       { path: 'sent', component: SentboxComponent },
+      { path: 'sent/:id', component: ViewSentComponent },
       { path: 'inbox', component: InboxComponent },
-      { path: 'view/:id', component: ViewSentComponent },
-      { path: 'received/:id', component: ViewReceivedComponent }
+      { path: 'inbox/:id', component: ViewReceivedComponent }
     ]
   },
   { path: 'report/message-report/:id', component: MessageReportComponent, canActivate: [AuthGuard] },
