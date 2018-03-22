@@ -1,6 +1,6 @@
 <app-loading message="Loading..." *ngIf="loading"></app-loading>
 
-<ngb-pagination [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+<ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
 <!-- Tool Kit For Inbox -->
 <div class="d-flex">
@@ -60,7 +60,7 @@
 	</div>
 </section>     
 
-<ngb-pagination [collectionSize]="totalItems1" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+<ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
 <!-- if no messages are loaded, use this placeholder -->
 <ng-template #no_data_templ>

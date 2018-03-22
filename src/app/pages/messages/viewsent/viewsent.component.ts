@@ -35,7 +35,7 @@ export class ViewSentComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        console.log("Error: getMessage()");
+        console.log('Error: getMessage()');
       });
   }
 

@@ -36,7 +36,7 @@ export class ViewReceivedComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        console.log("Error: getInquery(): ViewReceived");
+        console.log('Error: getInquiry(): ViewReceived');
       });
   }
 }

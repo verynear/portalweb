@@ -4,7 +4,7 @@ export class Inquiry {
   message: string;
   messageType: string;
   subject: string;
-  selected: boolean;
+  selected?: boolean;
   tenant: Tenant1;
   attachmentSize: number;
   generalInquiryAttachments: GeneralInquiryAttachments[];
@@ -22,4 +22,5 @@ export class GeneralInquiryAttachments {
   fileName: string;
   fileSizeKB: number;
   fileType: string;
+  createDate: Date;
 }
