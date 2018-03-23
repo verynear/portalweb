@@ -38,8 +38,7 @@ export class CommunityReportComponent implements OnInit {
   showAttachments(message) {
     if (message.showAttachments == null) {  /* For the case when it's not init'd */
       message.showAttachments = true;
-    }
-    else {
+    } else {
       message.showAttachments = !message.showAttachments;
     }
   }

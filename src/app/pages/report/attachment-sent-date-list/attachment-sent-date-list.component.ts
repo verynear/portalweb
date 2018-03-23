@@ -8,7 +8,7 @@ import { Attachment } from '../../../models/attachment';
   styleUrls: ['./attachment-sent-date-list.component.scss']
 })
 export class AttachmentSentDateListComponent implements OnInit {
-  
+
   // An array of attachments.
   @Input('attachments')
   attachments = new Array<Attachment>();
@@ -20,7 +20,7 @@ export class AttachmentSentDateListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Attachment } from '../../../models/attachment';
 
 /*
-  Attachment-Receipt-List Component 
+  Attachment-Receipt-List Component
   **Displays a list of receipt dates, or 'Not Opened' if the attachment has not been opened.
 
   @Param attachments -- An array of attachments.
@@ -16,7 +16,7 @@ import { Attachment } from '../../../models/attachment';
 })
 export class AttachmentReceiptListComponent implements OnInit {
 
-  public notification: string = "Not Opened";
+  public notification = 'Not Opened';
 
   // An array of attachments.
   @Input('attachments')
