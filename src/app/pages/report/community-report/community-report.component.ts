@@ -4,6 +4,8 @@ import { ReportService } from '../../../services/report.service';
 import { Building } from '../../../models/building';
 import { Site } from '../../../models/site';
 import { Router } from '@angular/router';
+import { Attachment } from '../../../models/attachment';
+import { Message } from '../../../models/message';
 
 @Component({
   selector: 'app-community-report',
@@ -33,8 +35,19 @@ export class CommunityReportComponent implements OnInit {
     });
   }
 
+  showAttachments(message) {
+    if (message.showAttachments == null) {  /* For the case when it's not init'd */
+      message.showAttachments = true;
+    } else {
+      message.showAttachments = !message.showAttachments;
+    }
+  }
+
+  rowSize($event, message) {
+    message.rowSize = $event;
+  }
+
   openMessageReport(messageId: number) {
     this.router.navigate(['/report/message-report', messageId]);
   }
-
 }

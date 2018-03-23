@@ -5,3 +5,17 @@ table {
 .rowHeader {
     background-color: #e9ecef;
 }
+
+.rowHeader:hover {
+    background-color: #e9ecef;
+}
+
+.reportButton {
+    padding: 0.24rem .5rem .10rem;
+    color: white;
+    border-radius: 5px;
+    font-size: 9px;
+    background-color: #6c757d;
+    opacity: .5;
+}
+

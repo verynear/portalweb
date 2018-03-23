@@ -7,7 +7,7 @@ export class Message {
   messageType: string;
   type: string;
   message: string;
-  selected: boolean;
+  selected?: boolean;
   subject: string;
   createDate: Date;
   rentalsitesId: number;
@@ -18,12 +18,12 @@ export class Message {
 }
 
 export class MessageRecipients {
-  emailAddress: number;
+  emailAddress: string;
   firstname: string;
   lastname: string;
   phone: string;
-  isArchived: string;
-  isRead: string;
+  isArchived: number;
+  isRead: number;
   updateDate: Date;
   rentalSite: string;
   rentalSiteBuilding: string;

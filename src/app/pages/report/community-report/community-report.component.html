@@ -33,8 +33,8 @@
                         <th>Location</th>
                         <th>Resident</th>
                         <th>Recent Messages</th>
-                        <th class="text-right">Sent Date</th>
-                        <th class="faMargin text-right">Receipt</th>
+                        <th>Sent Date</th>
+                        <th class="faMargin">Receipt</th>
                       </tr>
                     </thead>
 
@@ -51,38 +51,57 @@
                           <p> {{unit.unitNumber}} </p>
                         </td>
                         <td> {{tenant.firstname}} {{tenant.lastname}}</td>
-                        <td>  
+                        <td style="width: 450px">  
                           <ul class="list-unstyled">
                             <li *ngFor="let message of tenant.messages; let i=index">
                               <div *ngIf="i<3">
-                                <a [routerLink]="" class="pointer" (click)="openMessageReport(message.id)"> {{message.subject}} </a>
-                              </div>
-                            </li>
-                          </ul> 
-                        </td>
-                        <td class="text-right"> 
-                          <ul class="list-unstyled">
-                            <li *ngFor="let message of tenant.messages; let i=index">
-                              <div *ngIf="i<3">
-                                <!-- <span class="fa fa-check isRead"></span> -->
-                                {{message.createDate | date:'short'}}
-                              </div>
-                            </li>
-                          </ul> 
-                        </td>
-                        <td class="text-right">
-                          <ul class="list-unstyled">
-                            <li *ngFor="let message of tenant.messages; let i=index">
-                              <div *ngIf="i<3">
+                                <a [routerLink]="" (click)="openMessageReport(message.id)"> {{message.subject}} </a>
+
+                                <div *ngIf="message.messageAttachments.length > 0" class="float-right">
+                                  <a [routerLink]="" (click)="showAttachments(message)"><i class="fa fa-paperclip"></i></a>
+                                </div>
                                 
-                                <div class="text-muted faMargin" *ngIf="!message.updateDate">Not Read
-                                    <!-- <span class="fa fa-check isRead"></span> -->
-                                    <span class="fa fa-times notRead"></span>
+                                
+                                <div *ngIf="message.showAttachments">
+                                  <app-attachment-list (currSize)="rowSize($event, message)" [attachments]="message.messageAttachments"></app-attachment-list>
+                                </div>
+
+                              </div>
+                            </li>
+                          </ul> 
+                        </td>
+                        <td> 
+                          <ul class="list-unstyled">
+                            <li *ngFor="let message of tenant.messages; let i=index">
+                              <div *ngIf="i<3">
+
+                                {{message.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
+
+                                <div *ngIf="message.showAttachments">
+                                  <app-attachment-sent-date-list [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-sent-date-list>
+                                </div>
+
+                              </div>
+                            </li>
+                          </ul> 
+                        </td>
+                        <td>
+                          <ul class="list-unstyled">
+                            <li *ngFor="let message of tenant.messages; let i=index">
+                              <div *ngIf="i<3">
+
+                                <div *ngIf="!message.updateDate" class="text-muted">
+                                  Not Read <span class="fa fa-times"></span>
                                 </div>
   
                                 <div *ngIf="message.updateDate">
-                                  <span class="fa fa-check isRead"></span> {{message.updateDate | date:'short'}}
+                                   {{message.updateDate | date:'short'}} <span class="fa fa-check isRead"></span>
                                 </div>
+
+                                <div *ngIf="message.showAttachments">
+                                  <app-attachment-receipt-list (expanded)="message.expanded" [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-receipt-list>
+                                </div>
+
                               </div>
                             </li>
                           </ul> 
@@ -90,7 +109,6 @@
                       </tr>
                     </tbody>
                     </ng-container>
-
                   </table>
               </section>
             </div>

@@ -30,7 +30,7 @@ export class DatatableComponent implements OnInit {
             { field: 'lastname', header: 'Last' },
             { field: 'phone', header: 'Phone' },
             { field: 'role', header: 'Status' },
-            { field: 'applicantPropertyName', header: 'Property' },
+            { field: 'applicantPropertyName', header: 'Community' },
             { field: 'applicantUnit', header: 'Unit' }
         ];
     }

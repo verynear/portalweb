@@ -1,36 +1,46 @@
 <app-loading message="Loading..." *ngIf="loading"></app-loading>
 
-<div id="marginFix">
+<ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
-<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+<!-- Tool Kit For Sent Box -->
+<div class="d-flex">
+	<div class="btn-toolbar">
+		<app-message-filter class="mr-1"></app-message-filter>
+		<button type="button" class="btn btn-default btn-sm mr-1"> <i class="fa fa-trash fa-lg"></i></button>
+		<a (click)="refresh()" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></a>
+	</div>
+</div>
 
-<section class="sentbox" *ngIf="!loading">
+<section class="sentbox">
 	<div class="table">
 	 	<table appSortableTable class="table table-hover" (sorted)="onSorted($event)">
 			<thead class="thead-light">
-					 <th class="width-25"> 
-						<app-th disable="true">
-							<p-checkbox name="groupname" value="val2" [(ngModel)]="checkAll" binary="true" (click)="selectAllMessages(checkAll)"></p-checkbox>
-						</app-th>
-					</th>
-					 <th class="width-250">
-						<app-th columnName="id" displayName="Recipient"></app-th>
-					</th> 
-					<th class="width-100">
-					</th>
-					<th class="min-width-100">
-						<app-th columnName="message" displayName="Message"></app-th>
-					</th>
-					<th class="text-right" style="padding-left:50px;">
-						<app-th columnName="createDate" displayName="Date"></app-th>
-					</th> 
-			<tbody> 
+				<th class="width-25"> 
+					<app-th disable="true">
+						<p-checkbox name="groupname" value="val2" [(ngModel)]="checkAll" binary="true" (click)="selectAllMessages(checkAll)"></p-checkbox>
+					</app-th>
+				</th>
+					<th class="width-250">
+					<app-th columnName="id" displayName="Recipient"></app-th>
+				</th> 
+				<th class="width-100">
+				</th>
+				<th class="min-width-100">
+					<app-th columnName="message" displayName="Message"></app-th>
+				</th>
+				<th class="text-right">
+					<app-th columnName="createDate" displayName="Date"></app-th>
+				</th> 
+
+
+
+			<tbody *ngIf="messages?.length; else no_data_templ"> 
 				<tr *ngFor='let message of messages' (click)="openMessage(message.id)">
 					<td>
 						<ul class="list-inline m-0">
-						  <li class="list-inline-item">
+						<li class="list-inline-item">
 							<p-checkbox name="groupname" value="val2" [(ngModel)]="message.selected" binary="true"></p-checkbox>
-						  </li>
+						</li>
 						</ul>
 					</td>
 
@@ -48,8 +58,8 @@
 							{{message.messageRecipients[0]?.rentalSiteBuilding}}:
 							Units -
 							<span *ngFor='let isLast=last; let message of message.messageRecipients | filterUnits'>
-							    {{message}}{{isLast ? '' : ', '}}
-						    </span>
+								{{message}}{{isLast ? '' : ', '}}
+							</span>
 						</span>
 
 						<span *ngIf="message.type === 'RESIDENT'">
@@ -60,6 +70,7 @@
 							</span>
 						</span>
 					</td>
+
 					<td>
 						<button [ngClass]="message.type" class="btn sentType UNIT">
 							<span *ngIf="message.type==='SITE'">
@@ -71,25 +82,52 @@
 						</button>
 					</td>
 
-					<td class="min-width-100" style="padding-right: 20px">
+					<td class="min-width-100">
 		
 						<span class="previewTitle"> {{message.subject}} -</span> 
 						<span class="previewSubject" [innerHTML]="message.message | htmlToPlain"> </span> 
 					</td>
-					<td class="text-right" style="padding-left: 50px">
+
+					<td class="text-right">
 						<i *ngIf="message.messageAttachments.length" class="fa fa-paperclip fa-lg"></i>
 						<button class="btn sentType report" (click)="openReport(message.id)">
-					       <i class="fa fa-tasks"></i>
-					    </button>
-					    <i style="color: #fff" class="fa fa-angle-right"></i>
+						<i class="fa fa-tasks"></i>
+						</button>
+						<i style="color: #fff" class="fa fa-angle-right"></i>
 						<span>{{message.createDate | date: 'MMM dd, y' }} </span>
 					</td>
+					
 				</tr>				               
 			</tbody>
 		</table>
 	</div>
-</section>     
+</section>      
 
-<ngb-pagination *ngIf="!loading" [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
+<ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="3" (pageChange)="pageChange()" class="float-right"></ngb-pagination>
 
-</div>
+<!-- if no messages are loaded, use this placeholder -->
+<ng-template #no_data_templ>
+		<tbody *ngIf="!loading">
+			<tr>
+				<td>
+					
+				</td>
+
+				<td>
+					User
+				</td>
+
+				<td>
+				
+				</td> 
+
+				<td>
+					<span class="previewTitle"> You have not sent any messages </span> 
+				</td>
+
+				<td class="text-right">
+					Aug 10, 1984
+				</td>
+			</tr>			
+		</tbody>			               
+</ng-template>
