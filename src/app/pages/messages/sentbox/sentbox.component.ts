@@ -43,7 +43,7 @@ export class SentboxComponent implements OnInit {
     this.messageService.getSent(page, itemsPerPage).subscribe(
       data => {
         this.loading = false;
-        
+
         this.messages = data['messages'];
         this.totalItems = data['totalPages'] * data['numberOfElements'];
       },
