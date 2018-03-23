@@ -29,8 +29,16 @@ export class BuildingReportComponent implements OnInit {
     });
   }
 
-  openMessageReport(messageId: number) {
-    this.router.navigate(['/report/message-report', messageId]);
+  showAttachments(message) {
+    if (message.showAttachments == null) {  /* For the case when it's not init'd */
+      message.showAttachments = true;
+    } else {
+      message.showAttachments = !message.showAttachments;
+    }
+  }
+
+  rowSize($event, message) {
+    message.rowSize = $event;
   }
 
   getBuildingReport(buildingId: number) {
@@ -43,5 +51,9 @@ export class BuildingReportComponent implements OnInit {
       error => {
         this.loading = false;
       });
+  }
+
+  openMessageReport(messageId: number) {
+    this.router.navigate(['/report/message-report', messageId]);
   }
 }

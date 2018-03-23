@@ -64,21 +64,12 @@
                         <td>{{res.firstname}} {{res.lastname}}</td>
 
                         <td> {{message.subject}} 
-                          <app-attachment-list (currSize)="rowSize($event, res)" [attachments]="res.attachment"></app-attachment-list> 
-               
                         </td>
                         
                          <!-- Sent Date -->
                         <td>
 													<ul>
                               {{message?.createDate | date:'short' }} <span class="fa fa-check isRead"></span>
-
-                              <!-- Sent Column for Attachments -->
-                              <li *ngFor="let attachment of res.attachment; let i = index">
-                                <div *ngIf="i < res.rowSize">
-                                  {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
-                                </div>
-                              </li>
 													</ul>
                         </td>
                         
@@ -95,13 +86,6 @@
                           </ul>
 
                           <!-- Opened Column for Attachments -->
-                          <ul>
-                            <li *ngFor="let attachment of res.attachment; let i = index">
-                                <div *ngIf="i < res.rowSize">
-                                  {{message?.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
-                                </div>
-                            </li>
-                          </ul>
                         </td>
 											</tr>
 										</tbody>

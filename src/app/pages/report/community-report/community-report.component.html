@@ -51,13 +51,21 @@
                           <p> {{unit.unitNumber}} </p>
                         </td>
                         <td> {{tenant.firstname}} {{tenant.lastname}}</td>
-                        <td>  
+                        <td style="width: 450px">  
                           <ul class="list-unstyled">
                             <li *ngFor="let message of tenant.messages; let i=index">
                               <div *ngIf="i<3">
-                                <a [routerLink]="" class="pointer" (click)="openMessageReport(message.id)"> {{message.subject}} </a>
-                              
-                                <app-attachment-list (currSize)="rowSize($event, message)" [attachments]="message.attachment"></app-attachment-list>
+                                <a [routerLink]="" (click)="openMessageReport(message.id)"> {{message.subject}} </a>
+
+                                <div *ngIf="message.messageAttachments.length > 0" class="float-right">
+                                  <a [routerLink]="" (click)="showAttachments(message)"><i class="fa fa-paperclip"></i></a>
+                                </div>
+                                
+                                
+                                <div *ngIf="message.showAttachments">
+                                  <app-attachment-list (currSize)="rowSize($event, message)" [attachments]="message.messageAttachments"></app-attachment-list>
+                                </div>
+
                               </div>
                             </li>
                           </ul> 
@@ -69,14 +77,9 @@
 
                                 {{message.createDate | date:'short'}} <span class="fa fa-check isRead"></span>
 
-                                <!-- Message Attachment Report -->
-                                <ul class="list-unstyled attachmentDate">
-                                  <li *ngFor="let attachment of message.attachment; let i = index">
-                                    <div *ngIf="i < message.rowSize">
-                                      {{ attachment.createDate | date:'short' }} <span class="fa fa-check isRead"></span>
-                                    </div>
-                                  </li>
-                                </ul>
+                                <div *ngIf="message.showAttachments">
+                                  <app-attachment-sent-date-list [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-sent-date-list>
+                                </div>
 
                               </div>
                             </li>
@@ -86,24 +89,19 @@
                           <ul class="list-unstyled">
                             <li *ngFor="let message of tenant.messages; let i=index">
                               <div *ngIf="i<3">
-                                
+
                                 <div *ngIf="!message.updateDate" class="text-muted">
-                                  Not Read <span class="fa fa-times text-right notRead"></span>
+                                  Not Read <span class="fa fa-times"></span>
                                 </div>
   
                                 <div *ngIf="message.updateDate">
                                    {{message.updateDate | date:'short'}} <span class="fa fa-check isRead"></span>
                                 </div>
 
-                                <!-- Message Attachment Report -->
-                                <ul class="list-unstyled attachmentDate">
-                                    <li *ngFor="let attachment of message.attachment; let i = index">
-                                      <div *ngIf="i < message.rowSize">
-                                        {{ attachment.updateDate | date:'short' }} <span class="fa fa-check isRead"></span>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                
+                                <div *ngIf="message.showAttachments">
+                                  <app-attachment-receipt-list (expanded)="message.expanded" [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-receipt-list>
+                                </div>
+
                               </div>
                             </li>
                           </ul> 

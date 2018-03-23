@@ -12,7 +12,7 @@ import { Attachment } from '../../../models/attachment';
 
   @Param listSize -- The number of items to display before showing "View More" (by default, 3)
   @Param attachements -- An array of attachments.
-  @Param output -- The current number shown in list.
+  @Param output -- The current number of attachments being viewed.
 */
 
  @Component({
@@ -53,5 +53,4 @@ export class AttachmentListComponent implements OnInit {
   ngOnInit() {
     this.currSize.emit(this.listSize);
   }
-
 }
