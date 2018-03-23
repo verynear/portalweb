@@ -1,3 +1,323 @@
-<p>
-  lease-form works!
-</p>
+<div id="main">
+		<!-- Main Content Area -->
+		<div class="main-content">
+			<div class="container-fluid">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="leads.html"><i class="fa fa-arrow-left"></i> Back</a></li>
+					<li class="breadcrumb-item active">Notes</li>
+				</ol>
+				<h1>Lease Form</h1>
+				<div class="row">
+					<div class="col-md-8">
+						<form>
+							<div class="form-row">
+								<div class="col-md-6">
+									<label for="" class="col-form-label">Form:</label>
+									<select class="form-control">
+										<option value="0">Select Property</option>
+										<option value="1" selected>Treetop Village Management</option>
+										<option value="2">SMP</option>
+										<option value="3">First Communities</option>
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label for="" class="col-form-label">Select Property:</label>
+									<select class="form-control" disabled readonly>
+										<option value="0">Select Property</option>
+										<option value="2" selected>Treetop Village Apartment Homes</option>
+										<option value="3">Bella Grand Apartments</option>
+										<option value="4">Axiom Apartments</option>
+									</select>
+								</div>
+							</div>
+							<hr>
+							<h5 class="mb-0">Lease Information</h5>
+							<div class="form-row">
+								<div class="col-md-8">
+									<label for="" class="col-form-label">Building</label>
+									<select class="form-control">
+										<option value="0">Select Building</option>
+										<option value="2">Building 1</option>
+										<option value="3">Building 2</option>
+										<option value="4">Building 3</option>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Enter Unit</label>
+									<input type="text" class="form-control" id="">
+								</div>
+							</div>
+							<hr>
+							<button type="button" class="btn btn-secondary btn-sm float-right"><i class="fa fa-plus-circle"></i> Add Resident</button>
+							<h5>Resident Information</h5>							
+							<div class="form-row">
+								<div class="col-md-6">
+									<label for="" class="col-form-label">Name</label>
+									<input type="text" class="form-control" id="">
+								</div>
+								<div class="col-md-3">
+									<label for="" class="col-form-label">Applicant Type</label>
+									<select class="form-control" disabled readonly>
+										<option value="0">Select Applicant Type</option>
+										<option value="2" selected>Primary</option>
+										<option value="3">Co-Applicant</option>
+										<option value="4">Occupant</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<label for="" class="col-form-label">Include In Lease?</label>
+									<select class="form-control" disabled readonly>
+										<option value="1" selected>Yes</option>
+										<option value="2">No</option>
+									</select>
+								</div>
+							</div>
+							<div class="card mt-3 bg-light">
+								<div class="card-body">
+									<p class="lead m-0">Resident 2 <button type="button" class="btn btn-link btn-sm"><i class="fa fa-minus-circle"></i> Remove Resident</button></p>
+									<div class="form-row">
+										<div class="col-md-6">
+											<label for="" class="col-form-label">Name</label>
+											<input type="text" class="form-control" id="">
+										</div>
+										<div class="col-md-3">
+											<label for="" class="col-form-label">Applicant Type</label>
+											<select class="form-control">
+												<option value="0">Select Applicant Type</option>
+												<option value="2">Primary</option>
+												<option value="3">Co-Applicant</option>
+												<option value="4">Occupant</option>
+											</select>
+										</div>
+										<div class="col-md-3">
+											<label for="" class="col-form-label">Include In Lease?</label>
+											<select class="form-control">
+												<option value="1">Yes</option>
+												<option value="2" selected>No</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<hr>
+							<h5 class="mb-0">Rental Information</h5>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label class="col-form-label" for="">Monthly Rent</label>
+										<div class="input-group">
+											<div class="input-group-addon"><i class="fa fa-dollar-sign"></i></div>
+											<input type="text" class="form-control" id="">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label class="col-form-label" for="">Lease Date</label>
+										<div class="input-group">
+											<input type="date" class="form-control" id="">
+											<div class="input-group-addon"><i class="fa fa-calendar-alt"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Duration</label>
+									<select class="form-control">
+										<option value="0">Select Duration</option>
+										<option value="1">Monthly</option>
+										<option value="2" selected>6 Months</option>
+										<option value="3">8 Months</option>
+										<option value="4">12 Months</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label class="col-form-label" for="">Lease Start Date</label>
+										<div class="input-group">
+											<input type="date" class="form-control" id="">
+											<div class="input-group-addon"><i class="fa fa-calendar-alt"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label class="col-form-label" for="">Lease End Date</label>
+										<div class="input-group">
+											<input type="date" class="form-control" id="">
+											<div class="input-group-addon"><i class="fa fa-calendar-alt"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Signing Incentive</label>
+									<select class="form-control">
+										<option value="0">None</option>
+										<option value="1">Free Month(s)</option>
+										<option value="2">Rent Discount</option>
+										<option value="3">Signing Special</option>
+									</select>
+								</div>
+							</div>
+							<hr>
+							<button type="button" class="btn btn-secondary btn-sm float-right"><i class="fa fa-plus-circle"></i> Add Pet</button>
+							<h5>Pet Information</h5>
+							<div class="clearfix"></div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Pet Name</label>
+									<input type="text" class="form-control" id="">
+								</div>
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Breed of Pet</label>
+									<input type="text" class="form-control" id="">
+								</div>
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Age of Pet</label>
+									<input type="text" class="form-control" id="">
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Type of Pet</label>
+									<input type="text" class="form-control" id="">
+								</div>
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Color</label>
+									<input type="text" class="form-control" id="">
+								</div>
+								<div class="col-md-4">
+									<label for="" class="col-form-label">Weight</label>
+									<input type="text" class="form-control" id="">
+								</div>
+							</div>
+							<div class="card mt-3 bg-light">
+								<div class="card-body">
+									<p class="lead m-0">Pet 2 <button type="button" class="btn btn-link btn-sm"><i class="fa fa-minus-circle"></i> Remove Pet</button></p>
+									<div class="form-row">
+										<div class="col-md-4">
+											<label for="" class="col-form-label">Pet Name</label>
+											<input type="text" class="form-control" id="">
+										</div>
+										<div class="col-md-4">
+											<label for="" class="col-form-label">Breed of Pet</label>
+											<input type="text" class="form-control" id="">
+										</div>
+										<div class="col-md-4">
+											<label for="" class="col-form-label">Age of Pet</label>
+											<input type="text" class="form-control" id="">
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-4">
+											<label for="" class="col-form-label">Type of Pet</label>
+											<input type="text" class="form-control" id="">
+										</div>
+										<div class="col-md-4">
+											<label for="" class="col-form-label">Color</label>
+											<input type="text" class="form-control" id="">
+										</div>
+										<div class="col-md-4">
+											<label for="" class="col-form-label">Weight</label>
+											<input type="text" class="form-control" id="">
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<h5>Residence Information</h5>
+							<div class="form-row">
+								<div class="col-md-4">
+									<ul class="list-unstyled">
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Tenant Pays Cable</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Tenant Pays Internet</label></li>
+									</ul>
+								</div>
+								<div class="col-md-4">
+									<ul class="list-unstyled">
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Tenant Pays Electrict</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Tenant Pays Water</label></li>
+									</ul>
+								</div>
+								<div class="col-md-4">
+									<ul class="list-unstyled">
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Tenant Pays Gas</label></li>
+									</ul>
+								</div>
+							</div>
+							<hr>
+							<h5>Deposit / Collateral</h5><div class="card bg-success-light">
+								<div class="card-body">
+									<div class="form-row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="col-form-label" for="">Security Deposit</label>
+												<div class="input-group">
+													<div class="input-group-addon"><i class="fa fa-dollar-sign"></i></div>
+													<input type="text" class="form-control" id="" placeholder="$250.00">
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="col-form-label" for="">Date of Security Deposit</label>
+												<div class="input-group">
+													<input type="date" class="form-control" id="">
+													<div class="input-group-addon"><i class="fa fa-calendar-alt"></i></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<h5>Addendums</h5>
+							<div class="form-row">
+								<div class="col-md-4">
+									<ul class="list-unstyled">
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Liability Waiver Amenities</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Security Deposit Agreement Tenant 1</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Security Deposit Agreement Tenant 4</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Tenants Handbook</label></li>
+									</ul>
+								</div>
+								<div class="col-md-4">
+									<ul class="list-unstyled">
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Crime Free/Drug Free Housingt</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Security Deposit Agreement Tenant 2</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Security Deposit Agreement Tenant 5</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Washer/Dryer Lease Agreement</label></li>
+									</ul>
+								</div>
+								<div class="col-md-4">
+									<ul class="list-unstyled">
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Pet Addendum</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Security Deposit Agreement Tenant 3</label></li>
+										<li class="list-unstyled-item"><label class="col-form-label-sm"><input type="checkbox"> Signing Incentive Addendum</label></li>
+									</ul>
+								</div>
+							</div>
+							<hr>
+							<input type="submit" class="btn btn-secondary" value="Preview Lease">
+							<input type="submit" class="btn btn-primary" value="Generate Lease">
+							<a href="leads.html" class="btn btn-default float-right">Cancel</a>
+						</form>
+					</div>
+					<div class="col-md-3 offset-1">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title"><i class="fa fa-question-circle"></i> Need Assistance?</h5>
+								If you have any questions or concerns, please contact Customer Support at <strong>(888) 219-9105</strong> and someone will be more than happy to assist you.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<footer>
+			<small>&copy; 2018 BetterLeasing</small>
+		</footer>
+	</div>

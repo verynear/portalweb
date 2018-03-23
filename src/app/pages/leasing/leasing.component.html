@@ -3,136 +3,150 @@
 	<div class="main-content">
 		<div class="container-fluid">
 			<h1>Leads</h1>
-			<ul class="nav nav-tabs mt-3" id="applicants-information" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" id="applicants-tab" data-toggle="tab" href="#applicants" role="tab" aria-controls="applicants" aria-selected="true">Applicants</a>
-				</li>
-				<!--<li class="nav-item">
-					<a class="nav-link" id="ready-lease-tab" data-toggle="tab" href="#ready-lease" role="tab" aria-controls="ready-lease" aria-selected="true">Ready for Lease</a>
-				</li>-->
-			</ul>
-			<div class="tab-content leads" id="applicants-information-content">
-				<div class="tab-pane show active" id="applicants" role="tabpanel" aria-labelledby="applicants-tab">
-					<section>
-						<div class="d-flex">
-								<div class="mr-3">
-									<div class="input-group">
-										<input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
-										<div class="input-group-addon"><i class="fa fa-search"></i></div>
-									</div>
-								</div>
-								<div class="mr-1">
-									<!--Filter dropdown - multi-select-->
-									<div ngbDropdown class="dropdown">
-										<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true"
-                                                aria-expanded="false">Filter</button>
-										<div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownFilter">
-											<a class="dropdown-item" href="#"><i class="fa fa-times"></i> Clear Filter</a>
-											<a class="dropdown-item" href="#">New Applicant</a>
-											<a class="dropdown-item" href="#">Pending Application</a>
-											<a class="dropdown-item" href="#">Ready for Lease</a>
+			<ngb-tabset #t="ngbTabset">
+				<div class="tab-content leads" id="applicants-information-content">
+					<ngb-tab title="Applicants">
+						<ng-template ngbTabContent>
+							<section>
+								<div class="d-flex">
+										<div class="mr-3">
+											<div class="input-group">
+												<input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
+												<div class="input-group-addon"><i class="fa fa-search"></i></div>
+											</div>
+										</div>
+										<div class="mr-1">
+											<!--Filter dropdown - multi-select-->
+											<div ngbDropdown class="dropdown">
+												<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownFilter" ngbDropdownToggle aria-haspopup="true"
+		                                                aria-expanded="false">Filter</button>
+												<div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownFilter">
+													<a class="dropdown-item" href="#"><i class="fa fa-times"></i> Clear Filter</a>
+													<a class="dropdown-item" href="#">New Applicant</a>
+													<a class="dropdown-item" href="#">Pending Application</a>
+													<a class="dropdown-item" href="#">Ready for Lease</a>
+												</div>
+											</div>
+										</div>
+										<div class="ml-auto">
+											<!--paging-->
+											<div class="page-container">
+												<div class="pagination">
+													<ul>
+														<li><a href="#"></a></li>
+														<li class="active"><a href="#"></a></li>
+														<li><a href="#"></a></li>
+														<li><a href="#"></a></li>
+														<li><a href="#"></a></li>
+														<li><a href="#"></a></li>
+													</ul>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="ml-auto">
-									<!--paging-->
-									<div class="page-container">
-										<div class="pagination">
-											<ul>
-												<li><a href="#"></a></li>
-												<li class="active"><a href="#"></a></li>
-												<li><a href="#"></a></li>
-												<li><a href="#"></a></li>
-												<li><a href="#"></a></li>
-												<li><a href="#"></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-					</section>
-					<table class="table table-bordered table-hover">
-						<thead>
-							<tr class="">
-								<th colspan="3" class="bg-light">&nbsp;</th>
-								<th colspan="2" class="bg-primary-light text-center text-uppercase">Application</th>
-								<th colspan="5" class="bg-light">&nbsp;</th>
-							</tr>
-							<tr class="bg-primary-light">
-								<th><i class="fa fa-angle-down"></i>Building</th>
-								<th><i class="fa fa-angle-down"></i>Unit</th>
-								<th><i class="fa fa-angle-down"></i>Applicant</th>
-								<th><i class="fa fa-angle-down"></i>Date <sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Application Date"><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
-								<th><i class="fa fa-angle-down"></i>Status <sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Application Status. Click on the View button to view the status and progress of an application."><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
-								<th><i class="fa fa-angle-down"></i>Move-In Date</th>
-								<th><i class="fa fa-angle-down"></i><img src="assets/icon-sr.png" height="21" class="float-left mr-2" alt=""> Screening</th>
-								<th><i class="fa fa-angle-down"></i>Pre-Lease <sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Pre-Lease Form"><i class="fa fa-info-circle fa-lg"></i></button></sup></th>
-								<th><i class="fa fa-angle-down"></i>Lease</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="bg-info-light" *ngFor='let applicant of applicants'>
-								<td>{{applicant.applicantPropertyName}}</td>
-								<td>{{applicant.applicantUnit}}</td>
-								<td><a href="" data-toggle="modal" data-target="#guestCardModal">{{applicant.lastname}}, {{applicant.firstname}}</a></td>
-								<td>{{applicant.applicationDate | date }}</td>
-								<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-secondary btn-sm btn-block">View Status</a></td>
-								<td>{{applicant.moveinDate | date }}</td>
-								<td><a href="doc/offer-letter.pdf" target="_blank"><small><a href="sr-notes.html" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-exclamation-triangle text-warning"></i> Offer Letter</a></td>
-								<td><a href="#" class="btn btn-secondary btn-sm btn-block">Forms</a></td>
-								<td>Pending</td>
-							</tr>
-							
-							<tr class="bg-info-light">
-								<td>Building 2</td>
-								<td>203A</td>
-								<td><a href="" data-toggle="modal" data-target="#guestCardModal">Jo Cho</a></td>
-								<td>3/17/2018</td>
-								<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-secondary btn-sm btn-block">View Status</a></td>
-								<td>4/25/2018</td>
-								<td><a href="doc/offer-letter.pdf" target="_blank"><small><a href="sr-notes.html" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-exclamation-triangle text-warning"></i> Offer Letter</a></td>
-								<td><a href="#" class="btn btn-secondary btn-sm btn-block">Forms</a></td>
-								<td>Pending</td>
-							</tr>
-							<tr class="bg-info-light">
-								<td>Building 1</td>
-								<td>103A</td>
-								<td><a href="" data-toggle="modal" data-target="#guestCardModal">Amy Maley</a></td>
-								<td>3/17/2018</td>
-								<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-secondary btn-sm btn-block">View Status</a></td>
-								<td>4/25/2018</td>
-								<td><a href="doc/offer-letter.pdf" target="_blank"><small><a href="sr-notes.html" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-exclamation-triangle text-warning"></i> Offer Letter</a></td>
-								<td><a href="#" class="btn btn-secondary btn-sm btn-block">Forms</a></td>
-								<td>Pending</td>
-							</tr>
-							<tr>
-								<td>Building 2</td>
-								<td>123C</td>
-								<td><a href="#" data-toggle="modal" data-target="#guestCardModal">John Testcase</a></td>
-								<td>3/15/2018</td>
-								<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-default btn-sm btn-block">Completed</a></td>
-								<td>4/10/2018</td>
-								<td><a href="doc/offer-letter.pdf" target="_blank"><small><a href="sr-notes.html" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-check text-success"></i> Offer Letter</a></td>
-								<td><a href="#" class="btn btn-default btn-sm btn-block">Completed</a></td>
-								<td><a href="lease-form.html" class="btn btn-sm btn-block btn-success">Create</a></td>
-							</tr>
-							<tr>
-								<td>Building 1</td>
-								<td>103A</td>
-								<td><a href="" data-toggle="modal" data-target="#guestCardModal">Taleasha Staser</a></td>
-								<td>3/15/2018</td>
-								<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-secondary btn-sm btn-block">View Status</a></td>
-								<td>5/1/2018</td>
-								<td><a href="doc/denial-letter.pdf" target="_blank"><small><a href="sr-notes.html" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-times fa-lg text-danger"></i> Denial Letter</a></td>
-								<td><a href="#" class="btn btn-secondary btn-sm btn-block">Forms</a></td>
-								<td>Pending</td>
-							</tr>
-						</tbody>
-					</table>
+							</section>
+							<table appSortableTable class="table table-bordered table-hover" (sorted)="onSorted($event)">
+								<thead>
+									<tr class="">
+										<th colspan="3" class="bg-light">&nbsp;</th>
+										<th colspan="2" class="bg-primary-light text-center text-uppercase">Application</th>
+										<th colspan="5" class="bg-light">&nbsp;</th>
+									</tr>
+									<tr class="bg-primary-light">
+										<th>
+											<app-th columnName="applicantPropertyName" displayName="Building"></app-th>
+									    </th>
+									    <th>
+											<app-th columnName="applicantUnit" displayName="Unit"></app-th>
+										</th>
+									    <th>
+											<app-th columnName="lastname" displayName="Applicant"></app-th>
+										</th>
+									    <th>
+											<app-th columnName="applicationDate" displayName="Date"><sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Application Date"><i class="fa fa-info-circle fa-lg"></i></button></sup></app-th>
+										</th>
+									    <th>
+											<app-th disable="true">Status <sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Application Status. Click on the View button to view the status and progress of an application."><i class="fa fa-info-circle fa-lg"></i></button></sup></app-th>
+										</th>
+									    <th>
+											<app-th columnName="moveinDate" displayName="Move-In Date"></app-th>
+										</th>
+									    <th>
+											<app-th disable="true"><img src="assets/icon-sr.png" height="21" class="float-left mr-2" alt=""> Screening</app-th>
+										</th>
+									    <th>
+											<app-th disable="true">Pre-Lease <sup><button type="button" class="btn btn-link btn-sm" container="body" placement="top" ngbPopover="Pre-Lease Form"><i class="fa fa-info-circle fa-lg"></i></button></sup></app-th>
+										</th>
+									    <th>
+											<app-th disable="true">Lease</app-th>
+									    </th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="bg-info-light" *ngFor='let applicant of applicants'>
+										<td>{{applicant.applicantPropertyName}}</td>
+										<td>{{applicant.applicantUnit}}</td>
+										<td><a href="" data-toggle="modal" data-target="#guestCardModal">{{applicant.lastname}}, {{applicant.firstname}}</a></td>
+										<td>{{applicant.applicationDate | date }}</td>
+										<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-secondary btn-sm btn-block">View Status</a></td>
+										<td>{{applicant.moveinDate | date }}</td>
+										<td><a href="assets/doc/offer-letter.pdf" target="_blank"><small><a href="srnotes" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-exclamation-triangle text-warning"></i> Offer Letter</a></td>
+										<td><a href="#" class="btn btn-secondary btn-sm btn-block">Forms</a></td>
+										<td>Pending</td>
+									</tr>
+									
+									<tr class="bg-info-light">
+										<td>Building 2</td>
+										<td>203A</td>
+										<td><a href="" data-toggle="modal" data-target="#guestCardModal">Jo Cho</a></td>
+										<td>3/17/2018</td>
+										<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-secondary btn-sm btn-block">View Status</a></td>
+										<td>4/25/2018</td>
+										<td><a href="assets/doc/offer-letter.pdf" target="_blank"><small><a href="srnotes" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-exclamation-triangle text-warning"></i> Offer Letter</a></td>
+										<td><a href="#" class="btn btn-secondary btn-sm btn-block">Forms</a></td>
+										<td>Pending</td>
+									</tr>
+									<tr class="bg-info-light">
+										<td>Building 1</td>
+										<td>103A</td>
+										<td><a href="" data-toggle="modal" data-target="#guestCardModal">Amy Maley</a></td>
+										<td>3/17/2018</td>
+										<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-secondary btn-sm btn-block">View Status</a></td>
+										<td>4/25/2018</td>
+										<td><a href="assets/doc/offer-letter.pdf" target="_blank"><small><a href="srnotes" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-exclamation-triangle text-warning"></i> Offer Letter</a></td>
+										<td><a href="#" class="btn btn-secondary btn-sm btn-block">Forms</a></td>
+										<td>Pending</td>
+									</tr>
+									<tr>
+										<td>Building 2</td>
+										<td>123C</td>
+										<td><a href="#" data-toggle="modal" data-target="#guestCardModal">John Testcase</a></td>
+										<td>3/15/2018</td>
+										<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-default btn-sm btn-block">Completed</a></td>
+										<td>4/10/2018</td>
+										<td><a href="assets/doc/offer-letter.pdf" target="_blank"><small><a href="srnotes" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-check text-success"></i> Offer Letter</a></td>
+										<td><a href="#" class="btn btn-default btn-sm btn-block">Completed</a></td>
+										<td><a href="leaseform" class="btn btn-sm btn-block btn-success">Create</a></td>
+									</tr>
+									<tr>
+										<td>Building 1</td>
+										<td>103A</td>
+										<td><a href="" data-toggle="modal" data-target="#guestCardModal">Taleasha Staser</a></td>
+										<td>3/15/2018</td>
+										<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-secondary btn-sm btn-block">View Status</a></td>
+										<td>5/1/2018</td>
+										<td><a href="assets/doc/denial-letter.pdf" target="_blank"><small><a href="srnotes" class="float-right mt-1"><sup class="text-success">1</sup> <i class="fa fa-sticky-note fa-lg"></i></a></small><i class="fa fa-times fa-lg text-danger"></i> Denial Letter</a></td>
+										<td><a href="#" class="btn btn-secondary btn-sm btn-block">Forms</a></td>
+										<td>Pending</td>
+									</tr>
+								</tbody>
+							</table>
+						</ng-template>
+				    </ngb-tab>
+					<div class="tab-pane" id="ready-lease" role="tabpanel" aria-labelledby="ready-lease-tab">
+					</div>
 				</div>
-				<div class="tab-pane" id="ready-lease" role="tabpanel" aria-labelledby="ready-lease-tab">
-				</div>
-			</div>
+		    </ngb-tabset>
 		</div>
 	</div>
 	

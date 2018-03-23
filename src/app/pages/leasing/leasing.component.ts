@@ -33,4 +33,9 @@ export class LeasingComponent implements OnInit {
       });
     }
 
+  // For sort event./
+  onSorted($event) {
+    this.applicants = this.applicantService.sortApplicants(this.applicants, $event);
+  }
+
 }

@@ -5,17 +5,19 @@ import 'rxjs/add/operator/toPromise';
 
 import {environment} from '../../environments/environment';
 import { ConfigService } from './config.service';
+import { SortService } from '../components/sortable-table/sort.service';
 
 
 
 @Injectable()
 export class ApplicantService {
     private baseURL: string;
+    applicants: Array<Applicant>;
 
-    applicant = this.applicant;
+    // applicant = this.applicant;
 
     constructor(private http: HttpClient,
-                private config: ConfigService ) {
+                private config: ConfigService, private sortService: SortService ) {
     this.baseURL = config.get().api.baseURL;
       }
 
@@ -37,4 +39,15 @@ export class ApplicantService {
     approve(id: number) {
       return this.http.put(this.baseURL + '/applicants/approve/' + id, id);
       }
+
+    sortApplicants (applicants, criteria: MessageSearchCriteria): Applicant[] {
+       return applicants.sort((a, b) => {
+        return this.sortService.sortHelper(a, b, criteria);
+      });
+    }
  }
+
+ class MessageSearchCriteria {
+  sortColumn: string;
+  sortDirection: string;
+}
