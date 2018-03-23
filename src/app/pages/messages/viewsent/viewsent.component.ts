@@ -11,10 +11,8 @@ import { AlertService } from '../../../services/alert.service';
   styleUrls: ['./viewsent.component.scss']
 })
 export class ViewSentComponent implements OnInit {
-
   id: number;
-  private sub: any;
-  message: any;
+  message: Message;
   loading: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute,
@@ -28,7 +26,8 @@ export class ViewSentComponent implements OnInit {
   ngOnInit() {
   }
 
-  getMessage(id) {
+  getMessage(id: number) {
+    this.loading = true;
     this.messageService.get(id).subscribe(
       data => {
         this.loading = false;
@@ -36,7 +35,7 @@ export class ViewSentComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        this.alertService.error('Unable to retrieve message');
+        console.log('Error: getMessage()');
       });
   }
 

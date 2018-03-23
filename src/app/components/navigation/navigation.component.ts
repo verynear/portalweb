@@ -15,27 +15,20 @@ export class NavigationComponent implements OnInit {
     public isCollapsed = true;
     public currentSite: Site;
     public rentalSiteBrandings: SiteBranding;
-    public initReportId: number;
 
     constructor(private siteService: SiteService, private router: Router, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
+      this.logoUrl = './assets/backuplogo.png';
       this.siteService.getCurrentSite().subscribe(site => {
         this.currentSite = site;
 
         if (site.rentalSitesBrandings != null) {
           this.rentalSiteBrandings = site.rentalSitesBrandings[0];
+          this.logoUrl = this.rentalSiteBrandings.logoUrl;
         }
 
-        this.getRentalBuildings(site.id); // Get Rental Buildings so that the navigation links to the first rental building.
-
-      });
-    }
-
-    getRentalBuildings(siteId: number) {
-      this.siteService.getBuildings(siteId).subscribe(buildings => {
-        this.initReportId = buildings[0].id;
       });
     }
 

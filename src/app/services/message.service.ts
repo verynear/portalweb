@@ -37,7 +37,7 @@ export class MessageService {
   }
 
   getInquiry(id) {
-    return this.http.get<Inquiry[]>(this.baseURL + '/inquiry/' + id);
+    return this.http.get<Inquiry>(this.baseURL + '/inquiry/' + id);
   }
 
   getSent(page, size) {

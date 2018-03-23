@@ -37,6 +37,15 @@ import { ApplicantService } from './services/applicant.service';
 import { LoginService } from './services/login.service';
 import { SortService } from './components/sortable-table/sort.service';
 import { CompanyService } from './services/company.service';
+import { UploadFileService } from './services/upload-file.service';
+
+// Pipes
+import { FilterUnitsPipe } from './pipes/filter-units.pipe';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
+import { ReplacePipe } from './pipes/replace.pipe';
+import { ShortenPipe } from './pipes/shorten.pipe';
+
 
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
@@ -67,14 +76,6 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { LoadingComponent } from './components/loading/loading.component';
-
-// Pipes
-import { FilterUnitsPipe } from './pipes/filter-units.pipe';
-import { SafeHtmlPipe } from './pipes/safe-html.pipe';
-import { HtmlToPlainPipe } from './pipes/html-to-plain.pipe';
-import { ReplacePipe } from './pipes/replace.pipe';
-import { ShortenPipe } from './pipes/shorten.pipe';
-import { UploadFileService } from './services/upload-file.service';
 import { FormUploadComponent } from './components/form-upload/form-upload.component';
 import { BuildingReportComponent } from './pages/report/building-report/building-report.component';
 import { ReportNavComponent } from './pages/report/report-nav/report-nav.component';
@@ -83,6 +84,11 @@ import { CommunityReportComponent } from './pages/report/community-report/commun
 import { AttachmentListComponent } from './pages/report/attachment-list/attachment-list.component';
 import { AttachmentReceiptListComponent } from './pages/report/attachment-receipt-list/attachment-receipt-list.component';
 import { AttachmentSentDateListComponent } from './pages/report/attachment-sent-date-list/attachment-sent-date-list.component';
+import { MessageFilterComponent } from './pages/messages/message-filter/message-filter.component';
+
+
+
+
 
 @NgModule({
   imports: [
@@ -150,8 +156,12 @@ import { AttachmentSentDateListComponent } from './pages/report/attachment-sent-
     SiteSwitchComponent,
     CommunityReportComponent,
     AttachmentListComponent,
+<<<<<<< HEAD
     AttachmentReceiptListComponent,
     AttachmentSentDateListComponent,
+=======
+    MessageFilterComponent,
+>>>>>>> c39ec59949194df44b9dc00602145ad94e231197
   ],
   providers: [
       {

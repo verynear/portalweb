@@ -31,9 +31,9 @@
           <div *ngIf="f.submitted && !phone.valid" class="invalid-feedback">Phone number is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !applicantPropertyName.valid }">
-          <label for="applicantPropertyName">Property Name</label>
+          <label for="applicantPropertyName">Community Name</label>
           <input type="text" class="form-control" name="applicantPropertyName" [(ngModel)]="applicant.applicantPropertyName" #applicantPropertyName="ngModel" required />
-          <div *ngIf="f.submitted && !applicantPropertyName.valid" class="invalid-feedback">Property name is required</div>
+          <div *ngIf="f.submitted && !applicantPropertyName.valid" class="invalid-feedback">Community name is required</div>
         </div>
         <div class="form-group">
           <label for="applicantUnit">Requested Unit</label>

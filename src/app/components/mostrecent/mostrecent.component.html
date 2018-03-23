@@ -1,21 +1,32 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6" *ngIf="message; else no_data_templ">
     <h5 class="card-title"><small>Sent: {{message?.createDate | date:'MMM d, y, h:mm a' }}</small><br>{{message?.subject}}</h5>
     <p [innerHTML]="message?.message | htmlToPlain"> </p>
     <a (click)="openReport()" class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="messages" class="btn btn-default btn-sm">View All Messages</a>
   </div>
-  <div class="col-md-5 offset-md-1">
-     <ul class="list-inline">
-      <li class="list-inline-item">
-        <div class="alert alert-success" role="alert">
-          <h4 class="alert-heading mb-0">{{readPercent | percent}}<br><small>Read</small></h4>
-        </div>
-      </li>
-      <li class="list-inline-item">
-        <div class="alert alert-warning" role="alert">
-          <h4 class="alert-heading mb-0">{{pendingPercent | percent}}<br><small>Pending</small></h4>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <div class="col-md-6 flex">
+      <img class="buildingImg padding-15" [src]="buildingImgSrc" alt="BetterLeasing" onError="this.src='./assets/building-graphs/building-0.png';">
+
+      <ul class="list-unstyled mt-5">
+        <li>
+          <h4 class="alert alert-success">
+            <span class="alert-heading mb-0"> {{readPercent | percent}} </span> <small class="small-building"> Read </small>
+          </h4>
+        </li> 
+        
+        <li class="list-margin">
+          <h4 class="alert alert-warning">
+            <span class="alert-heading mb-0"> {{pendingPercent | percent}} </span> <small class="small-building"> Pending </small>
+          </h4>
+        </li>
+      </ul>
+  </div> 
 </div>
+
+<ng-template #no_data_templ>
+  <div class="col-md-6">
+     <h5 class="card-title"><small>Sent: {{ whatTime | async | date:'MMM d, y, h:mm a' }}</small><br>No Messages</h5>
+         <p>Empty Message</p>
+         <a (click)="openReport()" disabled class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="messages" class="btn btn-default btn-sm">View All Messages</a>
+  </div>
+</ng-template>
