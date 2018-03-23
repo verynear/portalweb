@@ -156,12 +156,9 @@ import { MessageFilterComponent } from './pages/messages/message-filter/message-
     SiteSwitchComponent,
     CommunityReportComponent,
     AttachmentListComponent,
-<<<<<<< HEAD
     AttachmentReceiptListComponent,
     AttachmentSentDateListComponent,
-=======
     MessageFilterComponent,
->>>>>>> c39ec59949194df44b9dc00602145ad94e231197
   ],
   providers: [
       {
