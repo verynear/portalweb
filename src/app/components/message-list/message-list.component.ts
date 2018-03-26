@@ -48,7 +48,7 @@ export class MessageListComponent implements OnInit {
 
   openInquiry(id: number) {
     this.loading = true;
-    this.router.navigate(['/messages/received', id]);
+    this.router.navigate(['/messages/inbox', id]);
     console.log('OPEN MESSAGE');
     console.log(id);
   }
