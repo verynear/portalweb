@@ -3,13 +3,13 @@
 		<div class="main-content">
 			<div class="container-fluid">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="leads.html"><i class="fa fa-arrow-left"></i> Back</a></li>
+					<li class="breadcrumb-item"><a href="leasing"><i class="fa fa-arrow-left"></i> Back</a></li>
 					<li class="breadcrumb-item active">Notes</li>
 				</ol>
 				<h1>Lease Form</h1>
 				<div class="row">
 					<div class="col-md-8">
-						<form>
+						<form [formGroup]="leaseForm">
 							<div class="form-row">
 								<div class="col-md-6">
 									<label for="" class="col-form-label">Form:</label>
@@ -48,57 +48,59 @@
 								</div>
 							</div>
 							<hr>
-							<button type="button" class="btn btn-secondary btn-sm float-right"><i class="fa fa-plus-circle"></i> Add Resident</button>
-							<h5>Resident Information</h5>							
-							<div class="form-row">
-								<div class="col-md-6">
-									<label for="" class="col-form-label">Name</label>
-									<input type="text" class="form-control" id="">
+							<button type="button" class="btn btn-secondary btn-sm float-right"><i class="fa fa-plus-circle" (click)="addNewResident()"></i> Add Resident</button>
+							<h5>Resident Information</h5>
+							<div formArrayName="newResident">							
+								<div class="form-row">
+									<div class="col-md-6">
+										<label for="" class="col-form-label">Name</label>
+										<input formControlName="name" class="form-control" id="">
+									</div>
+									<div class="col-md-3">
+										<label for="" class="col-form-label">Applicant Type</label>
+										<select class="form-control" disabled readonly>
+											<option value="0">Select Applicant Type</option>
+											<option value="2" selected>Primary</option>
+											<option value="3">Co-Applicant</option>
+											<option value="4">Occupant</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<label for="" class="col-form-label">Include In Lease?</label>
+										<select class="form-control" disabled readonly>
+											<option value="1" selected>Yes</option>
+											<option value="2">No</option>
+										</select>
+									</div>
 								</div>
-								<div class="col-md-3">
-									<label for="" class="col-form-label">Applicant Type</label>
-									<select class="form-control" disabled readonly>
-										<option value="0">Select Applicant Type</option>
-										<option value="2" selected>Primary</option>
-										<option value="3">Co-Applicant</option>
-										<option value="4">Occupant</option>
-									</select>
-								</div>
-								<div class="col-md-3">
-									<label for="" class="col-form-label">Include In Lease?</label>
-									<select class="form-control" disabled readonly>
-										<option value="1" selected>Yes</option>
-										<option value="2">No</option>
-									</select>
-								</div>
-							</div>
-							<div class="card mt-3 bg-light">
-								<div class="card-body">
-									<p class="lead m-0">Resident 2 <button type="button" class="btn btn-link btn-sm"><i class="fa fa-minus-circle"></i> Remove Resident</button></p>
-									<div class="form-row">
-										<div class="col-md-6">
-											<label for="" class="col-form-label">Name</label>
-											<input type="text" class="form-control" id="">
-										</div>
-										<div class="col-md-3">
-											<label for="" class="col-form-label">Applicant Type</label>
-											<select class="form-control">
-												<option value="0">Select Applicant Type</option>
-												<option value="2">Primary</option>
-												<option value="3">Co-Applicant</option>
-												<option value="4">Occupant</option>
-											</select>
-										</div>
-										<div class="col-md-3">
-											<label for="" class="col-form-label">Include In Lease?</label>
-											<select class="form-control">
-												<option value="1">Yes</option>
-												<option value="2" selected>No</option>
-											</select>
+								<div class="card mt-3 bg-light">
+									<div *ngFor="let newresident of leaseForm.controls.newResident.controls; let i=index" [formGroupName]="i" class="card-body">
+										<p class="lead m-0">Resident {{ i + 2 }} <button *ngIf="leaseForm.controls.newResident.controls.length" (click)="deleteResident(i)" type="button" class="btn btn-link btn-sm"><i class="fa fa-minus-circle"></i> Remove Resident</button></p>
+										<div class="form-row">
+											<div class="col-md-6">
+												<label for="" class="col-form-label">Name</label>
+												<input formControlName="name" class="form-control" id="">
+											</div>
+											<div class="col-md-3">
+												<label for="" class="col-form-label">Applicant Type</label>
+												<select formControlName="type" class="form-control">
+													<option value="0">Select Applicant Type</option>
+													<option [value]="2">Primary</option>
+													<option [value]="3">Co-Applicant</option>
+													<option [value]="4">Occupant</option>
+												</select>
+											</div>
+											<div class="col-md-3">
+												<label for="" class="col-form-label">Include In Lease?</label>
+												<select formControlName="includeInLease" class="form-control">
+													<option [value]="1">Yes</option>
+													<option [value]="2" selected>No</option>
+												</select>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+						    </div>
 							
 							<hr>
 							<h5 class="mb-0">Rental Information</h5>
