@@ -1,0 +1,7 @@
+<ul class="list-unstyled attachmentDate">
+  <li *ngFor="let attachment of attachments; let i = index">
+    <div *ngIf="i < rowSize">
+      {{ attachment.createDate | date:'short' }} <span class="fa fa-check isRead"></span>
+    </div>
+  </li>
+</ul>

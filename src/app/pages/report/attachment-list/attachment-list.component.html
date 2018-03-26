@@ -1,10 +1,11 @@
 <ul class="list-unstyled attachmentFile">
   <li *ngFor="let attachment of attachments; let i = index">
       <div *ngIf="i < listSize">
-        <i class="fa fa-paperclip"></i> {{attachment.fileName}} 
+        <i class="fa fa-paperclip"></i> {{attachment.fileName | shorten: 35: "..." + attachment.fileType}} 
         <span *ngIf="i + 1 === listSize" class="viewAll"> 
           <a *ngIf="listSize < attachments.length" (click)="expandList()" class="pointer"> {{i + 1}}/{{attachments.length}} View More</a> 
         </span>
       </div>
   </li>
 </ul>
+
