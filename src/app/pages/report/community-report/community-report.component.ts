@@ -50,4 +50,12 @@ export class CommunityReportComponent implements OnInit {
   openMessageReport(messageId: number) {
     this.router.navigate(['/report/message-report', messageId]);
   }
+
+  openResidentReport(residentId: number) {
+    this.router.navigate(['/report/resident-report', residentId]);
+  }
+
+  openUnitReport(unitId: number) {
+    this.router.navigate(['/report/unit-report', unitId])
+  }
 }

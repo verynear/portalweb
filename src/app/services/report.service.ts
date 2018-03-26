@@ -14,22 +14,36 @@ export class ReportService {
 
   }
 
-  messageReport(messageId) {
+  messageReport(messageId: number) {
     return this.http.get<Message[]>(this.baseURL + '/messages/' + messageId + '/receipts/')
     .catch((error: any) => {
       return Observable.throw(this.errorHandler(error));
     });
   }
 
-  buildingReport(buildingId) {
+  buildingReport(buildingId: number) {
     return this.http.get<Message[]>(this.baseURL + '/messages/building/' + buildingId + '/report/')
     .catch((error: any) => {
       return Observable.throw(this.errorHandler(error));
     });
   }
 
-  siteReport(siteId) {
+  siteReport(siteId: number) {
     return this.http.get<Message[]>(this.baseURL + '/messages/' + siteId + '/report/')
+    .catch((error: any) => {
+      return Observable.throw(this.errorHandler(error));
+    });
+  }
+
+  residentReport(residentId: number) {
+    return this.http.get<Message[]>(this.baseURL + '/messages/building/unit/resident/' + residentId + '/report/')
+    .catch((error: any) => {
+      return Observable.throw(this.errorHandler(error));
+    });
+  }
+
+  unitReport(unitId: number) {
+    return this.http.get<Message[]>(this.baseURL + '/messages/building/unit/' + unitId + '/report/')
     .catch((error: any) => {
       return Observable.throw(this.errorHandler(error));
     });

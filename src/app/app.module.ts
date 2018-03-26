@@ -60,7 +60,7 @@ import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component'
 import { RecentActivityComponent } from './pages/recent-activity/recent-activity.component';
 import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
-import { MessageReportComponent } from './pages/report/message-report/message-report.component';
+
 import { MyAccountComponent } from './pages/myaccount/myaccount.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 import { MessageListComponent } from './components/message-list/message-list.component';
@@ -85,9 +85,9 @@ import { AttachmentListComponent } from './pages/report/attachment-list/attachme
 import { AttachmentReceiptListComponent } from './pages/report/attachment-receipt-list/attachment-receipt-list.component';
 import { AttachmentSentDateListComponent } from './pages/report/attachment-sent-date-list/attachment-sent-date-list.component';
 import { MessageFilterComponent } from './pages/messages/message-filter/message-filter.component';
-
-
-
+import { ResidentReportComponent } from './pages/report/resident-report/resident-report.component';
+import { UnitReportComponent } from './pages/report/unit-report/unit-report.component';
+import { MessageReportComponent } from './pages/report/message-report/message-report.component';
 
 
 @NgModule({
@@ -159,6 +159,8 @@ import { MessageFilterComponent } from './pages/messages/message-filter/message-
     AttachmentReceiptListComponent,
     AttachmentSentDateListComponent,
     MessageFilterComponent,
+    ResidentReportComponent,
+    UnitReportComponent,
   ],
   providers: [
       {
