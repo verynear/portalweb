@@ -27,7 +27,11 @@ export class NavigationComponent implements OnInit {
         if (site.rentalSitesBrandings != null) {
           this.rentalSiteBrandings = site.rentalSitesBrandings[0];
           this.logoUrl = this.rentalSiteBrandings.logoUrl;
+
         }
+
+        console.log('GOT LOGO URL: ');
+        console.log(this.logoUrl);
 
       });
     }
