@@ -5,5 +5,15 @@
 
 export const environment = {
   production: false,
-  version: '18.3.23'  // Version number of app. Format: (Year.Month.Day)
+  version: '18.3.23',  // Version number of app. Format: (Year.Month.Day)
+  s3: {
+    attachments: {
+      credential: {
+        accessKeyId: 'AKIAIFDUPBL6YKXURCAA',
+        secretAccessKey: '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'
+      },
+      bucket: 'betterleasing-dev',
+      folder: 'attachments'
+    }
+  }
 };
