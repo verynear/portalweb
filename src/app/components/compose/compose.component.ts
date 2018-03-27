@@ -10,7 +10,6 @@ import { Site } from '../../models/site';
 import { Attachment } from '../../models/attachment';
 import { Tenant } from '../../models/tenant';
 import { FormUploadComponent } from '../form-upload/form-upload.component';
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
 import { SelectItem, EditorModule, AutoCompleteModule, MultiSelectModule } from 'primeng/primeng';
@@ -70,7 +69,7 @@ export class ComposeComponent implements OnInit, AfterViewInit {
     }
   }
 
-    constructor(private router: Router, public activeModal: NgbActiveModal, private messageService: MessageService,
+    constructor(public activeModal: NgbActiveModal, private messageService: MessageService,
       private uploadService: UploadFileService, private alertService: AlertService,
       private siteService: SiteService, private rd: Renderer2) {
     }

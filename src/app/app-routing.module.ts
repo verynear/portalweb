@@ -23,6 +23,10 @@ import { BuildingReportComponent } from './pages/report/building-report/building
 import { CommunityReportComponent } from './pages/report/community-report/community-report.component';
 import { MessageReportComponent } from './pages/report/message-report/message-report.component';
 import { ReportNavComponent } from './pages/report/report-nav/report-nav.component';
+
+import { LeasingComponent } from './pages/leasing/leasing.component';
+import { LeaseFormComponent } from './components/lease-form/lease-form.component';
+import { SrNotesComponent } from './pages/sr-notes/sr-notes.component';
 import { ResidentReportComponent } from './pages/report/resident-report/resident-report.component';
 import { UnitReportComponent } from './pages/report/unit-report/unit-report.component';
 
@@ -32,6 +36,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'applicants', component: ApplicantsComponent, canActivate: [AuthGuard] },
+  { path: 'leasing', component: LeasingComponent, canActivate: [AuthGuard]},
+  { path: 'leaseform', component: LeaseFormComponent, canActivate: [AuthGuard]},
+  { path: 'srnotes', component: SrNotesComponent, canActivate: [AuthGuard]},
   {
     path: 'messages',
     component: MessagesComponent,

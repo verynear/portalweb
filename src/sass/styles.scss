@@ -229,13 +229,12 @@ a:hover.btn.btn-primary {
     border-style: none;
 }
 .alert-primary .btn-primary,
-.badge-primary,
-.bg-primary {
-	background-color: #a1afb6;
+.badge-primary, .bg-primary {
+  background-color: #a1afb6;
 }
 .bg-primary-light,
 .badge-primary-light {
-	background-color: #e4e7e9;
+  background-color: #e4e7e9;
 }
 .alert-primary a:hover.btn-primary,
 .alert-primary a:focus.btn-primary,
@@ -248,6 +247,10 @@ a:hover.btn.btn-primary {
 }
 .alert-secondary {
     border-style: none;
+}
+.alert-secondary .btn-secondary,
+.badge-secondary, .bg-secondary {
+  background-color: #4d646f;
 }
 .badge-secondary {
     border-color: #546e7a;
@@ -329,8 +332,8 @@ a:hover.btn.btn-primary {
     border-style: none;
 }
 .alert-success .btn-success,
-.badge-success {
-  	background-color: #3d9241;
+.badge-success, .bg-success {
+  background-color: #3d9241;
 }
 .btn.btn-success,
 .alert-success .btn-success,
