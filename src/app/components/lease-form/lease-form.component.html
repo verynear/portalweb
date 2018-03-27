@@ -75,7 +75,7 @@
 								<div class="card mt-3 bg-light">
 									<app-resident-array
 									    formArrayName="residents"
-									    [residentFormArray]="myForm.get('residents')">
+									    [residentFormArray]="leaseForm.get('residents')">
 									</app-resident-array>
 								</div>
 						    </div>
@@ -176,7 +176,7 @@
 							<div class="card mt-3 bg-light">
 								<app-pet-array
 								    formArrayName="pets"
-								    [petFormArray]="myForm.get('pets')">
+								    [petFormArray]="leaseForm.get('pets')">
 								</app-pet-array>
 							</div>
 							<hr>

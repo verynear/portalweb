@@ -16,7 +16,8 @@ export class ResidentFormarrayComponent {
 
   static buildResidents() {
     return new FormArray(
-        [ResidentFormcontrolComponent.buildResident('')];
+        [ResidentFormcontrolComponent.buildResident('')]
+    );
   }
 
   addResident() {

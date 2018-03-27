@@ -14,7 +14,7 @@ export class PetFormcontrolComponent {
   public index: number;
 
   @Input()
-  public item: FormGroup;
+  public pet: FormGroup;
 
   @Output()
   public removedPet: EventEmitter<number> = new EventEmitter<number>();

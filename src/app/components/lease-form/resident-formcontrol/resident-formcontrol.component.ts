@@ -14,7 +14,7 @@ export class ResidentFormcontrolComponent {
   public index: number;
 
   @Input()
-  public item: FormGroup;
+  public resident: FormGroup;
 
   @Output()
   public removedResident: EventEmitter<number> = new EventEmitter<number>();

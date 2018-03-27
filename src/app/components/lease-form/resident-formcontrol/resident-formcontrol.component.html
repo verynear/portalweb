@@ -1,5 +1,5 @@
 <div class="card-body" [formGroup]="resident">
-	<p class="lead m-0">Resident {{index}} <button type="button" class="btn btn-link btn-sm" (click)="removed.emit(index)"><i class="fa fa-minus-circle"></i> Remove Resident</button></p>
+	<p class="lead m-0">Resident {{index + 2}} <button type="button" class="btn btn-link btn-sm" (click)="removedResident.emit(index)"><i class="fa fa-minus-circle"></i> Remove Resident</button></p>
 	<div class="form-row">
 		<div class="col-md-6">
 			<label class="col-form-label" [attr.for]="'name'+index">Name</label>
