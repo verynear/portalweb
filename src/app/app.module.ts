@@ -60,7 +60,7 @@ import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component'
 import { RecentActivityComponent } from './pages/recent-activity/recent-activity.component';
 import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
-import { MessageReportComponent } from './pages/report/message-report/message-report.component';
+
 import { MyAccountComponent } from './pages/myaccount/myaccount.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 import { MessageListComponent } from './components/message-list/message-list.component';
@@ -93,10 +93,9 @@ import { ResidentFormarrayComponent } from './components/lease-form/resident-for
 import { ResidentFormcontrolComponent } from './components/lease-form/resident-formcontrol/resident-formcontrol.component';
 import { PetFormarrayComponent } from './components/lease-form/pet-formarray/pet-formarray.component';
 import { PetFormcontrolComponent } from './components/lease-form/pet-formcontrol/pet-formcontrol.component';
-
-
-
-
+import { ResidentReportComponent } from './pages/report/resident-report/resident-report.component';
+import { UnitReportComponent } from './pages/report/unit-report/unit-report.component';
+import { MessageReportComponent } from './pages/report/message-report/message-report.component';
 
 
 @NgModule({
@@ -176,6 +175,8 @@ import { PetFormcontrolComponent } from './components/lease-form/pet-formcontrol
     ResidentFormcontrolComponent,
     PetFormarrayComponent,
     PetFormcontrolComponent,
+    ResidentReportComponent,
+    UnitReportComponent,
   ],
   providers: [
       {

@@ -14,7 +14,6 @@ import { DatatableComponent } from './components/datatable/datatable.component';
 import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
-import { MessageReportComponent } from './pages/report/message-report/message-report.component';
 import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component';
 import { MyAccountComponent } from './pages/myaccount/myaccount.component';
 import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
@@ -22,10 +21,14 @@ import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.co
 import { ActivityComponent } from './pages/activity/activity.component';
 import { BuildingReportComponent } from './pages/report/building-report/building-report.component';
 import { CommunityReportComponent } from './pages/report/community-report/community-report.component';
+import { MessageReportComponent } from './pages/report/message-report/message-report.component';
 import { ReportNavComponent } from './pages/report/report-nav/report-nav.component';
+
 import { LeasingComponent } from './pages/leasing/leasing.component';
 import { LeaseFormComponent } from './components/lease-form/lease-form.component';
 import { SrNotesComponent } from './pages/sr-notes/sr-notes.component';
+import { ResidentReportComponent } from './pages/report/resident-report/resident-report.component';
+import { UnitReportComponent } from './pages/report/unit-report/unit-report.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -49,9 +52,12 @@ const routes: Routes = [
       { path: 'inbox/:id', component: ViewReceivedComponent }
     ]
   },
+
   { path: 'report/message-report/:id', component: MessageReportComponent, canActivate: [AuthGuard] },
   { path: 'report/building-report/:id', component: BuildingReportComponent, canActivate: [AuthGuard]},
   { path: 'report/community-report/:id', component: CommunityReportComponent, canActivate: [AuthGuard]},
+  { path: 'report/resident-report/:id', component: ResidentReportComponent, canActivate: [AuthGuard]},
+  { path: 'report/unit-report/:id', component: UnitReportComponent, canActivate: [AuthGuard]},
   { path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
