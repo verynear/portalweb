@@ -54,7 +54,7 @@ export class UnitReportComponent implements OnInit {
   rowSize($event, message) {
     message.rowSize = $event;
   }
-  
+
   openCommunityReport() {
     this.router.navigate(['/report/community-report', this.currentSite.id]);
   }

@@ -85,7 +85,7 @@ export class MessageReportComponent implements OnInit {
 
   openResidentReport(residentId: number) {
     this.router.navigate(['/report/resident-report', residentId]);
-  }  
+  }
 
 }
 

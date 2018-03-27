@@ -45,7 +45,7 @@ const routes: Routes = [
       { path: 'inbox/:id', component: ViewReceivedComponent }
     ]
   },
-  
+
   { path: 'report/message-report/:id', component: MessageReportComponent, canActivate: [AuthGuard] },
   { path: 'report/building-report/:id', component: BuildingReportComponent, canActivate: [AuthGuard]},
   { path: 'report/community-report/:id', component: CommunityReportComponent, canActivate: [AuthGuard]},

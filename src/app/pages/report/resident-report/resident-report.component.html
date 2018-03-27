@@ -55,7 +55,14 @@
 
                       </td>
                       <td> 
+
+
                         {{message.createDate | date:'short'}}
+
+                        <div *ngIf="message.showAttachments">
+                          <app-attachment-sent-date-list [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-sent-date-list>
+                        </div>
+
                       </td>
                       <td>
                         <ul class="list-unstyled">
@@ -66,6 +73,11 @@
                           <li *ngIf="!message.updateDate" class="text-muted">
                               <span class="fa fa-times notRead"></span> Not Read
                           </li>
+
+                          <div *ngIf="message.showAttachments">
+                            <app-attachment-receipt-list (expanded)="message.expanded" [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-receipt-list>
+                          </div>
+
                         </ul>
                       </td>
                     </tr>

@@ -22,20 +22,20 @@ export class ReportHelpersService {
 
   constructor(private reportService: ReportService) { }
 
-  openCommunityReport() {
-    this.router.navigate(['/report/community-report', this.currentSite.id]);
-  }
+  // openCommunityReport() {
+  //   this.router.navigate(['/report/community-report', this.currentSite.id]);
+  // }
 
-  openUnitReport(unitId: number) {
-    this.router.navigate(['/report/unit-report', unitId]);
-  }
+  // openUnitReport(unitId: number) {
+  //   this.router.navigate(['/report/unit-report', unitId]);
+  // }
 
-  openMessageReport(messageId: number) {
-    this.router.navigate(['/report/message-report', messageId]);
-  }
+  // openMessageReport(messageId: number) {
+  //   this.router.navigate(['/report/message-report', messageId]);
+  // }
 
-  openResidentReport(residentId: number) {
-    this.router.navigate(['/report/resident-report', residentId]);
-  }  
+  // openResidentReport(residentId: number) {
+  //   this.router.navigate(['/report/resident-report', residentId]);
+  // }
 
 }

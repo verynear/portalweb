@@ -58,14 +58,12 @@
 											<tr *ngFor="let res of report?.messageRecipients">
                         <!-- Location -->
                         <td>
-                          <a [routerLink]="" (click)="openUnitReport(message.id)"> 
                             {{res.rentalSiteBuildingUnit}}
-                          </a>
                         </td>
                         
                          <!-- Resident -->
                         <td>
-                          <a [routerLink]="" (click)="openResidentReport(1)">
+                          <a [routerLink]="" (click)="openResidentReport(res.id)">
                             {{res.firstname}} {{res.lastname}}
                           </a>
                         </td>
