@@ -8,7 +8,7 @@ import { FileUploadModule } from 'primeng/primeng';
 import { FileUpload } from 'primeng/components/fileupload/fileupload';
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
-
+import {ConfigService} from '../../services/config.service';
 
 @Component({
   selector: 'app-form-upload',
@@ -20,7 +20,7 @@ export class FormUploadComponent implements OnInit {
   @Output() uploadForm = new EventEmitter();
   @Output() removeFile = new EventEmitter();
 
-  FOLDER = 'noi-s3/';
+  s3: any;
   msg: string;
   dataLocation: string;
   uploadReady = false;
@@ -37,7 +37,12 @@ export class FormUploadComponent implements OnInit {
   filesTooLargeMessageDetail = 'please remove one or more attachments';
 
   constructor(private uploadService: UploadFileService,
-    private alertService: AlertService, private sanitizer: DomSanitizer, private zone: NgZone ) { }
+              private alertService: AlertService,
+              private configService: ConfigService,
+              private sanitizer: DomSanitizer,
+              private zone: NgZone ) {
+    this.s3 = this.configService.get().s3;
+  }
 
   ngOnInit() {
     this.uploadedFiles = [];
@@ -70,13 +75,7 @@ export class FormUploadComponent implements OnInit {
       this.uploadReady = false;
       this.currentUpload = true;
       const self = this;
-      const bucket = new S3(
-        {
-          accessKeyId: 'AKIAI6JR7BFD4VQVVDKA',
-          secretAccessKey: '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',
-          region: 'us-east-2'
-        }
-      );
+      const bucket = new S3(this.s3.attachments.credential);
 
       for (const file of event.files) {
             file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
@@ -110,8 +109,8 @@ export class FormUploadComponent implements OnInit {
               break;
             }
             const params = {
-              Bucket: 'noi-angular5-bucket',
-              Key: this.FOLDER + file.name,
+              Bucket: this.s3.attachments.bucket,
+              Key: `${this.s3.attachments.folder}/${file.name}`,
               Body: file
             };
             const putObjectPromise = bucket.upload(params).promise();
