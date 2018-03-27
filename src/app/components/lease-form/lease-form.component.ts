@@ -24,12 +24,6 @@ export class LeaseFormComponent implements OnInit {
   startDate: FormControl;
   endDate: FormControl;
   incentive: FormControl;
-  petName: FormControl;
-  petBreed: FormControl;
-  petAge: FormControl;
-  petType: FormControl;
-  petColor: FormControl;
-  petWeight: FormControl;
   residenceInfo: FormControl;
   deposit: FormControl;
   depositDate: FormControl;
@@ -56,12 +50,6 @@ export class LeaseFormComponent implements OnInit {
         this.startDate = new FormControl('', Validators.required);
         this.endDate = new FormControl('', Validators.required);
         this.incentive = new FormControl('', Validators.required);
-        this.petName = new FormControl('');
-        this.petBreed = new FormControl('');
-        this.petAge = new FormControl('');
-        this.petType = new FormControl('');
-        this.petColor = new FormControl('');
-        this.petWeight = new FormControl('');
         this.residenceInfo = new FormControl('');
         this.deposit = new FormControl('', Validators.required);
         this.depositDate = new FormControl('', Validators.required);
@@ -81,14 +69,8 @@ export class LeaseFormComponent implements OnInit {
             leaseDate: this.leaseDate,
             duration: this.duration,
             startDate: this.startDate,
-            endDate: this.endDate;
+            endDate: this.endDate,
             incentive: this.incentive,
-            petName: this.petName,
-            petBreed: this.petBreed,
-            petAge: this.petAge,
-            petType: this.petType,
-            petColor: this.petColor,
-            petWeight: this.petWeight,
             residenceInfo: this.residenceInfo,
             deposit: this.deposit,
             depositDate: this.depositDate,

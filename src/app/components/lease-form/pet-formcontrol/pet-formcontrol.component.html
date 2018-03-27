@@ -1,0 +1,31 @@
+<div class="card-body" [formGroup]="pet">
+	<p class="lead m-0">Pet {{index}} <button type="button" class="btn btn-link btn-sm" (click)="removed.emit(index)"><i class="fa fa-minus-circle"></i> Remove Pet</button></p>
+	<div class="form-row">
+		<div class="col-md-4">
+			<label class="col-form-label" [attr.for]="'petName'+index">Pet Name</label>
+			<input type="text" class="form-control" [attr.id]="'petName'+index" formControlName="petName">
+		</div>
+		<div class="col-md-4">
+			<label class="col-form-label" [attr.for]="'petBreed'+index">Breed of Pet</label>
+			<input type="text" class="form-control" [attr.id]="'petBreed'+index" formControlName="petBreed">
+		</div>
+		<div class="col-md-4">
+			<label class="col-form-label" [attr.for]="'petAge'+index">Age of Pet</label>
+			<input type="text" class="form-control" [attr.id]="'petAge'+index" formControlName="petAge">
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="col-md-4">
+			<label class="col-form-label" [attr.for]="'petType'+index">Type of Pet</label>
+			<input type="text" class="form-control" [attr.id]="'petType'+index" formControlName="petType">
+		</div>
+		<div class="col-md-4">
+			<label class="col-form-label" [attr.for]="'petColor'+index">Color</label>
+			<input type="text" class="form-control" [attr.id]="'petColor'+index" formControlName="petColor">
+		</div>
+		<div class="col-md-4">
+			<label class="col-form-label" [attr.for]="'petWeight'+index">Weight</label>
+			<input type="text" class="form-control" [attr.id]="'petWeight'+index" formControlName="petWeight">
+		</div>
+	</div>
+</div>

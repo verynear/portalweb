@@ -89,6 +89,10 @@ import { AttachmentReceiptListComponent } from './pages/report/attachment-receip
 import { AttachmentSentDateListComponent } from './pages/report/attachment-sent-date-list/attachment-sent-date-list.component';
 import { MessageFilterComponent } from './pages/messages/message-filter/message-filter.component';
 import { GuestcardComponent } from './components/guestcard/guestcard.component';
+import { ResidentFormarrayComponent } from './components/lease-form/resident-formarray/resident-formarray.component';
+import { ResidentFormcontrolComponent } from './components/lease-form/resident-formcontrol/resident-formcontrol.component';
+import { PetFormarrayComponent } from './components/lease-form/pet-formarray/pet-formarray.component';
+import { PetFormcontrolComponent } from './components/lease-form/pet-formcontrol/pet-formcontrol.component';
 
 
 
@@ -168,6 +172,10 @@ import { GuestcardComponent } from './components/guestcard/guestcard.component';
     AttachmentSentDateListComponent,
     MessageFilterComponent,
     GuestcardComponent,
+    ResidentFormarrayComponent,
+    ResidentFormcontrolComponent,
+    PetFormarrayComponent,
+    PetFormcontrolComponent,
   ],
   providers: [
       {

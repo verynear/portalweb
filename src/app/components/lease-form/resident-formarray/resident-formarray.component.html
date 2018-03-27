@@ -1,0 +1,7 @@
+<button type="button" class="btn btn-secondary btn-sm float-right" (click)="addResident()"><i class="fa fa-plus-circle"></i> Add Resident</button>
+<fieldset>
+  <app-resident-control
+    *ngFor="let resident of residentFormArray.controls; let i=index"
+    [index]="i" [resident]="resident" (removedResident)="residentFormArray.removeAt($event)">
+  </app-resident-control>
+</fieldset>
