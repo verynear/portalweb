@@ -4,29 +4,43 @@ import { ReportService } from '../../../services/report.service';
 import { Building } from '../../../models/building';
 import { Report } from '../../../models/report';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Site } from '../../../models/site';
 
 @Component({
-  selector: 'app-building-report',
-  templateUrl: './building-report.component.html',
-  styleUrls: ['./building-report.component.scss']
+  selector: 'app-resident-report',
+  templateUrl: './resident-report.component.html',
+  styleUrls: ['./resident-report.component.scss']
 })
-export class BuildingReportComponent implements OnInit {
-  public buildings: Building[];
-  public currentProperty: Building;
-  public buildingReport: Report[];
-
+export class ResidentReportComponent implements OnInit {
   public loading: boolean;
+  public report: Report;
+  public currentSite: Site;
 
   constructor(private siteService: SiteService, private router: Router,
     private reportService: ReportService, private route: ActivatedRoute) {
-
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => { // On init, get the correct building report by URL id.
-      const buildingId = params.id;
-      this.getBuildingReport(buildingId);
+      const residentId = params.id;
+      this.getResidentReport(residentId);
     });
+
+    this.siteService.getCurrentSite().subscribe(site => {
+      this.currentSite = site;
+    });
+  }
+
+  getResidentReport(residentId) {
+    this.loading = true;
+    this.reportService.residentReport(residentId).subscribe(
+      data => {
+        this.report = data;
+        this.loading = false;
+      },
+      error => {
+        this.loading = false;
+      });
   }
 
   showAttachments(message) {
@@ -41,28 +55,11 @@ export class BuildingReportComponent implements OnInit {
     message.rowSize = $event;
   }
 
-  getBuildingReport(buildingId: number) {
-    this.loading = true;
-    this.reportService.buildingReport(buildingId).subscribe(
-      data => {
-        this.loading = false;
-        this.buildingReport = data;
-      },
-      error => {
-        this.loading = false;
-      });
+  openCommunityReport() {
+    this.router.navigate(['/report/community-report', this.currentSite.id]);
   }
 
   openMessageReport(messageId: number) {
     this.router.navigate(['/report/message-report', messageId]);
   }
-
-  openResidentReport(residentId: number) {
-    this.router.navigate(['/report/resident-report', residentId]);
-  }
-
-  openUnitReport(unitId: number) {
-    this.router.navigate(['/report/unit-report', unitId]);
-  }
-
 }

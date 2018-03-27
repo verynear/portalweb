@@ -48,10 +48,14 @@
                       <tr *ngFor="let tenant of unit.tenants; let i = index">
                         <td *ngIf="i==0" attr.rowspan="{{unit.tenants.length}}">
                           <!-- <td> -->
-                          <p> {{unit.unitNumber}} </p>
+                          <p>
+                            <a [routerLink]="" (click)="openUnitReport(unit.id)"> {{unit.unitNumber}} </a>  
+                          </p>
                         </td>
-                        <td> {{tenant.firstname}} {{tenant.lastname}}</td>
-                        <td style="width: 450px">  
+
+                        <td> <a [routerLink]="" (click)="openResidentReport(tenant.id)"> {{tenant.firstname}} {{tenant.lastname}} </a> </td>
+
+                        <td class="w-450">  
                           <ul class="list-unstyled">
                             <li *ngFor="let message of tenant.messages; let i=index">
                               <div *ngIf="i<3">
@@ -60,8 +64,7 @@
                                 <div *ngIf="message.messageAttachments.length > 0" class="float-right">
                                   <a [routerLink]="" (click)="showAttachments(message)"><i class="fa fa-paperclip"></i></a>
                                 </div>
-                                
-                                
+
                                 <div *ngIf="message.showAttachments">
                                   <app-attachment-list (currSize)="rowSize($event, message)" [attachments]="message.messageAttachments"></app-attachment-list>
                                 </div>
@@ -80,7 +83,6 @@
                                 <div *ngIf="message.showAttachments">
                                   <app-attachment-sent-date-list [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-sent-date-list>
                                 </div>
-
                               </div>
                             </li>
                           </ul> 
