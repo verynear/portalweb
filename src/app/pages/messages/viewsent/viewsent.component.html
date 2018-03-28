@@ -22,11 +22,11 @@
                 <span [innerHTML]="message?.message | safeHtml"></span>
               </p>
               <p>
-                <small *ngIf="attachments.length"><i class="fa fa-paperclip"> {{attachments.length}} Attachments</i></small>
+                <small *ngIf="message?.messageRecipients[0].messageAttachments?.length"><i class="fa fa-paperclip"> {{message?.messageRecipients[0].messageAttachments?.length}} Attachments</i></small>
               </p>
 
-              <section class="attachSection" *ngIf="attachments">
-                <span class="attachSpan" *ngFor='let attachment of attachments'>
+              <section class="attachSection" *ngIf="message?.messageRecipients[0].messageAttachments?.length">
+                <span class="attachSpan" *ngFor='let attachment of message?.messageRecipients[0].messageAttachments'>
                   <a href="{{attachment.url}}" download>
                     <img class="attach" [src]="attachment.url" alt="File" onError="this.src='./assets/FilePDF.png';">
                   </a>
