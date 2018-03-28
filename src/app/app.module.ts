@@ -60,7 +60,7 @@ import { ViewSentComponent } from './pages/messages/viewsent/viewsent.component'
 import { RecentActivityComponent } from './pages/recent-activity/recent-activity.component';
 import { ViewReceivedComponent } from './pages/messages/viewreceived/viewreceived.component';
 import { InvalidDomainComponent } from './pages/invalid-domain/invalid-domain.component';
-import { MessageReportComponent } from './pages/report/message-report/message-report.component';
+
 import { MyAccountComponent } from './pages/myaccount/myaccount.component';
 import { ActivityComponent } from './pages/activity/activity.component';
 import { MessageListComponent } from './components/message-list/message-list.component';
@@ -82,12 +82,20 @@ import { ReportNavComponent } from './pages/report/report-nav/report-nav.compone
 import { SiteSwitchComponent } from './components/site-switch/site-switch.component';
 import { CommunityReportComponent } from './pages/report/community-report/community-report.component';
 import { AttachmentListComponent } from './pages/report/attachment-list/attachment-list.component';
+import { LeasingComponent } from './pages/leasing/leasing.component';
+import { LeaseFormComponent } from './components/lease-form/lease-form.component';
+import { SrNotesComponent } from './pages/sr-notes/sr-notes.component';
 import { AttachmentReceiptListComponent } from './pages/report/attachment-receipt-list/attachment-receipt-list.component';
 import { AttachmentSentDateListComponent } from './pages/report/attachment-sent-date-list/attachment-sent-date-list.component';
 import { MessageFilterComponent } from './pages/messages/message-filter/message-filter.component';
-
-
-
+import { GuestcardComponent } from './components/guestcard/guestcard.component';
+import { ResidentFormarrayComponent } from './components/lease-form/resident-formarray/resident-formarray.component';
+import { ResidentFormcontrolComponent } from './components/lease-form/resident-formcontrol/resident-formcontrol.component';
+import { PetFormarrayComponent } from './components/lease-form/pet-formarray/pet-formarray.component';
+import { PetFormcontrolComponent } from './components/lease-form/pet-formcontrol/pet-formcontrol.component';
+import { ResidentReportComponent } from './pages/report/resident-report/resident-report.component';
+import { UnitReportComponent } from './pages/report/unit-report/unit-report.component';
+import { MessageReportComponent } from './pages/report/message-report/message-report.component';
 
 
 @NgModule({
@@ -156,9 +164,19 @@ import { MessageFilterComponent } from './pages/messages/message-filter/message-
     SiteSwitchComponent,
     CommunityReportComponent,
     AttachmentListComponent,
+    LeasingComponent,
+    LeaseFormComponent,
+    SrNotesComponent,
     AttachmentReceiptListComponent,
     AttachmentSentDateListComponent,
     MessageFilterComponent,
+    GuestcardComponent,
+    ResidentFormarrayComponent,
+    ResidentFormcontrolComponent,
+    PetFormarrayComponent,
+    PetFormcontrolComponent,
+    ResidentReportComponent,
+    UnitReportComponent,
   ],
   providers: [
       {

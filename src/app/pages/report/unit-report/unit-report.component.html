@@ -1,0 +1,85 @@
+<div id="main">
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <app-loading *ngIf="loading" message="Loading Unit Report..."></app-loading>
+  
+      <div class="container-fluid">
+  
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Unit Report <small> {{report.unitNumber}}</small> </h1>
+          </div>
+        </div>
+  
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a routerLink="" (click)="openCommunityReport()"><i class="fa fa-long-arrow-left"></i> Community Report</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Message</li>
+          </ol>
+        </nav>
+        
+        <form>				
+        
+          <div *ngIf="!loading" class="row">
+            <!-- Code for Buildings, refactor into component in future. -->
+            <div class="col-md-3">
+              <app-report-nav></app-report-nav>
+            </div>
+  
+            <div class="col-md-9">
+              <section class="message-report">
+                <table *ngIf="!loading" class="table table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Message</th>
+                        <th>Sent Date</th>
+                        <th>Read Receipt</th>
+                      </tr>
+                    </thead>
+  
+                    <tbody *ngFor="let tenant of report.tenants">
+                      <tr *ngFor="let message of tenant.messages">
+                        <td class="w-350">
+                          <a [routerLink]="" (click)="openMessageReport(message.id)">{{message.subject}}</a>
+
+                          <div *ngIf="message.messageAttachments?.length > 0" class="float-right">
+                            <a [routerLink]="" (click)="showAttachments(message)"><i class="fa fa-paperclip"></i></a>
+                          </div>
+  
+                          <div *ngIf="message.showAttachments">
+                            <app-attachment-list (currSize)="rowSize($event, message)" [attachments]="message.messageAttachments"></app-attachment-list>
+                          </div>
+
+                        </td>
+                        <td> 
+                          {{message.createDate | date:'short'}}
+
+                          <div *ngIf="message.showAttachments">
+                            <app-attachment-sent-date-list [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-sent-date-list>
+                          </div>
+                        </td>
+                        <td>
+                          <ul class="list-unstyled">
+                            <li *ngIf="message.updateDate">
+                              <span class="fa fa-check isRead"></span> {{message.updateDate | date: 'short'}}
+                            </li>
+                          
+                            <li *ngIf="!message.updateDate" class="text-muted">
+                                <span class="fa fa-times notRead"></span> Not Read
+                            </li>
+
+                            <div *ngIf="message.showAttachments">
+                              <app-attachment-receipt-list (expanded)="message.expanded" [rowSize]="message.rowSize" [attachments]="message.messageAttachments"></app-attachment-receipt-list>
+                            </div>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </section>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

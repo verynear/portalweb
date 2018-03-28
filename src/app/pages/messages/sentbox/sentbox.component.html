@@ -89,7 +89,7 @@
 					</td>
 
 					<td class="text-right">
-						<i *ngIf="message.messageAttachments.length" class="fa fa-paperclip fa-lg"></i>
+						<i *ngIf="message.messageAttachments?.length" class="fa fa-paperclip fa-lg"></i>
 						<button class="btn sentType report" (click)="openReport(message.id)">
 						<i class="fa fa-tasks"></i>
 						</button>

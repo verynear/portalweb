@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class ConfigService {
@@ -23,13 +24,12 @@ export class ConfigService {
         subdomain: site,
         host: branch
       },
-      environments: ['devdemo', 'stage', 'api', 'localhost']
+      environments: ['devdemo', 'stage', 'api', 'localhost'],
+      s3: environment.s3
     };
   }
 
   get(): any {
-    console.log('About to return: Config Service');
-    console.log(this.data);
     return this.data;
   }
 

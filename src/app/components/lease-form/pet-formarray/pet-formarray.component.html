@@ -1,0 +1,7 @@
+<fieldset>
+  <app-pet-control
+    *ngFor="let pet of petFormArray.controls; let i=index"
+    [index]="i" [pet]="pet" (removedPet)="petFormArray.removeAt($event)">
+  </app-pet-control>
+</fieldset>
+<button type="button" class="btn btn-secondary btn-sm float-right" (click)="addPet()"><i class="fa fa-plus-circle"></i> Add Additional Pet</button>

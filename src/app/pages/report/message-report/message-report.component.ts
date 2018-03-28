@@ -46,9 +46,9 @@ export class MessageReportComponent implements OnInit {
     });
   }
 
-  getMessage(id) {
+  getMessage(messageId: number) {
     this.loading = true;
-    this.messageService.get(id).subscribe(
+    this.messageService.get(messageId).subscribe(
       data => {
         this.loading = false;
         this.message = data;
@@ -58,9 +58,9 @@ export class MessageReportComponent implements OnInit {
       });
   }
 
-  getMessageReport(id) {
+  getMessageReport(messageId: number) {
     this.loading = true;
-    this.reportService.messageReport(id).subscribe(
+    this.reportService.messageReport(messageId).subscribe(
       data => {
         this.loading = false;
         this.reportExists = true;
@@ -71,9 +71,22 @@ export class MessageReportComponent implements OnInit {
       });
   }
 
-  goToCommunityReport() {
+  openCommunityReport() {
     this.router.navigate(['/report/community-report', this.currentSite.id]);
   }
+
+  openUnitReport(unitId: number) {
+    this.router.navigate(['/report/unit-report', unitId]);
+  }
+
+  openMessageReport(messageId: number) {
+    this.router.navigate(['/report/message-report', messageId]);
+  }
+
+  openResidentReport(residentId: number) {
+    this.router.navigate(['/report/resident-report', residentId]);
+  }
+
 }
 
 
