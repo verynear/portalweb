@@ -89,11 +89,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr *ngFor='let applicant of applicants'>
+									<tr *ngFor='let applicant of applicants' (click)="openCard(applicant)">
 										<td>{{applicant.applicantPropertyName}}</td>
 										<td>{{applicant.applicantUnit}}</td>
 										<td><span class="btn btn-link btn-block"><i class="fa fa-globe"></i></span></td>
-										<td><a href="" data-toggle="modal" data-target="#guestCardModal"><span class="badge badge-info new">New</span>{{applicant.lastname}}, {{applicant.firstname}}</a></td>
+										<td><span class="badge badge-info new">New</span>{{applicant.lastname}}, {{applicant.firstname}}</td>
 										<td>{{applicant.applicationDate | date }}</td>
 										<td><a href="https://www.betternoi.com/demo/approval/" target="_blank" class="btn btn-link btn-sm btn-block"><i class="fa fa-clock-o"></i> View Status</a></td>
 										<td>{{applicant.moveinDate | date }}</td>
