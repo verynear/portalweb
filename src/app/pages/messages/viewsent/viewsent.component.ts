@@ -33,7 +33,7 @@ export class ViewSentComponent implements OnInit {
     this.loading = true;
     this.messageService.get(id).subscribe(
       data => {
-        console.log("The Message Is");
+        console.log('The Message Is');
         console.log(data);
         this.loading = false;
         this.message = data;
@@ -54,7 +54,7 @@ export class ViewSentComponent implements OnInit {
       error => {
         this.loading = false;
         console.log('Error: getMessageAttachment()');
-      });    
+      });
   }
 
 }

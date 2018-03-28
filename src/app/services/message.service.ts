@@ -54,7 +54,7 @@ export class MessageService {
   }
 
   getMessageAttachements(id: number) {
-    return this.http.get<Attachment>(this.baseURL + '/messages/' + id + "/attachments");
+    return this.http.get<Attachment>(this.baseURL + '/messages/' + id + '/attachments');
 
   }
 
