@@ -5,4 +5,7 @@ export class Report {
     buildingNumber: number;
     buildingUnit: any;
     attachment: any[];
+    firstname: string;
+    lastname: string;
+    unitNumber: number;
 }
