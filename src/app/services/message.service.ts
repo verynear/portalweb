@@ -5,6 +5,7 @@ import { Inquiry } from '../models/inquiry';
 import { Building } from '../models/building';
 import { Tenant } from '../models/tenant';
 import { Unit } from '../models/unit';
+import { Attachment } from '../models/attachment';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { ConfigService } from './config.service';
@@ -50,6 +51,11 @@ export class MessageService {
 
   getSentAnnouncements() {
     return this.http.get<Message[]>(this.baseURL + '/announcements');
+  }
+
+  getMessageAttachements(id: number) {
+    return this.http.get<Attachment>(this.baseURL + '/messages/' + id + "/attachments");
+
   }
 
   sendMessage (message: Message) {

@@ -247,7 +247,7 @@ export class ComposeComponent implements OnInit, AfterViewInit {
             data => {
                 console.log('sent');
                 this.newMessageId = data['id'];
-                this.lastLink = '/messages/view/' + this.newMessageId;
+                this.lastLink = '/messages/sent/' + this.newMessageId;
                 if (this.attachments.length) {
                   this.uploadService.postAttachments(this.newMessageId, this.attachments).subscribe(
                       data1 => {
