@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicantService } from '../../services/applicant.service';
 import { Applicant } from '../../models/applicant';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../services/alert.service';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -16,7 +17,9 @@ export class ApproveformComponent implements OnInit {
     applicant: any = {};
 
   constructor(private alertService: AlertService,
-    private service: ApplicantService) { }
+    private service: ApplicantService,
+    public activeModal: NgbActiveModal
+    ) { }
 
   ngOnInit() {
   }
@@ -31,8 +34,8 @@ export class ApproveformComponent implements OnInit {
           this.applicant = data;
           console.log('new applicant id');
           console.log(data['id']);
-          this.approval(data['id']);
           this.alertService.success('Applicant Created');
+          this.loading = false;
           form.resetForm();
           console.log('end of create loading:');
           console.log(this.loading);

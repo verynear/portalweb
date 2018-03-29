@@ -210,7 +210,7 @@ import { MessageReportComponent } from './pages/report/message-report/message-re
         useValue: AuthHeaderInterceptor.getInstance(),
       }
   ],
-  entryComponents: [ComposeComponent, AnnouncementcomposeComponent, GuestcardComponent],
+  entryComponents: [ComposeComponent, AnnouncementcomposeComponent, GuestcardComponent, ApproveformComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
