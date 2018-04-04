@@ -20,10 +20,11 @@
 						<p-checkbox name="groupname" value="val2" [(ngModel)]="checkAll" binary="true" (click)="selectAllMessages(checkAll)"></p-checkbox>
 					</app-th>
 				</th>
-					<th class="width-250">
+				<th class="width-250">
 					<app-th columnName="id" displayName="Recipient"></app-th>
 				</th> 
 				<th class="width-100">
+					<app-th style="color: #e9ecef;" columnName="type" displayName="Type"></app-th>
 				</th>
 				<th class="min-width-100">
 					<app-th columnName="message" displayName="Message"></app-th>
@@ -35,16 +36,16 @@
 
 
 			<tbody *ngIf="messages?.length; else no_data_templ"> 
-				<tr *ngFor='let message of messages' (click)="openMessage(message.id)">
+				<tr *ngFor='let message of messages'>
 					<td>
 						<ul class="list-inline m-0">
 						<li class="list-inline-item">
-							<p-checkbox name="groupname" value="val2" [(ngModel)]="message.selected" binary="true"></p-checkbox>
+							<p-checkbox [(ngModel)]="message.selected" binary="true"></p-checkbox>
 						</li>
 						</ul>
 					</td>
 
-					<td class="ellipsis">
+					<td class="ellipsis" (click)="openMessage(message.id)">
 		
 						<span *ngIf="message.type ==='SITE'">
 							{{message.messageRecipients[0]?.rentalSite}}		
@@ -71,7 +72,7 @@
 						</span>
 					</td>
 
-					<td>
+					<td (click)="openMessage(message.id)">
 						<button [ngClass]="message.type" class="btn sentType UNIT">
 							<span *ngIf="message.type==='SITE'">
 								Community
@@ -82,19 +83,19 @@
 						</button>
 					</td>
 
-					<td class="min-width-100">
+					<td class="min-width-100" (click)="openMessage(message.id)">
 		
 						<span class="previewTitle"> {{message.subject}} -</span> 
 						<span class="previewSubject" [innerHTML]="message.message | htmlToPlain"> </span> 
 					</td>
 
-					<td class="text-right">
+					<td class="text-right" (click)="openMessage(message.id)">
 						<i *ngIf="message.messageRecipients[0].messageAttachments?.length" class="fa fa-paperclip fa-lg"></i>
 						<button class="btn sentType report" (click)="openReport(message.id)">
 						<i class="fa fa-tasks"></i>
 						</button>
-						<i style="color: #fff" class="fa fa-angle-right"></i>
-						<span>{{message.createDate | date: 'MMM dd, y' }} </span>
+                        <span style="margin-right: 10px;"></span>
+						<span>{{message.createDate | date: 'MM/dd/yy' }} </span>
 					</td>
 					
 				</tr>				               
