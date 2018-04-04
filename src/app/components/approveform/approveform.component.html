@@ -1,50 +1,48 @@
-<div id="main">
-<!-- Main Content Area -->
-  <div class="main-content">
-
-    <div class="container">
-      <app-alert class='applicant'></app-alert>
-      <h2>Register and Approve</h2>
-      <p>
-        Add Applicant and Instantly Approve as Resident
-      </p>
-      
-      <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && create(f)" novalidate>
-        <div class="form-group" [ngClass]="{ 'is-invalid': f.submitted && !firstname.valid }">
-          <label for="firstname">First Name</label>
-          <input type="text" class="form-control" name="firstname" [(ngModel)]="applicant.firstname" #firstname="ngModel" required />
-          <div *ngIf="f.submitted && !firstname.valid" class="invalid-feedback">First name is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
-          <label for="lastname">Last Name</label>
-          <input type="text" class="form-control" name="lastname" [(ngModel)]="applicant.lastname" #lastname="ngModel" required />
-          <div *ngIf="f.submitted && !lastname.valid" class="invalid-feedback">Last name is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !emailAddress.valid }">
-          <label for="emailAddress">Email</label>
-          <input type="email" class="form-control" name="emailAddress" [(ngModel)]="applicant.emailAddress" #emailAddress="ngModel" required />
-          <div *ngIf="f.submitted && !emailAddress.valid" class="invalid-feedback">Email address is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
-          <label for="phone">Phone</label>
-          <input type="text" class="form-control" name="phone" [(ngModel)]="applicant.phone" #phone="ngModel" required />
-          <div *ngIf="f.submitted && !phone.valid" class="invalid-feedback">Phone number is required</div>
-        </div>
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !applicantPropertyName.valid }">
-          <label for="applicantPropertyName">Community Name</label>
-          <input type="text" class="form-control" name="applicantPropertyName" [(ngModel)]="applicant.applicantPropertyName" #applicantPropertyName="ngModel" required />
-          <div *ngIf="f.submitted && !applicantPropertyName.valid" class="invalid-feedback">Community name is required</div>
-        </div>
-        <div class="form-group">
-          <label for="applicantUnit">Requested Unit</label>
-          <input type="text" class="form-control" name="applicantUnit" [(ngModel)]="applicant.applicantUnit" #applicantUnit="ngModel" />
-        </div>
-        <hr>
-        <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">Add & Approve</button>
-          <img *ngIf="loading" src="./assets/Spinner-small.gif" />
-        </div>
-      </form>
-    </div>
+<div class="modal-content">
+  <div class="modal-header">
+    <h4>New Applicant</h4>
+    <button type="button" class="close" (click)="activeModal.close('Close click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h6 class="m-0">Manual Add</h6>
+    <hr>
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && create(f)" novalidate>
+      <div class="form-group" [ngClass]="{ 'is-invalid': f.submitted && !firstname.valid }">
+        <label for="firstname">First Name</label>
+        <input type="text" class="form-control" name="firstname" [(ngModel)]="applicant.firstname" #firstname="ngModel" required />
+        <div *ngIf="f.submitted && !firstname.valid" class="invalid-feedback">First name is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
+        <label for="lastname">Last Name</label>
+        <input type="text" class="form-control" name="lastname" [(ngModel)]="applicant.lastname" #lastname="ngModel" required />
+        <div *ngIf="f.submitted && !lastname.valid" class="invalid-feedback">Last name is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !emailAddress.valid }">
+        <label for="emailAddress">Email</label>
+        <input type="email" class="form-control" name="emailAddress" [(ngModel)]="applicant.emailAddress" #emailAddress="ngModel" required />
+        <div *ngIf="f.submitted && !emailAddress.valid" class="invalid-feedback">Email address is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" name="phone" [(ngModel)]="applicant.phone" #phone="ngModel" required />
+        <div *ngIf="f.submitted && !phone.valid" class="invalid-feedback">Phone number is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !applicantPropertyName.valid }">
+        <label for="applicantPropertyName">Community Name</label>
+        <input type="text" class="form-control" name="applicantPropertyName" [(ngModel)]="applicant.applicantPropertyName" #applicantPropertyName="ngModel" required />
+        <div *ngIf="f.submitted && !applicantPropertyName.valid" class="invalid-feedback">Community name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="applicantUnit">Requested Unit</label>
+        <input type="text" class="form-control" name="applicantUnit" [(ngModel)]="applicant.applicantUnit" #applicantUnit="ngModel" />
+      </div>
+      <div class="modal-footer">
+        <button [disabled]="loading" class="btn btn-primary" (click)="create(f); activeModal.close('Close click')">Add</button>
+        <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+        <img *ngIf="loading" src="./assets/Spinner-small.gif" />
+      </div>
+    </form>
   </div>
 </div>
