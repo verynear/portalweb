@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EditorModule, MultiSelectModule, AutoCompleteModule } from 'primeng/primeng';
+import { EditorModule, MultiSelectModule, AutoCompleteModule, ConfirmDialog } from 'primeng/primeng';
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -96,7 +96,7 @@ import { PetFormcontrolComponent } from './components/lease-form/pet-formcontrol
 import { ResidentReportComponent } from './pages/report/resident-report/resident-report.component';
 import { UnitReportComponent } from './pages/report/unit-report/unit-report.component';
 import { MessageReportComponent } from './pages/report/message-report/message-report.component';
-
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
   imports: [
@@ -177,6 +177,7 @@ import { MessageReportComponent } from './pages/report/message-report/message-re
     PetFormcontrolComponent,
     ResidentReportComponent,
     UnitReportComponent,
+    ConfirmModalComponent
   ],
   providers: [
       {
@@ -210,7 +211,7 @@ import { MessageReportComponent } from './pages/report/message-report/message-re
         useValue: AuthHeaderInterceptor.getInstance(),
       }
   ],
-  entryComponents: [ComposeComponent, AnnouncementcomposeComponent, GuestcardComponent, ApproveformComponent],
+  entryComponents: [ComposeComponent, AnnouncementcomposeComponent, GuestcardComponent, ApproveformComponent, ConfirmModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

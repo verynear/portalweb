@@ -1,3 +1,5 @@
+<app-loading *ngIf="deleteLoad" message="Deleting Announcement..."></app-loading>
+
 <div id="main">
 	<!-- Main Content Area -->
 	<div class="main-content">
@@ -20,7 +22,7 @@
 						</div>
 
 						<div class="col-md-9">
-							<button type="button" class="btn btn-lg btn-primary float-right" (click)="compose()"><i class="fa fa-edit fa-lg"></i> Create New Announcement</button>
+							<button type="button" class="btn btn-primary float-right" (click)="compose()"><i class="fa fa-edit fa-lg"></i> Create New Announcement</button>
 						</div>
 					</div>
 
@@ -43,11 +45,7 @@
 						<div class="w-75" [innerHTML]="announcement.message | safeHtml"> </div>
 						
 						<div class="clearfix">
-							<a href="" class="float-right">
-								<i class="fa fa-edit"></i> Edit 
-							</a>
-				
-							<a (click)="deleteAnnouncement(announcement.id)" class="float-right mr-2">
+							<a (click)="deleteAnnouncement(announcement.id)" class="float-right mr-2 pointer">
 								<i class="fa fa-trash"></i> Delete
 							</a>	
 						</div>
@@ -57,7 +55,6 @@
 				</div>
 				
 				<hr>
-				<img *ngIf="loading" class="spinner" src="./assets/Spinner-100px.gif" /> 
 
 				<div class="row">
 					<div class="col-md-12">
