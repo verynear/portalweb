@@ -8,10 +8,10 @@
         <section id="quick-info">
 
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-md-9">
             <section id="quick-info">
 							<div class="row">
-								<div class="col-lg-3">
+								<div class="col-md-3">
 									<div class="icon-box">
 										<div class="icon">
 											<div class="image">
@@ -20,7 +20,7 @@
 											</div>
 											<div class="card">
 											  <div class="card-body">
-												<h5 class="card-title">Applicants</h5>
+												<h5 class="card-title fontSize115">Applicants</h5>
 												  	<a href="" class="btn btn-primary btn-sm">New Applicants</a>
 											  		<!--<a href="leads.html" class="btn btn-default btn-sm">View All Leads</a>-->
                                                 </div>
@@ -28,7 +28,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-3">
+								<div class="col-md-3">
 									<div class="icon-box">
 										<div class="icon">
 											<div class="image">
@@ -36,14 +36,14 @@
 												<i class="fa fa-file-text-o fa-2x"></i>
 											</div>
 											<div class="card">
-											  <div class="card-body">
+											  <div class="card-body fontSize115">
 												<h5 class="card-title">Ready for Lease</h5>
 													<a href="" class="btn btn-primary btn-sm">Ready for Lease</a></div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-3">
+								<div class="col-md-3">
 									<div class="icon-box">
 										<div class="icon">
 											<div class="image">
@@ -52,15 +52,16 @@
 											</div>
 											<div class="card">
 												<div class="card-body">
-													<h5 class="card-title">Communications</h5>
-													<a (click)="compose()" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Start Communication"><i class="fa fa-edit fa-lg"></i></a>
+													<h5 class="card-title fontSize115">Communications</h5>
+													<a (click)="compose()" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Start Communication">
+													<i class="fa fa-edit fa-lg"></i></a>
 													<a href="messages" class="btn btn-default btn-sm">View All</a>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-3">
+								<div class="col-md-3">
 									<div class="icon-box">
 										<div class="icon">
 											<div class="image">
@@ -68,7 +69,7 @@
 												<i class="fa fa-bullhorn fa-2x"></i>
 											</div>
 											<div class="card">
-												<div class="card-body">
+												<div class="card-body fontSize115">
 													<h5 class="card-title">Announcements</h5>
 													<a (click)="composeAnnouncement()" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Create New Announcement"><i class="fa fa-edit fa-lg"></i></a>
 													<a href="announcements" class="btn btn-default btn-sm">View All</a>
@@ -91,7 +92,7 @@
                     </div>
                   </section>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <!-- TODO: This will be uncommented when the API is updated -->
                   <app-activity [pageSize]="2" [maxSize]="200"></app-activity>
                   <!-- <a routerLink="/activity" routerLinkActive="active" class="btn btn-primary btn-sm btn-block">View More</a> -->
