@@ -1,0 +1,6 @@
+<select (change)="selectValue()" [(ngModel)]="selectedObj" class="form-control">
+    <option *ngFor="let obj of objs" [ngValue]="obj"> {{obj[type]}} </option>
+</select>
+
+
+
