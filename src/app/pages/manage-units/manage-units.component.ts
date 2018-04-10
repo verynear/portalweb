@@ -1,8 +1,8 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { SiteService } from '../../services/site.service';
-import { Site } from '../../models/Site';
-import { Unit } from '../../models/Unit';
-import { Building } from '../../models/Building';
+import { Site } from '../../models/site';
+import { Unit } from '../../models/unit';
+import { Building } from '../../models/building';
 
 @Component({
   selector: 'app-manage-units',
@@ -38,6 +38,10 @@ export class ManageUnitsComponent implements OnInit {
   }
 
   selectBuilding($event) {
+    if ($event === 'all') { // Show all buildings.
+      return; // Temp until we implement API.
+    }
+
     this.getUnits($event);
   }
 

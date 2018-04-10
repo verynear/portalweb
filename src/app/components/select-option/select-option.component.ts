@@ -7,10 +7,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SelectOptionComponent implements OnInit {
   selectedObj: any;
+  selectAll: number;
 
   @Output() onSelect = new EventEmitter();
   @Input() objs: any[];   /* The array of objects to iterate over */
   @Input() type: any;     /* The type of the value */
+  @Input() default: string; /* Default message for select */
 
   selectValue() {
     this.onSelect.emit(this.selectedObj);
@@ -19,6 +21,7 @@ export class SelectOptionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.selectAll = 0;
   }
 
 }
