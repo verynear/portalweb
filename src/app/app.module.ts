@@ -97,6 +97,8 @@ import { ResidentReportComponent } from './pages/report/resident-report/resident
 import { UnitReportComponent } from './pages/report/unit-report/unit-report.component';
 import { MessageReportComponent } from './pages/report/message-report/message-report.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { ManageUnitsComponent } from './pages/manage-units/manage-units.component';
+import { SelectOptionComponent } from './components/select-option/select-option.component';
 
 @NgModule({
   imports: [
@@ -177,7 +179,9 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
     PetFormcontrolComponent,
     ResidentReportComponent,
     UnitReportComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    ManageUnitsComponent,
+    SelectOptionComponent
   ],
   providers: [
       {
