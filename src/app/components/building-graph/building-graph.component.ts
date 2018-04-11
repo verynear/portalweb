@@ -17,7 +17,7 @@ export class BuildingGraphComponent implements OnInit {
   buildingImgPath = './assets/building-graphs/';
 
   @Input() readPercent: number; // The percentage of buildings where the message has been read, Valid Input is: 0 - 100
-  
+
   constructor() { }
 
   ngOnInit() {

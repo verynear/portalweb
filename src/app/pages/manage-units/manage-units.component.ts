@@ -28,11 +28,11 @@ export class ManageUnitsComponent implements OnInit {
     });
 
     this.initFilters();
-    
+
   }
 
   initFilters() {
-    this.filters = ["View All Status", "Available", "Not Available", "Reserved", "Model"];
+    this.filters = ['View All Status', 'Available', 'Not Available', 'Reserved', 'Model'];
   }
 
   // Temp default.
