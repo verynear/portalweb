@@ -11,10 +11,19 @@
           <h1>Building Report <small>{{buildingReport?.address1}}</small> </h1>
         </div>
       </div>
+
+
+      <div class="row">
+        <div *ngIf="buildingReport" class="col-md-4">
+          Select Your Report: <app-report-nav [selected]='buildingReport'></app-report-nav>
+        </div>
+      </div>
+        
+      <br>          
   
       <form>		
         <div class="row">
-          <div class="col-md-3">
+          <!-- <div class="col-md-2">
             <section>
               <div class="form-group">
                 <label class="sr-only" for="inlineFormInputGroup">Search</label>
@@ -24,11 +33,9 @@
                 </div>
               </div>
             </section>
-            <app-report-nav></app-report-nav>
-          </div> 
+          </div>  -->
 
-          <div class="col-md-9">
-
+          <div class="col-md-12">
             <section class="message-report">        
               <table *ngIf="!loading" class="table table table-bordered table-hover">
                   <thead>

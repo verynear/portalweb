@@ -99,6 +99,7 @@ import { ManageUnitsComponent } from './pages/manage-units/manage-units.componen
 import { SelectOptionComponent } from './components/select-option/select-option.component';
 import { NgbDateENParserFormatter } from './services/ngb-date-enparser-formatter.service';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { BuildingGraphComponent } from './components/building-graph/building-graph.component';
 
 @NgModule({
   imports: [
@@ -178,7 +179,8 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
     ConfirmModalComponent,
     ManageUnitsComponent,
     SelectOptionComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    BuildingGraphComponent
   ],
   providers: [
       {
