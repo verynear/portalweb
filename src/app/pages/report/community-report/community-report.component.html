@@ -10,22 +10,16 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-4">
+          Select Your Report: <app-report-nav [selected]="'Community'"></app-report-nav>
+        </div>
+      </div>
+      
+      <br>       
         <form>		
-          <div class="row">
-            <div class="col-md-3">
-              <section>
-                <div class="form-group">
-                  <label class="sr-only" for="inlineFormInputGroup">Search</label>
-                    <div class="input-group">
-                    <input type="search" class="form-control form-control-sm" id="inlineFormInputGroup" placeholder="Search">
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                  </div>
-                </div>
-              </section>
-              <app-report-nav></app-report-nav>
-            </div> 
-  
-            <div class="col-md-9">
+          <div class="row">  
+            <div class="col-md-12">
               <section class="message-report">        
                 <table *ngIf="!loading" class="table table table-bordered table-hover">
                     <thead>

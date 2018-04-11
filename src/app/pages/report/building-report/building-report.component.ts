@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class BuildingReportComponent implements OnInit {
   public buildings: Building[];
   public currentProperty: Building;
-  public buildingReport: Report[];
+  public buildingReport: Report;
 
   public loading: boolean;
 
