@@ -52,8 +52,9 @@
   margin-top: 5px;
 }
 .leasing-table .badge.new {
-  float: right;
+  float: left;
   margin-top: 1px;
+  margin-right: 8px;
 }
 
 .width-25 {
@@ -74,6 +75,18 @@
 
 .addNew {
   float: right;
+}
+.tabtitle {
+  color: #495057 !important;
+  background-color: #fff !important;
+  border-color: #ddd #ddd #fff !important;
+}
+
+.nav-item1:last-child a {
+  color: #495057 !important;
+  background-color: #fff !important;
+  border-color: #ddd #ddd #fff;
+  border-top: 3px solid #ddd !important;
 }
 
 ::ng-deep .page-item.active .page-link {
