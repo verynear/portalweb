@@ -11,8 +11,7 @@ import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { InputTextModule, ButtonModule, FileUploadModule, DialogModule, SharedModule, CheckboxModule } from 'primeng/primeng';
-import { TableModule } from 'primeng/components/table/table';
+import { InputTextModule, ButtonModule, FileUploadModule, SharedModule, CheckboxModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -48,7 +47,6 @@ import { ShortenPipe } from './pipes/shorten.pipe';
 
 
 import { ApplicantsComponent } from './pages/applicants/applicants.component';
-import { DatatableComponent } from './components/datatable/datatable.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ComposeComponent } from './components/compose/compose.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
@@ -108,11 +106,8 @@ import { MessageReportComponent } from './pages/report/message-report/message-re
     AutoCompleteModule,
     InputTextModule,
     ButtonModule,
-    TableModule,
-    DialogModule,
     SharedModule,
     FileUploadModule,
-    TableModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -134,7 +129,6 @@ import { MessageReportComponent } from './pages/report/message-report/message-re
     AnnouncementsComponent,
     NavigationComponent,
     ApplicantsComponent,
-    DatatableComponent,
     MenuComponent,
     ComposeComponent,
     InboxComponent,

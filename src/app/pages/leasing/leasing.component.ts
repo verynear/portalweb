@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Applicant } from '../../models/applicant';
+import { Applicant, ApplicantTest } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
 import { AlertService } from '../../services/alert.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,7 @@ export class LeasingComponent implements OnInit {
 
   applicant: Applicant = new Applicant();
   selectedApplicant: Applicant;
-  applicants: Applicant[];
+  applicants: ApplicantTest[];
   loading: boolean;
 
   constructor(private applicantService: ApplicantService, private alertService: AlertService, private modalService: NgbModal) { }
@@ -32,7 +32,7 @@ export class LeasingComponent implements OnInit {
         this.loading = false;
         console.log('Applicants Loaded');
         this.applicants = data;
-        console.log(data[0].lastname);
+        console.log(this.applicants);
       },
       error => {
         console.log('Error');
@@ -46,7 +46,7 @@ export class LeasingComponent implements OnInit {
 
   openCard(applicant) {
     const modalRef = this.modalService.open(GuestcardComponent, { windowClass: 'dark-modal' });
-    modalRef.componentInstance.name = applicant.firstname + ' ' + applicant.lastname;
+    modalRef.componentInstance.name = applicant.ApplicantName;
     modalRef.componentInstance.phone = applicant.phone;
     modalRef.componentInstance.moveinDate = applicant.moveinDate;
   }

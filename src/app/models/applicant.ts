@@ -11,3 +11,15 @@ export class Applicant {
     moveinDate: Date;
     applicationDate: Date;
 }
+
+export class ApplicantTest {
+    ProofedDate: string;
+    Source: string;
+    RequestDate: string;
+    ReportName: string;
+    ClientID: string;
+    ClientName: string;
+    ApplicantName: string;
+    ReportID: string;
+    ReportStatus: string;
+}
