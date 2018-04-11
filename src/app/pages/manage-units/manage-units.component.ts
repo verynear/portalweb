@@ -16,6 +16,8 @@ export class ManageUnitsComponent implements OnInit {
   public units: Unit[];
   public selectedBuilding: Building;
   public isActive: any[];
+  public activeFilter: string;
+  public filters: any[];
 
   constructor(private siteService: SiteService) { }
 
@@ -24,6 +26,20 @@ export class ManageUnitsComponent implements OnInit {
       this.currentSite = site;
       this.getBuildings();
     });
+
+    this.initFilters();
+
+  }
+
+  initFilters() {
+    this.filters = ['View All Status', 'Available', 'Not Available', 'Reserved', 'Model'];
+  }
+
+  // Temp default.
+  default() {
+    for (let i = 0; i < this.units.length; i++) {
+      this.units[i]['avail'] = true;
+    }
   }
 
   getBuildings() {
@@ -33,15 +49,11 @@ export class ManageUnitsComponent implements OnInit {
         this.getUnits(data[0]);
       },
       error => {
-        console.log('Error: getBuildings: manageUnitComponent');
+        console.log('Error: getBuildings: getBuildings');
       });
   }
 
   selectBuilding($event) {
-    if ($event === 'all') { // Show all buildings.
-      return; // Temp until we implement API.
-    }
-
     this.getUnits($event);
   }
 
@@ -50,24 +62,19 @@ export class ManageUnitsComponent implements OnInit {
       data => {
         this.selectedBuilding = building;
         this.units = data;
+        this.default();
       },
       error => {
-        console.log('Error: getBuildings: manageUnitComponent');
+        console.log('Error: getBuildings: getUnits');
       });
   }
 
-  clearUnitButtons(i) {
-    this.units[i]['avail'] = false;
-    this.units[i]['notavail'] = false;
-    this.units[i]['disable'] = false;
-    this.units[i]['reserved'] = false;
-    this.units[i]['modelunit'] = false;
-    this.units[i]['disable'] = false;
+  filter(filterName) {
+    console.log(filterName);
+    this.activeFilter = filterName;
   }
 
   changeUnitAvail(i, type) {
-    this.clearUnitButtons(i);
-
     if (this.units[i][type] == null) {
       this.units[i][type] = true;
     } else {

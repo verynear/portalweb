@@ -4,23 +4,10 @@
     <p [innerHTML]="message?.message | htmlToPlain"> </p>
     <a (click)="openReport()" class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="messages" class="btn btn-default btn-sm">View All Messages</a>
   </div>
-  <div class="col-md-6 flex">
-      <img class="buildingImg padding-15" [src]="buildingImgSrc" alt="BetterLeasing" onError="this.src='./assets/building-graphs/building-0.png';">
 
-      <ul class="list-unstyled mt-5">
-        <li>
-          <h4 class="alert alert-success">
-            <span class="alert-heading mb-0"> {{readPercent | percent}} </span> <small class="small-building"> Read </small>
-          </h4>
-        </li> 
-        
-        <li class="list-margin">
-          <h4 class="alert alert-warning">
-            <span class="alert-heading mb-0"> {{pendingPercent | percent}} </span> <small class="small-building"> Pending </small>
-          </h4>
-        </li>
-      </ul>
-  </div> 
+  <div *ngIf="readPercent" class="col-md-6">
+    <app-building-graph [readPercent]="readPercent"></app-building-graph>
+  </div>
 </div>
 
 <ng-template #no_data_templ>

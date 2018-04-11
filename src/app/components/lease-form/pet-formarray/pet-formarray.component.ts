@@ -16,7 +16,7 @@ export class PetFormarrayComponent {
 
   static buildPets() {
     return new FormArray(
-        []
+        [PetFormcontrolComponent.buildPet('')]
     );
   }
 

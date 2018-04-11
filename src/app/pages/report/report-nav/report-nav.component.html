@@ -1,4 +1,4 @@
-<div class="btn-group-vertical btn-block nav-filter">
+<!-- <div class="btn-group-vertical btn-block nav-filter">
   <a routerLink="/report/community-report/{{currentSite.id}}" routerLinkActive="active" class="btn btn-default">
     <i class="fa fa-group"></i> Community
   </a>
@@ -8,3 +8,7 @@
     {{building.address1}} 
   </a>
 </div>
+Legacy -->
+
+
+<app-select-option [selected]="getSelected()" [objs]="buildings" type="address1" (onSelect)="selectReport($event)"></app-select-option>

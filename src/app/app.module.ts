@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDatepickerConfig, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule, MultiSelectModule, AutoCompleteModule, ConfirmDialog } from 'primeng/primeng';
 import { fakeBackendProvider } from './services/fake-backend.service';
 import { MockBackend } from '@angular/http/testing';
@@ -97,6 +97,9 @@ import { MessageReportComponent } from './pages/report/message-report/message-re
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { ManageUnitsComponent } from './pages/manage-units/manage-units.component';
 import { SelectOptionComponent } from './components/select-option/select-option.component';
+import { NgbDateENParserFormatter } from './services/ngb-date-enparser-formatter.service';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { BuildingGraphComponent } from './components/building-graph/building-graph.component';
 
 @NgModule({
   imports: [
@@ -175,7 +178,9 @@ import { SelectOptionComponent } from './components/select-option/select-option.
     UnitReportComponent,
     ConfirmModalComponent,
     ManageUnitsComponent,
-    SelectOptionComponent
+    SelectOptionComponent,
+    DatepickerComponent,
+    BuildingGraphComponent
   ],
   providers: [
       {
@@ -202,6 +207,7 @@ import { SelectOptionComponent } from './components/select-option/select-option.
       AnnouncementService,
       SessionService,
       LoginService,
+      {provide: NgbDateParserFormatter, useClass: NgbDateENParserFormatter},
       SortService,
       ReportService,
       {

@@ -288,6 +288,10 @@ a:hover.btn.btn-primary {
 .text-danger {
     color: #d13431 !important;
 }
+.text-yield {
+    color: #fffd38;
+    text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.7);
+}
 .alert-danger {
     border-style: none;
 }
@@ -488,13 +492,13 @@ textarea {
 .nav-item {
 	font-size: 12px;
 	text-transform: uppercase;
-	height: 2.188rem;
+	/* height: 2.188rem; */
 }
-/*
+
 .nav-item:last-child a {
 	color: #fff;
 }
-*/
+
 .nav-item .btn {
 	padding: inherit;
 }

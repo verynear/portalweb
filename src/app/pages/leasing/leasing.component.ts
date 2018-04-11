@@ -48,7 +48,7 @@ export class LeasingComponent implements OnInit {
     const modalRef = this.modalService.open(GuestcardComponent, { windowClass: 'dark-modal' });
     modalRef.componentInstance.name = applicant.ApplicantName;
     modalRef.componentInstance.phone = applicant.phone;
-    modalRef.componentInstance.moveinDate = applicant.moveinDate;
+    modalRef.componentInstance.moveinDate = applicant.ProofedDate;
   }
 
   newApplicant() {
