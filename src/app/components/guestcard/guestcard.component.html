@@ -11,7 +11,7 @@
 				<h6 class="m-0">{{name}}</h6>
 				<ul class="list-unstyled">
 					<li>123 Barney Ave.<br>Atlanta, GA 30312</li>
-					<li><i class="fa fa-phone"></i> ({{phone | slice:0:3}}) {{phone | slice:3:6}}-{{phone | slice:6:10}}</li>
+					<li><i class="fa fa-phone"></i> (708) 867-5309 <!-- ({{phone | slice:0:3}}) {{phone | slice:3:6}}-{{phone | slice:6:10}} --></li>
 				</ul>
 				<table class="table">
 					<thead>
@@ -22,7 +22,7 @@
 					<tbody>
 						<tr>
 							<td>Expected Move-In Date:</td>
-							<td>{{moveinDate | date}}</td>
+							<td>{{moveinDate | date:'MM/dd/yyyy'}}</td>
 						</tr>
 						<tr>
 							<td>Bedrooms:</td>

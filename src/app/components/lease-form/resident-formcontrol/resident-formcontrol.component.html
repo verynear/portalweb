@@ -1,25 +1,27 @@
-<div class="card-body" [formGroup]="resident">
-	<p class="lead m-0">Resident {{index + 2}} <button type="button" class="btn btn-link btn-sm" (click)="removedResident.emit(index)"><i class="fa fa-minus-circle"></i> Remove Resident</button></p>
-	<div class="form-row">
-		<div class="col-md-6">
-			<label class="col-form-label" [attr.for]="'name'+index">Name</label>
-	        <input type="text" class="form-control" [attr.id]="'name'+index" formControlName="name">
-		</div>
-		<div class="col-md-3">
-			<label class="col-form-label" [attr.for]="'type'+index">Applicant Type</label>
-			<select formControlName="type" [attr.id]="'type'+index" class="form-control">
-				<option [value]="0">Select Applicant Type</option>
-				<option [value]="Primary">Primary</option>
-				<option [value]="Co-Applicant">Co-Applicant</option>
-				<option [value]="Occupant">Occupant</option>
-			</select>
-		</div>
-		<div class="col-md-3">
-			<label class="col-form-label" [attr.for]="'includeInLease'+index">Include In Lease?</label>
-			<select formControlName="includeInLease" [attr.id]="'includeInLease'+index" class="form-control">
-				<option [value]="True">Yes</option>
-				<option [value]="False" selected>No</option>
-			</select>
+<div class="card mt-3 bg-light">
+	<div class="card-body" [formGroup]="resident">
+		<p class="lead m-0">Resident {{index + 2}} <button type="button" class="btn btn-link btn-sm" (click)="removedResident.emit(index)"><i class="fa fa-minus-circle"></i> Remove Resident</button></p>
+		<div class="form-row">
+			<div class="col-md-6">
+				<label class="col-form-label" [attr.for]="'name'+index">Name</label>
+		        <input type="text" class="form-control" [attr.id]="'name'+index" formControlName="name">
+			</div>
+			<div class="col-md-3">
+				<label class="col-form-label" [attr.for]="'type'+index">Applicant Type</label>
+				<select formControlName="type" [attr.id]="'type'+index" class="form-control">
+					<option [value]="0">Select Applicant Type</option>
+					<option [value]="Primary">Primary</option>
+					<option [value]="Co-Applicant">Co-Applicant</option>
+					<option [value]="Occupant">Occupant</option>
+				</select>
+			</div>
+			<div class="col-md-3">
+				<label class="col-form-label" [attr.for]="'includeInLease'+index">Include In Lease?</label>
+				<select formControlName="includeInLease" [attr.id]="'includeInLease'+index" class="form-control">
+					<option [value]="True">Yes</option>
+					<option [value]="False" selected>No</option>
+				</select>
+			</div>
 		</div>
 	</div>
 </div>

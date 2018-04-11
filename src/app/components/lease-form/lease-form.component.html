@@ -35,7 +35,7 @@
 							<div class="form-row">
 								<div class="col-md-8">
 									<label for="" class="col-form-label">Building</label>
-									<select class="form-control">
+									<select class="form-control" formControlName="building">
 										<option value="0">Select Building</option>
 										<option value="2">Building 1</option>
 										<option value="3">Building 2</option>
@@ -44,10 +44,11 @@
 								</div>
 								<div class="col-md-4">
 									<label for="" class="col-form-label">Enter Unit</label>
-									<input type="text" class="form-control" id="">
+									<input type="text" class="form-control" formControlName="unit">
 								</div>
 							</div>
 							<hr>
+							<button type="button" class="btn btn-secondary btn-sm float-right" (click)="addResident()"><i class="fa fa-plus-circle"></i> Add Resident</button>
 							<h5>Resident Information</h5>
 							<div>							
 								<div class="form-row">
@@ -57,7 +58,7 @@
 									</div>
 									<div class="col-md-3">
 										<label for="" class="col-form-label">Applicant Type</label>
-										<select class="form-control" disabled readonly>
+										<select class="form-control" formControlName="applicantType" disabled readonly>
 											<option value="0">Select Applicant Type</option>
 											<option value="2" selected>Primary</option>
 											<option value="3">Co-Applicant</option>
@@ -66,13 +67,13 @@
 									</div>
 									<div class="col-md-3">
 										<label for="" class="col-form-label">Include In Lease?</label>
-										<select class="form-control" disabled readonly>
+										<select formControlName="includeInLease" class="form-control" disabled readonly>
 											<option value="1" selected>Yes</option>
 											<option value="2">No</option>
 										</select>
 									</div>
 								</div>
-								<div class="card mt-3 bg-light">
+								<div>
 									<app-resident-array
 									    formArrayName="residents"
 									    [residentFormArray]="leaseForm.get('residents')">
@@ -87,23 +88,21 @@
 									<div class="form-group">
 										<label class="col-form-label" for="">Monthly Rent</label>
 										<div class="input-group">
-											<div class="input-group-addon"><i class="fa fa-dollar-sign"></i></div>
-											<input type="text" class="form-control" id="">
+											<div class="input-group-addon"><i class="fa fa-usd"></i></div>
+											<input type="text" class="form-control" formControlName="rent">
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
 										<label class="col-form-label" for="">Lease Date</label>
-										<div class="input-group">
-											<input type="date" class="form-control" id="">
-											<div class="input-group-addon"><i class="fa fa-calendar-alt"></i></div>
-										</div>
+										<app-datepicker></app-datepicker>
+
 									</div>
 								</div>
 								<div class="col-md-4">
 									<label for="" class="col-form-label">Duration</label>
-									<select class="form-control">
+									<select class="form-control" formControlName="duration">
 										<option value="0">Select Duration</option>
 										<option value="1">Monthly</option>
 										<option value="2" selected>6 Months</option>
@@ -116,24 +115,18 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label class="col-form-label" for="">Lease Start Date</label>
-										<div class="input-group">
-											<input type="date" class="form-control" id="">
-											<div class="input-group-addon"><i class="fa fa-calendar-alt"></i></div>
-										</div>
+										<app-datepicker></app-datepicker>
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
 										<label class="col-form-label" for="">Lease End Date</label>
-										<div class="input-group">
-											<input type="date" class="form-control" id="">
-											<div class="input-group-addon"><i class="fa fa-calendar-alt"></i></div>
-										</div>
+										<app-datepicker></app-datepicker>
 									</div>
 								</div>
 								<div class="col-md-4">
 									<label for="" class="col-form-label">Signing Incentive</label>
-									<select class="form-control">
+									<select formControlName="incentive" class="form-control">
 										<option value="0">None</option>
 										<option value="1">Free Month(s)</option>
 										<option value="2">Rent Discount</option>
@@ -142,38 +135,10 @@
 								</div>
 							</div>
 							<hr>
-							
+							<button type="button" class="btn btn-secondary btn-sm float-right" (click)="addPet()"><i class="fa fa-plus-circle"></i> Add Pet</button>
 							<h5>Pet Information</h5>
 							<div class="clearfix"></div>
-							<div class="form-row">
-								<div class="col-md-4">
-									<label for="" class="col-form-label">Pet Name</label>
-									<input type="text" class="form-control" id="">
-								</div>
-								<div class="col-md-4">
-									<label for="" class="col-form-label">Breed of Pet</label>
-									<input type="text" class="form-control" id="">
-								</div>
-								<div class="col-md-4">
-									<label for="" class="col-form-label">Age of Pet</label>
-									<input type="text" class="form-control" id="">
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="col-md-4">
-									<label for="" class="col-form-label">Type of Pet</label>
-									<input type="text" class="form-control" id="">
-								</div>
-								<div class="col-md-4">
-									<label for="" class="col-form-label">Color</label>
-									<input type="text" class="form-control" id="">
-								</div>
-								<div class="col-md-4">
-									<label for="" class="col-form-label">Weight</label>
-									<input type="text" class="form-control" id="">
-								</div>
-							</div>
-							<div class="card mt-3 bg-light">
+							<div>
 								<app-pet-array
 								    formArrayName="pets"
 								    [petFormArray]="leaseForm.get('pets')">
@@ -208,7 +173,7 @@
 											<div class="form-group">
 												<label class="col-form-label" for="">Security Deposit</label>
 												<div class="input-group">
-													<div class="input-group-addon"><i class="fa fa-dollar-sign"></i></div>
+													<div class="input-group-addon"><i class="fa fa-usd"></i></div>
 													<input type="text" class="form-control" id="" placeholder="$250.00">
 												</div>
 											</div>
@@ -216,10 +181,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="col-form-label" for="">Date of Security Deposit</label>
-												<div class="input-group">
-													<input type="date" class="form-control" id="">
-													<div class="input-group-addon"><i class="fa fa-calendar-alt"></i></div>
-												</div>
+												<app-datepicker></app-datepicker>
 											</div>
 										</div>
 									</div>
@@ -255,7 +217,7 @@
 							<hr>
 							<input type="submit" class="btn btn-secondary" value="Preview Lease">
 							<input type="submit" class="btn btn-primary" value="Generate Lease">
-							<a href="leads.html" class="btn btn-default float-right">Cancel</a>
+							<a href="leasing" class="btn btn-default float-right">Cancel</a>
 						</form>
 					</div>
 					<div class="col-md-3 offset-1">
