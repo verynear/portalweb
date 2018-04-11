@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Applicant } from '../../models/applicant';
 import { ApplicantService } from '../../services/applicant.service';
-import { DatatableComponent } from '../../components/datatable/datatable.component';
 import { SiteService } from '../../services/site.service';
 import { Site } from '../../models/site';
 
