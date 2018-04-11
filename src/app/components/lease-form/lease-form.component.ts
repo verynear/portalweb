@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SiteService } from '../../services/site.service';
 import { Site } from '../../models/site';
 import { Tenant } from '../../models/tenant';
@@ -14,12 +14,22 @@ import { PetFormarrayComponent } from './pet-formarray/pet-formarray.component';
   styleUrls: ['./lease-form.component.scss']
 })
 export class LeaseFormComponent implements OnInit {
+  @ViewChild(ResidentFormarrayComponent) residentArray: ResidentFormarrayComponent;
+  @ViewChild(PetFormarrayComponent) petArray: PetFormarrayComponent;
   leaseForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.createForm();
+  }
+
+  addResident() {
+    this.residentArray.addResident();
+  }
+
+  addPet() {
+    this.petArray.addPet();
   }
 
     createForm() {
