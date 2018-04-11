@@ -2,26 +2,16 @@
   <!-- Main Content Area -->
   <div class="main-content">
     <div class="container-fluid">
-      <h1><small>Manage</small> Unit Availabilities</h1>
+      <h1><small>Manage</small> Unit Availability</h1>
       <form>
         <div class="row">
-
-          <div class="col-md-4">
-            <app-select-option [objs]="buildings" [type]="'address1'" [default]="'Show all units'" (onSelect)="selectBuilding($event)"></app-select-option>
+          <div *ngIf="buildings" class="col-md-4">
+            <app-select-option [selected]="buildings[0]" [objs]="buildings" [type]="'address1'" [default]="'Show all units'" (onSelect)="selectBuilding($event)"></app-select-option>
           </div>
                     
-          <div class="col-md-2">
-            <select class="form-control">
-              <option value="0">View All Status</option>
-              <option value="1">Available</option>
-              <option value="2">Not Available</option>
-              <option value="3">Reserved</option>
-              <option value="4">Model</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <button class="btn btn-primary btn-block">Filter</button>
-          </div>
+          <!-- <div class="col-md-2">
+              <app-select-option [selected]="filters[0]" [objs]="filters" (onSelect)="setFilter($event)"></app-select-option> 
+          </div> -->
         </div>
       </form>
       <hr>
@@ -29,7 +19,6 @@
         <small>
           <ul class="list-inline list-inline-item-border-right">
             <li class="list-inline-item"><strong>KEY:</strong> &nbsp; Available: <i class="fa fa-check text-success"></i></li>
-            <li class="list-inline-item">Not Available: <i class="fa fa-ban text-warning"></i></li>
             <li class="list-inline-item">Reserved: <i class="fa fa-calendar text-info"></i></li>
             <li class="list-inline-item">Model Unit: <i class="fa fa-cube text-secondary"></i></li>
             <li class="list-inline-item">Disable Display: <i class="fa fa-eye-slash text-warning"></i></li>
@@ -41,27 +30,28 @@
           <tr><th colspan="6">{{selectedBuilding?.address1}}</th></tr>
           <tr class="bg-light">
             <th width="80">Unit Status</th>
-            <th>Unit Number</th>
+            <th class="w-150">Unit Number</th>
             <th width="25%">Address</th>
-            <th>Floorplan</th>
-            <th>ID</th>
+            <th class="w-150">Floorplan</th>
+            <th class="w-150">ID</th>
+            <th>Residents</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let unit of units; let i = index">
-            <td>
-              <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                <label [ngClass]="{'active': unit.avail}" class="btn btn-success"><input (click)="changeUnitAvail(i, 'avail')" type="radio" name="unit-1" id="check" autocomplete="off"> <i class="fa fa-check"></i></label>
-                <label [ngClass]="{'active': unit.notavail}" class="btn btn-warning"><input (click)="changeUnitAvail(i, 'notavail')" type="radio" name="unit-1" id="ban" autocomplete="off"><i class="fa fa-ban"></i></label>
-                <label [ngClass]="{'active': unit.reserved}" class="btn btn-info"><input (click)="changeUnitAvail(i, 'reserved')" type="radio" name="unit-1" id="cal" autocomplete="off"><i class="fa fa-calendar"></i></label>
-                <label [ngClass]="{'active': unit.modelunit}" class="btn btn-secondary"><input (click)="changeUnitAvail(i, 'modelunit')" type="radio" name="unit-1" id="model" autocomplete="off"><i class="fa fa-cube"></i></label>
-                <label [ngClass]="{'active': unit.disable}" class="btn btn-warning"><input (click)="changeUnitAvail(i, 'disable')" type="radio" name="unit-1" id="display" autocomplete="off"><i class="fa fa-eye-slash"></i></label>
-              </div>
-            </td>
-            <td>{{unit.unitNumber}}</td>
-            <td>{{unit.address1}}</td>
-            <td>Studio</td>
-            <td>{{unit.unitCode}}</td>
+              <td>
+                <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                  <label [ngClass]="{'active': unit.avail}" class="btn btn-success"><input (click)="changeUnitAvail(i, 'avail')"  type="radio" id="check" autocomplete="off"> <i class="fa fa-check"></i></label>
+                  <label [ngClass]="{'active': unit.reserved}" class="btn btn-info"><input (click)="changeUnitAvail(i, 'reserved')" id="cal" type="radio" autocomplete="off"><i class="fa fa-calendar"></i></label>
+                  <label [ngClass]="{'active': unit.modelunit}" class="btn btn-secondary"><input (click)="changeUnitAvail(i, 'modelunit')" type="radio" id="model" autocomplete="off"><i class="fa fa-cube"></i></label>
+                  <label [ngClass]="{'active': unit.disable}" class="btn btn-warning"><input (click)="changeUnitAvail(i, 'disable')" type="radio"  id="display"><i class="fa fa-eye-slash"></i></label>
+                </div>
+              </td>
+              <td>{{unit.unitNumber}}</td>
+              <td>{{unit.address1}}</td>
+              <td>Studio</td>
+              <td>{{unit.unitCode}}</td>
+              <td>John Smith</td>
           </tr>
         </tbody>
       </table>

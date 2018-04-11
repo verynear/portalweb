@@ -1,0 +1,17 @@
+<div class="row">
+    <img class="buildingImg padding-15" [src]="buildingImgSrc" alt="BetterLeasing" onError="this.src='./assets/building-graphs/building-0.png';">
+
+    <ul class="list-unstyled mt-5">
+      <li>
+        <h4 class="alert alert-success">
+          <span class="alert-heading mb-0"> {{readPercent | percent}} </span> <small class="small-building"> Read </small>
+        </h4>
+      </li> 
+      
+      <li class="list-margin">
+        <h4 class="alert alert-warning">
+          <span class="alert-heading mb-0"> {{pendingPercent | percent}} </span> <small class="small-building"> Pending </small>
+        </h4>
+      </li>
+    </ul>
+</div> 

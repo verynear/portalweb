@@ -99,6 +99,7 @@ import { MessageReportComponent } from './pages/report/message-report/message-re
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { ManageUnitsComponent } from './pages/manage-units/manage-units.component';
 import { SelectOptionComponent } from './components/select-option/select-option.component';
+import { BuildingGraphComponent } from './components/building-graph/building-graph.component';
 
 @NgModule({
   imports: [
@@ -181,7 +182,8 @@ import { SelectOptionComponent } from './components/select-option/select-option.
     UnitReportComponent,
     ConfirmModalComponent,
     ManageUnitsComponent,
-    SelectOptionComponent
+    SelectOptionComponent,
+    BuildingGraphComponent
   ],
   providers: [
       {

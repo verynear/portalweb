@@ -1,7 +1,8 @@
-<select (change)="selectValue()" [(ngModel)]="selectedObj" class="form-control">
-    <option [ngValue]="'all'">{{default}}</option>
-    <option *ngFor="let obj of objs" [ngValue]="obj"> {{obj[type]}} </option>
+<select *ngIf="selected" (change)="selectValue()" [(ngModel)]="selected" class="form-control">
+    <ng-container *ngIf="type">
+        <option *ngFor="let obj of objs" [ngValue]="obj"> {{obj[type]}} </option>
+    </ng-container>
+    <ng-container *ngIf="!type">
+        <option *ngFor="let obj of objs" [ngValue]="obj"> {{obj}} </option>
+    </ng-container>
 </select>
-
-
-

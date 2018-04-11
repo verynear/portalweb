@@ -1,48 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { HtmlToPlainPipe } from '../../pipes/html-to-plain.pipe';
-import { MessageService } from '../../services/message.service';
-import { Message } from '../../models/message';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+
+/*
+  HOW TO USE:
+
+  Create with a valid readPercent (0 - 100) .. and, boom!
+*/
 
 @Component({
-  selector: 'app-mostrecent',
-  templateUrl: './mostrecent.component.html',
-  styleUrls: ['./mostrecent.component.scss']
+  selector: 'app-building-graph',
+  templateUrl: './building-graph.component.html',
+  styleUrls: ['./building-graph.component.scss']
 })
-export class MostRecentComponent implements OnInit {
-  message: Message;
-  readPercent: number;
+export class BuildingGraphComponent implements OnInit {
   pendingPercent: number;
   buildingImgSrc: string;
   buildingImgPath = './assets/building-graphs/';
 
-  constructor(public messageService: MessageService, private router: Router, private route: ActivatedRoute) { }
+  @Input() readPercent: number; // The percentage of buildings where the message has been read, Valid Input is: 0 - 100
+  
+  constructor() { }
 
   ngOnInit() {
     this.buildingImgSrc = './assets/building-graphs/building-0.png';
-    this.getMostRecent();
+    this.pendingPercent = 100 - this.readPercent;
+    this.convertToPercent();
   }
 
-  getMostRecent() {
-    this.messageService.getSent(0, 1).subscribe(
-      data => {
-        this.message = data['messages'][0];
-        this.calcPercents(this.message);
-      },
-      error => {
-        console.log('Error: getMostRecent(): MostRecent()');
-        this.readPercent = 0;
-        this.pendingPercent = 1;
-      });
-  }
-
-  openReport() {
-    this.router.navigate(['/report/message-report', this.message.id]);
-  }
-
-  calcPercents(message: Message) {
-    this.readPercent = Math.round((message.readReceipts / message.totalReceipts) * 100);
-    this.buildingImgSrc = this.getBuildingImage(this.readPercent);
+  convertToPercent() {
+    this.readPercent = (this.readPercent / 100);
+    this.pendingPercent = (this.pendingPercent / 100);
   }
 
   getBuildingImage(readPercent) {
@@ -110,4 +96,5 @@ export class MostRecentComponent implements OnInit {
       return this.buildingImgPath + 'building-100.png';
     }
   }
+
 }
