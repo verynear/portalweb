@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Applicant } from '../models/applicant';
+import { Applicant, ApplicantTest } from '../models/applicant';
 import 'rxjs/add/operator/toPromise';
 
 import {environment} from '../../environments/environment';
@@ -12,7 +12,7 @@ import { SortService } from '../components/sortable-table/sort.service';
 @Injectable()
 export class ApplicantService {
     private baseURL: string;
-    applicants: Array<Applicant>;
+    applicants: Array<ApplicantTest>;
 
     // applicant = this.applicant;
 
@@ -22,7 +22,7 @@ export class ApplicantService {
       }
 
     get() {
-    return this.http.get<Applicant[]>(this.baseURL + '/applicants');
+    return this.http.get<any>('https://client.betternoi.com/rest/betterAPI/requests?propertyid=078ACAFB-E876-4CC7-9B66-3AF43398B8C8');
       }
 
     getTestData() {
@@ -40,7 +40,7 @@ export class ApplicantService {
       return this.http.put(this.baseURL + '/applicants/approve/' + id, id);
       }
 
-    sortApplicants (applicants, criteria: MessageSearchCriteria): Applicant[] {
+    sortApplicants (applicants, criteria: MessageSearchCriteria): ApplicantTest[] {
        return applicants.sort((a, b) => {
         return this.sortService.sortHelper(a, b, criteria);
       });

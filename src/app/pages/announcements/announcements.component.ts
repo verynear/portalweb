@@ -5,6 +5,7 @@ import { Message } from '../../models/message';
 import { AlertService } from '../../services/alert.service';
 import { AnnouncementcomposeComponent } from '../../components/announcementcompose/announcementcompose.component';
 import { NgbDropdownConfig, NgbModalOptions, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from '../../components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-announcements',
@@ -18,6 +19,7 @@ export class AnnouncementsComponent implements OnInit {
   page: number;                 // Current Page
   checkAll: boolean;
   loading: boolean;
+  deleteLoad: boolean;
 
   constructor(private modalService: NgbModal, public announcementService: AnnouncementService, private alertService: AlertService) { }
 
@@ -51,13 +53,25 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   deleteAnnouncement(id: number) {
-    this.announcementService.deleteAnnouncement(id).subscribe(
-      result => {
-        this.getSentAnnouncements(this.page, this.itemsPerPage);
-      },
-      error => {
-        console.log('Hello');
-      });
+    const options: NgbModalOptions = {backdrop: 'static', size: 'sm'};
+    const modalRef = this.modalService.open(ConfirmModalComponent, options);
+
+    modalRef.result.then((userResponse) => {
+
+      if (userResponse === 'success') {
+        this.deleteLoad = true;
+        this.announcementService.deleteAnnouncement(id).subscribe(
+          result => {
+            this.deleteLoad = false;
+            this.getSentAnnouncements(this.page, this.itemsPerPage);
+          },
+          error => {
+            this.deleteLoad = false;
+            console.log('Error: deleteAnnouncement: announcementComponent');
+          });
+      }
+    });
+
   }
 
   compose() {

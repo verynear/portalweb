@@ -10,7 +10,6 @@ import { AuthGuard } from './auth.guard';
 import { StatusComponent } from './pages/status/status.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { MessagesComponent } from './pages/messages/messages.component';
-import { DatatableComponent } from './components/datatable/datatable.component';
 import { SentboxComponent } from './pages/messages/sentbox/sentbox.component';
 import { InboxComponent } from './pages/messages/inbox/inbox.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
@@ -29,6 +28,7 @@ import { LeaseFormComponent } from './components/lease-form/lease-form.component
 import { SrNotesComponent } from './pages/sr-notes/sr-notes.component';
 import { ResidentReportComponent } from './pages/report/resident-report/resident-report.component';
 import { UnitReportComponent } from './pages/report/unit-report/unit-report.component';
+import { ManageUnitsComponent } from './pages/manage-units/manage-units.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -52,7 +52,6 @@ const routes: Routes = [
       { path: 'inbox/:id', component: ViewReceivedComponent }
     ]
   },
-
   { path: 'report/message-report/:id', component: MessageReportComponent, canActivate: [AuthGuard] },
   { path: 'report/building-report/:id', component: BuildingReportComponent, canActivate: [AuthGuard]},
   { path: 'report/community-report/:id', component: CommunityReportComponent, canActivate: [AuthGuard]},
@@ -61,10 +60,12 @@ const routes: Routes = [
   { path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard] },
   { path: 'announcements', component: AnnouncementsComponent, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
+  { path: 'units', component: ManageUnitsComponent, canActivate: [AuthGuard]},
   { path: 'invalid-domain', component: InvalidDomainComponent },
   { path: 'status', component: StatusComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
+
 ];
 
 @NgModule({

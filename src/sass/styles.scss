@@ -105,7 +105,7 @@ a:hover.btn.btn-primary {
 .btn,
 .btn-group > .btn {
     text-transform: uppercase;
-    padding: 0.625rem 1.25rem;
+    padding: 0.52rem 1.25rem;
     font-size: 0.875rem;
     cursor: pointer;
 }
@@ -119,10 +119,14 @@ a:hover.btn.btn-primary {
 .form-control:focus {
      box-shadow: none;
 }
-/*.btn:focus,
+.btn:focus,
+.btn:not([disabled]):not(.disabled).active,
+.btn:not([disabled]):not(.disabled):active,
+.show > .btn.dropdown-toggle,
+.btn:focus,
 .form-control:focus {
 	box-shadow: 0 0 0 .2rem rgba(134,142,150,.2);
-}*/
+}
 .btn.btn-sm,
 .btn-group-sm > .btn {
 	padding: 0.47rem 1.25rem;
@@ -134,7 +138,7 @@ a:hover.btn.btn-primary {
 
 /* Toggle Buttons */
 .btn-group-toggle.btn-group-sm > .btn {
-	padding: 4px 10px 3px;
+	padding: 3px 10px;
 	font-size: 11px;
 	color: #fff;
 }
@@ -160,12 +164,12 @@ a:hover.btn.btn-primary {
 
 .badge {
 	border-radius: 0.9375rem;
-	padding: 5px 7px;
+	padding: 4px;
 	font-size: 0.5625rem;
 	min-width: 18px;
-	max-width: 35px;
+	/*max-width: 35px;
 	min-height: 18px;
-	max-height: 35px;
+	max-height: 35px;*/
 }
 .breadcrumb .breadcrumb-item {
 	font-size: 12px;
@@ -179,6 +183,9 @@ a:hover.btn.btn-primary {
 }
 .dropdown {
 	display: inline-block;
+}
+.dropdown-menu {
+  min-width: 15rem;
 }
 .dropdown-menu,
 .popover {
@@ -231,6 +238,10 @@ a:hover.btn.btn-primary {
 .alert-primary .btn-primary,
 .badge-primary, .bg-primary {
   background-color: #a1afb6;
+}
+.badge-primary-light,
+.badge-secondary-light{
+  color: #444;
 }
 .bg-primary-light,
 .badge-primary-light {
@@ -288,6 +299,7 @@ a:hover.btn.btn-primary {
 }
 .bg-danger-light,
 .badge-danger-light {
+  color: #be302d;
 	background-color: #f5e0e0;
 }
 .btn.btn-danger:hover,
@@ -314,6 +326,7 @@ a:hover.btn.btn-primary {
 }
 .bg-warning-light,
 .badge-warning-light {
+  color: #bc6900;
 	background-color: #f8ead9;
 }
 .btn.btn-warning:hover,
@@ -343,6 +356,7 @@ a:hover.btn.btn-primary {
 }
 .bg-success-light,
 .badge-success-light {
+  color: #38853c;
 	background-color: #ebf4ec;
 }
 .btn.btn-success:hover,
@@ -368,6 +382,7 @@ a:hover.btn.btn-primary {
 }
 .bg-info-light,
 .badge-info-light {
+  color: #1766ab;
 	background-color: #e8f0f8;
 }
 .btn.btn-info:hover,
@@ -475,9 +490,11 @@ textarea {
 	text-transform: uppercase;
 	height: 2.188rem;
 }
+/*
 .nav-item:last-child a {
 	color: #fff;
 }
+*/
 .nav-item .btn {
 	padding: inherit;
 }
@@ -841,4 +858,11 @@ i.fa.fa-minus {
 
 .inline {
   display: inline;
+}
+
+/* Lightbox Reset */
+.ekko-lightbox-nav-overlay a {
+  color: #ccc;
+  opacity: .3;
+  font-size: 40px;
 }

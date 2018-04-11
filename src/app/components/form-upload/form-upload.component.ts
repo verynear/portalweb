@@ -78,6 +78,7 @@ export class FormUploadComponent implements OnInit {
       const bucket = new S3(this.s3.attachments.credential);
 
       for (const file of event.files) {
+        console.log('Hi..');
             file.objectURL = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(file)));
             file.isImage = /^image\//.test(file.type);
             this.uploadedFiles.push(file);

@@ -1,0 +1,7 @@
+<select (change)="selectValue()" [(ngModel)]="selectedObj" class="form-control">
+    <option [ngValue]="'all'">{{default}}</option>
+    <option *ngFor="let obj of objs" [ngValue]="obj"> {{obj[type]}} </option>
+</select>
+
+
+
