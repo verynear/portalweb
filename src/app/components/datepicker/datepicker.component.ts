@@ -32,4 +32,6 @@ export class DatepickerComponent implements OnInit {
         const startDay = '1';
 
         return this.ngbDateParserFormatter.parse(startYear + '-' + startMonth.toString() + '-' + startDay);
+  }
 }
+
