@@ -20,7 +20,6 @@ export class BuildingGraphComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.buildingImgSrc = './assets/building-graphs/building-0.png';
     this.buildingImgSrc = this.getBuildingImage(this.readPercent / 100);
     this.pendingPercent = 100 - this.readPercent;
     this.convertToPercent();
