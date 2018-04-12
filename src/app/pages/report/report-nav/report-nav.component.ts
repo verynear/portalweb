@@ -13,6 +13,8 @@ export class ReportNavComponent implements OnInit {
 
   public buildings: any[];
   public currentSite: Site;
+  public selectedIndex: number;
+  public input: any;
 
   constructor(private siteService: SiteService, private router: Router) { }
 
@@ -29,6 +31,7 @@ export class ReportNavComponent implements OnInit {
     this.siteService.getBuildings(siteId).subscribe(buildings => {
       this.buildings = buildings;
       this.buildings.unshift({address1: 'Community'});  // A little hack, but the select box must read the same type.
+      this.matchSelected();
     });
   }
 
@@ -40,19 +43,29 @@ export class ReportNavComponent implements OnInit {
     this.router.navigate(['report/community-report', this.currentSite.id]);
   }
 
+  init() {
+    this.siteService.getBuildings(this.currentSite.id).subscribe(buildings => {
+      this.buildings = buildings;
+      this.buildings.unshift({address1: 'Community'});  // A little hack, but the select box must read the same type.
+      this.matchSelected();
+    });
+  }
+
   matchSelected() {
     for (let i = 0; i < this.buildings.length; i++) {
       if (this.buildings[i].address1 === this.selected.address1) {
-        return i;
+        this.selectedIndex = i;
       }
     }
+
+    this.input = this.getSelected();
   }
 
   getSelected() {
     if (this.selected === 'Community') {
       return this.buildings[0];
     } else {
-      return this.buildings[this.matchSelected()];
+      return this.buildings[this.selectedIndex];
     }
   }
 
