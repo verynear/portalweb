@@ -28,7 +28,6 @@ export class ManageUnitsComponent implements OnInit {
     });
 
     this.initFilters();
-
   }
 
   initFilters() {
@@ -69,8 +68,7 @@ export class ManageUnitsComponent implements OnInit {
       });
   }
 
-  filter(filterName) {
-    console.log(filterName);
+  setFilter(filterName) {
     this.activeFilter = filterName;
   }
 

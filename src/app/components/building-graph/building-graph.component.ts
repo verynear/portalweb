@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 
 /*
   HOW TO USE:
-
   Create with a valid readPercent (0 - 100) .. and, boom!
 */
 
@@ -21,7 +20,11 @@ export class BuildingGraphComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.buildingImgSrc = './assets/building-graphs/building-0.png';
+    if (this.readPercent == null) {
+      this.readPercent = 0;
+    }
+
+    this.buildingImgSrc = this.getBuildingImage(this.readPercent / 100);
     this.pendingPercent = 100 - this.readPercent;
     this.convertToPercent();
   }
