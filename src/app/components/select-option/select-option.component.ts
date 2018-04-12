@@ -10,9 +10,9 @@ export class SelectOptionComponent implements OnInit {
   @Output() onSelect = new EventEmitter();
 
   @Input() selected: any;
-  @Input() objs: any[];   /* The array of objects to iterate over */
-  @Input() type: string;     /* The type of the value */
-  @Input() default: string; /* Default message for select */
+  @Input() objs: any[];       /* The array of objects to iterate over */
+  @Input() type: string;      /* The type of the value */
+  @Input() default: string;   /* Default message for select */
 
   selectValue() {
     this.onSelect.emit(this.selected);
