@@ -36,6 +36,8 @@ export class MostRecentComponent implements OnInit {
   }
 
   calcPercents(message: Message) {
+    console.log('Calc..');
     this.readPercent = Math.round((message.readReceipts / message.totalReceipts) * 100);
+    console.log(this.readPercent);
   }
 }
