@@ -20,13 +20,10 @@ export class BuildingGraphComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if (this.readPercent == null) {
-      this.readPercent = 0;
-    }
-
-    this.buildingImgSrc = this.getBuildingImage(this.readPercent / 100);
     this.pendingPercent = 100 - this.readPercent;
     this.convertToPercent();
+
+    this.buildingImgSrc = this.getBuildingImage(this.readPercent);
   }
 
   convertToPercent() {
