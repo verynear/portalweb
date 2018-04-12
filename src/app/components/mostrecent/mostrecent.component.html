@@ -5,7 +5,7 @@
     <a (click)="openReport()" class="btn btn-primary btn-sm mr-1">View Message Report</a><a href="messages" class="btn btn-default btn-sm">View All Messages</a>
   </div>
 
-  <div class="col-md-6">
+  <div *ngIf="readPercent != null" class="col-md-6">
     <app-building-graph [readPercent]="readPercent"></app-building-graph>
   </div>
 </div>
